@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:intl/intl.dart';
-import '../database/memo_service.dart';
+import '../database/database_service.dart';
 import '../models/memo.dart';
 import 'memo_editor_screen.dart';
 import '../widgets/quick_capture.dart';
@@ -14,7 +14,7 @@ class TimelineScreen extends StatefulWidget {
 }
 
 class _TimelineScreenState extends State<TimelineScreen> {
-  final MemoService _memoService = MemoService();
+  final DatabaseService _db = DatabaseService();
   List<Memo> _memos = [];
   bool _isLoading = true;
   bool _includeArchived = false;
@@ -31,8 +31,8 @@ class _TimelineScreenState extends State<TimelineScreen> {
     setState(() => _isLoading = true);
     try {
       final memos = _isSearching && _searchController.text.isNotEmpty
-          ? await _memoService.searchMemos(_searchController.text)
-          : await _memoService.getTimeline(includeArchived: _includeArchived);
+          ? await _db.searchMemos(_searchController.text)
+          : await _db.getTimeline(includeArchived: _includeArchived);
       setState(() {
         _memos = memos;
         _isLoading = false;
@@ -46,7 +46,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
   Future<void> _captureMemo(String content) async {
     if (content.isEmpty) return;
     try {
-      final memo = await _memoService.captureMemo(content);
+      final memo = await _db.captureMemo(content);
       setState(() => _memos.insert(0, memo));
       _showSnackbar('Memo captured!');
     } catch (e) {
@@ -86,23 +86,18 @@ class _TimelineScreenState extends State<TimelineScreen> {
     );
     
     if (confirm == true) {
-      await _memoService.deleteMemo(id);
+      await _db.deleteMemo(id);
       _loadMemos();
       _showSnackbar('Memo deleted');
     }
   }
 
   Future<void> _handleEditMemo(Memo memo) async {
-    final result = await Navigator.push(
+    await Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => MemoEditorScreen(memo: memo)),
     );
-    
-    if (result != null && result is String) {
-      final updatedMemo = memo.copyWith(content: result);
-      await _memoService.updateMemo(updatedMemo);
-      _loadMemos();
-    }
+    _loadMemos();
   }
 
   void _showSnackbar(String message, {bool isError = false}) {
@@ -457,10 +452,10 @@ class _TimelineScreenState extends State<TimelineScreen> {
                       ],
                       onSelected: (value) {
                         if (value == 'pin') {
-                          _memoService.togglePin(memo.id).then((_) => _loadMemos());
+                          _db.togglePin(memo.id).then((_) => _loadMemos());
                         }
                         if (value == 'archive') {
-                          _memoService.toggleArchive(memo.id).then((_) => _loadMemos());
+                          _db.toggleArchive(memo.id).then((_) => _loadMemos());
                         }
                         if (value == 'edit') _handleEditMemo(memo);
                         if (value == 'delete') _handleDeleteMemo(memo.id);

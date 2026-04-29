@@ -1,9 +1,35 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
+
+enum MemoVisibility {
+  private('PRIVATE', 'Private'),
+  public('PUBLIC', 'Public'),
+  protected('PROTECTED', 'Protected');
+
+  final String value;
+  final String label;
+  const MemoVisibility(this.value, this.label);
+
+  static MemoVisibility fromString(String value) {
+    return MemoVisibility.values.firstWhere(
+      (v) => v.value == value,
+      orElse: () => MemoVisibility.private,
+    );
+  }
+
+  IconData get icon {
+    switch (this) {
+      case MemoVisibility.private: return Icons.lock_outline;
+      case MemoVisibility.public: return Icons.public;
+      case MemoVisibility.protected: return Icons.shield_outlined;
+    }
+  }
+}
 
 class Memo {
   final String id;
   final String content;
-  final String visibility;
+  final MemoVisibility visibility;
   final List<String> tags;
   final bool isPinned;
   final bool isArchived;
@@ -13,7 +39,7 @@ class Memo {
   Memo({
     required this.id,
     required this.content,
-    this.visibility = 'PRIVATE',
+    this.visibility = MemoVisibility.private,
     this.tags = const [],
     this.isPinned = false,
     this.isArchived = false,
@@ -25,7 +51,7 @@ class Memo {
     return {
       'id': id,
       'content': content,
-      'visibility': visibility,
+      'visibility': visibility.value,
       'tags': jsonEncode(tags),
       'is_pinned': isPinned ? 1 : 0,
       'is_archived': isArchived ? 1 : 0,
@@ -50,7 +76,9 @@ class Memo {
     return Memo(
       id: map['id'].toString(),
       content: map['content'] ?? '',
-      visibility: map['visibility'] ?? 'PRIVATE',
+      visibility: map['visibility'] is MemoVisibility 
+          ? map['visibility'] as MemoVisibility 
+          : MemoVisibility.fromString(map['visibility']?.toString() ?? 'PRIVATE'),
       tags: parseTags(map['tags']),
       isPinned: map['is_pinned'] == 1 || map['is_pinned'] == true,
       isArchived: map['is_archived'] == 1 || map['is_archived'] == true,
@@ -62,7 +90,7 @@ class Memo {
   Memo copyWith({
     String? id,
     String? content,
-    String? visibility,
+    MemoVisibility? visibility,
     List<String>? tags,
     bool? isPinned,
     bool? isArchived,

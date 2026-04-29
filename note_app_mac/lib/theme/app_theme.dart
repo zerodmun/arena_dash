@@ -1,66 +1,64 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // Premium Orange Palette
-  static const Color primaryOrange = Color(0xFFE9730A);
-  static const Color primaryOrangeLight = Color(0xFFFF8C42);
-  static const Color primaryOrangeDark = Color(0xFFD65D00);
-  
-  // Light Theme Colors
-  static const Color backgroundLight = Color(0xFFFAFAFA);
-  static const Color backgroundCard = Colors.white;
-  static const Color textPrimaryLight = Color(0xFF1A1A1A);
-  static const Color textSecondaryLight = Color(0xFF6B7280);
-  static const Color borderLight = Color(0xFFE5E7EB);
-  
-  // Dark Theme Colors  
-  static const Color backgroundDark = Color(0xFF121212);
-  static const Color backgroundDarkCard = Color(0xFF1E1E1E);
-  static const Color textPrimaryDark = Color(0xFFE5E5E5);
-  static const Color textSecondaryDark = Color(0xFF9CA3AF);
-  static const Color borderDark = Color(0xFF2D2D2D);
+  static const Color primaryOrange = Color(0xFFFF8C00);
+  static const Color primaryOrangeLight = Color(0xFFFFB347);
+  static const Color primaryOrangeDark = Color(0xFFE07800);
+
+  static const Color scaffoldLight = Color(0xFFFFFBF5);
+  static const Color scaffoldDark = Color(0xFF1A1A1A);
+  static const Color cardLight = Colors.white;
+  static const Color cardDark = Color(0xFF2D2D2D);
 
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryOrange,
-        brightness: Brightness.light,
-        surface: backgroundLight,
-        onSurface: textPrimaryLight,
+      colorScheme: ColorScheme.light(
+        primary: primaryOrange,
+        secondary: primaryOrangeLight,
+        surface: cardLight,
+        background: scaffoldLight,
+        onPrimary: Colors.white,
+        onSecondary: Colors.white,
+        onSurface: Colors.black87,
+        onBackground: Colors.black87,
       ),
-      scaffoldBackgroundColor: backgroundLight,
+      scaffoldBackgroundColor: scaffoldLight,
+      cardColor: cardLight,
       appBarTheme: AppBarTheme(
-        backgroundColor: backgroundLight,
-        foregroundColor: textPrimaryLight,
+        backgroundColor: scaffoldLight,
+        foregroundColor: Colors.black87,
         elevation: 0,
-        surfaceTintColor: Colors.transparent,
+        centerTitle: false,
         titleTextStyle: const TextStyle(
           fontSize: 28,
-          fontWeight: FontWeight.w700,
-          color: textPrimaryLight,
+          fontWeight: FontWeight.w800,
           letterSpacing: -0.5,
+          color: Colors.black87,
         ),
       ),
       cardTheme: CardThemeData(
-        color: backgroundCard,
+        color: cardLight,
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: const BorderSide(color: borderLight, width: 1),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        margin: const EdgeInsets.only(bottom: 16),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: primaryOrange,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: backgroundCard,
+        fillColor: Colors.grey.shade50,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: borderLight),
+          borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: borderLight),
+          borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -72,35 +70,20 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: primaryOrange,
           foregroundColor: Colors.white,
-          elevation: 0,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
+          elevation: 0,
         ),
       ),
-      iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(
-          foregroundColor: textSecondaryLight,
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: primaryOrange,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
-      chipTheme: ChipThemeData(
-        backgroundColor: Colors.blue.shade50,
-        labelStyle: const TextStyle(fontSize: 12, color: Colors.blue),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-      dividerTheme: const DividerThemeData(
-        color: borderLight,
-        thickness: 1,
-        space: 1,
-      ),
+      iconTheme: const IconThemeData(color: Colors.black87),
+      dividerColor: Colors.grey.shade200,
+      hintColor: Colors.grey.shade600,
     );
   }
 
@@ -108,43 +91,54 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryOrange,
-        brightness: Brightness.dark,
-        surface: backgroundDark,
-        onSurface: textPrimaryDark,
+      colorScheme: ColorScheme.dark(
+        primary: primaryOrange,
+        secondary: primaryOrangeDark,
+        surface: cardDark,
+        background: scaffoldDark,
+        onPrimary: Colors.white,
+        onSecondary: Colors.white,
+        onSurface: Colors.white70,
+        onBackground: Colors.white70,
       ),
-      scaffoldBackgroundColor: backgroundDark,
+      scaffoldBackgroundColor: scaffoldDark,
+      cardColor: cardDark,
       appBarTheme: AppBarTheme(
-        backgroundColor: backgroundDark,
-        foregroundColor: textPrimaryDark,
+        backgroundColor: scaffoldDark,
+        foregroundColor: Colors.white,
         elevation: 0,
-        surfaceTintColor: Colors.transparent,
+        centerTitle: false,
         titleTextStyle: const TextStyle(
           fontSize: 28,
-          fontWeight: FontWeight.w700,
-          color: textPrimaryDark,
+          fontWeight: FontWeight.w800,
           letterSpacing: -0.5,
+          color: Colors.white,
         ),
       ),
       cardTheme: CardThemeData(
-        color: backgroundDarkCard,
+        color: cardDark,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
-          side: const BorderSide(color: borderDark, width: 1),
+          side: BorderSide(color: Colors.grey.shade800),
         ),
+        margin: const EdgeInsets.only(bottom: 16),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: primaryOrange,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: backgroundDarkCard,
+        fillColor: Colors.grey.shade900,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: borderDark),
+          borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: borderDark),
+          borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -156,35 +150,20 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: primaryOrange,
           foregroundColor: Colors.white,
-          elevation: 0,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
+          elevation: 0,
         ),
       ),
-      iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(
-          foregroundColor: textSecondaryDark,
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: primaryOrange,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
-      chipTheme: ChipThemeData(
-        backgroundColor: Colors.blue.shade900.withOpacity(0.3),
-        labelStyle: const TextStyle(fontSize: 12, color: Colors.blueAccent),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-      dividerTheme: const DividerThemeData(
-        color: borderDark,
-        thickness: 1,
-        space: 1,
-      ),
+      iconTheme: const IconThemeData(color: Colors.white70),
+      dividerColor: Colors.grey.shade800,
+      hintColor: Colors.grey.shade400,
     );
   }
 }
