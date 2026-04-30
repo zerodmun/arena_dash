@@ -7,6 +7,7 @@ import '../models/memo.dart';
 import '../models/attachment.dart';
 import '../models/comment.dart';
 import '../models/reaction.dart';
+import '../models/task.dart';
 
 class DatabaseService {
   static final DatabaseService _instance = DatabaseService._internal();
@@ -34,7 +35,7 @@ class DatabaseService {
     final path = '$dbPath/memos.db';
     return openDatabase(
       path,
-      version: 3,
+      version: 4,
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE memos(
@@ -83,6 +84,20 @@ class DatabaseService {
             FOREIGN KEY (memo_id) REFERENCES memos(id) ON DELETE CASCADE
           )
         ''');
+        await db.execute('''
+          CREATE TABLE tasks(
+            id TEXT PRIMARY KEY,
+            memo_id TEXT NOT NULL,
+            title TEXT NOT NULL,
+            is_completed INTEGER DEFAULT 0,
+            deadline TEXT,
+            notification_sent INTEGER DEFAULT 0,
+            created_at TEXT NOT NULL,
+            updated_at TEXT NOT NULL,
+            FOREIGN KEY (memo_id) REFERENCES memos(id) ON DELETE CASCADE
+          )
+        ''');
+        await db.execute('CREATE INDEX idx_tasks_deadline ON tasks(deadline ASC)');
       },
       onUpgrade: (db, oldVersion, newVersion) async {
         if (oldVersion < 2) {
@@ -122,6 +137,22 @@ class DatabaseService {
               created_at TEXT NOT NULL
             )
           ''');
+        }
+        if (oldVersion < 4) {
+          await db.execute('''
+            CREATE TABLE IF NOT EXISTS tasks(
+              id TEXT PRIMARY KEY,
+              memo_id TEXT NOT NULL,
+              title TEXT NOT NULL,
+              is_completed INTEGER DEFAULT 0,
+              deadline TEXT,
+              notification_sent INTEGER DEFAULT 0,
+              created_at TEXT NOT NULL,
+              updated_at TEXT NOT NULL,
+              FOREIGN KEY (memo_id) REFERENCES memos(id) ON DELETE CASCADE
+            )
+          ''');
+          await db.execute('CREATE INDEX IF NOT EXISTS idx_tasks_deadline ON tasks(deadline ASC)');
         }
       },
     );
@@ -369,7 +400,97 @@ class DatabaseService {
       await db.delete('reactions');
       await db.delete('comments');
       await db.delete('attachments');
+      await db.delete('tasks');
       await db.delete('memos');
     }
+  }
+
+  // Task operations
+  Future<List<Task>> getTasks(String memoId) async {
+    if (kIsWeb) return [];
+    final db = await _db;
+    final result = await db.query('tasks', where: 'memo_id = ?', whereArgs: [memoId], orderBy: 'deadline ASC');
+    return result.map((map) => Task.fromMap(map)).toList();
+  }
+
+  Future<Task> addTask(String memoId, String title, {DateTime? deadline}) async {
+    final now = DateTime.now();
+    final task = Task(
+      id: now.millisecondsSinceEpoch.toString(),
+      memoId: memoId,
+      title: title,
+      deadline: deadline,
+      createdAt: now,
+      updatedAt: now,
+    );
+    if (!kIsWeb) {
+      final db = await _db;
+      await db.insert('tasks', task.toMap());
+    }
+    return task;
+  }
+
+  Future<void> toggleTaskCompletion(String taskId) async {
+    if (kIsWeb) return;
+    final db = await _db;
+    final task = await db.query('tasks', where: 'id = ?', whereArgs: [taskId]);
+    if (task.isNotEmpty) {
+      final current = Task.fromMap(task.first);
+      await db.update(
+        'tasks',
+        {'is_completed': current.isCompleted ? 0 : 1, 'updated_at': DateTime.now().toIso8601String()},
+        where: 'id = ?',
+        whereArgs: [taskId],
+      );
+    }
+  }
+
+  Future<void> updateTaskDeadline(String taskId, DateTime? deadline) async {
+    if (kIsWeb) return;
+    final db = await _db;
+    await db.update(
+      'tasks',
+      {'deadline': deadline?.toIso8601String(), 'updated_at': DateTime.now().toIso8601String()},
+      where: 'id = ?',
+      whereArgs: [taskId],
+    );
+  }
+
+  Future<List<Task>> getUpcomingTasks() async {
+    if (kIsWeb) return [];
+    final db = await _db;
+    final now = DateTime.now().toIso8601String();
+    final result = await db.query(
+      'tasks',
+      where: 'is_completed = 0 AND deadline IS NOT NULL AND deadline > ?',
+      whereArgs: [now],
+      orderBy: 'deadline ASC',
+      limit: 10,
+    );
+    return result.map((map) => Task.fromMap(map)).toList();
+  }
+
+  Future<List<Task>> getOverdueTasks() async {
+    if (kIsWeb) return [];
+    final db = await _db;
+    final now = DateTime.now().toIso8601String();
+    final result = await db.query(
+      'tasks',
+      where: 'is_completed = 0 AND deadline IS NOT NULL AND deadline <= ?',
+      whereArgs: [now],
+      orderBy: 'deadline ASC',
+    );
+    return result.map((map) => Task.fromMap(map)).toList();
+  }
+
+  Future<void> markNotificationSent(String taskId) async {
+    if (kIsWeb) return;
+    final db = await _db;
+    await db.update(
+      'tasks',
+      {'notification_sent': 1},
+      where: 'id = ?',
+      whereArgs: [taskId],
+    );
   }
 }

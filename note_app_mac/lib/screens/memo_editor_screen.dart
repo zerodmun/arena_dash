@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:intl/intl.dart';
 import '../database/database_service.dart';
 import '../models/memo.dart';
 import '../models/attachment.dart';
+import '../models/task.dart';
+import '../widgets/task_list.dart';
 
 class MemoEditorScreen extends StatefulWidget {
   final Memo? memo;
@@ -19,10 +22,12 @@ class _MemoEditorScreenState extends State<MemoEditorScreen> {
   final DatabaseService _db = DatabaseService();
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _tagController = TextEditingController();
+  final TextEditingController _taskController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   MemoVisibility _visibility = MemoVisibility.private;
   List<String> _tags = [];
   List<Attachment> _attachments = [];
+  List<Task> _tasks = [];
   bool _isPreview = false;
   bool _isSaving = false;
 
@@ -34,10 +39,18 @@ class _MemoEditorScreenState extends State<MemoEditorScreen> {
       _visibility = widget.memo!.visibility;
       _tags = List.from(widget.memo!.tags);
       _loadAttachments();
+      _loadTasks();
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.memo == null) _focusNode.requestFocus();
     });
+  }
+
+  Future<void> _loadTasks() async {
+    if (widget.memo != null) {
+      final tasks = await _db.getTasks(widget.memo!.id);
+      setState(() => _tasks = tasks);
+    }
   }
 
   Future<void> _loadAttachments() async {
@@ -265,6 +278,48 @@ class _MemoEditorScreenState extends State<MemoEditorScreen> {
               ],
             ),
           ),
+          if (widget.memo != null) ...[
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.check_circle_outline, size: 18, color: Theme.of(context).colorScheme.primary),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Tasks',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).textTheme.titleMedium?.color,
+                        ),
+                      ),
+                      const Spacer(),
+                      TextButton.icon(
+                        onPressed: _showAddTaskDialog,
+                        icon: const Icon(Icons.add, size: 16),
+                        label: const Text('Add Task'),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Theme.of(context).colorScheme.primary,
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (_tasks.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    ..._tasks.map((task) => _buildTaskItem(task)).toList(),
+                  ],
+                ],
+              ),
+            ),
+          ],
           Expanded(
             child: _isPreview
                 ? _buildPreview()
@@ -273,6 +328,365 @@ class _MemoEditorScreenState extends State<MemoEditorScreen> {
         ],
       ),
     );
+  }
+
+  Widget _buildTaskItem(Task task) {
+    final isOverdue = task.isOverdue;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        children: [
+          InkWell(
+            onTap: () async {
+              await _db.toggleTaskCompletion(task.id);
+              _loadTasks();
+            },
+            child: Container(
+              width: 20,
+              height: 20,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: task.isCompleted
+                      ? Colors.green
+                      : isOverdue
+                          ? Colors.red
+                          : Colors.grey,
+                  width: 2,
+                ),
+                color: task.isCompleted ? Colors.green : Colors.transparent,
+              ),
+              child: task.isCompleted ? const Icon(Icons.check, size: 14, color: Colors.white) : null,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  task.title,
+                  style: TextStyle(
+                    fontSize: 13,
+                    decoration: task.isCompleted ? TextDecoration.lineThrough : null,
+                    color: task.isCompleted
+                        ? Colors.grey
+                        : isOverdue
+                            ? Colors.red
+                            : Theme.of(context).textTheme.bodyMedium?.color,
+                  ),
+                ),
+                if (task.deadline != null) ...[
+                  const SizedBox(height: 2),
+                  Row(
+                    children: [
+                      Icon(Icons.schedule, size: 12, color: isOverdue ? Colors.red : Theme.of(context).hintColor),
+                      const SizedBox(width: 4),
+                      Text(
+                        task.deadlineFormatted,
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: isOverdue ? Colors.red : Theme.of(context).hintColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ],
+            ),
+          ),
+          PopupMenuButton<String>(
+            icon: Icon(Icons.more_vert, size: 16, color: Theme.of(context).hintColor),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 'edit',
+                child: Row(
+                  children: const [Icon(Icons.edit, size: 16), SizedBox(width: 8), Text('Edit Deadline')],
+                ),
+              ),
+              PopupMenuItem(
+                value: 'delete',
+                child: Row(
+                  children: const [Icon(Icons.delete, size: 16, color: Colors.red), SizedBox(width: 8), Text('Delete', style: TextStyle(color: Colors.red))],
+                ),
+              ),
+            ],
+            onSelected: (value) {
+              if (value == 'edit') _showEditDeadlineDialog(task);
+              if (value == 'delete') _deleteTask(task.id);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _showAddTaskDialog() async {
+    _taskController.clear();
+    DateTime? selectedDeadline;
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Add Task'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: _taskController,
+              autofocus: true,
+              decoration: const InputDecoration(
+                hintText: 'Task title...',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            StatefulBuilder(
+              builder: (context, setState) => Column(
+                children: [
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: selectedDeadline != null,
+                        onChanged: (value) {
+                          setState(() {
+                            if (value == true) {
+                              selectedDeadline = DateTime.now().add(const Duration(hours: 1));
+                            } else {
+                              selectedDeadline = null;
+                            }
+                          });
+                        },
+                      ),
+                      const Text('Set deadline'),
+                    ],
+                  ),
+                  if (selectedDeadline != null) ...[
+                    const SizedBox(height: 8),
+                    InkWell(
+                      onTap: () async {
+                        final date = await showDatePicker(
+                          context: context,
+                          initialDate: selectedDeadline!,
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now().add(const Duration(days: 365)),
+                        );
+                        if (date != null) {
+                          setState(() {
+                            selectedDeadline = DateTime(
+                              date.year,
+                              date.month,
+                              date.day,
+                              selectedDeadline!.hour,
+                              selectedDeadline!.minute,
+                            );
+                          });
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Theme.of(context).dividerColor),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.calendar_today, size: 16),
+                            const SizedBox(width: 8),
+                            Text(DateFormat('dd/MM/yyyy').format(selectedDeadline!)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    InkWell(
+                      onTap: () async {
+                        final time = await showTimePicker(
+                          context: context,
+                          initialTime: TimeOfDay.fromDateTime(selectedDeadline!),
+                        );
+                        if (time != null) {
+                          setState(() {
+                            selectedDeadline = DateTime(
+                              selectedDeadline!.year,
+                              selectedDeadline!.month,
+                              selectedDeadline!.day,
+                              time.hour,
+                              time.minute,
+                            );
+                          });
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Theme.of(context).dividerColor),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.access_time, size: 16),
+                            const SizedBox(width: 8),
+                            Text(DateFormat('HH:mm').format(selectedDeadline!)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              if (_taskController.text.trim().isNotEmpty) {
+                await _db.addTask(
+                  widget.memo!.id,
+                  _taskController.text.trim(),
+                  deadline: selectedDeadline,
+                );
+                _loadTasks();
+                if (mounted) Navigator.pop(context);
+              }
+            },
+            child: const Text('Add'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _showEditDeadlineDialog(Task task) async {
+    DateTime? selectedDeadline = task.deadline;
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Edit Deadline'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            StatefulBuilder(
+              builder: (context, setState) => Column(
+                children: [
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: selectedDeadline != null,
+                        onChanged: (value) {
+                          setState(() {
+                            if (value == true) {
+                              selectedDeadline = DateTime.now().add(const Duration(hours: 1));
+                            } else {
+                              selectedDeadline = null;
+                            }
+                          });
+                        },
+                      ),
+                      const Text('Set deadline'),
+                    ],
+                  ),
+                  if (selectedDeadline != null) ...[
+                    const SizedBox(height: 8),
+                    InkWell(
+                      onTap: () async {
+                        final date = await showDatePicker(
+                          context: context,
+                          initialDate: selectedDeadline!,
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now().add(const Duration(days: 365)),
+                        );
+                        if (date != null) {
+                          setState(() {
+                            selectedDeadline = DateTime(
+                              date.year,
+                              date.month,
+                              date.day,
+                              selectedDeadline!.hour,
+                              selectedDeadline!.minute,
+                            );
+                          });
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Theme.of(context).dividerColor),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.calendar_today, size: 16),
+                            const SizedBox(width: 8),
+                            Text(DateFormat('dd/MM/yyyy').format(selectedDeadline!)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    InkWell(
+                      onTap: () async {
+                        final time = await showTimePicker(
+                          context: context,
+                          initialTime: TimeOfDay.fromDateTime(selectedDeadline!),
+                        );
+                        if (time != null) {
+                          setState(() {
+                            selectedDeadline = DateTime(
+                              selectedDeadline!.year,
+                              selectedDeadline!.month,
+                              selectedDeadline!.day,
+                              time.hour,
+                              time.minute,
+                            );
+                          });
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Theme.of(context).dividerColor),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.access_time, size: 16),
+                            const SizedBox(width: 8),
+                            Text(DateFormat('HH:mm').format(selectedDeadline!)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              await _db.updateTaskDeadline(task.id, selectedDeadline);
+              _loadTasks();
+              if (mounted) Navigator.pop(context);
+            },
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _deleteTask(String taskId) async {
+    // Implement task deletion if needed
   }
 
   Widget _buildEditor() {

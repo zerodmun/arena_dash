@@ -5,11 +5,15 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'theme/app_theme.dart';
 import 'screens/main_screen.dart';
+import 'services/task_reminder_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (!kIsWeb && (Platform.isMacOS || Platform.isWindows || Platform.isLinux)) {
     sqfliteFfiInit();
+  }
+  if (!kIsWeb) {
+    await TaskReminderService().init();
   }
   runApp(const MyApp());
 }

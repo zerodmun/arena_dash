@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'timeline_screen.dart';
-import 'archive_screen.dart';
+import 'home_screen.dart';
 import 'settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -14,8 +13,7 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = const [
-    TimelineScreen(),
-    ArchiveScreen(),
+    HomeScreen(),
     SettingsScreen(),
   ];
 
@@ -60,12 +58,7 @@ class _MainScreenState extends State<MainScreen> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined),
                 activeIcon: Icon(Icons.home),
-                label: 'Timeline',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.archive_outlined),
-                activeIcon: Icon(Icons.archive),
-                label: 'Archive',
+                label: 'Home',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings_outlined),
