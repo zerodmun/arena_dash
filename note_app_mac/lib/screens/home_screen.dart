@@ -17,7 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final DatabaseService _db = DatabaseService();
   List<Memo> _memos = [];
   bool _isLoading = true;
-  int _selectedMemoIndex = 0;
+  Memo? _selectedMemo;
+  bool _isCreatingNew = false;
 
   @override
   void initState() {
@@ -36,6 +37,20 @@ class _HomeScreenState extends State<HomeScreen> {
     } catch (e) {
       setState(() => _isLoading = false);
     }
+  }
+
+  void _createNewMemo() {
+    setState(() {
+      _isCreatingNew = true;
+      _selectedMemo = null;
+    });
+  }
+
+  void _selectMemo(Memo memo) {
+    setState(() {
+      _selectedMemo = memo;
+      _isCreatingNew = false;
+    });
   }
 
   String _formatDate(DateTime date) {
@@ -90,13 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: ElevatedButton.icon(
-                  onPressed: () async {
-                    final result = await Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const NewMemoScreen()),
-                    );
-                    if (result != null) _loadMemos();
-                  },
+                  onPressed: _createNewMemo,
                   icon: const Icon(Icons.add, size: 18),
                   label: const Text('New Memo'),
                   style: ElevatedButton.styleFrom(
@@ -125,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemCount: _memos.length,
                             itemBuilder: (context, index) {
                               final memo = _memos[index];
-                              final isSelected = index == _selectedMemoIndex;
+                              final isSelected = _selectedMemo?.id == memo.id;
                               return Container(
                                 margin: const EdgeInsets.only(bottom: 6),
                                 decoration: BoxDecoration(
@@ -133,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: InkWell(
-                                  onTap: () => setState(() => _selectedMemoIndex = index),
+                                  onTap: () => _selectMemo(memo),
                                   borderRadius: BorderRadius.circular(10),
                                   child: Padding(
                                     padding: const EdgeInsets.all(12),
@@ -144,8 +153,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           children: [
                                             if (memo.isPinned)
                                               Container(
-                                                margin: const EdgeInsets.only(right: 4),
-                                                child: const Icon(Icons.push_pin, size: 12, color: Colors.orange),
+                                                  margin: const EdgeInsets.only(right: 4),
+                                                  child: const Icon(Icons.push_pin, size: 12, color: Colors.orange),
                                               ),
                                             Expanded(
                                               child: Text(
@@ -178,9 +187,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         Expanded(
-          child: _memos.isEmpty
-              ? _buildEmptyState()
-              : _buildMemoDetail(_memos[_selectedMemoIndex]),
+          child: _isCreatingNew
+              ? const NewMemoScreen()
+              : _selectedMemo != null
+                  ? _buildMemoDetail(_selectedMemo!)
+                  : _buildEmptyState(),
         ),
       ],
     );

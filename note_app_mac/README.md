@@ -1,62 +1,79 @@
 # Memos for Mac - Flutter Edition 📝
 
-A beautiful, minimalist note-taking app inspired by [Memos](https://github.com/usememos/memos) (59.3k ⭐), built with Flutter and enhanced with **UI/UX Pro Max** design principles.
+Aplikasi catatan berbasis Flutter yang terinspirasi dari [Memos](https://github.com/usememos/memos) (59.3k ⭐). Dibangun dengan **UI/UX Pro Max** design dan fitur pengingat (reminder) lengkap.
 
-![Memos Logo](https://raw.githubusercontent.com/usememos/.github/refs/heads/main/assets/logo-rounded.png)
-
----
-
-## ✨ Features
-
-### Core Memos Features
-- ✅ **Timeline-First UI** - Chronological feed like social media
-- ✅ **Quick Capture** - Prominent input with expand/collapse animation
-- ✅ **Markdown-Native** - Full markdown support with live preview
-- ✅ **Minimal Organization** - No folders/notebooks, just write
-
-### Advanced Features
-- ✅ **Tags System** - Auto-extract tags from `#tag` in markdown
-- ✅ **Pin Memos** - Pin important memos to top
-- ✅ **Archive Memos** - Hide old memos but keep them stored
-- ✅ **Visibility Settings** - Private/Public/Protected
-- ✅ **Search Functionality** - Search in content and tags
-- ✅ **Edit/Preview Toggle** - Switch between edit and preview modes
-- ✅ **Delete Confirmation** - Safety dialog before deletion
-
-### UI/UX Pro Max Features
-- ✅ **Premium Theme** - Orange palette (#FF8C00) with sophisticated design
-- ✅ **Dark Mode** - Full light/dark theme support (follows system)
-- ✅ **Smooth Animations** - Expand/collapse, transitions, and micro-interactions
-- ✅ **Modern Cards** - Rounded corners (16px), subtle borders, shadows
-- ✅ **Floating Snackbars** - Success/error with icons and colors
-- ✅ **Responsive Layout** - Consistent padding and spacing
-- ✅ **Empty States** - Beautiful icons with gradient backgrounds
-- ✅ **Bottom Navigation** - Timeline, Archive, Settings tabs
+![Memos Screenshot](https://raw.githubusercontent.com/usememos/.github/main/assets/demo.png)
 
 ---
 
-## 📁 Project Structure
+## ✨ Fitur Utama
+
+### 1. **Layout Baru: Sidebar Kiri + Area Kanan**
+- ✅ **Sidebar Kiri** (300px) - Daftar semua memo
+- ✅ **Area Kanan** - Buat memo baru atau lihat detail memo
+- ✅ **Search** - Cari memo di sidebar
+- ✅ **Toggle Archive** - Tampilkan/sembunyikan memo yang diarsip
+
+### 2. **Facebook-Style New Memo Card**
+- ✅ **Pilihan Jenis**: Text Memo atau List Memo
+- ✅ **Upload Gambar** - Lampirkan foto langsung dari card
+- ✅ **Upload File** - Dukungan PDF, Docs, dan file lainnya
+- ✅ **Markdown Editor** - Tulis dalam format Markdown dengan preview
+
+### 3. **Task List dengan Pengingat (Reminder)**
+- ✅ **Tambah Task** ke memo
+- ✅ **Set Deadline Lengkap**: Tanggal, Bulan, Tahun, Jam, Menit
+- ✅ **Notifikasi Otomatis** - Muncul 15 menit sebelum deadline
+- ✅ **Notifikasi Deadline** - Muncul pas waktu habis
+- ✅ **Task Overdue** - Ditandai merah dengan label "OVERDUE"
+- ✅ **Checklist** - Tandai task selesai
+
+### 4. **Manajemen Memo**
+- ✅ **Pin Memo** - Sematkan memo penting di atas
+- ✅ **Archive** - Sembunyikan memo tapi tetap tersimpan
+- ✅ **Delete** - Hapus memo dengan konfirmasi
+- ✅ **Visibility** - Private/Public/Protected
+- ✅ **Tags** - Auto-extract dari `#tag` di markdown
+- ✅ **Search** - Cari di konten dan tags
+
+### 5. **UI/UX Pro Max Design**
+- ✅ **Premium Theme** - Orange palette (#FF8C00)
+- ✅ **Dark/Light Mode** - Support system theme
+- ✅ **Smooth Animations** - Transisi yang halus
+- ✅ **Modern Cards** - Rounded corners, subtle borders
+- ✅ **Responsive** - Padding dan spacing konsisten
+
+---
+
+## 📁 Struktur File
 
 ```
 lib/
-├── main.dart                          # Entry point + theme setup
+├── main.dart                           # Entry point + TaskReminder init
 ├── theme/
-│   └── app_theme.dart               # Premium light/dark theme
+│   └── app_theme.dart                # UI/UX Pro Max theme
 ├── models/
-│   ├── memo.dart                    # Memo model (tags, pin, archive)
-│   ├── attachment.dart               # Attachment model (images, files)
+│   ├── memo.dart                     # Memo model (tags, pin, archive)
+│   ├── attachment.dart               # Attachment model
 │   ├── comment.dart                 # Comment model
-│   └── reaction.dart                # Reaction model (emoji)
+│   ├── reaction.dart                # Reaction model
+│   └── task.dart                    # Task model (deadline, notification)
 ├── database/
-│   └── database_service.dart        # SQLite (macOS) + SharedPreferences (Web)
+│   └── database_service.dart        # SQLite + SharedPreferences + Tasks
+├── services/
+│   ├── notification_service.dart      # Legacy notification
+│   └── task_reminder_service.dart   # Periodic deadline checker
 ├── screens/
-│   ├── main_screen.dart             # Bottom navigation wrapper
-│   ├── timeline_screen.dart         # 🎯 Main timeline (Pro Max UI)
-│   ├── archive_screen.dart          # Archived memos view
-│   ├── settings_screen.dart        # Theme, stats, data management
-│   └── memo_editor_screen.dart     # Editor with visibility + tags
+│   ├── main_screen.dart             # Navigasi utama (Home, Settings)
+│   ├── home_screen.dart             # ⭐ Sidebar kiri + Detail kanan
+│   ├── new_memo_screen.dart         # Facebook-style status card
+│   ├── memo_editor_screen.dart     # Editor dengan task list
+│   ├── memo_list_screen.dart       # Sidebar memo list
+│   ├── archive_screen.dart          # Archived memos
+│   └── settings_screen.dart        # Theme, stats, data management
 └── widgets/
-    └── quick_capture.dart          # Animated quick capture input
+    ├── quick_capture.dart          # Animated quick capture
+    └── task_list.dart             # Task list widget
 ```
 
 ---
@@ -75,110 +92,81 @@ Card Dark:         #2D2D2D
 ```
 
 ### Typography
-- **Title**: 28px, Weight 800, Letter-spacing -0.5
-- **Body**: 14-16px, Height 1.5-1.6
-- **Tags**: 12px, FontWeight 500
-
-### Components
-- **Cards**: BorderRadius 16px, Border 1px, Elevation 0
-- **Buttons**: BorderRadius 12px, Padding horizontal 24
-- **Inputs**: BorderRadius 12px, Filled background
-- **Chips/Tags**: BorderRadius 8px, Primary color with opacity
+- **Title**: 24-28px, Weight 700-800
+- **Body**: 14-16px, Height 1.6
+- **Tags**: 11-12px, Primary color
 
 ---
 
-## 🚀 How to Run
+## 🚀 Cara Menjalankan
 
 ### Prerequisites
-- Flutter SDK installed
-- Xcode (for macOS) or Chrome/Brave (for Web)
-- macOS: Xcode command line tools
+- Flutter SDK terinstall
+- Web browser (Brave/Chrome) atau macOS
 
-### Run on Web (Brave/Chrome)
+### Web (Brave/Chrome)
 ```bash
 cd /Users/tentendigitalindonesia/Downloads/note_app_mac
 flutter run -d chrome --release
+# atau buka http://localhost:8080
 ```
 
-Or access the built version at: **http://localhost:8080** (if server is running)
+### Build Web
+```bash
+flutter build web --release
+cd build/web
+python3 -m http.server 8080
+# Buka http://localhost:8080 di browser
+```
 
-### Run on macOS
+### macOS
 ```bash
 cd /Users/tentendigitalindonesia/Downloads/note_app_mac
 flutter run -d macos --release
 ```
 
-### Build for Web
-```bash
-flutter build web --release
-cd build/web && python3 -m http.server 8080
-```
-
 ---
 
-## 📝 How to Use
+## 📝 Cara Menggunakan
 
-### 1. **Quick Capture**
-- Click the input at the top or tap "+" icon
-- Write notes in Markdown
-- Press "Capture" or Enter
-- Tags auto-detected from `#tag`
+### A. Buat Memo Baru (Facebook-Style)
+1. Klik tombol **"New Memo"** di sidebar kiri
+2. Pilih jenis: **Text** atau **List**
+3. Tulis konten dalam Markdown
+4. Upload gambar/file jika diperlukan
+5. Set visibility (Private/Public/Protected)
+6. Klik **"Post"** untuk menyimpan
 
-### 2. **Timeline**
-- Scroll to see all memos
-- Pinned memos appear at top (orange pin icon)
-- Tap memo to edit
-- Tap 3-dots menu for Pin/Archive/Edit/Delete
+### B. Task List dengan Pengingat
+1. Di editor memo, klik **"Add Task"**
+2. Isi judul task
+3. Centang **"Set deadline"**
+4. Pilih **Tanggal, Bulan, Tahun** (date picker)
+5. Pilih **Jam & Menit** (time picker)
+6. Klik **"Add"**
+7. Task akan muncul di bawah editor
+8. **Notifikasi otomatis** muncul 15 menit sebelum deadline
 
-### 3. **Edit Memo**
-- Tap memo in timeline
-- Toggle between Edit/Preview mode
-- Set Visibility (Private/Public/Protected)
-- Toggle Pin and Archive
-- Save with save button
+### C. Sidebar & Navigation
+1. **List memo** di sidebar kiri (scrollable)
+2. **Klik memo** → Detail muncul di kanan
+3. **Search** memo di sidebar
+4. Toggle **"Show Archived"** untuk lihat memo yang diarsip
+5. **Pin memo** untuk menyematkan di atas
 
-### 4. **Search**
-- Tap search icon in appbar
-- Type keywords
-- Search automatically finds in content and tags
+### D. Pengingat & Notifikasi
 
-### 5. **Tags**
-- Use `#tag` in markdown content
-- Tags auto-detected and displayed on cards
-- Click tag to filter (coming soon)
+**Cara Kerja:**
+1. Task dibuat dengan deadline → Tersimpan di database
+2. Service mengecek setiap 30 detik → Mencari task yang mendekati deadline
+3. **15 menit sebelum deadline** → Notifikasi "Task Deadline Approaching"
+4. **Pas deadline tercapai** → Notifikasi "Task Deadline Reached!"
+5. Task selesai → Checklist ditandai hijau, notifikasi berhenti
 
-### 6. **Settings**
-- Switch theme: Light/Dark/System
-- View statistics (total, pinned, archived, tags)
-- Clear all data (danger zone)
-
----
-
-## 🔧 Technical Details
-
-### Database
-- **macOS**: SQLite via `sqflite_common_ffi`
-- **Web**: SharedPreferences (localStorage)
-- Auto-migration support (version 1 → 2 → 3)
-
-### State Management
-- Simple StatefulWidget + setState
-- Direct calls to DatabaseService
-
-### Packages
-```yaml
-dependencies:
-  flutter_markdown: ^0.7.1    # Render markdown
-  sqflite_common_ffi: ^2.3.0  # SQLite macOS
-  shared_preferences: ^2.3.0    # Web storage
-  intl: ^0.19.0               # Date formatting
-  image_picker: ^1.1.2          # Pick images
-  file_picker: ^8.0.0           # Pick files
-  percent_indicator: ^4.2.3       # Progress indicators
-  shimmer: ^3.0.0               # Loading effects
-  flutter_staggered_animations: ^1.1.1
-  animations: ^2.0.11             # Flutter animations
-```
+**Format Deadline:**
+- Tanggal: 30/04/2026
+- Jam: 14:30
+- Tampil: "30/04/2026 14:30"
 
 ---
 
@@ -186,57 +174,65 @@ dependencies:
 
 > **"Built for quick capture"**
 
-1. ✅ **Speed over organization** - Write fast, organize later
-2. ✅ **Timeline is king** - Chronological feed is the main focus
-3. ✅ **Markdown first** - All content in markdown
-4. ✅ **Minimal clicks** - Minimum steps to capture
-5. ✅ **Own your data** - Self-hosted friendly, portable format
+1. ✅ **Speed over organization** - Tulis cepat, organisasi belakangan
+2. ✅ **Timeline is king** - Cronologis feed adalah fokus utama
+3. ✅ **Markdown first** - Semua content dalam markdown
+4. ✅ **Minimal clicks** - Seminimal mungkin langkah untuk capture
+5. ✅ **Own your data** - Self-hosted friendly, format portable
 
 ---
 
 ## 📊 Comparison: Flutter vs Original Memos
 
-| Feature | Flutter App | Original Memos | Status |
+| Fitur | Flutter App | Original Memos | Status |
 |---------|-------------|----------------|--------|
-| Timeline UI | ✅ Pro Max | ✅ | Complete |
+| Sidebar Layout | ✅ Kiri list, Kanan detail | ✅ | Complete |
+| Facebook-Style Memo | ✅ Status card | ⭐ | Enhanced |
+| Text & List Memo | ✅ | ⭐ | New |
 | Quick Capture | ✅ Animated | ✅ | Complete |
-| Markdown | ✅ Render + Preview | ✅ | Complete |
-| Tags | ✅ Auto-extract | ✅ | Complete |
+| Markdown | ✅ Editor + Preview | ✅ | Complete |
+| Tasks with Deadline | ✅ + Notifikasi | ⭐ | Enhanced |
 | Pin/Archive | ✅ | ✅ | Complete |
 | Visibility | ✅ UI Ready | ✅ | Complete |
 | Search | ✅ Content + Tags | ✅ | Complete |
 | Dark Mode | ✅ System-based | ✅ | Complete |
 | UI/UX | ✅ Pro Max | ⭐ Clean | Enhanced |
+| Notifications | ✅ 15min + Deadline | ⭐ | New |
 | Auth/Users | 🔲 | ✅ | Future |
 | REST API | 🔲 | ✅ | Future |
-| SSE Live Update | 🔲 | ✅ | Future |
 | Attachments | 🔲 | ✅ | Future |
-| Comments | 🔲 | ✅ | Future |
-| Reactions | 🔲 | ✅ | Future |
-| Webhooks | 🔲 | ✅ | Future |
 
 ---
 
-## 🚧 Next Development (Optional)
+## 🔧 Technical Details
 
-### Phase 1: Backend (Multi-User)
-- [ ] Go backend with Echo v5
-- [ ] JWT authentication
-- [ ] REST API (Connect RPC + gRPC)
-- [ ] PostgreSQL support
+### Frontend
+- **Flutter** with Dart
+- **State Management**: StatefulWidget + setState
+- **UI**: Material 3 with custom theme
 
-### Phase 2: Advanced Features
-- [ ] Attachments (upload images/files)
-- [ ] Comments on memos
-- [ ] Reactions (emoji)
-- [ ] RSS feeds
-- [ ] SSE for live updates
+### Backend/Storage
+- **macOS**: SQLite via `sqflite_common_ffi`
+- **Web**: SharedPreferences (localStorage)
+- **Database Version**: 4 (with tasks table)
 
-### Phase 3: Integrations
-- [ ] Webhooks
-- [ ] MCP Server (AI assistants)
-- [ ] CLI client
-- [ ] Mobile apps (iOS/Android)
+### Notifications
+- **flutter_local_notifications** for local notifications
+- **timezone** for timezone handling
+- **Periodic Timer** checks deadlines every 30 seconds
+
+### Packages
+```yaml
+dependencies:
+  flutter_local_notifications: ^17.2.1
+  timezone: ^0.9.4
+  image_picker: ^1.1.2
+  file_picker: ^8.0.0
+  flutter_markdown: ^0.7.1
+  sqflite_common_ffi: ^2.3.0
+  shared_preferences: ^2.3.0
+  intl: ^0.19.0
+```
 
 ---
 
@@ -245,38 +241,40 @@ dependencies:
 - **Repository**: https://github.com/usememos/memos
 - **Documentation**: https://usememos.com/docs
 - **Live Demo**: https://demo.usememos.com
-- **Architecture**: https://usememos.com/docs/operations/architecture
 - **UI/UX Pro Max**: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
 
 ---
 
-## 🎉 Status: COMPLETE (Phase 0)
+## 🎉 Status: COMPLETE! ✅
 
-**Memos for Mac** Flutter app with **UI/UX Pro Max** design is complete and ready to use!
+**Semua fitur SUDAH SELESAI:**
 
-### What's Working:
-- ✅ Timeline with smooth UI
-- ✅ Quick capture with animations
-- ✅ Markdown editor + preview
-- ✅ Tags, Pin, Archive
+### Core Features:
+- ✅ Sidebar kiri dengan list memo
+- ✅ Area kanan untuk buat & lihat memo
+- ✅ Facebook-style New Memo card
+- ✅ Text & List memo types
+- ✅ Image & File upload
+- ✅ Task list dengan deadline lengkap
+- ✅ Notifikasi 15 menit sebelum deadline
+- ✅ Notifikasi pas deadline
+- ✅ Overdue tasks dengan label merah
+- ✅ Pin, Archive, Delete memo
 - ✅ Search functionality
-- ✅ Dark/Light theme
-- ✅ Premium design system
-- ✅ Statistics & Settings
-- ✅ Bottom navigation
+- ✅ Tags auto-extract
+- ✅ Light/Dark/System theme
+- ✅ UI/UX Pro Max design
 
-### Try it Now! 🚀
+### App siap pakai! 🚀
 
-```bash
-cd /Users/tentendigitalindonesia/Downloads/note_app_mac
-flutter run -d chrome
-```
-
-Or open: **http://localhost:8080**
+**Akses:**
+- **URL**: `http://localhost:8080`
+- **Git**: Sudah di-commit dengan dokumentasi lengkap
 
 ---
 
+**Dibuat dengan ❤ menggunakan Flutter + UI/UX Pro Max Design**
+
 Created: 2026-04-30  
-Version: 2.0.0  
-Status: ✅ Production Ready (Core Features)  
-Design: UI/UX Pro Max 🎨
+Version: 3.0.0 (Sidebar + Tasks + Notifications)  
+Status: ✅ Production Ready dengan Fitur Lengkap!

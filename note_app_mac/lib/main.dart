@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'theme/app_theme.dart';
-import 'screens/main_screen.dart';
+import 'screens/home_screen.dart';
 import 'services/task_reminder_service.dart';
 
 void main() async {
@@ -38,7 +38,15 @@ class _MyAppState extends State<MyApp> {
     final prefs = await SharedPreferences.getInstance();
     final mode = prefs.getString('theme_mode') ?? 'system';
     setState(() {
-      _themeMode = mode == 'light' ? ThemeMode.light : mode == 'dark' ? ThemeMode.dark : ThemeMode.system;
+      ThemeMode newMode;
+      if (mode == 'light') {
+        newMode = ThemeMode.light;
+      } else if (mode == 'dark') {
+        newMode = ThemeMode.dark;
+      } else {
+        newMode = ThemeMode.system;
+      }
+      _themeMode = newMode;
     });
   }
 
@@ -49,7 +57,7 @@ class _MyAppState extends State<MyApp> {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: _themeMode,
-      home: const MainScreen(),
+      home: HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
