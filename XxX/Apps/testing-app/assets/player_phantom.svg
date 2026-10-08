@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Elevation Drop Shadow -->
+    <filter id="phShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- Stealth Emerald Wing Gradient -->
+    <linearGradient id="phWing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="35%" stop-color="#059669"/>
+      <stop offset="70%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+
+    <!-- Stealth Violet Armor -->
+    <linearGradient id="phArmor" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b0764"/>
+      <stop offset="25%" stop-color="#7e22ce"/>
+      <stop offset="50%" stop-color="#c084fc"/>
+      <stop offset="75%" stop-color="#7e22ce"/>
+      <stop offset="100%" stop-color="#3b0764"/>
+    </linearGradient>
+
+    <!-- Neon Emerald Canopy -->
+    <radialGradient id="phCockpit" cx="42%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#a7f3d0"/>
+      <stop offset="60%" stop-color="#10b981"/>
+      <stop offset="90%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </radialGradient>
+
+    <!-- High-Velocity Thruster Plasma -->
+    <radialGradient id="phFlame" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#6ee7b7"/>
+      <stop offset="75%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g filter="url(#phShadow)">
+    <!-- Hyperdrive Thruster Trails -->
+    <ellipse cx="216" cy="430" rx="14" ry="48" fill="url(#phFlame)"/>
+    <ellipse cx="296" cy="430" rx="14" ry="48" fill="url(#phFlame)"/>
+    <ellipse cx="216" cy="425" rx="7" ry="26" fill="#ffffff"/>
+    <ellipse cx="296" cy="425" rx="7" ry="26" fill="#ffffff"/>
+
+    <!-- Left Forward-Swept Razor Wing -->
+    <polygon points="256,60 220,240 60,320 80,180 200,100" fill="url(#phWing)" stroke="#022c22" stroke-width="6" stroke-linejoin="round"/>
+    <polygon points="60,320 40,390 140,360 200,280" fill="#047857" opacity="0.8"/>
+
+    <!-- Right Forward-Swept Razor Wing -->
+    <polygon points="256,60 292,240 452,320 432,180 312,100" fill="url(#phWing)" stroke="#022c22" stroke-width="6" stroke-linejoin="round"/>
+    <polygon points="452,320 472,390 372,360 312,280" fill="#047857" opacity="0.8"/>
+
+    <!-- Wingtip Kinetic Pulse Emitters -->
+    <rect x="36" y="320" width="10" height="90" rx="5" fill="#1e293b" stroke="#34d399" stroke-width="3"/>
+    <circle cx="41" cy="320" r="8" fill="#34d399"/>
+    <rect x="466" y="320" width="10" height="90" rx="5" fill="#1e293b" stroke="#34d399" stroke-width="3"/>
+    <circle cx="471" cy="320" r="8" fill="#34d399"/>
+
+    <!-- Center Razor Stealth Fuselage -->
+    <polygon points="256,24 286,160 286,410 256,444 226,410 226,160" fill="url(#phArmor)" stroke="#1e1b4b" stroke-width="6" stroke-linejoin="round"/>
+
+    <!-- Forward Spearhead Knife -->
+    <polygon points="256,24 274,130 256,150 238,130" fill="#e9d5ff" stroke="#7e22ce" stroke-width="2"/>
+
+    <!-- Aerodynamic Stealth Cockpit -->
+    <ellipse cx="256" cy="216" rx="24" ry="76" fill="url(#phCockpit)" stroke="#064e3b" stroke-width="5"/>
+    <path d="M246,160 Q262,170 262,216" stroke="#ffffff" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.95"/>
+    <circle cx="258" cy="180" r="4" fill="#ffffff"/>
+
+    <!-- Twin Stealth Engine Cowlings -->
+    <rect x="204" y="394" width="24" height="26" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="3"/>
+    <rect x="284" y="394" width="24" height="26" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="3"/>
+  </g>
+</svg>

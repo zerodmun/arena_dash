@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bioGlow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#00ff99" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#00aa55" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#002211" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="trunkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2a1f18"/>
+      <stop offset="35%" stop-color="#4e382b"/>
+      <stop offset="70%" stop-color="#38281e"/>
+      <stop offset="100%" stop-color="#1e1510"/>
+    </linearGradient>
+    <linearGradient id="canopyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#39e68b"/>
+      <stop offset="50%" stop-color="#148a47"/>
+      <stop offset="100%" stop-color="#084220"/>
+    </linearGradient>
+    <filter id="treeShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- Ground Drop Shadow -->
+  <ellipse cx="256" cy="465" rx="190" ry="34" fill="#000000" opacity="0.65" filter="blur(8px)"/>
+
+  <!-- Bio-luminescent Canopy Glow -->
+  <circle cx="256" cy="200" r="210" fill="url(#bioGlow)"/>
+
+  <!-- Sprawling Roots Base -->
+  <g filter="url(#treeShadow)">
+    <path d="M170 450 C190 410 220 380 230 330 L282 330 C292 380 322 410 342 450 C370 470 410 460 430 470 C390 475 350 465 320 455 C290 445 270 435 256 440 C242 435 222 445 192 455 C162 465 122 475 82 470 C102 460 142 470 170 450 Z" 
+          fill="url(#trunkGrad)" stroke="#110b07" stroke-width="8" stroke-linejoin="round"/>
+
+    <!-- Main Ancient Trunk -->
+    <path d="M210 340 C215 280 185 240 180 180 L332 180 C327 240 297 280 302 340 Z" 
+          fill="url(#trunkGrad)" stroke="#110b07" stroke-width="8"/>
+    
+    <!-- Glowing Moss Veins on Trunk -->
+    <path d="M235 340 Q250 260 240 200" stroke="#00ff88" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M275 330 Q265 270 280 210" stroke="#00ffaa" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+    <!-- Lush Alien Canopy Shells -->
+    <!-- Back tier -->
+    <circle cx="160" cy="180" r="95" fill="#084220" stroke="#042010" stroke-width="8"/>
+    <circle cx="352" cy="180" r="95" fill="#084220" stroke="#042010" stroke-width="8"/>
+    <circle cx="256" cy="130" r="115" fill="#084220" stroke="#042010" stroke-width="8"/>
+
+    <!-- Mid tier -->
+    <circle cx="180" cy="170" r="85" fill="url(#canopyGrad)" stroke="#063319" stroke-width="7"/>
+    <circle cx="332" cy="170" r="85" fill="url(#canopyGrad)" stroke="#063319" stroke-width="7"/>
+    <circle cx="256" cy="120" r="100" fill="url(#canopyGrad)" stroke="#063319" stroke-width="7"/>
+
+    <!-- Front Highlights & Bio-Fruit Orbs -->
+    <circle cx="220" cy="130" r="20" fill="#2bff99" opacity="0.8"/>
+    <circle cx="290" cy="140" r="16" fill="#2bff99" opacity="0.8"/>
+    <circle cx="256" cy="90" r="18" fill="#55ffbb" opacity="0.9"/>
+    <circle cx="160" cy="160" r="14" fill="#aaffdd"/>
+    <circle cx="350" cy="160" r="14" fill="#aaffdd"/>
+  </g>
+</svg>

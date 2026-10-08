@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Drop Shadow -->
+    <filter id="tShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- Heavy Crimson Armor Plates -->
+    <linearGradient id="tArmor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="35%" stop-color="#dc2626"/>
+      <stop offset="75%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </linearGradient>
+
+    <!-- Golden Trim & Bevels -->
+    <linearGradient id="tGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ca8a04"/>
+      <stop offset="30%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#854d0e"/>
+    </linearGradient>
+
+    <!-- Heavy Plasma Reactor Core -->
+    <radialGradient id="tReactor" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#fef08a"/>
+      <stop offset="70%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </radialGradient>
+
+    <!-- Thruster Flame -->
+    <radialGradient id="tFlame" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#f97316"/>
+      <stop offset="80%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g filter="url(#tShadow)">
+    <!-- Triple Heavy Thruster Exhausts -->
+    <ellipse cx="176" cy="430" rx="18" ry="46" fill="url(#tFlame)"/>
+    <ellipse cx="256" cy="440" rx="22" ry="54" fill="url(#tFlame)"/>
+    <ellipse cx="336" cy="430" rx="18" ry="46" fill="url(#tFlame)"/>
+    <ellipse cx="176" cy="420" rx="8" ry="24" fill="#ffffff"/>
+    <ellipse cx="256" cy="428" rx="10" ry="28" fill="#ffffff"/>
+    <ellipse cx="336" cy="420" rx="8" ry="24" fill="#ffffff"/>
+
+    <!-- Dual Heavy Outrigger Hulls -->
+    <polygon points="120,100 160,200 160,400 100,420 80,260 80,140" fill="url(#tArmor)" stroke="#450a0a" stroke-width="6" stroke-linejoin="round"/>
+    <polygon points="392,100 352,200 352,400 412,420 432,260 432,140" fill="url(#tArmor)" stroke="#450a0a" stroke-width="6" stroke-linejoin="round"/>
+
+    <!-- Outrigger Heavy Rail Cannons -->
+    <rect x="74" y="60" width="16" height="180" rx="8" fill="#1e293b" stroke="#facc15" stroke-width="4"/>
+    <circle cx="82" cy="60" r="10" fill="#f97316"/>
+    <rect x="422" y="60" width="16" height="180" rx="8" fill="#1e293b" stroke="#facc15" stroke-width="4"/>
+    <circle cx="430" cy="60" r="10" fill="#f97316"/>
+
+    <!-- Heavy Cross-Brace Wing Bridges -->
+    <polygon points="160,240 256,220 352,240 352,350 256,380 160,350" fill="#1e293b" stroke="#ca8a04" stroke-width="6"/>
+
+    <!-- Center Heavy Armored Fuselage -->
+    <polygon points="256,40 310,180 300,410 256,436 212,410 202,180" fill="url(#tArmor)" stroke="#450a0a" stroke-width="8" stroke-linejoin="round"/>
+
+    <!-- Golden Hull Reinforcement Ribs -->
+    <polygon points="256,50 290,170 256,196 222,170" fill="url(#tGold)" stroke="#854d0e" stroke-width="3"/>
+    <polygon points="256,220 286,290 256,310 226,290" fill="url(#tGold)" stroke="#854d0e" stroke-width="3"/>
+
+    <!-- Heavy Armored Command Cockpit -->
+    <ellipse cx="256" cy="226" rx="30" ry="50" fill="url(#tReactor)" stroke="#ca8a04" stroke-width="6"/>
+    <!-- Specular Highlight Arc -->
+    <path d="M242,192 Q262,198 264,228" stroke="#ffffff" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.95"/>
+    <circle cx="260" cy="210" r="6" fill="#ffffff"/>
+
+    <!-- Heavy Shield Emitter Rings -->
+    <circle cx="256" cy="350" r="16" fill="#f97316" stroke="#fef08a" stroke-width="4"/>
+  </g>
+</svg>

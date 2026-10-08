@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Elevation Drop Shadow -->
+    <filter id="pilShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="18" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <!-- Metallic Pillar Body -->
+    <linearGradient id="pilMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="35%" stop-color="#1e293b"/>
+      <stop offset="70%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <!-- Top Cap Bevel -->
+    <radialGradient id="pilCap" cx="38%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#94a3b8"/>
+      <stop offset="60%" stop-color="#475569"/>
+      <stop offset="90%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </radialGradient>
+
+    <!-- Glowing Energy Core -->
+    <radialGradient id="pilCore" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#67e8f9"/>
+      <stop offset="70%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#083344"/>
+    </radialGradient>
+  </defs>
+
+  <g filter="url(#pilShadow)">
+    <!-- Base Foundation Plate -->
+    <circle cx="256" cy="256" r="220" fill="url(#pilMetal)" stroke="#0f172a" stroke-width="10"/>
+
+    <!-- Concentric Armor Grooves -->
+    <circle cx="256" cy="256" r="185" fill="none" stroke="#38bdf8" stroke-width="6" stroke-dasharray="32 16" opacity="0.8"/>
+    <circle cx="256" cy="256" r="150" fill="url(#pilCap)" stroke="#0284c7" stroke-width="8"/>
+
+    <!-- Inner Well -->
+    <circle cx="256" cy="256" r="105" fill="#020617" stroke="#00d8f6" stroke-width="6"/>
+
+    <!-- Raised Quantum Core Dome -->
+    <circle cx="256" cy="256" r="82" fill="url(#pilCore)" stroke="#bae6fd" stroke-width="4"/>
+
+    <!-- Specular Highlight Curve -->
+    <ellipse cx="232" cy="226" rx="24" ry="14" transform="rotate(-30 232 226)" fill="#ffffff" opacity="0.95"/>
+
+    <!-- 4 Cardinal Locking Clamps -->
+    <polygon points="256,36 276,86 236,86" fill="#38bdf8"/>
+    <polygon points="256,476 276,426 236,426" fill="#38bdf8"/>
+    <polygon points="36,256 86,276 86,236" fill="#38bdf8"/>
+    <polygon points="476,256 426,276 426,236" fill="#38bdf8"/>
+  </g>
+</svg>

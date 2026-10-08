@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <radialGradient id="fireBall" cx="65%" cy="65%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#ffea00"/>
+      <stop offset="60%" stop-color="#ff4400"/>
+      <stop offset="100%" stop-color="#770000"/>
+    </radialGradient>
+    <linearGradient id="plasmaTail" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0044" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ff6600" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ffcc00" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fiery Tail Plume -->
+  <polygon points="165,165 40,20 120,40" fill="url(#plasmaTail)"/>
+  <polygon points="165,165 20,40 40,120" fill="url(#plasmaTail)"/>
+  <polygon points="175,175 10,10 90,30" fill="url(#plasmaTail)"/>
+
+  <!-- Meteor Molten Core -->
+  <circle cx="170" cy="170" r="50" fill="url(#fireBall)" stroke="#ff2200" stroke-width="5"/>
+  <circle cx="165" cy="165" r="28" fill="#ffffff" opacity="0.9"/>
+  <circle cx="163" cy="163" r="14" fill="#ffffff"/>
+</svg>

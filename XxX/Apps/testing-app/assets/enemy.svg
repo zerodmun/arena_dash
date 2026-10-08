@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Elevation Drop Shadow -->
+    <filter id="eShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="26" stdDeviation="16" flood-color="#000000" flood-opacity="0.7"/>
+    </filter>
+
+    <!-- 3D Armored Sphere Gradient -->
+    <radialGradient id="eSphere" cx="36%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fecdd3"/>
+      <stop offset="20%" stop-color="#f43f5e"/>
+      <stop offset="55%" stop-color="#be123c"/>
+      <stop offset="85%" stop-color="#881337"/>
+      <stop offset="100%" stop-color="#4c0519"/>
+    </radialGradient>
+
+    <!-- Heavy Armor Ring -->
+    <linearGradient id="eArmor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="35%" stop-color="#475569"/>
+      <stop offset="75%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Menacing Glowing Core Eye -->
+    <radialGradient id="eEye" cx="38%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="20%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f97316"/>
+      <stop offset="80%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </radialGradient>
+  </defs>
+
+  <g filter="url(#eShadow)">
+    <!-- 4 Diagonal Cyber Armor Pincers / Claws -->
+    <polygon points="106,106 52,76 74,152 140,140" fill="url(#eArmor)" stroke="#0f172a" stroke-width="6" stroke-linejoin="round"/>
+    <polygon points="406,106 460,76 438,152 372,140" fill="url(#eArmor)" stroke="#0f172a" stroke-width="6" stroke-linejoin="round"/>
+    <polygon points="106,406 52,436 74,360 140,372" fill="url(#eArmor)" stroke="#0f172a" stroke-width="6" stroke-linejoin="round"/>
+    <polygon points="406,406 460,436 438,360 372,372" fill="url(#eArmor)" stroke="#0f172a" stroke-width="6" stroke-linejoin="round"/>
+
+    <!-- Pincer Plasma Orbs -->
+    <circle cx="64" cy="88" r="14" fill="#f43f5e" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="448" cy="88" r="14" fill="#f43f5e" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="64" cy="424" r="14" fill="#f43f5e" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="448" cy="424" r="14" fill="#f43f5e" stroke="#ffffff" stroke-width="3"/>
+
+    <!-- Main Armored Drone Sphere -->
+    <circle cx="256" cy="256" r="180" fill="url(#eSphere)" stroke="#4c0519" stroke-width="10"/>
+
+    <!-- Upper & Lower Chiseled Armor Shell Plates -->
+    <path d="M120,180 A180,180 0 0,1 392,180 L350,208 A140,140 0 0,0 162,208 Z" fill="#9f1239" stroke="#4c0519" stroke-width="5"/>
+    <path d="M120,332 A180,180 0 0,0 392,332 L350,304 A140,140 0 0,1 162,304 Z" fill="#4c0519" stroke="#25030d" stroke-width="5"/>
+
+    <!-- Heavy Titanium Eye Bezel -->
+    <circle cx="256" cy="256" r="115" fill="url(#eArmor)" stroke="#94a3b8" stroke-width="8"/>
+    <circle cx="256" cy="256" r="95" fill="#0f172a" stroke="#f43f5e" stroke-width="4"/>
+
+    <!-- Volumetric Glowing Red Eye Core -->
+    <circle cx="256" cy="256" r="80" fill="url(#eEye)" stroke="#b91c1c" stroke-width="4"/>
+
+    <!-- Specular Highlight Reflections -->
+    <ellipse cx="236" cy="236" rx="22" ry="14" transform="rotate(-30 236 236)" fill="#ffffff" opacity="0.95"/>
+    <circle cx="274" cy="274" r="8" fill="#ffffff" opacity="0.75"/>
+
+    <!-- 4 Cardinal Direction Warning Markers -->
+    <rect x="250" y="86" width="12" height="40" rx="6" fill="#fef08a" stroke="#b45309" stroke-width="2"/>
+    <rect x="250" y="386" width="12" height="40" rx="6" fill="#fef08a" stroke="#b45309" stroke-width="2"/>
+    <rect x="86" y="250" width="40" height="12" rx="6" fill="#fef08a" stroke="#b45309" stroke-width="2"/>
+    <rect x="386" y="250" width="40" height="12" rx="6" fill="#fef08a" stroke="#b45309" stroke-width="2"/>
+  </g>
+</svg>

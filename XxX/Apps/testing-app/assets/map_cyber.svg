@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="cyberPlanetGlow" cx="50%" cy="85%" r="75%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="30%" stop-color="#0066cc" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#021028" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#010510"/>
+    </radialGradient>
+    <linearGradient id="stationMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cfd8dc"/>
+      <stop offset="25%" stop-color="#90a4ae"/>
+      <stop offset="60%" stop-color="#37474f"/>
+      <stop offset="100%" stop-color="#1c2833"/>
+    </linearGradient>
+    <linearGradient id="solarPanel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d47a1"/>
+      <stop offset="50%" stop-color="#1976d2"/>
+      <stop offset="100%" stop-color="#0d47a1"/>
+    </linearGradient>
+    <filter id="cityGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Deep Space Backdrop -->
+  <rect width="512" height="512" rx="28" fill="#010612"/>
+
+  <!-- Distant Stars & Data Clusters -->
+  <g opacity="0.6">
+    <circle cx="80" cy="70" r="1.5" fill="#ffffff"/>
+    <circle cx="210" cy="50" r="2" fill="#80d8ff"/>
+    <circle cx="430" cy="90" r="1.8" fill="#ffffff"/>
+    <circle cx="360" cy="140" r="1.2" fill="#80d8ff"/>
+    <circle cx="70" cy="220" r="2" fill="#ffffff"/>
+    <circle cx="450" cy="240" r="1.5" fill="#80d8ff"/>
+  </g>
+
+  <!-- Curving Cyber Planet Horizon -->
+  <circle cx="256" cy="760" r="490" fill="url(#cyberPlanetGlow)"/>
+  <ellipse cx="256" cy="272" rx="490" ry="12" fill="none" stroke="#00f2fe" stroke-width="4" opacity="0.8" filter="url(#cityGlow)"/>
+
+  <!-- City Grid & Fiber Optic Light Nodes on Planet Surface -->
+  <g opacity="0.65" stroke="#00d4ff" stroke-width="1.4">
+    <!-- Latitude rings -->
+    <ellipse cx="256" cy="340" rx="420" ry="14" fill="none"/>
+    <ellipse cx="256" cy="410" rx="360" ry="16" fill="none"/>
+    <ellipse cx="256" cy="470" rx="280" ry="18" fill="none"/>
+    <!-- Meridian rays -->
+    <path d="M70 280 Q130 380 180 512" fill="none"/>
+    <path d="M160 274 Q190 380 220 512" fill="none"/>
+    <path d="M256 272 V512" fill="none"/>
+    <path d="M352 274 Q322 380 292 512" fill="none"/>
+    <path d="M442 280 Q382 380 332 512" fill="none"/>
+  </g>
+
+  <!-- Glowing Mega-City Nodes -->
+  <circle cx="160" cy="340" r="4" fill="#ffffff" filter="url(#cityGlow)"/>
+  <circle cx="256" cy="340" r="6" fill="#00ffff" filter="url(#cityGlow)"/>
+  <circle cx="352" cy="340" r="4" fill="#ffffff" filter="url(#cityGlow)"/>
+  <circle cx="220" cy="410" r="5" fill="#00f2fe" filter="url(#cityGlow)"/>
+  <circle cx="292" cy="410" r="5" fill="#00f2fe" filter="url(#cityGlow)"/>
+
+  <!-- 3D Orbital Cyber Station Fortress in Low Orbit -->
+  <!-- Station Drop Shadow onto Atmosphere -->
+  <ellipse cx="256" cy="230" rx="140" ry="24" fill="#000000" opacity="0.6" filter="blur(8px)"/>
+
+  <!-- Station Solar Arrays (Left & Right) -->
+  <rect x="50" y="152" width="110" height="26" rx="3" fill="url(#solarPanel)" stroke="#64b5f6" stroke-width="2"/>
+  <line x1="78" y1="152" x2="78" y2="178" stroke="#90caf9" stroke-width="1.5"/>
+  <line x1="105" y1="152" x2="105" y2="178" stroke="#90caf9" stroke-width="1.5"/>
+  <line x1="132" y1="152" x2="132" y2="178" stroke="#90caf9" stroke-width="1.5"/>
+
+  <rect x="352" y="152" width="110" height="26" rx="3" fill="url(#solarPanel)" stroke="#64b5f6" stroke-width="2"/>
+  <line x1="380" y1="152" x2="380" y2="178" stroke="#90caf9" stroke-width="1.5"/>
+  <line x1="407" y1="152" x2="407" y2="178" stroke="#90caf9" stroke-width="1.5"/>
+  <line x1="434" y1="152" x2="434" y2="178" stroke="#90caf9" stroke-width="1.5"/>
+
+  <!-- Central Modular Spire & Habitation Rings -->
+  <polygon points="160,165 352,165 330,175 182,175" fill="#1c2833"/>
+  <polygon points="210,130 302,130 316,165 196,165" fill="url(#stationMetal)" stroke="#0d1b2a" stroke-width="3"/>
+  <polygon points="230,90 282,90 292,130 220,130" fill="url(#stationMetal)" stroke="#0d1b2a" stroke-width="3"/>
+  
+  <!-- Glowing Quantum Core Ring -->
+  <ellipse cx="256" cy="165" rx="55" ry="18" fill="#001428" stroke="#00f2fe" stroke-width="5" filter="url(#cityGlow)"/>
+  <circle cx="256" cy="165" r="14" fill="#ffffff" filter="url(#cityGlow)"/>
+  <circle cx="256" cy="165" r="7" fill="#00f2fe"/>
+
+  <!-- Antenna & Comm Mast -->
+  <line x1="256" y1="90" x2="256" y2="52" stroke="#cfd8dc" stroke-width="3"/>
+  <circle cx="256" cy="50" r="4" fill="#ff0055" filter="url(#cityGlow)"/>
+
+  <!-- Sector HUD Tag -->
+  <rect x="18" y="18" width="110" height="24" rx="6" fill="#02142d" stroke="#00f2fe" stroke-width="1.5"/>
+  <text x="73" y="34" font-family="-apple-system, sans-serif" font-size="10" font-weight="900" letter-spacing="1.5" fill="#80d8ff" text-anchor="middle">SECTOR 01</text>
+</svg>

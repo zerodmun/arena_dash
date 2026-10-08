@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="laserBeam" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="15%" stop-color="#ffe4e6"/>
+      <stop offset="45%" stop-color="#f43f5e"/>
+      <stop offset="85%" stop-color="#e11d48"/>
+      <stop offset="100%" stop-color="#881337"/>
+    </linearGradient>
+    <filter id="laserGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Laser Plasma Vapor Sheath -->
+  <rect x="96" y="16" width="64" height="224" rx="32" fill="#f43f5e" opacity="0.3" filter="url(#laserGlow)"/>
+  <rect x="108" y="24" width="40" height="208" rx="20" fill="#fb7185" opacity="0.6" filter="url(#laserGlow)"/>
+
+  <!-- Coherent Ruby Beam Core -->
+  <rect x="116" y="32" width="24" height="192" rx="12" fill="url(#laserBeam)" stroke="#ffffff" stroke-width="3"/>
+  <!-- Pure White Core Strip -->
+  <rect x="122" y="40" width="12" height="176" rx="6" fill="#ffffff"/>
+
+  <!-- Forward Emitter Flare Rings -->
+  <ellipse cx="128" cy="40" rx="36" ry="10" fill="#ffffff" opacity="0.9" filter="url(#laserGlow)"/>
+  <circle cx="128" cy="40" r="14" fill="#ffffff"/>
+  <ellipse cx="128" cy="216" rx="26" ry="8" fill="#f43f5e" opacity="0.8"/>
+</svg>

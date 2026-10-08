@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="nebulaGlow" cx="60%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0.7"/>
+      <stop offset="30%" stop-color="#8b5cf6" stop-opacity="0.5"/>
+      <stop offset="65%" stop-color="#3b0764" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#020008"/>
+    </radialGradient>
+    <linearGradient id="meteorFire" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="20%" stop-color="#facc15"/>
+      <stop offset="55%" stop-color="#f97316"/>
+      <stop offset="85%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#7f1d1d" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="asteroidShade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9ca3af"/>
+      <stop offset="35%" stop-color="#4b5563"/>
+      <stop offset="75%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <filter id="meteorPlumeGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Deep Void Base -->
+  <rect width="512" height="512" rx="28" fill="#020008"/>
+
+  <!-- Swirling Cosmic Nebula Cloud Layers -->
+  <circle cx="320" cy="200" r="220" fill="url(#nebulaGlow)" filter="blur(20px)"/>
+  <ellipse cx="200" cy="340" rx="190" ry="120" fill="#a855f7" opacity="0.25" filter="blur(25px)"/>
+  <ellipse cx="380" cy="380" rx="140" ry="90" fill="#06b6d4" opacity="0.2" filter="blur(20px)"/>
+
+  <!-- Distant Background Starfield -->
+  <circle cx="80" cy="90" r="1.5" fill="#ffffff"/>
+  <circle cx="150" cy="60" r="2" fill="#fdf2f8"/>
+  <circle cx="430" cy="110" r="1.8" fill="#ffffff"/>
+  <circle cx="280" cy="90" r="2.5" fill="#f472b6"/>
+  <circle cx="90" cy="280" r="1.8" fill="#c084fc"/>
+  <circle cx="460" cy="290" r="1.5" fill="#ffffff"/>
+  <circle cx="120" cy="440" r="2" fill="#ffffff"/>
+
+  <!-- Craggy 3D Space Asteroid in Low Foreground -->
+  <g transform="translate(140, 310) scale(0.65)">
+    <polygon points="170,70 290,50 410,110 460,230 440,360 360,450 220,470 110,410 60,290 80,160" 
+             fill="url(#asteroidShade)" stroke="#090d16" stroke-width="12" stroke-linejoin="round"/>
+    <!-- Facets -->
+    <polygon points="170,70 290,50 270,180 160,190" fill="#9ca3af" opacity="0.6"/>
+    <polygon points="290,50 410,110 360,220 270,180" fill="#6b7280" opacity="0.7"/>
+    <polygon points="410,110 460,230 380,290 360,220" fill="#374151"/>
+    <polygon points="460,230 440,360 330,340 380,290" fill="#1f2937"/>
+    <!-- Craters -->
+    <ellipse cx="220" cy="140" rx="32" ry="22" fill="#111827" stroke="#6b7280" stroke-width="4"/>
+    <ellipse cx="340" cy="270" rx="42" ry="28" fill="#111827" stroke="#4b5563" stroke-width="5"/>
+  </g>
+
+  <!-- Smaller Distant Asteroid -->
+  <polygon points="380,120 420,110 450,140 435,180 395,170 370,145" 
+           fill="#4b5563" stroke="#111827" stroke-width="4" opacity="0.85"/>
+
+  <!-- Blazing Atmospheric Incoming Meteor Fireball -->
+  <g filter="url(#meteorPlumeGlow)">
+    <!-- Plasma Flame Tail -->
+    <path d="M120 60 L360 320 L270 350 Z" fill="url(#meteorFire)"/>
+    <path d="M180 30 L370 330 L330 370 Z" fill="url(#meteorFire)"/>
+    <!-- Molten Fireball Core -->
+    <circle cx="360" cy="330" r="38" fill="#f97316"/>
+    <circle cx="356" cy="326" r="24" fill="#fde047"/>
+    <circle cx="354" cy="324" r="14" fill="#ffffff"/>
+  </g>
+
+  <!-- Spark Debris Trails -->
+  <circle cx="330" cy="380" r="4" fill="#fde047"/>
+  <circle cx="410" cy="350" r="3.5" fill="#f97316"/>
+  <circle cx="280" cy="280" r="2.5" fill="#ffffff"/>
+
+  <!-- Sector HUD Tag -->
+  <rect x="18" y="18" width="110" height="24" rx="6" fill="#3b0764" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="73" y="34" font-family="-apple-system, sans-serif" font-size="10" font-weight="900" letter-spacing="1.5" fill="#e9d5ff" text-anchor="middle">SECTOR 03</text>
+</svg>

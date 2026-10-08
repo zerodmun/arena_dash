@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <radialGradient id="plasmaCore" cx="42%" cy="38%" r="62%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#e0f2fe"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="80%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#034b75"/>
+    </radialGradient>
+    <filter id="coronaGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer Ionized Energy Halo -->
+  <circle cx="128" cy="128" r="110" fill="#00e5ff" opacity="0.25" filter="url(#coronaGlow)"/>
+  <circle cx="128" cy="128" r="85" fill="#0284c7" opacity="0.45" filter="url(#coronaGlow)"/>
+
+  <!-- Electric Plasma Corona Arcs -->
+  <path d="M70 100 Q128 40 186 100 Q216 128 186 156 Q128 216 70 156 Q40 128 70 100 Z" 
+        fill="none" stroke="#38bdf8" stroke-width="4" opacity="0.75" stroke-dasharray="14 10"/>
+
+  <!-- Dense 3D Kinetic Plasma Core -->
+  <circle cx="128" cy="128" r="62" fill="url(#plasmaCore)" stroke="#ffffff" stroke-width="7"/>
+
+  <!-- Specular Lens Glint & Hotspots -->
+  <ellipse cx="108" cy="106" rx="20" ry="14" fill="#ffffff" transform="rotate(-30 108 106)"/>
+  <circle cx="138" cy="142" r="8" fill="#ffffff" opacity="0.8"/>
+  <circle cx="128" cy="128" r="5" fill="#ffffff"/>
+</svg>

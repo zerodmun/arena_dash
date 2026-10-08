@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="256" viewBox="0 0 512 256">
+  <defs>
+    <!-- Heavy Elevation Drop Shadow -->
+    <filter id="barShadow" x="-20%" y="-30%" width="140%" height="180%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <!-- Metallic Barrier Face -->
+    <linearGradient id="barMetal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="30%" stop-color="#1e293b"/>
+      <stop offset="85%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <!-- Top Neon Ridge -->
+    <linearGradient id="barTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="25%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="75%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#barShadow)">
+    <!-- Main Wall Block -->
+    <rect x="24" y="36" width="464" height="180" rx="20" fill="url(#barMetal)" stroke="#0f172a" stroke-width="8"/>
+
+    <!-- Raised Top Bevel -->
+    <rect x="28" y="40" width="456" height="28" rx="12" fill="url(#barTop)" stroke="#0284c7" stroke-width="3"/>
+
+    <!-- Hazard Stripes Inset -->
+    <rect x="54" y="90" width="404" height="80" rx="10" fill="#090d16" stroke="#facc15" stroke-width="4"/>
+
+    <!-- Yellow / Black Hazard Chevrons -->
+    <g stroke="#facc15" stroke-width="12" stroke-linecap="round">
+      <line x1="84" y1="150" x2="124" y2="110"/>
+      <line x1="144" y1="150" x2="184" y2="110"/>
+      <line x1="204" y1="150" x2="244" y2="110"/>
+      <line x1="264" y1="150" x2="304" y2="110"/>
+      <line x1="324" y1="150" x2="364" y2="110"/>
+      <line x1="384" y1="150" x2="424" y2="110"/>
+    </g>
+
+    <!-- Corner Neon Pylon Nodes -->
+    <circle cx="50" cy="50" r="10" fill="#38bdf8" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="462" cy="50" r="10" fill="#38bdf8" stroke="#ffffff" stroke-width="3"/>
+  </g>
+</svg>

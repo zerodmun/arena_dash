@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="dinoGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff9900" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#cc5500" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#2b1a00" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="boneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5ede0"/>
+      <stop offset="50%" stop-color="#d4c2a5"/>
+      <stop offset="100%" stop-color="#8c785b"/>
+    </linearGradient>
+    <linearGradient id="jawGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8dcce"/>
+      <stop offset="100%" stop-color="#6b583e"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+  </defs>
+
+  <!-- Ground Drop Shadow -->
+  <ellipse cx="256" cy="460" rx="200" ry="38" fill="#000000" opacity="0.6" filter="blur(8px)"/>
+
+  <!-- Prehistoric Energy Aura -->
+  <circle cx="256" cy="240" r="180" fill="url(#dinoGlow)"/>
+
+  <!-- Dinosaur Cranium / Skull Group -->
+  <g filter="url(#shadow)">
+    <!-- Base Skull Mass -->
+    <path d="M120 280 C90 220 130 110 240 90 C360 70 430 140 450 220 C460 270 430 310 390 320 C340 330 300 290 260 290 C220 290 190 320 140 320 Z" 
+          fill="url(#boneGrad)" stroke="#4a3820" stroke-width="10" stroke-linejoin="round"/>
+
+    <!-- Snout & Nasal Ridge -->
+    <path d="M340 140 C390 170 440 210 445 250 L370 270 C340 240 320 200 340 140 Z" 
+          fill="#c4b090" stroke="#3d2d18" stroke-width="6"/>
+    
+    <!-- Brow Horns / Crest Ridge -->
+    <path d="M220 90 L245 40 L275 85 Z" fill="#fff5ea" stroke="#4a3820" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M165 110 L180 65 L205 105 Z" fill="#ebd9c0" stroke="#4a3820" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M295 100 L320 60 L340 110 Z" fill="#ebd9c0" stroke="#4a3820" stroke-width="6" stroke-linejoin="round"/>
+
+    <!-- Orbital Eye Socket (Glowing Prehistoric Core) -->
+    <ellipse cx="230" cy="200" rx="36" ry="46" fill="#150a00" stroke="#4a3820" stroke-width="8"/>
+    <ellipse cx="230" cy="200" rx="20" ry="28" fill="#ff7700"/>
+    <ellipse cx="230" cy="200" rx="10" ry="15" fill="#ffea00"/>
+    <circle cx="232" cy="198" r="4" fill="#ffffff"/>
+
+    <!-- Antorbital Fenestra (Nose Cavity) -->
+    <polygon points="340,210 400,225 385,255 330,240" fill="#201508" stroke="#4a3820" stroke-width="6"/>
+
+    <!-- Upper Serrated Teeth -->
+    <polygon points="260,290 275,340 290,290" fill="#fffcf5" stroke="#3d2d18" stroke-width="4"/>
+    <polygon points="295,290 312,350 330,290" fill="#fffcf5" stroke="#3d2d18" stroke-width="4"/>
+    <polygon points="335,290 355,355 375,290" fill="#fffcf5" stroke="#3d2d18" stroke-width="4"/>
+    <polygon points="380,290 400,345 418,290" fill="#fffcf5" stroke="#3d2d18" stroke-width="4"/>
+    <polygon points="420,285 435,325 448,275" fill="#fffcf5" stroke="#3d2d18" stroke-width="4"/>
+
+    <!-- Lower Jaw Bone -->
+    <path d="M140 335 C180 340 220 375 270 380 C360 390 440 350 445 320 C420 360 350 410 260 410 C190 410 130 375 110 350 Z" 
+          fill="url(#jawGrad)" stroke="#4a3820" stroke-width="8" stroke-linejoin="round"/>
+    
+    <!-- Lower Interlocking Teeth -->
+    <polygon points="280,380 295,330 310,380" fill="#fffcf5" stroke="#3d2d18" stroke-width="4"/>
+    <polygon points="320,380 340,325 355,380" fill="#fffcf5" stroke="#3d2d18" stroke-width="4"/>
+    <polygon points="365,375 385,320 400,370" fill="#fffcf5" stroke="#3d2d18" stroke-width="4"/>
+
+    <!-- Cracks & Weathering -->
+    <path d="M190 140 L210 170 L200 185" stroke="#665033" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M300 160 L320 190 L335 180" stroke="#665033" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M380 230 L395 240" stroke="#665033" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

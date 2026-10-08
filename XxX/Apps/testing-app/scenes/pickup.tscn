@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/pickup.gd" id="1_pu"]
+[ext_resource type="Texture2D" path="res://assets/pickup.svg" id="2_pu"]
+
+[sub_resource type="CircleShape2D" id="shape_pickup"]
+radius = 30.0
+
+[node name="Pickup" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitoring = true
+monitorable = false
+script = ExtResource("1_pu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.20, 0.20)
+texture = ExtResource("2_pu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_pickup")

@@ -1,0 +1,371 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_h"]
+[ext_resource type="Script" path="res://scripts/joystick.gd" id="2_h"]
+[ext_resource type="Texture2D" path="res://assets/joystick_base.svg" id="3_h"]
+[ext_resource type="Texture2D" path="res://assets/joystick_knob.svg" id="4_h"]
+[ext_resource type="Texture2D" path="res://assets/fire_button.svg" id="5_h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glass"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+bg_color = Color(0.03, 0.06, 0.12, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.75, 1, 0.55)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+content_margin_left = 28.0
+content_margin_top = 22.0
+content_margin_right = 28.0
+content_margin_bottom = 22.0
+bg_color = Color(0.02, 0.04, 0.09, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.22, 0.74, 1, 0.7)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0, 0, 0.85)
+shadow_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_normal"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+bg_color = Color(0.04, 0.08, 0.16, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18, 0.35, 0.55, 0.6)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.02, 0.52, 0.82, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.9, 1, 0.95)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.08, 0.68, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.2, 0.8, 1, 0.5)
+shadow_size = 10
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_h")
+
+[node name="TopBarContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 90.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+
+[node name="HBox" type="HBoxContainer" parent="TopBarContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="ScorePanel" type="PanelContainer" parent="TopBarContainer/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_glass")
+
+[node name="ScoreBox" type="HBoxContainer" parent="TopBarContainer/HBox/ScorePanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="TitleBox" type="VBoxContainer" parent="TopBarContainer/HBox/ScorePanel/ScoreBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ScoreTitle" type="Label" parent="TopBarContainer/HBox/ScorePanel/ScoreBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.82, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "SCORE"
+
+[node name="HighScoreLabel" type="Label" parent="TopBarContainer/HBox/ScorePanel/ScoreBox/TitleBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.8, 0.22, 1)
+theme_override_font_sizes/font_size = 14
+text = "BEST: 0"
+
+[node name="ScoreLabel" type="Label" parent="TopBarContainer/HBox/ScorePanel/ScoreBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+pivot_offset = Vector2(55, 18)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "00000"
+horizontal_alignment = 2
+
+[node name="CenterClearZone" type="Control" parent="TopBarContainer/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ShieldPanel" type="PanelContainer" parent="TopBarContainer/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_glass")
+
+[node name="ShieldBox" type="VBoxContainer" parent="TopBarContainer/HBox/ShieldPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="TopRow" type="HBoxContainer" parent="TopBarContainer/HBox/ShieldPanel/ShieldBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="ShieldTitle" type="Label" parent="TopBarContainer/HBox/ShieldPanel/ShieldBox/TopRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.82, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "SHIELD MATRIX"
+
+[node name="ShipBadge" type="Label" parent="TopBarContainer/HBox/ShieldPanel/ShieldBox/TopRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.38, 0.82, 1, 0.95)
+theme_override_font_sizes/font_size = 14
+text = "VALKYRIE"
+horizontal_alignment = 2
+
+[node name="CellsHBox" type="HBoxContainer" parent="TopBarContainer/HBox/ShieldPanel/ShieldBox"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="FullscreenButton" type="Button" parent="TopBarContainer/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Toggle Fullscreen (F11)"
+theme_override_colors/font_color = Color(0.38, 0.82, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_glass")
+text = "⛶"
+
+[node name="Joystick" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchor_right = 0.45
+anchor_bottom = 1.0
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("2_h")
+
+[node name="Base" type="Node2D" parent="Joystick"]
+position = Vector2(200, 880)
+
+[node name="BaseVisual" type="Sprite2D" parent="Joystick/Base"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_h")
+
+[node name="Knob" type="Node2D" parent="Joystick"]
+position = Vector2(200, 880)
+
+[node name="KnobVisual" type="Sprite2D" parent="Joystick/Knob"]
+texture_filter = 1
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_h")
+
+[node name="FireButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -260.0
+offset_right = -60.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(100, 100)
+texture_normal = ExtResource("5_h")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Screen" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameOverPanel" type="Control" parent="Screen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="Screen/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.02, 0.03, 0.92)
+
+[node name="CenterContainer" type="CenterContainer" parent="Screen/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Modal" type="PanelContainer" parent="Screen/GameOverPanel/CenterContainer"]
+custom_minimum_size = Vector2(580, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="VBox" type="VBoxContainer" parent="Screen/GameOverPanel/CenterContainer/Modal"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="Screen/GameOverPanel/CenterContainer/Modal/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.35, 1)
+theme_override_colors/font_shadow_color = Color(0.8, 0.1, 0.2, 0.9)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 52
+text = "MISSION TERMINATED"
+horizontal_alignment = 1
+
+[node name="FinalScoreLabel" type="Label" parent="Screen/GameOverPanel/CenterContainer/Modal/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 38
+text = "Final Score: 0"
+horizontal_alignment = 1
+
+[node name="StatsBox" type="VBoxContainer" parent="Screen/GameOverPanel/CenterContainer/Modal/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="KillsLabel" type="Label" parent="Screen/GameOverPanel/CenterContainer/Modal/VBox/StatsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 1, 0.85)
+theme_override_font_sizes/font_size = 20
+text = "Drones Eliminated: 0"
+horizontal_alignment = 1
+
+[node name="PickupsLabel" type="Label" parent="Screen/GameOverPanel/CenterContainer/Modal/VBox/StatsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 1, 0.85)
+theme_override_font_sizes/font_size = 20
+text = "Energy Crystals: 0"
+horizontal_alignment = 1
+
+[node name="NewRecordBadge" type="Label" parent="Screen/GameOverPanel/CenterContainer/Modal/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 24
+text = "★ NEW ALL-TIME RECORD! ★"
+horizontal_alignment = 1
+
+[node name="RestartHBox" type="HBoxContainer" parent="Screen/GameOverPanel/CenterContainer/Modal/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="HangarReturnButton" type="Button" parent="Screen/GameOverPanel/CenterContainer/Modal/VBox/RestartHBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_normal")
+text = "⚙ HANGAR"
+
+[node name="RestartButton" type="Button" parent="Screen/GameOverPanel/CenterContainer/Modal/VBox/RestartHBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+text = "RE-ENGAGE"
