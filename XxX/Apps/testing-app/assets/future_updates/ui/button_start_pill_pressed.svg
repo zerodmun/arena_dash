@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 84" width="280" height="84">
+  <defs>
+    <!-- Darker pressed golden gradient -->
+    <linearGradient id="btn-gold-pressed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ca8a04" />
+      <stop offset="30%" stop-color="#a16207" />
+      <stop offset="70%" stop-color="#854d0e" />
+      <stop offset="100%" stop-color="#713f12" />
+    </linearGradient>
+
+    <linearGradient id="btn-gold-rim-prs" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#854d0e" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <filter id="btn-prs-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#020617" flood-opacity="0.8" />
+    </filter>
+  </defs>
+
+  <!-- Depressed button position (+3px y-shift) -->
+  <g filter="url(#btn-prs-drop)" transform="translate(0, 3)">
+    <!-- Base Border -->
+    <rect x="8" y="6" width="264" height="68" rx="34" fill="url(#btn-gold-rim-prs)" stroke="#451a03" stroke-width="2.5" />
+    
+    <!-- Main Button Face -->
+    <rect x="12" y="10" width="256" height="60" rx="30" fill="url(#btn-gold-pressed)" stroke="#ca8a04" stroke-width="1.5" />
+  </g>
+
+  <!-- Play Chevron Icon & Text "START" -->
+  <g transform="translate(130, 52)">
+    <!-- Play Triangle -->
+    <polygon points="-65,-14 -65,14 -40,0" fill="#fef08a" stroke="#78350f" stroke-width="1.5" />
+
+    <!-- Text START -->
+    <text x="15" y="8" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-size="34" 
+          font-weight="900" 
+          letter-spacing="4"
+          text-anchor="middle" 
+          fill="#fef08a" 
+          stroke="#451a03" 
+          stroke-width="1.2">START</text>
+  </g>
+</svg>

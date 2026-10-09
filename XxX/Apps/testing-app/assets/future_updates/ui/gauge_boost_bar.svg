@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" width="360" height="80">
+  <defs>
+    <!-- Candy stripe pattern -->
+    <pattern id="boost-stripes" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="10" height="20" fill="#facc15" />
+      <rect x="10" width="10" height="20" fill="#f97316" />
+    </pattern>
+
+    <!-- Gauge border gradient -->
+    <linearGradient id="boost-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+
+    <!-- GO button gradient -->
+    <radialGradient id="boost-go-grad" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#facc15" />
+      <stop offset="90%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#9a3412" />
+    </radialGradient>
+
+    <filter id="boost-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+
+    <clipPath id="boost-bar-clip">
+      <rect x="16" y="22" width="260" height="36" rx="18" />
+    </clipPath>
+  </defs>
+
+  <g filter="url(#boost-shadow)">
+    <!-- Main Capsule Housing -->
+    <rect x="12" y="18" width="270" height="44" rx="22" fill="#082f49" stroke="url(#boost-rim)" stroke-width="3" />
+    
+    <!-- Empty Bar Well -->
+    <rect x="16" y="22" width="262" height="36" rx="18" fill="#031d30" />
+
+    <!-- Striped Energy Fill (e.g. 80% charged) -->
+    <g clip-path="url(#boost-bar-clip)">
+      <rect x="16" y="22" width="220" height="36" fill="url(#boost-stripes)" />
+      <!-- Glass top sheen -->
+      <rect x="16" y="22" width="262" height="18" fill="#ffffff" opacity="0.25" />
+      <!-- Glow leading edge bar -->
+      <line x1="236" y1="22" x2="236" y2="58" stroke="#ffffff" stroke-width="3" />
+    </g>
+
+    <!-- Inner Well Rim Bevel -->
+    <rect x="16" y="22" width="262" height="36" rx="18" fill="none" stroke="#082f49" stroke-width="1.5" />
+  </g>
+
+  <!-- Big Circular "GO!" Trigger Actuator Button on Right -->
+  <g transform="translate(306, 40)" filter="url(#boost-shadow)">
+    <!-- Base Socket Rim -->
+    <circle cx="0" cy="0" r="36" fill="#082f49" stroke="#38bdf8" stroke-width="3" />
+    
+    <!-- Button Face -->
+    <circle cx="0" cy="0" r="31" fill="url(#boost-go-grad)" stroke="#fed7aa" stroke-width="1.5" />
+
+    <!-- Specular Crescent Sheen -->
+    <path d="M -22 -14 A 26 26 0 0 1 22 -14 A 24 16 0 0 0 -22 -14 Z" fill="#ffffff" opacity="0.6" />
+
+    <!-- GO! Text -->
+    <text x="0" y="10" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-size="24" 
+          font-weight="900" 
+          font-style="italic"
+          letter-spacing="1"
+          text-anchor="middle" 
+          fill="#78350f" 
+          opacity="0.6"
+          transform="translate(0, 2)">GO!</text>
+    <text x="0" y="10" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-size="24" 
+          font-weight="900" 
+          font-style="italic"
+          letter-spacing="1"
+          text-anchor="middle" 
+          fill="#ffffff" 
+          stroke="#78350f" 
+          stroke-width="1">GO!</text>
+  </g>
+</svg>

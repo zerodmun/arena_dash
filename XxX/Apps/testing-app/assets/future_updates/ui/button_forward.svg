@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72">
+  <defs>
+    <linearGradient id="btn-cyan-sq" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="35%" stop-color="#0284c7" />
+      <stop offset="85%" stop-color="#0369a1" />
+      <stop offset="100%" stop-color="#075985" />
+    </linearGradient>
+
+    <filter id="btn-fwd-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#020617" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <g filter="url(#btn-fwd-drop)">
+    <!-- Base Rim -->
+    <rect x="4" y="4" width="64" height="64" rx="18" fill="#082f49" stroke="#0284c7" stroke-width="2" />
+    <!-- Face -->
+    <rect x="6" y="6" width="60" height="60" rx="16" fill="url(#btn-cyan-sq)" stroke="#bae6fd" stroke-width="1.5" />
+  </g>
+
+  <!-- Top Sheen -->
+  <path d="M 12 8 Q 36 14 60 8 Q 54 22 36 22 Q 18 22 12 8 Z" fill="#ffffff" opacity="0.4" />
+
+  <!-- Forward / Next Chevron Icon -->
+  <g transform="translate(36, 36)">
+    <!-- Shadow -->
+    <polyline points="-4,-16 12,0 -4,16" fill="none" stroke="#082f49" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="translate(0, 2)" opacity="0.5" />
+    <!-- White Stroke -->
+    <polyline points="-4,-16 12,0 -4,16" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

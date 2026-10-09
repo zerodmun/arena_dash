@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 640" width="540" height="640">
+  <defs>
+    <!-- Dark glass sci-fi card gradient -->
+    <linearGradient id="sc-card-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#1e1b4b" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#090514" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Neon Rim Border -->
+    <linearGradient id="sc-card-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <!-- Arrow Button Gradient -->
+    <linearGradient id="sc-arrow-btn" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <filter id="sc-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#020617" flood-opacity="0.8" />
+    </filter>
+  </defs>
+
+  <!-- Central Card Container -->
+  <g filter="url(#sc-shadow)">
+    <!-- Outer Card Frame -->
+    <rect x="60" y="30" width="420" height="580" rx="24" fill="url(#sc-card-bg)" stroke="url(#sc-card-rim)" stroke-width="2.5" />
+  </g>
+
+  <!-- Tech Grid / Reticle Lines in Card Interior -->
+  <g stroke="#38bdf8" stroke-width="0.8" opacity="0.2">
+    <line x1="80" y1="120" x2="460" y2="120" />
+    <line x1="80" y1="460" x2="460" y2="460" />
+    <circle cx="270" cy="280" r="140" fill="none" stroke-dasharray="6 4" />
+    <circle cx="270" cy="280" r="90" fill="none" />
+  </g>
+
+  <!-- Corner Tech Brackets -->
+  <path d="M 80 60 L 70 60 L 70 80" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 460 60 L 470 60 L 470 80" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 80 580 L 70 580 L 70 560" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 460 580 L 470 580 L 470 560" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Top Ship Name Badge / Header Plate -->
+  <g transform="translate(270, 75)">
+    <rect x="-120" y="-20" width="240" height="40" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="0" y="6" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-size="16" 
+          font-weight="900" 
+          text-anchor="middle" 
+          letter-spacing="3"
+          fill="#38bdf8">VESSEL INSPECTION</text>
+  </g>
+
+  <!-- Lower Stats / Status Pill -->
+  <g transform="translate(270, 520)">
+    <rect x="-150" y="-30" width="300" height="60" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+    <!-- Speed Bar -->
+    <text x="-130" y="-8" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#94a3b8">SPEED</text>
+    <rect x="-60" y="-18" width="190" height="12" rx="6" fill="#1e293b" />
+    <rect x="-60" y="-18" width="150" height="12" rx="6" fill="#38bdf8" />
+
+    <!-- Handling Bar -->
+    <text x="-130" y="16" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#94a3b8">AGILITY</text>
+    <rect x="-60" y="6" width="190" height="12" rx="6" fill="#1e293b" />
+    <rect x="-60" y="6" width="130" height="12" rx="6" fill="#a855f7" />
+  </g>
+
+  <!-- Left Navigation Arrow Button `<` -->
+  <g transform="translate(40, 300)">
+    <circle cx="0" cy="0" r="28" fill="url(#sc-arrow-btn)" stroke="#0284c7" stroke-width="2" />
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#bae6fd" stroke-width="1.5" opacity="0.6" />
+    <!-- Chevron Left -->
+    <polyline points="4,-12 -6,0 4,12" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <!-- Right Navigation Arrow Button `>` -->
+  <g transform="translate(500, 300)">
+    <circle cx="0" cy="0" r="28" fill="url(#sc-arrow-btn)" stroke="#0284c7" stroke-width="2" />
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#bae6fd" stroke-width="1.5" opacity="0.6" />
+    <!-- Chevron Right -->
+    <polyline points="-4,-12 6,0 -4,12" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

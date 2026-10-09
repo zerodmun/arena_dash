@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <!-- Metallic Dome Bevel -->
+    <radialGradient id="thmb-dome" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#e2e8f0"/>
+      <stop offset="65%" stop-color="#94a3b8"/>
+      <stop offset="90%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </radialGradient>
+
+    <!-- Glowing Cyber Core Jewel -->
+    <radialGradient id="thmb-core" cx="38%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#38bdf8"/>
+      <stop offset="75%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </radialGradient>
+
+    <filter id="thmb-drop" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#020617" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#thmb-drop)">
+    <!-- Outer 3D Bezel Base -->
+    <circle cx="24" cy="24" r="20" fill="url(#thmb-dome)" stroke="#0f172a" stroke-width="2"/>
+
+    <!-- Non-Slip Grip Groove -->
+    <circle cx="24" cy="24" r="16" fill="none" stroke="#64748b" stroke-width="1.2" opacity="0.8"/>
+
+    <!-- Inner Well -->
+    <circle cx="24" cy="24" r="11" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+
+    <!-- Glowing Cyber Core Jewel -->
+    <circle cx="24" cy="24" r="8" fill="url(#thmb-core)" stroke="#bae6fd" stroke-width="0.8"/>
+
+    <!-- Specular Highlight Curve -->
+    <ellipse cx="21" cy="21" rx="3.5" ry="2" transform="rotate(-30 21 21)" fill="#ffffff" opacity="0.9"/>
+  </g>
+</svg>

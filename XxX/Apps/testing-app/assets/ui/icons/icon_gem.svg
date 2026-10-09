@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="ic-gem-top" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#7dd3fc" />
+    </linearGradient>
+
+    <linearGradient id="ic-gem-body" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <linearGradient id="ic-gem-sh" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#075985" />
+    </linearGradient>
+  </defs>
+
+  <!-- Shadow -->
+  <polygon points="15,9 33,9 42,20 24,43 6,20" fill="#082f49" opacity="0.4" transform="translate(0, 2)" />
+
+  <!-- Outer Silhouette -->
+  <polygon points="15,9 33,9 42,20 24,43 6,20" fill="#0369a1" stroke="#082f49" stroke-width="1.5" stroke-linejoin="round" />
+
+  <!-- Facets -->
+  <polygon points="17,10 31,10 35,18 13,18" fill="url(#ic-gem-top)" />
+  <polygon points="15,9 17,10 13,18 6,20" fill="#38bdf8" />
+  <polygon points="31,10 33,9 42,20 35,18" fill="#0284c7" />
+  <polygon points="13,18 35,18 24,24" fill="url(#ic-gem-body)" />
+  <polygon points="6,20 13,18 24,24 24,41" fill="#0369a1" />
+  <polygon points="35,18 42,20 24,41 24,24" fill="url(#ic-gem-sh)" />
+
+  <!-- Sparkle Glint -->
+  <circle cx="17" cy="10" r="1.5" fill="#ffffff" />
+</svg>

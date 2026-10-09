@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Drop Shadow -->
+    <filter id="bShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <!-- Twin Hull Metallic Gradient -->
+    <linearGradient id="boosterHull" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#93c5fd"/>
+      <stop offset="60%" stop-color="#3b82f6"/>
+      <stop offset="90%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+
+    <!-- Center Wing Platform -->
+    <linearGradient id="centerWing" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+
+    <!-- Twin Cyan Cockpits -->
+    <radialGradient id="canopyCyan" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#67e8f9"/>
+      <stop offset="70%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#083344"/>
+    </radialGradient>
+
+    <!-- Twin Jet Flame -->
+    <radialGradient id="jetFlame" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#93c5fd"/>
+      <stop offset="70%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="flameGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#bShadow)">
+    <!-- Dual Engine Thruster Exhausts -->
+    <ellipse cx="196" cy="435" rx="16" ry="48" fill="url(#jetFlame)" filter="url(#flameGlow)"/>
+    <ellipse cx="316" cy="435" rx="16" ry="48" fill="url(#jetFlame)" filter="url(#flameGlow)"/>
+    <ellipse cx="196" cy="425" rx="7" ry="24" fill="#ffffff"/>
+    <ellipse cx="316" cy="425" rx="7" ry="24" fill="#ffffff"/>
+
+    <!-- Center Wing Bridge uniting twin hulls -->
+    <polygon points="196,160 316,160 356,380 156,380" fill="url(#centerWing)" stroke="#1e293b" stroke-width="3.5"/>
+    <polygon points="216,210 296,210 286,340 226,340" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+
+    <!-- Left Outer Winglet -->
+    <polygon points="146,240 60,340 80,390 156,370" fill="url(#boosterHull)" stroke="#1e3a8a" stroke-width="3"/>
+    <line x1="70" y1="350" x2="140" y2="365" stroke="#ffffff" stroke-width="3" opacity="0.8"/>
+
+    <!-- Right Outer Winglet -->
+    <polygon points="366,240 452,340 432,390 356,370" fill="url(#boosterHull)" stroke="#1e3a8a" stroke-width="3"/>
+    <line x1="442" y1="350" x2="372" y2="365" stroke="#ffffff" stroke-width="3" opacity="0.8"/>
+
+    <!-- Left Fuselage Pod -->
+    <path d="M196,80 C176,140 166,280 176,410 L216,410 C226,280 216,140 196,80 Z" fill="url(#boosterHull)" stroke="#172554" stroke-width="3.5"/>
+    <ellipse cx="196" cy="210" rx="12" ry="34" fill="url(#canopyCyan)" stroke="#0c4a6e" stroke-width="2"/>
+    <path d="M192,185 C196,180 200,180 202,185" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+
+    <!-- Right Fuselage Pod -->
+    <path d="M316,80 C296,140 286,280 296,410 L336,410 C346,280 336,140 316,80 Z" fill="url(#boosterHull)" stroke="#172554" stroke-width="3.5"/>
+    <ellipse cx="316" cy="210" rx="12" ry="34" fill="url(#canopyCyan)" stroke="#0c4a6e" stroke-width="2"/>
+    <path d="M312,185 C316,180 320,180 322,185" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+
+    <!-- High-G Sensor Needles -->
+    <line x1="196" y1="50" x2="196" y2="80" stroke="#93c5fd" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="196" cy="50" r="3" fill="#67e8f9"/>
+    <line x1="316" y1="50" x2="316" y2="80" stroke="#93c5fd" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="316" cy="50" r="3" fill="#67e8f9"/>
+
+    <!-- Wingtip Lights -->
+    <circle cx="70" cy="345" r="4.5" fill="#ef4444"/>
+    <circle cx="442" cy="345" r="4.5" fill="#22c55e"/>
+  </g>
+</svg>

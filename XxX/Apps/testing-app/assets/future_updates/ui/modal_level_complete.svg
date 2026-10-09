@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 540" width="420" height="540">
+  <defs>
+    <!-- Modal Card Body Gradient -->
+    <linearGradient id="ml-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="40%" stop-color="#0369a1" />
+      <stop offset="75%" stop-color="#075985" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+
+    <!-- Bevel Rim -->
+    <linearGradient id="ml-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#bae6fd" />
+      <stop offset="25%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+
+    <!-- Golden Star Gradient -->
+    <linearGradient id="ml-star-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#fef08a" />
+      <stop offset="70%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <filter id="ml-drop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#020617" flood-opacity="0.75" />
+    </filter>
+  </defs>
+
+  <!-- Modal Frame with Drop Shadow -->
+  <g filter="url(#ml-drop)">
+    <!-- Outer Bevel Rim -->
+    <rect x="20" y="32" width="380" height="476" rx="28" fill="url(#ml-rim)" stroke="#082f49" stroke-width="4" />
+    
+    <!-- Main Card Body -->
+    <rect x="30" y="42" width="360" height="456" rx="20" fill="url(#ml-bg)" stroke="#0284c7" stroke-width="2" />
+  </g>
+
+  <!-- Top Title Plaque -->
+  <path d="M 50 26 L 370 26 L 350 84 L 70 84 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="2" />
+  <rect x="64" y="30" width="292" height="48" rx="12" fill="#0284c7" stroke="#bae6fd" stroke-width="1.5" />
+
+  <!-- LEVEL COMPLETE Text -->
+  <text x="210" y="62" 
+        font-family="system-ui, -apple-system, sans-serif" 
+        font-size="22" 
+        font-weight="900" 
+        text-anchor="middle" 
+        letter-spacing="2"
+        fill="#ffffff">LEVEL COMPLETE</text>
+
+  <!-- 3 Stars Trophy Pedestal Section -->
+  <g transform="translate(210, 190)">
+    <!-- Left Star (Slightly smaller, angled) -->
+    <g transform="translate(-80, 16) scale(0.85)">
+      <polygon points="0,-36 10,-10 36,-10 16,6 23,32 0,16 -23,32 -16,6 -36,-10 -10,-10" fill="#78350f" opacity="0.6" transform="translate(0, 3)" />
+      <polygon points="0,-36 10,-10 36,-10 16,6 23,32 0,16 -23,32 -16,6 -36,-10 -10,-10" fill="url(#ml-star-gold)" stroke="#ca8a04" stroke-width="2" />
+    </g>
+
+    <!-- Right Star (Slightly smaller, angled) -->
+    <g transform="translate(80, 16) scale(0.85)">
+      <polygon points="0,-36 10,-10 36,-10 16,6 23,32 0,16 -23,32 -16,6 -36,-10 -10,-10" fill="#78350f" opacity="0.6" transform="translate(0, 3)" />
+      <polygon points="0,-36 10,-10 36,-10 16,6 23,32 0,16 -23,32 -16,6 -36,-10 -10,-10" fill="url(#ml-star-gold)" stroke="#ca8a04" stroke-width="2" />
+    </g>
+
+    <!-- Center Star (Prominent Grand Star) -->
+    <g transform="translate(0, -10)">
+      <polygon points="0,-46 13,-13 46,-13 20,8 29,41 0,21 -29,41 -20,8 -46,-13 -13,-13" fill="#78350f" opacity="0.6" transform="translate(0, 4)" />
+      <polygon points="0,-46 13,-13 46,-13 20,8 29,41 0,21 -29,41 -20,8 -46,-13 -13,-13" fill="url(#ml-star-gold)" stroke="#ca8a04" stroke-width="2.5" />
+      <circle cx="-6" cy="-14" r="4" fill="#ffffff" opacity="0.8" />
+    </g>
+  </g>
+
+  <!-- Reward Currency Banner / Well -->
+  <g transform="translate(210, 320)">
+    <!-- Pill container -->
+    <rect x="-120" y="-30" width="240" height="60" rx="30" fill="#082f49" stroke="#38bdf8" stroke-width="2" />
+    
+    <!-- Coin Icon Left -->
+    <circle cx="-75" cy="0" r="20" fill="#facc15" stroke="#ca8a04" stroke-width="2" />
+    <circle cx="-75" cy="0" r="15" fill="#fef08a" />
+    <polygon points="-75,-8 -72,-2 -65,-2 -70,2 -68,9 -75,5 -82,9 -80,2 -85,-2 -78,-2" fill="#eab308" />
+
+    <!-- Coin Amount Text -->
+    <text x="25" y="10" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-size="32" 
+          font-weight="900" 
+          text-anchor="middle" 
+          fill="#fef08a">+150</text>
+  </g>
+
+  <!-- Corner Rivet Accents -->
+  <circle cx="44" cy="98" r="4" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+  <circle cx="376" cy="98" r="4" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+  <circle cx="44" cy="474" r="4" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+  <circle cx="376" cy="474" r="4" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <!-- Drop Shadow -->
+    <filter id="pShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="8" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- Deep Blue Atmosphere Base -->
+    <radialGradient id="vortexBlue" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#7dd3fc"/>
+      <stop offset="55%" stop-color="#0284c7"/>
+      <stop offset="85%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </radialGradient>
+
+    <!-- Vibrant Red/Coral Vortex Ribbons -->
+    <linearGradient id="vortexRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="30%" stop-color="#ef4444"/>
+      <stop offset="70%" stop-color="#b91c1c"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </linearGradient>
+
+    <filter id="vortexGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Atmospheric Glow Halo -->
+  <circle cx="128" cy="128" r="95" fill="#38bdf8" opacity="0.3" filter="url(#vortexGlow)"/>
+
+  <!-- Main Sphere -->
+  <g filter="url(#pShadow)">
+    <circle cx="128" cy="128" r="84" fill="url(#vortexBlue)" stroke="#38bdf8" stroke-width="2.5"/>
+
+    <!-- Swirling Red Tidal Bands & Storm Vortices -->
+    <!-- Swirl Band 1 (Top Left to Bottom Right) -->
+    <path d="M 60,95 C 90,65 140,85 180,70 C 205,60 215,85 195,105 C 160,130 115,100 85,125 C 65,140 50,115 60,95 Z" fill="url(#vortexRed)" stroke="#7f1d1d" stroke-width="2"/>
+
+    <!-- Swirl Band 2 (Mid Center to Bottom Left) -->
+    <path d="M 95,130 C 130,120 180,140 210,130 C 220,150 200,175 170,165 C 130,150 110,185 85,175 C 70,160 80,140 95,130 Z" fill="url(#vortexRed)" stroke="#7f1d1d" stroke-width="2"/>
+
+    <!-- Swirl Band 3 (Lower Atmosphere) -->
+    <path d="M 105,185 C 135,175 175,190 195,185 C 190,210 160,215 130,210 C 110,205 95,195 105,185 Z" fill="url(#vortexRed)" stroke="#7f1d1d" stroke-width="1.5"/>
+
+    <!-- White Cyclone Eye Vortex (Bottom Center) -->
+    <ellipse cx="128" cy="190" rx="24" ry="16" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+    <path d="M 115,190 C 120,180 135,180 140,190 C 135,198 122,198 115,190 Z" fill="#ffffff" opacity="0.8"/>
+
+    <!-- Specular Highlight Crest -->
+    <path d="M 75,75 C 95,55 145,55 168,70" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+  </g>
+</svg>

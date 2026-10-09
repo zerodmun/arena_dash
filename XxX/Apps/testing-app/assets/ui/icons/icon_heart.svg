@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <radialGradient id="ic-hrt-grad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#fee2e2" />
+      <stop offset="25%" stop-color="#f87171" />
+      <stop offset="65%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#991b1b" />
+    </radialGradient>
+  </defs>
+
+  <!-- Shadow -->
+  <path d="M 24 41 C 4 23 4 7 24 14 C 44 7 44 23 24 41 Z" fill="#450a0a" opacity="0.4" transform="translate(0, 2)" />
+
+  <!-- Heart Body -->
+  <path d="M 24 41 C 4 23 4 7 24 14 C 44 7 44 23 24 41 Z" fill="url(#ic-hrt-grad)" stroke="#b91c1c" stroke-width="2" />
+
+  <!-- Inner Shading Sheen -->
+  <path d="M 24 36 C 8 21 8 11 24 16 C 40 11 40 21 24 36 Z" fill="#f87171" opacity="0.4" />
+  <circle cx="16" cy="14" r="3" fill="#ffffff" opacity="0.8" />
+</svg>

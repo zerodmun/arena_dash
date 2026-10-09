@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72">
+  <defs>
+    <linearGradient id="btn-gold-sq" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="25%" stop-color="#facc15" />
+      <stop offset="70%" stop-color="#eab308" />
+      <stop offset="95%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <filter id="btn-icon-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#020617" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <g filter="url(#btn-icon-drop)">
+    <!-- Base Rim -->
+    <rect x="4" y="4" width="64" height="64" rx="18" fill="#ca8a04" stroke="#78350f" stroke-width="2.5" />
+    <!-- Face -->
+    <rect x="6" y="6" width="60" height="60" rx="16" fill="url(#btn-gold-sq)" stroke="#fef08a" stroke-width="1.2" />
+  </g>
+
+  <!-- Top Sheen -->
+  <path d="M 12 8 Q 36 14 60 8 Q 54 22 36 22 Q 18 22 12 8 Z" fill="#ffffff" opacity="0.45" />
+
+  <!-- Speaker & Sound Waves Icon -->
+  <g transform="translate(34, 36)">
+    <!-- Shadow -->
+    <g fill="#78350f" opacity="0.6" transform="translate(0, 2)">
+      <polygon points="-16,-6 -8,-6 2,-16 2,16 -8,6 -16,6" />
+      <path d="M 7 -8 A 12 12 0 0 1 7 8" fill="none" stroke="#78350f" stroke-width="3" stroke-linecap="round" />
+      <path d="M 12 -13 A 18 18 0 0 1 12 13" fill="none" stroke="#78350f" stroke-width="3" stroke-linecap="round" />
+    </g>
+    <!-- Foreground -->
+    <g fill="#ffffff">
+      <polygon points="-16,-6 -8,-6 2,-16 2,16 -8,6 -16,6" />
+      <path d="M 7 -8 A 12 12 0 0 1 7 8" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+      <path d="M 12 -13 A 18 18 0 0 1 12 13" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+    </g>
+  </g>
+</svg>

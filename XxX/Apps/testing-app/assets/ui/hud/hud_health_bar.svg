@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" width="360" height="80">
+  <defs>
+    <!-- Capsule rim gradient -->
+    <linearGradient id="hp-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+
+    <!-- Health Bar Gradient -->
+    <linearGradient id="hp-fill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="60%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#86efac" />
+    </linearGradient>
+
+    <!-- Heart Socket Bevel -->
+    <linearGradient id="hp-socket" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fca5a5" />
+      <stop offset="40%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#7f1d1d" />
+    </linearGradient>
+
+    <filter id="hp-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+
+    <clipPath id="hp-clip">
+      <rect x="74" y="22" width="268" height="36" rx="18" />
+    </clipPath>
+  </defs>
+
+  <g filter="url(#hp-shadow)">
+    <!-- Main Capsule Housing -->
+    <rect x="68" y="18" width="278" height="44" rx="22" fill="#082f49" stroke="url(#hp-rim)" stroke-width="3" />
+    
+    <!-- Empty Recessed Well -->
+    <rect x="72" y="22" width="270" height="36" rx="18" fill="#031d30" />
+
+    <!-- Health Fill (85% full) -->
+    <g clip-path="url(#hp-clip)">
+      <rect x="72" y="22" width="230" height="36" fill="url(#hp-fill)" />
+      <!-- Segment Divider Lines -->
+      <line x1="130" y1="22" x2="130" y2="58" stroke="#0f172a" stroke-width="2" opacity="0.6" />
+      <line x1="188" y1="22" x2="188" y2="58" stroke="#0f172a" stroke-width="2" opacity="0.6" />
+      <line x1="246" y1="22" x2="246" y2="58" stroke="#0f172a" stroke-width="2" opacity="0.6" />
+      <!-- Top Glass Sheen -->
+      <rect x="72" y="22" width="270" height="18" fill="#ffffff" opacity="0.3" />
+      <!-- Leading Edge Light Bar -->
+      <line x1="302" y1="22" x2="302" y2="58" stroke="#ffffff" stroke-width="3" />
+    </g>
+
+    <!-- Inner Well Rim Bevel -->
+    <rect x="72" y="22" width="270" height="36" rx="18" fill="none" stroke="#082f49" stroke-width="1.5" />
+  </g>
+
+  <!-- Circular Heart Socket on Left -->
+  <g transform="translate(48, 40)" filter="url(#hp-shadow)">
+    <!-- Outer Rim -->
+    <circle cx="0" cy="0" r="34" fill="url(#hp-socket)" stroke="#450a0a" stroke-width="2.5" />
+    <!-- Inner Recessed Well -->
+    <circle cx="0" cy="0" r="27" fill="#090d16" stroke="#ef4444" stroke-width="1.5" />
+    
+    <!-- 3D Heart Emblem -->
+    <path d="M 0 16 C -20 2 -20 -14 0 -7 C 20 -14 20 2 0 16 Z" 
+          fill="#ef4444" stroke="#fca5a5" stroke-width="1.5" />
+    <path d="M 0 12 C -15 0 -15 -10 0 -5 C 15 -10 15 0 0 12 Z" fill="#f87171" opacity="0.6" />
+    <circle cx="-5" cy="-7" r="2" fill="#ffffff" />
+  </g>
+</svg>

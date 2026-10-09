@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 560" width="480" height="560">
+  <defs>
+    <!-- Background Card Gradient -->
+    <linearGradient id="p-base-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="30%" stop-color="#0369a1" />
+      <stop offset="70%" stop-color="#075985" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+
+    <!-- Outer Rim Bevel -->
+    <linearGradient id="p-base-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#bae6fd" />
+      <stop offset="25%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+
+    <!-- Content Well Gradient -->
+    <linearGradient id="p-well-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#082f49" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#031d30" stop-opacity="0.95" />
+    </linearGradient>
+
+    <filter id="p-base-drop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#020617" flood-opacity="0.75" />
+    </filter>
+  </defs>
+
+  <!-- Drop Shadow & Frame Silhouette -->
+  <g filter="url(#p-base-drop)">
+    <!-- Outer Card Rim -->
+    <rect x="20" y="28" width="440" height="504" rx="28" fill="url(#p-base-rim)" stroke="#082f49" stroke-width="4" />
+    
+    <!-- Inner Card Body -->
+    <rect x="30" y="38" width="420" height="484" rx="20" fill="url(#p-base-bg)" stroke="#0284c7" stroke-width="2" />
+  </g>
+
+  <!-- Top Header Ribbon Plaque Base -->
+  <path d="M 60 22 L 420 22 L 396 82 L 84 82 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="2" />
+  <rect x="80" y="26" width="320" height="48" rx="12" fill="#0284c7" stroke="#bae6fd" stroke-width="1.5" />
+
+  <!-- Inner Content Work Area -->
+  <rect x="50" y="104" width="380" height="396" rx="16" fill="url(#p-well-bg)" stroke="#38bdf8" stroke-width="1.5" />
+
+  <!-- Corner Screw / Rivet Tech Accents -->
+  <circle cx="44" cy="98" r="4" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+  <circle cx="436" cy="98" r="4" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+  <circle cx="44" cy="502" r="4" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+  <circle cx="436" cy="502" r="4" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+
+  <!-- Corner Tech Guide Marks -->
+  <path d="M 66 120 L 58 120 L 58 128" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 414 120 L 422 120 L 422 128" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 66 484 L 58 484 L 58 476" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 414 484 L 422 484 L 422 476" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Top Glass Highlight Sheen -->
+  <path d="M 36 44 L 444 44 C 420 120 240 100 36 180 Z" fill="#ffffff" opacity="0.08" />
+</svg>

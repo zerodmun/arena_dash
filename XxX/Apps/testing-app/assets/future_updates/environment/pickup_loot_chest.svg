@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Cyan glow around chest -->
+    <radialGradient id="chest-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="20%" stop-color="#38bdf8" stop-opacity="0.4" />
+      <stop offset="60%" stop-color="#0284c7" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Metallic lid gradient -->
+    <linearGradient id="chest-lid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="35%" stop-color="#cbd5e1" />
+      <stop offset="75%" stop-color="#64748b" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+
+    <!-- Metallic body gradient -->
+    <linearGradient id="chest-body" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="40%" stop-color="#334155" />
+      <stop offset="85%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Golden trim gradient -->
+    <linearGradient id="chest-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="30%" stop-color="#facc15" />
+      <stop offset="70%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <!-- Cyan energy glow line -->
+    <linearGradient id="chest-energy" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#67e8f9" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Light Glow -->
+  <circle cx="64" cy="68" r="56" fill="url(#chest-glow)" />
+
+  <!-- Shadow Under Base -->
+  <ellipse cx="64" cy="112" rx="48" ry="12" fill="#020617" opacity="0.6" />
+
+  <!-- Chest Body (Bottom Trunk) -->
+  <rect x="22" y="60" width="84" height="46" rx="10" fill="url(#chest-body)" stroke="#0f172a" stroke-width="2.5" />
+
+  <!-- Chest Base Trim / Corners -->
+  <path d="M 22 92 L 22 98 A 8 8 0 0 0 30 106 L 98 106 A 8 8 0 0 0 106 98 L 106 92 Z" fill="#1e293b" stroke="#0f172a" stroke-width="1.5" />
+  
+  <!-- Vertical Gold Corner Reinforcements -->
+  <rect x="22" y="60" width="10" height="46" rx="4" fill="url(#chest-gold)" stroke="#854d0e" stroke-width="1.2" />
+  <rect x="96" y="60" width="10" height="46" rx="4" fill="url(#chest-gold)" stroke="#854d0e" stroke-width="1.2" />
+
+  <!-- Glowing Cyan Body Seams -->
+  <line x1="38" y1="72" x2="90" y2="72" stroke="url(#chest-energy)" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="38" y1="92" x2="90" y2="92" stroke="url(#chest-energy)" stroke-width="2.5" stroke-linecap="round" />
+  <circle cx="64" cy="82" r="16" fill="#0f172a" stroke="url(#chest-gold)" stroke-width="2.5" />
+
+  <!-- Chest Lid (Top Vault) -->
+  <!-- Rounded Dome Top -->
+  <path d="M 18 58 C 18 36 32 26 64 26 C 96 26 110 36 110 58 Z" fill="url(#chest-lid)" stroke="#0f172a" stroke-width="2.5" />
+  
+  <!-- Lid Bevel / Rim -->
+  <rect x="16" y="54" width="96" height="10" rx="3" fill="#cbd5e1" stroke="#0f172a" stroke-width="2" />
+  
+  <!-- Gold Lid Arch Bands -->
+  <path d="M 20 54 C 21 40 30 32 40 28 L 44 32 C 34 36 28 44 26 54 Z" fill="url(#chest-gold)" stroke="#854d0e" stroke-width="1" />
+  <path d="M 108 54 C 107 40 98 32 88 28 L 84 32 C 94 36 100 44 102 54 Z" fill="url(#chest-gold)" stroke="#854d0e" stroke-width="1" />
+  <rect x="58" y="26" width="12" height="28" fill="url(#chest-gold)" stroke="#854d0e" stroke-width="1" />
+
+  <!-- Lid Glowing Seam -->
+  <line x1="20" y1="56" x2="108" y2="56" stroke="#38bdf8" stroke-width="2" />
+
+  <!-- Central Sci-Fi Power Core / Lock Latch -->
+  <g transform="translate(64, 58)">
+    <!-- Lock Escutcheon Plate -->
+    <rect x="-14" y="-12" width="28" height="24" rx="6" fill="url(#chest-gold)" stroke="#78350f" stroke-width="1.8" />
+    <!-- Lock Core Gem -->
+    <circle cx="0" cy="0" r="6" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+    <circle cx="-2" cy="-2" r="2" fill="#ffffff" />
+    <!-- Keyway / Energy Slot -->
+    <path d="M 0 0 L 0 5" stroke="#0369a1" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <!-- Rivets & Cyber Tech Accents -->
+  <circle cx="27" cy="66" r="1.5" fill="#fef08a" />
+  <circle cx="27" cy="100" r="1.5" fill="#fef08a" />
+  <circle cx="101" cy="66" r="1.5" fill="#fef08a" />
+  <circle cx="101" cy="100" r="1.5" fill="#fef08a" />
+
+  <!-- Specular Sheen Glints -->
+  <path d="M 32 34 C 48 30 76 30 92 34" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.6" stroke-linecap="round" />
+</svg>

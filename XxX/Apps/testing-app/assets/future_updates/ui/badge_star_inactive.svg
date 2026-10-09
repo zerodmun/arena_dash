@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Dark slate gradient for unfilled star -->
+    <linearGradient id="star-inact-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="50%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <filter id="star-inact-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <g filter="url(#star-inact-drop)">
+    <!-- Recessed Rim -->
+    <polygon points="32,6 40,22 58,23 44,35 48,53 32,44 16,53 20,35 6,23 24,22" 
+             fill="#0f172a" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" />
+
+    <!-- Unfilled Star Body -->
+    <polygon points="32,6 40,22 58,23 44,35 48,53 32,44 16,53 20,35 6,23 24,22" 
+             fill="url(#star-inact-grad)" stroke="#64748b" stroke-width="1" stroke-linejoin="round" />
+  </g>
+
+  <!-- Inner Shading Facets -->
+  <polygon points="32,6 40,22 32,34" fill="#64748b" opacity="0.3" />
+  <polygon points="48,53 32,44 32,34" fill="#0f172a" opacity="0.5" />
+  <polygon points="16,53 20,35 32,34" fill="#0f172a" opacity="0.5" />
+  <polygon points="6,23 24,22 32,34" fill="#64748b" opacity="0.2" />
+</svg>

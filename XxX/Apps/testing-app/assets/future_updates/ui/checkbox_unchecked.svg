@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <!-- Unchecked border gradient -->
+    <linearGradient id="cb-unchk-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <linearGradient id="cb-unchk-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <filter id="cb-unchk-drop" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <g filter="url(#cb-unchk-drop)">
+    <!-- Base Rim -->
+    <rect x="4" y="4" width="40" height="40" rx="10" fill="#090d16" stroke="url(#cb-unchk-rim)" stroke-width="2" />
+    <!-- Empty Recessed Face -->
+    <rect x="6" y="6" width="36" height="36" rx="8" fill="url(#cb-unchk-bg)" stroke="#1e293b" stroke-width="1" />
+  </g>
+
+  <!-- Subtle Corner Guides Inside Empty Checkbox -->
+  <circle cx="12" cy="12" r="1.5" fill="#334155" />
+  <circle cx="36" cy="12" r="1.5" fill="#334155" />
+  <circle cx="12" cy="36" r="1.5" fill="#334155" />
+  <circle cx="36" cy="36" r="1.5" fill="#334155" />
+</svg>

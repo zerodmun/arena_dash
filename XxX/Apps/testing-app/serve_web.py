@@ -19,7 +19,7 @@ class GodotHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.TCPServer(("0.0.0.0", PORT), GodotHTTPRequestHandler) as httpd:
+    with socketserver.TCPServer(("127.0.0.1", PORT), GodotHTTPRequestHandler) as httpd:
         print(f"Serving Godot web build at http://127.0.0.1:{PORT}/")
         sys.stdout.flush()
         httpd.serve_forever()

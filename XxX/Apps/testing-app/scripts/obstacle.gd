@@ -3,7 +3,7 @@ extends AnimatableBody2D
 ## Obstacle: Semi-3D tactical cover blocking bullets, enemies, and players.
 ## Dynamically supports multiple biomes (Cyber, Primal Jungle, Cosmic Void).
 
-enum Type { PILLAR, BARRIER, DINO_SKULL, ANCIENT_TREE, ASTEROID, CARGO }
+enum Type { PILLAR, BARRIER, DINO_SKULL, ANCIENT_TREE, ASTEROID, CARGO, BASALT, CRYO, TOXIC_SILO }
 
 @export var obstacle_type: Type = Type.PILLAR
 
@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 		candidate.x = clampf(candidate.x, _bounds.position.x, _bounds.end.x)
 		candidate.y = clampf(candidate.y, _bounds.position.y, _bounds.end.y)
 		# Keep a safe launch area around the arena center.
-		var safe := candidate.distance_to(Vector2(1700, 1100)) > 260.0
+		var safe := candidate.distance_to(_bounds.get_center()) > 260.0
 		for other in get_tree().get_nodes_in_group("moving_cover"):
 			if other != self and candidate.distance_to(other.position) < 240.0:
 				safe = false
@@ -95,8 +95,26 @@ func _apply_type() -> void:
 			rect_col.disabled = true
 			(circle_col.shape as CircleShape2D).radius = 68.0
 		Type.ASTEROID:
-			sprite.texture = load("res://assets/obstacle_asteroid.svg")
+			sprite.texture = load("res://assets/future_updates/environment/obstacle_space_rock_large.svg")
 			sprite.scale = Vector2(0.32, 0.32) # ~160px asteroid
 			circle_col.disabled = false
 			rect_col.disabled = true
 			(circle_col.shape as CircleShape2D).radius = 64.0
+		Type.BASALT:
+			sprite.texture = load("res://assets/obstacle_basalt.svg")
+			sprite.scale = Vector2(0.62, 0.62) # ~160px rock
+			circle_col.disabled = false
+			rect_col.disabled = true
+			(circle_col.shape as CircleShape2D).radius = 62.0
+		Type.CRYO:
+			sprite.texture = load("res://assets/obstacle_cryo.svg")
+			sprite.scale = Vector2(0.62, 0.62) # ~160px crystal
+			circle_col.disabled = false
+			rect_col.disabled = true
+			(circle_col.shape as CircleShape2D).radius = 60.0
+		Type.TOXIC_SILO:
+			sprite.texture = load("res://assets/obstacle_barrel.svg")
+			sprite.scale = Vector2(0.60, 0.60) # ~150px silo
+			circle_col.disabled = true
+			rect_col.disabled = false
+			(rect_col.shape as RectangleShape2D).size = Vector2(100, 105)

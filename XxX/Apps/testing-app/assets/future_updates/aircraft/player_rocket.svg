@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Drop Shadow -->
+    <filter id="rShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- White/Silver Ceramic Body -->
+    <linearGradient id="rocketBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="25%" stop-color="#e2e8f0"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="75%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+
+    <!-- Purple/Magenta Rocket Stripe -->
+    <linearGradient id="rocketPurple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4a044e"/>
+      <stop offset="25%" stop-color="#a21caf"/>
+      <stop offset="50%" stop-color="#d946ef"/>
+      <stop offset="75%" stop-color="#a21caf"/>
+      <stop offset="100%" stop-color="#4a044e"/>
+    </linearGradient>
+
+    <!-- Golden Nosecone -->
+    <radialGradient id="noseGold" cx="38%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#fef08a"/>
+      <stop offset="60%" stop-color="#facc15"/>
+      <stop offset="85%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#a16207"/>
+    </radialGradient>
+
+    <!-- Cyan Portal Window -->
+    <radialGradient id="portalCyan" cx="38%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#67e8f9"/>
+      <stop offset="70%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#083344"/>
+    </radialGradient>
+
+    <!-- Rocket Plasma Exhaust Flare -->
+    <radialGradient id="rocketFlame" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#a5f3fc"/>
+      <stop offset="65%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="flameGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#rShadow)">
+    <!-- Rocket Thruster Exhaust Plume -->
+    <path d="M220,410 Q256,495 256,505 Q256,495 292,410 Z" fill="url(#rocketFlame)" filter="url(#flameGlow)"/>
+    <ellipse cx="256" cy="450" rx="20" ry="45" fill="#ffffff" opacity="0.9"/>
+
+    <!-- Left Swept Tail Fin -->
+    <polygon points="210,280 110,380 110,430 210,400" fill="url(#rocketPurple)" stroke="#3b0764" stroke-width="4" stroke-linejoin="round"/>
+    <polygon points="210,290 125,380 125,415 210,395" fill="#e879f9" opacity="0.45"/>
+
+    <!-- Right Swept Tail Fin -->
+    <polygon points="302,280 402,380 402,430 302,400" fill="url(#rocketPurple)" stroke="#3b0764" stroke-width="4" stroke-linejoin="round"/>
+    <polygon points="302,290 387,380 387,415 302,395" fill="#e879f9" opacity="0.45"/>
+
+    <!-- Engine Exhaust Nozzle -->
+    <polygon points="214,395 204,420 308,420 298,395" fill="#1e293b" stroke="#64748b" stroke-width="3"/>
+    <ellipse cx="256" cy="420" rx="52" ry="12" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+
+    <!-- Main Cylindrical Fuselage -->
+    <path d="M205,170 C205,170 200,320 210,400 L302,400 C312,320 307,170 307,170 Z" fill="url(#rocketBody)" stroke="#475569" stroke-width="4"/>
+
+    <!-- Purple Midsection Fuselage Band -->
+    <path d="M203,210 L207,330 L305,330 L309,210 Z" fill="url(#rocketPurple)" stroke="#3b0764" stroke-width="3"/>
+    <line x1="203" y1="210" x2="309" y2="210" stroke="#fdf4ff" stroke-width="2" opacity="0.8"/>
+    <line x1="207" y1="330" x2="305" y2="330" stroke="#fdf4ff" stroke-width="2" opacity="0.8"/>
+
+    <!-- Center Stabilizer Fin (Ventral / Front) -->
+    <polygon points="256,260 250,395 262,395" fill="#701a75" stroke="#3b0764" stroke-width="2"/>
+
+    <!-- Rounded Golden Nosecone Dome -->
+    <path d="M205,175 C205,80 256,40 256,40 C256,40 307,80 307,175 Z" fill="url(#noseGold)" stroke="#854d0e" stroke-width="4"/>
+
+    <!-- Nosecone Specular Flare -->
+    <ellipse cx="242" cy="95" rx="14" ry="32" fill="#ffffff" opacity="0.8" transform="rotate(-15 242 95)"/>
+    <circle cx="256" cy="55" r="5" fill="#ffffff"/>
+
+    <!-- Circular Cockpit Porthole Window -->
+    <circle cx="256" cy="265" r="32" fill="#1e293b" stroke="#e2e8f0" stroke-width="5"/>
+    <circle cx="256" cy="265" r="26" fill="url(#portalCyan)"/>
+    <!-- Glass Specular Crescent -->
+    <path d="M240,245 C250,240 265,242 272,250" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="244" cy="252" r="3" fill="#ffffff"/>
+  </g>
+</svg>

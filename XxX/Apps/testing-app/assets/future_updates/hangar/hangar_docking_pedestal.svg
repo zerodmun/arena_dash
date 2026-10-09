@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 256" width="512" height="256">
+  <defs>
+    <!-- Energy field glow -->
+    <radialGradient id="ped-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="20%" stop-color="#38bdf8" stop-opacity="0.6" />
+      <stop offset="60%" stop-color="#0284c7" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#0369a1" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Base rim metallic gradient -->
+    <linearGradient id="ped-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#64748b" />
+      <stop offset="40%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Top platform deck gradient -->
+    <linearGradient id="ped-deck" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Neon ring glow -->
+    <linearGradient id="ped-neon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Underglow -->
+  <ellipse cx="256" cy="140" rx="220" ry="80" fill="url(#ped-glow)" />
+
+  <!-- Shadow below pedestal base -->
+  <ellipse cx="256" cy="180" rx="210" ry="50" fill="#020617" opacity="0.75" />
+
+  <!-- Pedestal Lower Cylinder Chassis -->
+  <path d="M 64 130 C 64 165 150 190 256 190 C 362 190 448 165 448 130 L 448 160 C 448 195 362 220 256 220 C 150 220 64 195 64 160 Z" 
+        fill="url(#ped-rim)" stroke="#090d16" stroke-width="2.5" />
+
+  <!-- Lower Chassis Vertical Tech Cooling Vents -->
+  <g stroke="#0f172a" stroke-width="3">
+    <line x1="160" y1="168" x2="160" y2="198" />
+    <line x1="208" y1="174" x2="208" y2="206" />
+    <line x1="256" y1="176" x2="256" y2="208" />
+    <line x1="304" y1="174" x2="304" y2="206" />
+    <line x1="352" y1="168" x2="352" y2="198" />
+  </g>
+  <g stroke="#38bdf8" stroke-width="1.5" opacity="0.8">
+    <line x1="160" y1="170" x2="160" y2="196" />
+    <line x1="208" y1="176" x2="208" y2="204" />
+    <line x1="256" y1="178" x2="256" y2="206" />
+    <line x1="304" y1="176" x2="304" y2="204" />
+    <line x1="352" y1="170" x2="352" y2="196" />
+  </g>
+
+  <!-- Pedestal Upper Cylinder Collar -->
+  <path d="M 52 110 C 52 145 143 170 256 170 C 369 170 460 145 460 110 L 460 130 C 460 165 369 190 256 190 C 143 190 52 165 52 130 Z" 
+        fill="#1e293b" stroke="#090d16" stroke-width="2" />
+
+  <!-- Pedestal Platform Deck (Ellipse Surface) -->
+  <ellipse cx="256" cy="110" rx="204" ry="60" fill="url(#ped-deck)" stroke="#475569" stroke-width="3" />
+
+  <!-- Outer Neon Energy Track -->
+  <ellipse cx="256" cy="110" rx="188" ry="52" fill="none" stroke="url(#ped-neon)" stroke-width="4" />
+  <ellipse cx="256" cy="110" rx="188" ry="52" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.6" />
+
+  <!-- Inner Concentric Tech Ring -->
+  <ellipse cx="256" cy="110" rx="140" ry="38" fill="none" stroke="#334155" stroke-width="2.5" />
+  <ellipse cx="256" cy="110" rx="136" ry="36" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="12 8" />
+
+  <!-- Center Docking Emitter Node -->
+  <ellipse cx="256" cy="110" rx="72" ry="20" fill="#0f172a" stroke="#0284c7" stroke-width="2" />
+  <ellipse cx="256" cy="110" rx="46" ry="12" fill="#38bdf8" opacity="0.75" />
+  <ellipse cx="256" cy="110" rx="24" ry="6" fill="#ffffff" />
+
+  <!-- Holographic Alignment Chevron Indicators -->
+  <!-- Top Chevron pointing up -->
+  <path d="M 244 94 L 256 86 L 268 94" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Bottom Chevron pointing down -->
+  <path d="M 244 126 L 256 134 L 268 126" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Left Chevron -->
+  <path d="M 170 106 L 160 110 L 170 114" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Right Chevron -->
+  <path d="M 342 106 L 352 110 L 342 114" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

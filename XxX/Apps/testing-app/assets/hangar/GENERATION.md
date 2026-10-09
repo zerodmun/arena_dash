@@ -12,8 +12,10 @@ Use case: product-mockup. Asset type: standalone transparent aircraft cutout for
 
 ## Aircraft subjects
 
-+- **falcon.png:** A sleek modern swept-wing single-seat fighter aircraft, grey gunmetal with restrained orange maintenance markings, single engine and twin canted vertical stabilizers, compact aerodynamic wings.
+- **falcon.png:** A sleek modern swept-wing single-seat fighter aircraft, grey gunmetal with restrained orange maintenance markings, single engine and twin canted vertical stabilizers, compact aerodynamic wings.
 - **aurora.png:** A silver advanced delta-wing reconnaissance fighter aircraft with teal small identification stripes, a long slender nose, smooth blended aerodynamic hull and twin exhaust engines, no propellers.
 - **valkyrie.png:** A steel-blue twin-engine multirole fighter jet with two swept wings and twin vertical tail fins, small pale blue squadron markings, sturdy realistic modern military silhouette.
 - **titan.png:** A heavy wide-body armored strike fighter jet, broad swept wings, thick twin-engine fuselage, two tall tail stabilizers, matte dark grey armor with restrained deep-red identification stripes, believable military aircraft engineering.
 - **phantom.png:** A stealth fighter jet with angular charcoal-grey surfaces and a large faceted diamond-shaped swept wing, flat twin engine outlets, two low canted tails, subdued forest-green squadron markings.
+- **tempest.png:** A heavy forward-swept storm assault gunship, deep cosmic violet and carbon armor, quad rotary cannon pods, and triple heavy ion exhaust nozzles.
+- **mirage.png:** A futuristic twin-boom prototype interceptor in arctic white and solar gold, forward canards, central aerodynamic cockpit pod, and dual catamaran engines.

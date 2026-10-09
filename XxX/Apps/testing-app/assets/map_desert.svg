@@ -1,1 +1,132 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="300"><rect width="512" height="300" rx="20" fill="#ad8050"/><path d="M0 70 Q130 180 230 80 T512 100 L512 300 H0Z" fill="#dec19a"/><path d="M0 90 Q130 200 230 100 T512 120" fill="none" stroke="#ffffff" opacity=".3" stroke-width="6"/><path d="M10 230 Q150 120 270 220 T520 200" fill="none" stroke="#654c36" opacity=".4" stroke-width="12"/><rect x="310" y="180" width="80" height="40" rx="5" fill="#384651" transform="rotate(-20 350 200)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Desert Sky & Horizon -->
+    <linearGradient id="desertSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="35%" stop-color="#78350f"/>
+      <stop offset="70%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <!-- Sunlit Golden Dune Face -->
+    <linearGradient id="duneSun" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="30%" stop-color="#fde047"/>
+      <stop offset="70%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <!-- Dune Shadow Slope -->
+    <linearGradient id="duneShadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="40%" stop-color="#9a3412"/>
+      <stop offset="75%" stop-color="#7c2d12"/>
+      <stop offset="100%" stop-color="#431407"/>
+    </linearGradient>
+
+    <!-- Concrete Tarmac Runway -->
+    <linearGradient id="runwayGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="25%" stop-color="#334155"/>
+      <stop offset="50%" stop-color="#475569"/>
+      <stop offset="75%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- Heat Haze Glow -->
+    <filter id="desertGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Desert Sky Background -->
+  <rect width="512" height="512" rx="28" fill="url(#desertSky)"/>
+
+  <!-- Scorching Desert Sun -->
+  <circle cx="390" cy="90" r="48" fill="#fef08a" opacity="0.9" filter="url(#desertGlow)"/>
+  <circle cx="390" cy="90" r="28" fill="#ffffff"/>
+
+  <!-- Distant Sandstone Mesas & Buttes -->
+  <polygon points="60,180 80,140 160,140 190,190" fill="#7c2d12" opacity="0.6"/>
+  <polygon points="170,195 190,150 270,150 300,200" fill="#78350f" opacity="0.7"/>
+  <polygon points="320,185 340,145 440,145 470,195" fill="#7c2d12" opacity="0.65"/>
+
+  <!-- Background Dune Wave 1 -->
+  <path d="M-20,230 Q120,160 280,220 T530,190 L530,530 L-20,530 Z" fill="url(#duneShadow)"/>
+  <path d="M-20,230 Q120,160 280,220 T530,190 L530,260 Q340,240 180,290 L-20,270 Z" fill="url(#duneSun)" opacity="0.75"/>
+
+  <!-- Midground Dune Wave 2 (Sharp Knife-Edge Ridge) -->
+  <path d="M-20,320 Q160,240 340,310 T530,270 L530,530 L-20,530 Z" fill="url(#duneShadow)"/>
+  <path d="M-20,320 Q160,240 340,310 T530,270 L530,350 Q360,330 140,390 L-20,370 Z" fill="url(#duneSun)"/>
+  <!-- Razor Sharp Ridge Crest Highlight -->
+  <path d="M-20,320 Q160,240 340,310 T530,270" fill="none" stroke="#fef08a" stroke-width="3" filter="url(#desertGlow)"/>
+
+  <!-- Foreground Erg Dunes -->
+  <path d="M-20,430 Q140,350 360,420 T530,370 L530,530 L-20,530 Z" fill="url(#duneShadow)"/>
+  <path d="M-20,430 Q140,350 360,420 T530,370 L530,480 Q320,440 100,510 L-20,490 Z" fill="url(#duneSun)"/>
+  <path d="M-20,430 Q140,350 360,420 T530,370" fill="none" stroke="#fef08a" stroke-width="3.5"/>
+
+  <!-- Military Outpost Tarmac Airstrip -->
+  <g transform="translate(190, 200) rotate(-18)">
+    <!-- Runway Foundation -->
+    <rect x="-8" y="-6" width="96" height="230" rx="8" fill="#0f172a" opacity="0.6"/>
+    <rect x="0" y="0" width="80" height="218" rx="6" fill="url(#runwayGrad)" stroke="#64748b" stroke-width="2.5"/>
+    
+    <!-- Runway Threshold Chevrons -->
+    <g stroke="#f8fafc" stroke-width="3.5" fill="none">
+      <path d="M12,18 L40,34 L68,18"/>
+      <path d="M12,32 L40,48 L68,32"/>
+    </g>
+
+    <!-- White Centerline Dashes -->
+    <g stroke="#ffffff" stroke-width="4" stroke-dasharray="14,12">
+      <line x1="40" y1="60" x2="40" y2="200"/>
+    </g>
+
+    <!-- Runway Edge Lights -->
+    <g fill="#facc15">
+      <circle cx="6" cy="30" r="2.5"/>
+      <circle cx="74" cy="30" r="2.5"/>
+      <circle cx="6" cy="70" r="2.5"/>
+      <circle cx="74" cy="70" r="2.5"/>
+      <circle cx="6" cy="110" r="2.5"/>
+      <circle cx="74" cy="110" r="2.5"/>
+      <circle cx="6" cy="150" r="2.5"/>
+      <circle cx="74" cy="150" r="2.5"/>
+      <circle cx="6" cy="190" r="2.5"/>
+      <circle cx="74" cy="190" r="2.5"/>
+    </g>
+  </g>
+
+  <!-- Heavy Armored Cargo Transport 1 -->
+  <g transform="translate(80, 310) rotate(22)">
+    <rect x="-4" y="4" width="76" height="38" rx="5" fill="#000000" opacity="0.5"/>
+    <rect x="0" y="0" width="76" height="38" rx="5" fill="#475569" stroke="#94a3b8" stroke-width="2"/>
+    <!-- Cargo Crates -->
+    <rect x="6" y="5" width="28" height="28" rx="3" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
+    <rect x="38" y="5" width="32" height="28" rx="3" fill="#ca8a04" stroke="#facc15" stroke-width="1.5"/>
+    <!-- Caterpillar Treads -->
+    <rect x="4" y="-4" width="68" height="6" rx="2" fill="#1e293b"/>
+    <rect x="4" y="36" width="68" height="6" rx="2" fill="#1e293b"/>
+  </g>
+
+  <!-- Armored Cargo Transport 2 -->
+  <g transform="translate(340, 390) rotate(-14)">
+    <rect x="-4" y="4" width="84" height="42" rx="5" fill="#000000" opacity="0.5"/>
+    <rect x="0" y="0" width="84" height="42" rx="5" fill="#334155" stroke="#64748b" stroke-width="2"/>
+    <rect x="6" y="6" width="34" height="30" rx="3" fill="#15803d" stroke="#22c55e" stroke-width="1.5"/>
+    <rect x="44" y="6" width="34" height="30" rx="3" fill="#0369a1" stroke="#0284c7" stroke-width="1.5"/>
+  </g>
+
+  <!-- Outpost Radar Dish & Communication Tower -->
+  <g transform="translate(420, 260)">
+    <circle cx="20" cy="20" r="26" fill="#1e293b" stroke="#f59e0b" stroke-width="2.5"/>
+    <line x1="6" y1="20" x2="34" y2="20" stroke="#facc15" stroke-width="2"/>
+    <circle cx="20" cy="20" r="8" fill="#f97316"/>
+    <circle cx="20" cy="20" r="3" fill="#ffffff" filter="url(#desertGlow)"/>
+  </g>
+
+  <!-- Border Perimeter Frame -->
+  <rect x="2" y="2" width="508" height="508" rx="26" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.4"/>
+</svg>

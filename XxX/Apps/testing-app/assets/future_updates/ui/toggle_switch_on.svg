@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 40" width="80" height="40">
+  <defs>
+    <!-- ON active track gradient (emerald / cyan) -->
+    <linearGradient id="tgl-on-track" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+
+    <!-- 3D Knob gradient -->
+    <radialGradient id="tgl-knob" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#f8fafc" />
+      <stop offset="85%" stop-color="#cbd5e1" />
+      <stop offset="100%" stop-color="#94a3b8" />
+    </radialGradient>
+
+    <filter id="tgl-drop" x="-10%" y="-20%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <g filter="url(#tgl-drop)">
+    <!-- Outer Track Housing -->
+    <rect x="4" y="4" width="72" height="32" rx="16" fill="url(#tgl-on-track)" stroke="#0f172a" stroke-width="2" />
+  </g>
+
+  <!-- ON Check Indicator / Glow Dot on Left -->
+  <circle cx="24" cy="20" r="4" fill="#ffffff" opacity="0.85" />
+
+  <!-- Thumb Knob on Right (ON Position) -->
+  <g transform="translate(56, 20)" filter="url(#tgl-drop)">
+    <circle cx="0" cy="0" r="14" fill="url(#tgl-knob)" stroke="#0284c7" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="5" fill="#10b981" />
+    <!-- Knob Highlight -->
+    <ellipse cx="-4" cy="-4" rx="3" ry="1.8" transform="rotate(-30 -4 -4)" fill="#ffffff" opacity="0.9" />
+  </g>
+</svg>

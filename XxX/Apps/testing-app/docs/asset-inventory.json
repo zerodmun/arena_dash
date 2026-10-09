@@ -1,0 +1,1383 @@
+[
+  {
+    "path": "assets/bullet.svg",
+    "bytes": 1496,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 20
+  },
+  {
+    "path": "assets/bullet_ion.svg",
+    "bytes": 266,
+    "width": "128",
+    "height": "256",
+    "viewBox": null,
+    "elements": 4
+  },
+  {
+    "path": "assets/bullet_laser.svg",
+    "bytes": 1444,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 20
+  },
+  {
+    "path": "assets/bullet_quantum.svg",
+    "bytes": 1667,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 22
+  },
+  {
+    "path": "assets/enemy.svg",
+    "bytes": 3886,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 42
+  },
+  {
+    "path": "assets/fire_button.svg",
+    "bytes": 2525,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 28
+  },
+  {
+    "path": "assets/future_updates/README.md",
+    "bytes": 9274
+  },
+  {
+    "path": "assets/future_updates/aircraft/player_booster.svg",
+    "bytes": 4234,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 52
+  },
+  {
+    "path": "assets/future_updates/aircraft/player_rocket.svg",
+    "bytes": 4791,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 58
+  },
+  {
+    "path": "assets/future_updates/aircraft/player_saucer.svg",
+    "bytes": 4293,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 54
+  },
+  {
+    "path": "assets/future_updates/aircraft/player_speeder.svg",
+    "bytes": 4174,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 47
+  },
+  {
+    "path": "assets/future_updates/aircraft/player_wedge.svg",
+    "bytes": 4296,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 50
+  },
+  {
+    "path": "assets/future_updates/environment/obstacle_asteroid_platform.svg",
+    "bytes": 2935,
+    "width": "160",
+    "height": "80",
+    "viewBox": "0 0 160 80",
+    "elements": 33
+  },
+  {
+    "path": "assets/future_updates/environment/obstacle_space_rock_large.svg",
+    "bytes": 3571,
+    "width": "128",
+    "height": "128",
+    "viewBox": "0 0 128 128",
+    "elements": 43
+  },
+  {
+    "path": "assets/future_updates/environment/obstacle_space_rock_small.svg",
+    "bytes": 2712,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 31
+  },
+  {
+    "path": "assets/future_updates/environment/pickup_crystal_gem.svg",
+    "bytes": 3059,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 37
+  },
+  {
+    "path": "assets/future_updates/environment/pickup_gold_coin.svg",
+    "bytes": 2590,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 30
+  },
+  {
+    "path": "assets/future_updates/environment/pickup_loot_chest.svg",
+    "bytes": 4640,
+    "width": "128",
+    "height": "128",
+    "viewBox": "0 0 128 128",
+    "elements": 50
+  },
+  {
+    "path": "assets/future_updates/hangar/hangar_docking_pedestal.svg",
+    "bytes": 4286,
+    "width": "512",
+    "height": "256",
+    "viewBox": "0 0 512 256",
+    "elements": 46
+  },
+  {
+    "path": "assets/future_updates/hangar/hangar_space_background.svg",
+    "bytes": 6175,
+    "width": "1080",
+    "height": "1920",
+    "viewBox": "0 0 1080 1920",
+    "elements": 85
+  },
+  {
+    "path": "assets/future_updates/hangar/hangar_starry_void.svg",
+    "bytes": 3353,
+    "width": "1080",
+    "height": "1920",
+    "viewBox": "0 0 1080 1920",
+    "elements": 48
+  },
+  {
+    "path": "assets/future_updates/maps/map_galaxy_spiral.svg",
+    "bytes": 5983,
+    "width": "1920",
+    "height": "1080",
+    "viewBox": "0 0 1920 1080",
+    "elements": 67
+  },
+  {
+    "path": "assets/future_updates/maps/map_starfield_horizon.svg",
+    "bytes": 4732,
+    "width": "1920",
+    "height": "1080",
+    "viewBox": "0 0 1920 1080",
+    "elements": 54
+  },
+  {
+    "path": "assets/future_updates/maps/planet_coastal_front.svg",
+    "bytes": 3197,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 34
+  },
+  {
+    "path": "assets/future_updates/maps/planet_cyber_matrix.svg",
+    "bytes": 2546,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 33
+  },
+  {
+    "path": "assets/future_updates/maps/planet_dune_outpost.svg",
+    "bytes": 2696,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 29
+  },
+  {
+    "path": "assets/future_updates/maps/planet_glacial_tundra.svg",
+    "bytes": 3615,
+    "width": "128",
+    "height": "128",
+    "viewBox": "0 0 128 128",
+    "elements": 42
+  },
+  {
+    "path": "assets/future_updates/maps/planet_magma_caldera.svg",
+    "bytes": 2489,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 30
+  },
+  {
+    "path": "assets/future_updates/maps/planet_primal_jungle.svg",
+    "bytes": 3126,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 34
+  },
+  {
+    "path": "assets/future_updates/maps/planet_toxic_citadel.svg",
+    "bytes": 4527,
+    "width": "128",
+    "height": "128",
+    "viewBox": "0 0 128 128",
+    "elements": 54
+  },
+  {
+    "path": "assets/future_updates/maps/planet_void_horizon.svg",
+    "bytes": 3348,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 37
+  },
+  {
+    "path": "assets/future_updates/ui/badge_star_active.svg",
+    "bytes": 1945,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 23
+  },
+  {
+    "path": "assets/future_updates/ui/badge_star_inactive.svg",
+    "bytes": 1367,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 15
+  },
+  {
+    "path": "assets/future_updates/ui/button_action_get.svg",
+    "bytes": 1657,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/future_updates/ui/button_action_next.svg",
+    "bytes": 1660,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/future_updates/ui/button_audio.svg",
+    "bytes": 1876,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/future_updates/ui/button_back.svg",
+    "bytes": 1441,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 16
+  },
+  {
+    "path": "assets/future_updates/ui/button_close.svg",
+    "bytes": 1516,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 20
+  },
+  {
+    "path": "assets/future_updates/ui/button_home.svg",
+    "bytes": 1683,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/future_updates/ui/button_menu.svg",
+    "bytes": 1536,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 22
+  },
+  {
+    "path": "assets/future_updates/ui/button_pause.svg",
+    "bytes": 1436,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 19
+  },
+  {
+    "path": "assets/future_updates/ui/button_play.svg",
+    "bytes": 1205,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 15
+  },
+  {
+    "path": "assets/future_updates/ui/button_settings.svg",
+    "bytes": 1972,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 21
+  },
+  {
+    "path": "assets/future_updates/ui/button_start_pill.svg",
+    "bytes": 2451,
+    "width": "280",
+    "height": "84",
+    "viewBox": "0 0 280 84",
+    "elements": 23
+  },
+  {
+    "path": "assets/future_updates/ui/gauge_boost_bar.svg",
+    "bytes": 3336,
+    "width": "360",
+    "height": "80",
+    "viewBox": "0 0 360 80",
+    "elements": 32
+  },
+  {
+    "path": "assets/future_updates/ui/hud_currency_bar.svg",
+    "bytes": 2578,
+    "width": "220",
+    "height": "56",
+    "viewBox": "0 0 220 56",
+    "elements": 27
+  },
+  {
+    "path": "assets/future_updates/ui/logo_space_adventure.svg",
+    "bytes": 2953,
+    "width": "512",
+    "height": "160",
+    "viewBox": "0 0 512 160",
+    "elements": 26
+  },
+  {
+    "path": "assets/future_updates/ui/logo_space_racing.svg",
+    "bytes": 3246,
+    "width": "480",
+    "height": "160",
+    "viewBox": "0 0 480 160",
+    "elements": 29
+  },
+  {
+    "path": "assets/future_updates/ui/modal_level_complete.svg",
+    "bytes": 4580,
+    "width": "420",
+    "height": "540",
+    "viewBox": "0 0 420 540",
+    "elements": 45
+  },
+  {
+    "path": "assets/future_updates/ui/modal_reward_dialog.svg",
+    "bytes": 3398,
+    "width": "420",
+    "height": "520",
+    "viewBox": "0 0 420 520",
+    "elements": 38
+  },
+  {
+    "path": "assets/future_updates/ui/modal_ship_card.svg",
+    "bytes": 4433,
+    "width": "540",
+    "height": "640",
+    "viewBox": "0 0 540 640",
+    "elements": 45
+  },
+  {
+    "path": "assets/hangar/GENERATION.md",
+    "bytes": 3904
+  },
+  {
+    "path": "assets/hazard_meteor.svg",
+    "bytes": 1151,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 17
+  },
+  {
+    "path": "assets/joystick_base.svg",
+    "bytes": 1763,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 20
+  },
+  {
+    "path": "assets/joystick_knob.svg",
+    "bytes": 1821,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 22
+  },
+  {
+    "path": "assets/map_coast.svg",
+    "bytes": 5926,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 70
+  },
+  {
+    "path": "assets/map_cyber.svg",
+    "bytes": 5028,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 64
+  },
+  {
+    "path": "assets/map_desert.svg",
+    "bytes": 6143,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 79
+  },
+  {
+    "path": "assets/map_forest.svg",
+    "bytes": 4719,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 46
+  },
+  {
+    "path": "assets/map_glacier.svg",
+    "bytes": 4996,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 59
+  },
+  {
+    "path": "assets/map_random.svg",
+    "bytes": 3060,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 37
+  },
+  {
+    "path": "assets/map_space.svg",
+    "bytes": 4124,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 54
+  },
+  {
+    "path": "assets/map_toxic.svg",
+    "bytes": 5388,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 64
+  },
+  {
+    "path": "assets/map_volcano.svg",
+    "bytes": 4732,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 57
+  },
+  {
+    "path": "assets/obstacle_asteroid.svg",
+    "bytes": 3030,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 35
+  },
+  {
+    "path": "assets/obstacle_barrel.svg",
+    "bytes": 1944,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 30
+  },
+  {
+    "path": "assets/obstacle_barrier.svg",
+    "bytes": 2114,
+    "width": "512",
+    "height": "256",
+    "viewBox": "0 0 512 256",
+    "elements": 28
+  },
+  {
+    "path": "assets/obstacle_basalt.svg",
+    "bytes": 1800,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 26
+  },
+  {
+    "path": "assets/obstacle_cargo.svg",
+    "bytes": 609,
+    "width": "512",
+    "height": "256",
+    "viewBox": null,
+    "elements": 8
+  },
+  {
+    "path": "assets/obstacle_cryo.svg",
+    "bytes": 1666,
+    "width": "256",
+    "height": "256",
+    "viewBox": "0 0 256 256",
+    "elements": 25
+  },
+  {
+    "path": "assets/obstacle_dino.svg",
+    "bytes": 4098,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 40
+  },
+  {
+    "path": "assets/obstacle_pillar.svg",
+    "bytes": 2428,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 31
+  },
+  {
+    "path": "assets/obstacle_tree.svg",
+    "bytes": 3182,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 35
+  },
+  {
+    "path": "assets/pickup.svg",
+    "bytes": 3306,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 38
+  },
+  {
+    "path": "assets/player.svg",
+    "bytes": 4854,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 57
+  },
+  {
+    "path": "assets/player_aurora.svg",
+    "bytes": 5945,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 69
+  },
+  {
+    "path": "assets/player_falcon.svg",
+    "bytes": 6852,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 79
+  },
+  {
+    "path": "assets/player_mirage.svg",
+    "bytes": 6472,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 74
+  },
+  {
+    "path": "assets/player_phantom.svg",
+    "bytes": 3888,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 46
+  },
+  {
+    "path": "assets/player_tempest.svg",
+    "bytes": 6288,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 74
+  },
+  {
+    "path": "assets/player_titan.svg",
+    "bytes": 3941,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 46
+  },
+  {
+    "path": "assets/splash.png",
+    "bytes": 316860
+  },
+  {
+    "path": "assets/splash.svg",
+    "bytes": 9827,
+    "width": "1920",
+    "height": "1080",
+    "viewBox": "0 0 1920 1080",
+    "elements": 100
+  },
+  {
+    "path": "assets/generated/campaign_horizon.svg",
+    "bytes": 2750,
+    "width": "1920",
+    "height": "1080",
+    "viewBox": "0 0 1920 1080",
+    "elements": 39,
+    "derived_from": "assets/future_updates/maps/map_starfield_horizon.svg"
+  },
+  {
+    "path": "assets/ui/badges/badge_star_active.svg",
+    "bytes": 1945,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 23
+  },
+  {
+    "path": "assets/ui/badges/badge_star_inactive.svg",
+    "bytes": 1367,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 15
+  },
+  {
+    "path": "assets/ui/buttons/button_action_get.svg",
+    "bytes": 1657,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/ui/buttons/button_action_next.svg",
+    "bytes": 1660,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/ui/buttons/button_audio.svg",
+    "bytes": 1876,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/ui/buttons/button_audio_off.svg",
+    "bytes": 1806,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 22
+  },
+  {
+    "path": "assets/ui/buttons/button_back.svg",
+    "bytes": 1441,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 16
+  },
+  {
+    "path": "assets/ui/buttons/button_close.svg",
+    "bytes": 1516,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 20
+  },
+  {
+    "path": "assets/ui/buttons/button_down.svg",
+    "bytes": 1443,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 16
+  },
+  {
+    "path": "assets/ui/buttons/button_forward.svg",
+    "bytes": 1451,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 16
+  },
+  {
+    "path": "assets/ui/buttons/button_home.svg",
+    "bytes": 1683,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/ui/buttons/button_info.svg",
+    "bytes": 1683,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/ui/buttons/button_lock.svg",
+    "bytes": 1826,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/ui/buttons/button_menu.svg",
+    "bytes": 1536,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 22
+  },
+  {
+    "path": "assets/ui/buttons/button_pause.svg",
+    "bytes": 1436,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 19
+  },
+  {
+    "path": "assets/ui/buttons/button_play.svg",
+    "bytes": 1205,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 15
+  },
+  {
+    "path": "assets/ui/buttons/button_restart.svg",
+    "bytes": 1555,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 19
+  },
+  {
+    "path": "assets/ui/buttons/button_settings.svg",
+    "bytes": 1972,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 21
+  },
+  {
+    "path": "assets/ui/buttons/button_share.svg",
+    "bytes": 1838,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 26
+  },
+  {
+    "path": "assets/ui/buttons/button_shop.svg",
+    "bytes": 1842,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/ui/buttons/button_start_pill.svg",
+    "bytes": 2451,
+    "width": "280",
+    "height": "84",
+    "viewBox": "0 0 280 84",
+    "elements": 23
+  },
+  {
+    "path": "assets/ui/buttons/button_start_pill_pressed.svg",
+    "bytes": 1802,
+    "width": "280",
+    "height": "84",
+    "viewBox": "0 0 280 84",
+    "elements": 18
+  },
+  {
+    "path": "assets/ui/buttons/button_stats.svg",
+    "bytes": 1855,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 24
+  },
+  {
+    "path": "assets/ui/buttons/button_trophy.svg",
+    "bytes": 2279,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 28
+  },
+  {
+    "path": "assets/ui/buttons/button_unlock.svg",
+    "bytes": 1824,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/ui/buttons/button_up.svg",
+    "bytes": 1435,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 16
+  },
+  {
+    "path": "assets/ui/controls/control_fire.svg",
+    "bytes": 2525,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 28
+  },
+  {
+    "path": "assets/ui/controls/control_joystick_base.svg",
+    "bytes": 1763,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 20
+  },
+  {
+    "path": "assets/ui/controls/control_joystick_knob.svg",
+    "bytes": 1821,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 22
+  },
+  {
+    "path": "assets/ui/hud/gauge_boost_bar.svg",
+    "bytes": 3336,
+    "width": "360",
+    "height": "80",
+    "viewBox": "0 0 360 80",
+    "elements": 32
+  },
+  {
+    "path": "assets/ui/hud/hud_currency_bar.svg",
+    "bytes": 2578,
+    "width": "220",
+    "height": "56",
+    "viewBox": "0 0 220 56",
+    "elements": 27
+  },
+  {
+    "path": "assets/ui/modals/logo_space_adventure.svg",
+    "bytes": 2953,
+    "width": "512",
+    "height": "160",
+    "viewBox": "0 0 512 160",
+    "elements": 26
+  },
+  {
+    "path": "assets/ui/modals/logo_space_racing.svg",
+    "bytes": 3246,
+    "width": "480",
+    "height": "160",
+    "viewBox": "0 0 480 160",
+    "elements": 29
+  },
+  {
+    "path": "assets/ui/modals/modal_level_complete.svg",
+    "bytes": 4580,
+    "width": "420",
+    "height": "540",
+    "viewBox": "0 0 420 540",
+    "elements": 45
+  },
+  {
+    "path": "assets/ui/modals/modal_reward_dialog.svg",
+    "bytes": 3398,
+    "width": "420",
+    "height": "520",
+    "viewBox": "0 0 420 520",
+    "elements": 38
+  },
+  {
+    "path": "assets/ui/modals/modal_ship_card.svg",
+    "bytes": 4433,
+    "width": "540",
+    "height": "640",
+    "viewBox": "0 0 540 640",
+    "elements": 45
+  },
+  {
+    "path": "assets/future_updates/ui/button_action_claim.svg",
+    "bytes": 1663,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/future_updates/ui/button_action_deploy.svg",
+    "bytes": 1666,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/future_updates/ui/button_action_retry.svg",
+    "bytes": 1663,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/future_updates/ui/button_action_upgrade.svg",
+    "bytes": 1669,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/future_updates/ui/button_audio_off.svg",
+    "bytes": 1806,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 22
+  },
+  {
+    "path": "assets/future_updates/ui/button_down.svg",
+    "bytes": 1443,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 16
+  },
+  {
+    "path": "assets/future_updates/ui/button_forward.svg",
+    "bytes": 1451,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 16
+  },
+  {
+    "path": "assets/future_updates/ui/button_info.svg",
+    "bytes": 1683,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/future_updates/ui/button_lock.svg",
+    "bytes": 1826,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/future_updates/ui/button_restart.svg",
+    "bytes": 1555,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 19
+  },
+  {
+    "path": "assets/future_updates/ui/button_share.svg",
+    "bytes": 1838,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 26
+  },
+  {
+    "path": "assets/future_updates/ui/button_shop.svg",
+    "bytes": 1842,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/future_updates/ui/button_start_pill_disabled.svg",
+    "bytes": 1732,
+    "width": "280",
+    "height": "84",
+    "viewBox": "0 0 280 84",
+    "elements": 18
+  },
+  {
+    "path": "assets/future_updates/ui/button_start_pill_pressed.svg",
+    "bytes": 1802,
+    "width": "280",
+    "height": "84",
+    "viewBox": "0 0 280 84",
+    "elements": 18
+  },
+  {
+    "path": "assets/future_updates/ui/button_stats.svg",
+    "bytes": 1855,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 24
+  },
+  {
+    "path": "assets/future_updates/ui/button_trophy.svg",
+    "bytes": 2279,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 28
+  },
+  {
+    "path": "assets/future_updates/ui/button_unlock.svg",
+    "bytes": 1824,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 23
+  },
+  {
+    "path": "assets/future_updates/ui/button_up.svg",
+    "bytes": 1435,
+    "width": "72",
+    "height": "72",
+    "viewBox": "0 0 72 72",
+    "elements": 16
+  },
+  {
+    "path": "assets/future_updates/ui/hud_boss_health_bar.svg",
+    "bytes": 3778,
+    "width": "540",
+    "height": "72",
+    "viewBox": "0 0 540 72",
+    "elements": 43
+  },
+  {
+    "path": "assets/future_updates/ui/hud_health_bar.svg",
+    "bytes": 2981,
+    "width": "360",
+    "height": "80",
+    "viewBox": "0 0 360 80",
+    "elements": 34
+  },
+  {
+    "path": "assets/future_updates/ui/hud_radar_minimap.svg",
+    "bytes": 3204,
+    "width": "180",
+    "height": "180",
+    "viewBox": "0 0 180 180",
+    "elements": 35
+  },
+  {
+    "path": "assets/future_updates/ui/hud_score_pill.svg",
+    "bytes": 2407,
+    "width": "240",
+    "height": "56",
+    "viewBox": "0 0 240 56",
+    "elements": 25
+  },
+  {
+    "path": "assets/future_updates/ui/hud_shield_bar.svg",
+    "bytes": 3020,
+    "width": "360",
+    "height": "80",
+    "viewBox": "0 0 360 80",
+    "elements": 34
+  },
+  {
+    "path": "assets/future_updates/ui/panel_card_slot.svg",
+    "bytes": 2258,
+    "width": "140",
+    "height": "160",
+    "viewBox": "0 0 140 160",
+    "elements": 27
+  },
+  {
+    "path": "assets/future_updates/ui/panel_dialog_base.svg",
+    "bytes": 3043,
+    "width": "480",
+    "height": "560",
+    "viewBox": "0 0 480 560",
+    "elements": 31
+  },
+  {
+    "path": "assets/future_updates/ui/panel_header_banner.svg",
+    "bytes": 1635,
+    "width": "360",
+    "height": "64",
+    "viewBox": "0 0 360 64",
+    "elements": 20
+  },
+  {
+    "path": "assets/future_updates/ui/panel_pause_menu.svg",
+    "bytes": 2551,
+    "width": "400",
+    "height": "480",
+    "viewBox": "0 0 400 480",
+    "elements": 27
+  },
+  {
+    "path": "assets/future_updates/ui/panel_tech_frame.svg",
+    "bytes": 2697,
+    "width": "512",
+    "height": "320",
+    "viewBox": "0 0 512 320",
+    "elements": 28
+  },
+  {
+    "path": "assets/ui/badges/badge_checkmark.svg",
+    "bytes": 1714,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 20
+  },
+  {
+    "path": "assets/ui/badges/badge_cross_failed.svg",
+    "bytes": 1774,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 24
+  },
+  {
+    "path": "assets/ui/badges/badge_rank_a.svg",
+    "bytes": 1806,
+    "width": "96",
+    "height": "96",
+    "viewBox": "0 0 96 96",
+    "elements": 20
+  },
+  {
+    "path": "assets/ui/badges/badge_rank_b.svg",
+    "bytes": 1704,
+    "width": "96",
+    "height": "96",
+    "viewBox": "0 0 96 96",
+    "elements": 18
+  },
+  {
+    "path": "assets/ui/badges/badge_rank_c.svg",
+    "bytes": 1704,
+    "width": "96",
+    "height": "96",
+    "viewBox": "0 0 96 96",
+    "elements": 18
+  },
+  {
+    "path": "assets/ui/badges/badge_rank_s.svg",
+    "bytes": 2423,
+    "width": "96",
+    "height": "96",
+    "viewBox": "0 0 96 96",
+    "elements": 25
+  },
+  {
+    "path": "assets/ui/badges/badge_star_bronze.svg",
+    "bytes": 1946,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 23
+  },
+  {
+    "path": "assets/ui/badges/badge_star_silver.svg",
+    "bytes": 1955,
+    "width": "64",
+    "height": "64",
+    "viewBox": "0 0 64 64",
+    "elements": 23
+  },
+  {
+    "path": "assets/ui/buttons/button_action_claim.svg",
+    "bytes": 1663,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/ui/buttons/button_action_deploy.svg",
+    "bytes": 1666,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/ui/buttons/button_action_retry.svg",
+    "bytes": 1663,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/ui/buttons/button_action_upgrade.svg",
+    "bytes": 1669,
+    "width": "200",
+    "height": "68",
+    "viewBox": "0 0 200 68",
+    "elements": 16
+  },
+  {
+    "path": "assets/ui/buttons/button_start_pill_disabled.svg",
+    "bytes": 1732,
+    "width": "280",
+    "height": "84",
+    "viewBox": "0 0 280 84",
+    "elements": 18
+  },
+  {
+    "path": "assets/ui/controls/control_bomb.svg",
+    "bytes": 2611,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 28
+  },
+  {
+    "path": "assets/ui/controls/control_boost.svg",
+    "bytes": 2410,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 25
+  },
+  {
+    "path": "assets/ui/controls/control_shield.svg",
+    "bytes": 2586,
+    "width": "512",
+    "height": "512",
+    "viewBox": "0 0 512 512",
+    "elements": 28
+  },
+  {
+    "path": "assets/ui/hud/hud_boss_health_bar.svg",
+    "bytes": 3778,
+    "width": "540",
+    "height": "72",
+    "viewBox": "0 0 540 72",
+    "elements": 43
+  },
+  {
+    "path": "assets/ui/hud/hud_health_bar.svg",
+    "bytes": 2981,
+    "width": "360",
+    "height": "80",
+    "viewBox": "0 0 360 80",
+    "elements": 34
+  },
+  {
+    "path": "assets/ui/hud/hud_radar_minimap.svg",
+    "bytes": 3204,
+    "width": "180",
+    "height": "180",
+    "viewBox": "0 0 180 180",
+    "elements": 35
+  },
+  {
+    "path": "assets/ui/hud/hud_score_pill.svg",
+    "bytes": 2407,
+    "width": "240",
+    "height": "56",
+    "viewBox": "0 0 240 56",
+    "elements": 25
+  },
+  {
+    "path": "assets/ui/hud/hud_shield_bar.svg",
+    "bytes": 3020,
+    "width": "360",
+    "height": "80",
+    "viewBox": "0 0 360 80",
+    "elements": 34
+  },
+  {
+    "path": "assets/ui/modals/panel_card_slot.svg",
+    "bytes": 2258,
+    "width": "140",
+    "height": "160",
+    "viewBox": "0 0 140 160",
+    "elements": 27
+  },
+  {
+    "path": "assets/ui/modals/panel_dialog_base.svg",
+    "bytes": 3043,
+    "width": "480",
+    "height": "560",
+    "viewBox": "0 0 480 560",
+    "elements": 31
+  },
+  {
+    "path": "assets/ui/modals/panel_header_banner.svg",
+    "bytes": 1635,
+    "width": "360",
+    "height": "64",
+    "viewBox": "0 0 360 64",
+    "elements": 20
+  },
+  {
+    "path": "assets/ui/modals/panel_pause_menu.svg",
+    "bytes": 2551,
+    "width": "400",
+    "height": "480",
+    "viewBox": "0 0 400 480",
+    "elements": 27
+  },
+  {
+    "path": "assets/ui/modals/panel_tech_frame.svg",
+    "bytes": 2697,
+    "width": "512",
+    "height": "320",
+    "viewBox": "0 0 512 320",
+    "elements": 28
+  }
+]

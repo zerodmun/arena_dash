@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" width="480" height="160">
+  <defs>
+    <!-- Cyan Chrome Gradient for SPACE -->
+    <linearGradient id="logo-space-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#bae6fd" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="55%" stop-color="#0284c7" />
+      <stop offset="85%" stop-color="#0369a1" />
+      <stop offset="100%" stop-color="#075985" />
+    </linearGradient>
+
+    <!-- Golden Fire Gradient for RACING -->
+    <linearGradient id="logo-race-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="30%" stop-color="#facc15" />
+      <stop offset="55%" stop-color="#ea580c" />
+      <stop offset="85%" stop-color="#c2410c" />
+      <stop offset="100%" stop-color="#7c2d12" />
+    </linearGradient>
+
+    <filter id="logo-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#020617" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <!-- Speed Trails / Wing Flairs Behind Logo -->
+  <g opacity="0.6">
+    <path d="M 40 40 L 140 40 L 110 52 L 20 52 Z" fill="#38bdf8" />
+    <path d="M 340 40 L 440 40 L 460 52 L 370 52 Z" fill="#38bdf8" />
+    <path d="M 60 110 L 180 110 L 150 120 L 40 120 Z" fill="#f59e0b" />
+    <path d="M 300 110 L 420 110 L 440 120 L 320 120 Z" fill="#f59e0b" />
+  </g>
+
+  <!-- Logo Group -->
+  <g filter="url(#logo-shadow)">
+    <!-- SPACE Text -->
+    <!-- Heavy Stroke / Extrusion -->
+    <text x="240" y="68" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-size="64" 
+          font-weight="900" 
+          font-style="italic"
+          text-anchor="middle" 
+          letter-spacing="6"
+          stroke="#082f49" 
+          stroke-width="12" 
+          stroke-linejoin="round"
+          fill="#082f49">SPACE</text>
+    <!-- Interior Text -->
+    <text x="240" y="68" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-size="64" 
+          font-weight="900" 
+          font-style="italic"
+          text-anchor="middle" 
+          letter-spacing="6"
+          fill="url(#logo-space-grad)">SPACE</text>
+
+    <!-- RACING Text -->
+    <!-- Heavy Extrusion -->
+    <text x="240" y="132" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-size="60" 
+          font-weight="900" 
+          font-style="italic"
+          text-anchor="middle" 
+          letter-spacing="8"
+          stroke="#451a03" 
+          stroke-width="12" 
+          stroke-linejoin="round"
+          fill="#451a03">RACING</text>
+    <!-- Interior Text -->
+    <text x="240" y="132" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-size="60" 
+          font-weight="900" 
+          font-style="italic"
+          text-anchor="middle" 
+          letter-spacing="8"
+          fill="url(#logo-race-grad)">RACING</text>
+  </g>
+
+  <!-- Specular Sparkle Accents -->
+  <polygon points="120,28 123,34 129,36 123,38 120,44 117,38 111,36 117,34" fill="#ffffff" />
+  <polygon points="360,86 362,91 367,92 362,94 360,99 358,94 353,92 358,91" fill="#ffffff" />
+</svg>

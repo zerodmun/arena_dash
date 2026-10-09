@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Crystal core glow -->
+    <radialGradient id="gem-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="30%" stop-color="#38bdf8" stop-opacity="0.5" />
+      <stop offset="70%" stop-color="#0284c7" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#0369a1" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Facet gradients -->
+    <linearGradient id="gem-top-lit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff" />
+      <stop offset="100%" stop-color="#7dd3fc" />
+    </linearGradient>
+
+    <linearGradient id="gem-center-lit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <linearGradient id="gem-mid-lit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+
+    <linearGradient id="gem-dark-facet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#075985" />
+    </linearGradient>
+
+    <linearGradient id="gem-shadow-facet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0369a1" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Glow -->
+  <circle cx="32" cy="32" r="30" fill="url(#gem-glow)" />
+
+  <!-- Drop Shadow -->
+  <polygon points="20,12 44,12 56,26 32,56 8,26" fill="#082f49" opacity="0.4" transform="translate(0, 3)" />
+
+  <!-- Outer Gem Polygon Outline -->
+  <polygon points="20,12 44,12 56,26 32,56 8,26" fill="#0369a1" stroke="#082f49" stroke-width="2" stroke-linejoin="round" />
+
+  <!-- Individual Facets -->
+  <!-- Top Table Facet -->
+  <polygon points="23,13 41,13 47,24 17,24" fill="url(#gem-top-lit)" />
+
+  <!-- Upper Left Star Facet -->
+  <polygon points="20,12 23,13 17,24 8,26" fill="#38bdf8" />
+
+  <!-- Upper Right Star Facet -->
+  <polygon points="41,13 44,12 56,26 47,24" fill="url(#gem-mid-lit)" />
+
+  <!-- Lower Left Pavilion Facet -->
+  <polygon points="8,26 17,24 32,32 8,26" fill="#0ea5e9" />
+
+  <!-- Center Pavilion Facet -->
+  <polygon points="17,24 47,24 32,32" fill="url(#gem-center-lit)" />
+
+  <!-- Center Lower Kite -->
+  <polygon points="17,24 32,32 32,54 8,26" fill="url(#gem-dark-facet)" />
+
+  <!-- Lower Right Pavilion Facet -->
+  <polygon points="47,24 56,26 32,54 32,32" fill="url(#gem-shadow-facet)" />
+
+  <!-- Inner Refraction Spark Lines -->
+  <line x1="32" y1="32" x2="32" y2="54" stroke="#7dd3fc" stroke-width="1.2" />
+  <line x1="17" y1="24" x2="32" y2="32" stroke="#bae6fd" stroke-width="1" />
+  <line x1="47" y1="24" x2="32" y2="32" stroke="#38bdf8" stroke-width="1" />
+
+  <!-- Bright Specular Glint Star -->
+  <g transform="translate(23, 13)">
+    <polygon points="0,-7 2,-2 7,0 2,2 0,7 -2,2 -7,0 -2,-2" fill="#ffffff" />
+    <circle cx="0" cy="0" r="1.5" fill="#e0f2fe" />
+  </g>
+</svg>

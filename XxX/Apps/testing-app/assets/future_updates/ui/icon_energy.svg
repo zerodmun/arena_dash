@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="ic-nrg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#fef08a" />
+      <stop offset="70%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+  </defs>
+
+  <!-- Shadow -->
+  <polygon points="26,6 12,25 22,25 18,42 34,22 24,22" fill="#78350f" opacity="0.4" transform="translate(0, 2)" />
+
+  <!-- Lightning Bolt -->
+  <polygon points="26,6 12,25 22,25 18,42 34,22 24,22" fill="url(#ic-nrg-grad)" stroke="#d97706" stroke-width="1.8" stroke-linejoin="round" />
+  
+  <polygon points="25,9 15,24 23,24 20,36 31,23 23,23" fill="#ffffff" opacity="0.5" />
+</svg>

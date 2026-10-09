@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 160" width="140" height="160">
+  <defs>
+    <!-- Slot border gradient -->
+    <linearGradient id="slot-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+
+    <!-- Deep well gradient -->
+    <linearGradient id="slot-well" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#082f49" />
+      <stop offset="50%" stop-color="#031d30" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <filter id="slot-drop" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <g filter="url(#slot-drop)">
+    <!-- Outer Beveled Frame -->
+    <rect x="6" y="6" width="128" height="148" rx="16" fill="#0f172a" stroke="url(#slot-rim)" stroke-width="2.5" />
+    
+    <!-- Recessed Inner Well -->
+    <rect x="12" y="12" width="116" height="136" rx="12" fill="url(#slot-well)" stroke="#1e293b" stroke-width="1.5" />
+  </g>
+
+  <!-- Tech Grid Reticle Overlay in Chamber -->
+  <line x1="16" y1="80" x2="124" y2="80" stroke="#0284c7" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.4" />
+  <line x1="70" y1="16" x2="70" y2="144" stroke="#0284c7" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.4" />
+  <circle cx="70" cy="80" r="32" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="6 4" opacity="0.3" />
+
+  <!-- Corner Alignment Brackets -->
+  <path d="M 18 24 L 24 18" stroke="#38bdf8" stroke-width="2" />
+  <path d="M 122 24 L 116 18" stroke="#38bdf8" stroke-width="2" />
+  <path d="M 18 136 L 24 142" stroke="#38bdf8" stroke-width="2" />
+  <path d="M 122 136 L 116 142" stroke="#38bdf8" stroke-width="2" />
+
+  <!-- Level / Rarity Pip Socket at Bottom -->
+  <g transform="translate(70, 138)">
+    <rect x="-30" y="-8" width="60" height="12" rx="6" fill="#082f49" stroke="#38bdf8" stroke-width="1" />
+    <circle cx="-16" cy="-2" r="2.5" fill="#facc15" />
+    <circle cx="0" cy="-2" r="2.5" fill="#facc15" />
+    <circle cx="16" cy="-2" r="2.5" fill="#facc15" />
+  </g>
+</svg>

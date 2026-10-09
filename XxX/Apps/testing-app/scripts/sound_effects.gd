@@ -39,7 +39,7 @@ func play_hit() -> void:
 
 
 func _play(stream: AudioStreamWAV, volume_db: float, pitch: float) -> void:
-	if stream == null or _players.is_empty():
+	if not Game.audio_enabled or stream == null or _players.is_empty():
 		return
 	var player := _players[_next_player]
 	_next_player = (_next_player + 1) % MAX_PLAYERS
@@ -152,3 +152,20 @@ func _create_hit_stream() -> AudioStreamWAV:
 	stream.mix_rate = rate
 	stream.data = bytes
 	return stream
+
+
+func _exit_tree() -> void:
+	for player in _players:
+		if is_instance_valid(player):
+			player.stop()
+			player.stream = null
+	_players.clear()
+	shoot_stream = null
+	explosion_stream = null
+	pickup_stream = null
+	hit_stream = null
+
+
+func stop_all() -> void:
+	for player in _players:
+		if is_instance_valid(player): player.stop()

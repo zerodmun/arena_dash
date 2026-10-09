@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="ic-spd-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#bae6fd" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Shadow -->
+  <g fill="none" stroke="#082f49" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" transform="translate(0, 2)">
+    <polyline points="10,34 24,18 38,34" />
+    <polyline points="14,24 24,12 34,24" />
+  </g>
+
+  <!-- Aerodynamic Chevrons -->
+  <polyline points="10,34 24,18 38,34" fill="none" stroke="url(#ic-spd-grad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  <polyline points="14,24 24,12 34,24" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

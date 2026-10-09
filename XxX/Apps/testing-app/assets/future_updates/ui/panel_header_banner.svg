@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 64" width="360" height="64">
+  <defs>
+    <!-- Header banner gradient -->
+    <linearGradient id="ban-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="25%" stop-color="#0284c7" />
+      <stop offset="70%" stop-color="#0369a1" />
+      <stop offset="100%" stop-color="#075985" />
+    </linearGradient>
+
+    <!-- Chrome edge bevel -->
+    <linearGradient id="ban-rim" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#bae6fd" />
+      <stop offset="50%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#bae6fd" />
+    </linearGradient>
+
+    <filter id="ban-drop" x="-10%" y="-15%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <g filter="url(#ban-drop)">
+    <!-- Base Angled Ribbon -->
+    <polygon points="12,32 32,8 328,8 348,32 328,56 32,56" fill="#082f49" stroke="#0284c7" stroke-width="2.5" />
+    
+    <!-- Main Banner Face -->
+    <polygon points="16,32 34,12 326,12 344,32 326,52 34,52" fill="url(#ban-bg)" stroke="#bae6fd" stroke-width="1.2" />
+
+    <!-- Center Plaque Recess -->
+    <rect x="52" y="16" width="256" height="32" rx="8" fill="#082f49" opacity="0.6" stroke="#38bdf8" stroke-width="1" />
+  </g>
+
+  <!-- Side Gold Accent Pips -->
+  <polygon points="38,32 44,26 44,38" fill="#facc15" />
+  <polygon points="322,32 316,26 316,38" fill="#facc15" />
+
+  <!-- Top Glass Sheen -->
+  <polygon points="34,12 326,12 318,24 42,24" fill="#ffffff" opacity="0.35" />
+</svg>

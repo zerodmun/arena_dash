@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 84" width="280" height="84">
+  <defs>
+    <!-- Disabled slate graphite gradient -->
+    <linearGradient id="btn-dis-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="40%" stop-color="#334155" />
+      <stop offset="80%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <linearGradient id="btn-dis-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#64748b" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <filter id="btn-dis-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#020617" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <g filter="url(#btn-dis-drop)">
+    <!-- Base Border -->
+    <rect x="8" y="6" width="264" height="68" rx="34" fill="url(#btn-dis-rim)" stroke="#0f172a" stroke-width="2.5" />
+    
+    <!-- Main Button Face -->
+    <rect x="12" y="10" width="256" height="60" rx="30" fill="url(#btn-dis-grad)" stroke="#475569" stroke-width="1.5" />
+  </g>
+
+  <!-- Play Chevron Icon & Text "LOCKED" / "START" -->
+  <g transform="translate(130, 48)">
+    <!-- Lock / Play Icon Muted -->
+    <polygon points="-65,-14 -65,14 -40,0" fill="#64748b" stroke="#1e293b" stroke-width="1.5" />
+
+    <!-- Text START muted -->
+    <text x="15" y="8" 
+          font-family="system-ui, -apple-system, sans-serif" 
+          font-size="34" 
+          font-weight="900" 
+          letter-spacing="4"
+          text-anchor="middle" 
+          fill="#94a3b8" 
+          stroke="#0f172a" 
+          stroke-width="1.2">START</text>
+  </g>
+</svg>

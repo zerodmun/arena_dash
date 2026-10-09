@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72">
+  <defs>
+    <linearGradient id="btn-gold-sq" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="25%" stop-color="#facc15" />
+      <stop offset="70%" stop-color="#eab308" />
+      <stop offset="95%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <filter id="btn-icon-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#020617" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <g filter="url(#btn-icon-drop)">
+    <!-- Base Rim -->
+    <rect x="4" y="4" width="64" height="64" rx="18" fill="#ca8a04" stroke="#78350f" stroke-width="2.5" />
+    <!-- Face -->
+    <rect x="6" y="6" width="60" height="60" rx="16" fill="url(#btn-gold-sq)" stroke="#fef08a" stroke-width="1.2" />
+  </g>
+
+  <!-- Top Sheen -->
+  <path d="M 12 8 Q 36 14 60 8 Q 54 22 36 22 Q 18 22 12 8 Z" fill="#ffffff" opacity="0.45" />
+
+  <!-- Shopping Cart Icon -->
+  <g transform="translate(36, 36)">
+    <!-- Shadow -->
+    <g fill="#78350f" stroke="#78350f" opacity="0.6" transform="translate(0, 2)">
+      <path d="M -18 -14 H -13 L -9 4 H 14 L 18 -8 H -10" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="-6" cy="11" r="3" />
+      <circle cx="10" cy="11" r="3" />
+    </g>
+    <!-- White Foreground -->
+    <path d="M -18 -14 H -13 L -9 4 H 14 L 18 -8 H -10" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="-6" cy="11" r="3" fill="#ffffff" />
+    <circle cx="10" cy="11" r="3" fill="#ffffff" />
+    <polygon points="2,-4 5,-4 5,-1 8,-1 8,2 5,2 5,5 2,5 2,2 -1,2 -1,-1 2,-1" fill="#facc15" />
+  </g>
+</svg>

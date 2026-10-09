@@ -12,7 +12,9 @@
 script = ExtResource("1_m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
+process_callback = 0
+process_physics_priority = 20
+position_smoothing_enabled = false
 position_smoothing_speed = 8.0
 
 [node name="Arena" type="Node2D" parent="."]

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Drop Shadow for 3D Knob -->
+    <filter id="kShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- Metallic Dome Bevel -->
+    <radialGradient id="kDome" cx="36%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#e2e8f0"/>
+      <stop offset="60%" stop-color="#94a3b8"/>
+      <stop offset="85%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </radialGradient>
+
+    <!-- Glowing Cyber Core Jewel -->
+    <radialGradient id="kCore" cx="38%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#38bdf8"/>
+      <stop offset="75%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </radialGradient>
+  </defs>
+
+  <g filter="url(#kShadow)">
+    <!-- Outer 3D Thumbstick Base -->
+    <circle cx="256" cy="256" r="210" fill="url(#kDome)" stroke="#0f172a" stroke-width="10"/>
+
+    <!-- Concentric High-Traction Grip Grooves -->
+    <circle cx="256" cy="256" r="172" fill="none" stroke="#64748b" stroke-width="7" opacity="0.85"/>
+    <circle cx="256" cy="256" r="140" fill="none" stroke="#475569" stroke-width="6" opacity="0.9"/>
+
+    <!-- Inner Well -->
+    <circle cx="256" cy="256" r="102" fill="#0f172a" stroke="#0284c7" stroke-width="7"/>
+
+    <!-- Glowing Cyber Core Jewel -->
+    <circle cx="256" cy="256" r="74" fill="url(#kCore)" stroke="#bae6fd" stroke-width="4"/>
+
+    <!-- Specular Highlight Curve -->
+    <ellipse cx="236" cy="230" rx="26" ry="16" transform="rotate(-30 236 230)" fill="#ffffff" opacity="0.9"/>
+  </g>
+</svg>

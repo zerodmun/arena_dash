@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" width="400" height="480">
+  <defs>
+    <!-- Background Card Gradient -->
+    <linearGradient id="p-pause-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="35%" stop-color="#0369a1" />
+      <stop offset="70%" stop-color="#075985" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+
+    <!-- Outer Rim Bevel -->
+    <linearGradient id="p-pause-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#bae6fd" />
+      <stop offset="30%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+
+    <!-- Inner Well Gradient -->
+    <linearGradient id="p-pause-well" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#082f49" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#031d30" stop-opacity="0.95" />
+    </linearGradient>
+
+    <filter id="p-pause-drop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#020617" flood-opacity="0.75" />
+    </filter>
+  </defs>
+
+  <g filter="url(#p-pause-drop)">
+    <!-- Outer Card Rim -->
+    <rect x="20" y="24" width="360" height="432" rx="26" fill="url(#p-pause-rim)" stroke="#082f49" stroke-width="4" />
+    <!-- Inner Card Body -->
+    <rect x="28" y="32" width="344" height="416" rx="20" fill="url(#p-pause-bg)" stroke="#0284c7" stroke-width="2" />
+  </g>
+
+  <!-- Top Title Ribbon Plaque -->
+  <path d="M 50 18 L 350 18 L 330 72 L 70 72 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="2" />
+  <rect x="64" y="22" width="272" height="44" rx="10" fill="#0284c7" stroke="#bae6fd" stroke-width="1.5" />
+
+  <!-- PAUSED Header Text -->
+  <text x="200" y="52" 
+        font-family="system-ui, -apple-system, sans-serif" 
+        font-size="24" 
+        font-weight="900" 
+        letter-spacing="4"
+        text-anchor="middle" 
+        fill="#ffffff">GAME PAUSED</text>
+
+  <!-- Inner Button / Menu Area -->
+  <rect x="44" y="92" width="312" height="336" rx="16" fill="url(#p-pause-well)" stroke="#38bdf8" stroke-width="1.5" />
+
+  <!-- Corner Rivet Accents -->
+  <circle cx="38" cy="88" r="3.5" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+  <circle cx="362" cy="88" r="3.5" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+  <circle cx="38" cy="428" r="3.5" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+  <circle cx="362" cy="428" r="3.5" fill="#bae6fd" stroke="#082f49" stroke-width="1" />
+</svg>

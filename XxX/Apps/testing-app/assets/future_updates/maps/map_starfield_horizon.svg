@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- Deep Cosmic Horizon Gradient -->
+    <linearGradient id="horizonSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="30%" stop-color="#0f172a"/>
+      <stop offset="65%" stop-color="#1e1b4b"/>
+      <stop offset="85%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+
+    <!-- Mountain Silhouette -->
+    <linearGradient id="mountainDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#020408"/>
+    </linearGradient>
+
+    <filter id="bloom" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1920" height="1080" fill="url(#horizonSky)"/>
+
+  <!-- Stars -->
+  <g fill="#ffffff" opacity="0.75">
+    <circle cx="150" cy="90" r="1.5"/>
+    <circle cx="380" cy="140" r="2.2" filter="url(#bloom)"/>
+    <circle cx="650" cy="80" r="1.2"/>
+    <circle cx="890" cy="180" r="2.5" filter="url(#bloom)"/>
+    <circle cx="1120" cy="100" r="1.5"/>
+    <circle cx="1450" cy="150" r="2.0"/>
+    <circle cx="1720" cy="80" r="2.5" filter="url(#bloom)"/>
+    <circle cx="280" cy="380" r="1.5"/>
+    <circle cx="560" cy="320" r="2.0"/>
+    <circle cx="940" cy="340" r="1.2"/>
+    <circle cx="1320" cy="280" r="2.2"/>
+    <circle cx="1680" cy="360" r="1.5"/>
+  </g>
+
+  <!-- Shooting Stars / Meteor Trails -->
+  <line x1="220" y1="620" x2="310" y2="700" stroke="#67e8f9" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <line x1="1620" y1="720" x2="1750" y2="820" stroke="#f472b6" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Dotted Planetary Flight Path (Winding S-Curve across 8 Stations) -->
+  <path d="M 1600,860 C 1600,680 1560,540 1540,420 C 1500,280 1280,240 1200,220 C 1040,180 920,380 880,480 C 840,620 900,740 920,840 C 940,940 780,920 680,880 C 580,820 540,640 560,540 C 580,440 720,340 760,240 C 800,160 580,180 460,220 C 340,260 300,480 320,620" 
+        fill="none" stroke="#facc15" stroke-width="7" stroke-dasharray="12,16" stroke-linecap="round" filter="url(#bloom)"/>
+  <path d="M 1600,860 C 1600,680 1560,540 1540,420 C 1500,280 1280,240 1200,220 C 1040,180 920,380 880,480 C 840,620 900,740 920,840 C 940,940 780,920 680,880 C 580,820 540,640 560,540 C 580,440 720,340 760,240 C 800,160 580,180 460,220 C 340,260 300,480 320,620" 
+        fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="12,16" stroke-linecap="round"/>
+
+  <!-- Station Target Halos -->
+  <circle cx="1600" cy="860" r="85" fill="none" stroke="#38bdf8" stroke-width="3" opacity="0.6"/>
+  <circle cx="1540" cy="420" r="85" fill="none" stroke="#38bdf8" stroke-width="3" opacity="0.6"/>
+  <circle cx="1200" cy="220" r="85" fill="none" stroke="#38bdf8" stroke-width="3" opacity="0.6"/>
+  <circle cx="880" cy="480" r="85" fill="none" stroke="#38bdf8" stroke-width="3" opacity="0.6"/>
+  <circle cx="920" cy="840" r="85" fill="none" stroke="#38bdf8" stroke-width="3" opacity="0.6"/>
+  <circle cx="560" cy="540" r="85" fill="none" stroke="#c084fc" stroke-width="3" opacity="0.6"/>
+  <circle cx="760" cy="240" r="85" fill="none" stroke="#c084fc" stroke-width="3" opacity="0.6"/>
+  <circle cx="460" cy="220" r="85" fill="none" stroke="#c084fc" stroke-width="3" opacity="0.6"/>
+
+  <!-- Space Rocket Vehicle at start of trajectory -->
+  <g transform="translate(260, 520) rotate(-35)">
+    <ellipse cx="0" cy="65" rx="16" ry="32" fill="#38bdf8" filter="url(#bloom)"/>
+    <ellipse cx="0" cy="60" rx="8" ry="16" fill="#ffffff"/>
+    <polygon points="-24,10 -55,50 -24,45" fill="#a21caf"/>
+    <polygon points="24,10 55,50 24,45" fill="#a21caf"/>
+    <rect x="-24" y="-30" width="48" height="75" rx="12" fill="#e2e8f0" stroke="#334155" stroke-width="2.5"/>
+    <rect x="-24" y="-10" width="48" height="35" fill="#c026d3"/>
+    <path d="M -24,-30 C -24,-65 0,-85 0,-85 C 0,-85 24,-65 24,-30 Z" fill="#facc15" stroke="#a16207" stroke-width="2.5"/>
+    <circle cx="0" cy="5" r="12" fill="#06b6d4" stroke="#ffffff" stroke-width="2.5"/>
+  </g>
+
+  <!-- Alien Mountain Range Foreground Silhouette -->
+  <polygon points="0,960 120,900 240,940 380,880 520,930 710,870 890,920 1060,860 1240,910 1440,850 1620,900 1780,840 1920,890 1920,1080 0,1080" fill="url(#mountainDark)"/>
+  <polygon points="0,990 180,950 340,990 560,940 780,980 980,930 1180,970 1380,920 1580,960 1820,920 1920,950 1920,1080 0,1080" fill="#020408"/>
+</svg>

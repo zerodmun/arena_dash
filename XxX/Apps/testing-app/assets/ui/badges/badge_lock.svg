@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Dark slate badge gradient -->
+    <linearGradient id="lck-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="40%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Golden Lock Gradient -->
+    <linearGradient id="lck-gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="35%" stop-color="#facc15" />
+      <stop offset="75%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <radialGradient id="lck-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="30%" stop-color="#facc15" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="lck-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#020617" flood-opacity="0.7" />
+    </filter>
+  </defs>
+
+  <circle cx="32" cy="32" r="30" fill="url(#lck-glow)" />
+
+  <g filter="url(#lck-drop)">
+    <!-- Base Rim -->
+    <circle cx="32" cy="32" r="26" fill="#0f172a" stroke="#475569" stroke-width="2" />
+    <!-- Face -->
+    <circle cx="32" cy="32" r="23" fill="url(#lck-bg)" stroke="#1e293b" stroke-width="1.5" />
+  </g>
+
+  <!-- Top Glass Sheen -->
+  <path d="M 14 30 A 18 18 0 0 1 50 30 A 16 10 0 0 0 14 30 Z" fill="#ffffff" opacity="0.25" />
+
+  <!-- Padlock Insignia -->
+  <g transform="translate(32, 33)">
+    <!-- Shackle -->
+    <path d="M -7 -2 V -9 C -7 -14 7 -14 7 -9 V -2" fill="none" stroke="#e2e8f0" stroke-width="3.5" stroke-linecap="round" />
+    <!-- Body -->
+    <rect x="-12" y="-2" width="24" height="17" rx="3.5" fill="url(#lck-gold)" stroke="#78350f" stroke-width="1.2" />
+    <!-- Keyhole -->
+    <circle cx="0" cy="5" r="2.5" fill="#451a03" />
+    <polygon points="-1,5 1,5 1.5,9 -1.5,9" fill="#451a03" />
+  </g>
+</svg>

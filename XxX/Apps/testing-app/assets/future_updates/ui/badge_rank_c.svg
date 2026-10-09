@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+  <defs>
+    <linearGradient id="rnk-c-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#7dd3fc" />
+      <stop offset="65%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#075985" />
+    </linearGradient>
+
+    <radialGradient id="rnk-c-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="40%" stop-color="#0284c7" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#0c4a6e" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="rnk-c-drop" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#020617" flood-opacity="0.7" />
+    </filter>
+  </defs>
+
+  <circle cx="48" cy="48" r="44" fill="url(#rnk-c-glow)" />
+
+  <g filter="url(#rnk-c-drop)">
+    <!-- Central Shield Medallion -->
+    <polygon points="48,14 74,28 74,62 48,82 22,62 22,28" fill="#082f49" stroke="#38bdf8" stroke-width="3" />
+    <polygon points="48,18 70,30 70,60 48,77 26,60 26,30" fill="#0f172a" />
+  </g>
+
+  <!-- Letter 'C' Insignia -->
+  <text x="48" y="62" 
+        font-family="system-ui, -apple-system, sans-serif" 
+        font-size="44" 
+        font-weight="900" 
+        font-style="italic"
+        text-anchor="middle" 
+        stroke="#082f49" 
+        stroke-width="8" 
+        stroke-linejoin="round"
+        fill="#082f49">C</text>
+  <text x="48" y="62" 
+        font-family="system-ui, -apple-system, sans-serif" 
+        font-size="44" 
+        font-weight="900" 
+        font-style="italic"
+        text-anchor="middle" 
+        fill="url(#rnk-c-grad)">C</text>
+</svg>

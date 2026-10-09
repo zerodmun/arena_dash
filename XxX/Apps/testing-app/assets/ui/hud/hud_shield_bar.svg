@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" width="360" height="80">
+  <defs>
+    <!-- Capsule rim gradient -->
+    <linearGradient id="shld-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Shield Bar Gradient -->
+    <linearGradient id="shld-fill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="60%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#bae6fd" />
+    </linearGradient>
+
+    <!-- Shield Socket Bevel -->
+    <linearGradient id="shld-socket" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#bae6fd" />
+      <stop offset="40%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#082f49" />
+    </linearGradient>
+
+    <filter id="shld-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+
+    <clipPath id="shld-clip">
+      <rect x="74" y="22" width="268" height="36" rx="18" />
+    </clipPath>
+  </defs>
+
+  <g filter="url(#shld-shadow)">
+    <!-- Main Capsule Housing -->
+    <rect x="68" y="18" width="278" height="44" rx="22" fill="#082f49" stroke="url(#shld-rim)" stroke-width="3" />
+    
+    <!-- Empty Recessed Well -->
+    <rect x="72" y="22" width="270" height="36" rx="18" fill="#031d30" />
+
+    <!-- Shield Fill (75% full) -->
+    <g clip-path="url(#shld-clip)">
+      <rect x="72" y="22" width="202" height="36" fill="url(#shld-fill)" />
+      <!-- Segment Divider Lines -->
+      <line x1="130" y1="22" x2="130" y2="58" stroke="#082f49" stroke-width="2" opacity="0.6" />
+      <line x1="188" y1="22" x2="188" y2="58" stroke="#082f49" stroke-width="2" opacity="0.6" />
+      <line x1="246" y1="22" x2="246" y2="58" stroke="#082f49" stroke-width="2" opacity="0.6" />
+      <!-- Top Glass Sheen -->
+      <rect x="72" y="22" width="270" height="18" fill="#ffffff" opacity="0.3" />
+      <!-- Leading Edge Light Bar -->
+      <line x1="274" y1="22" x2="274" y2="58" stroke="#ffffff" stroke-width="3" />
+    </g>
+
+    <!-- Inner Well Rim Bevel -->
+    <rect x="72" y="22" width="270" height="36" rx="18" fill="none" stroke="#082f49" stroke-width="1.5" />
+  </g>
+
+  <!-- Circular Shield Socket on Left -->
+  <g transform="translate(48, 40)" filter="url(#shld-shadow)">
+    <!-- Outer Rim -->
+    <circle cx="0" cy="0" r="34" fill="url(#shld-socket)" stroke="#0c4a6e" stroke-width="2.5" />
+    <!-- Inner Recessed Well -->
+    <circle cx="0" cy="0" r="27" fill="#090d16" stroke="#0284c7" stroke-width="1.5" />
+    
+    <!-- 3D Aegis Shield Emblem -->
+    <path d="M 0 -15 L 14 -8 C 14 6 8 16 0 20 C -8 16 -14 6 -14 -8 Z" 
+          fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+    <path d="M 0 -10 L 9 -5 C 9 4 5 11 0 14 C -5 11 -9 4 -9 -5 Z" fill="#0284c7" opacity="0.7" />
+    <circle cx="0" cy="0" r="3" fill="#ffffff" />
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+  <defs>
+    <!-- Holographic Radar Disc Fill -->
+    <radialGradient id="rDisc" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.15"/>
+      <stop offset="65%" stop-color="#0369a1" stop-opacity="0.3"/>
+      <stop offset="90%" stop-color="#38bdf8" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#082f49" stop-opacity="0.9"/>
+    </radialGradient>
+
+    <!-- Metallic Rim Bezel -->
+    <linearGradient id="rRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#bae6fd"/>
+      <stop offset="40%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </linearGradient>
+
+    <!-- Radar Sweep Gradient -->
+    <linearGradient id="rSweep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="rShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#020617" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#rShadow)">
+    <!-- Outer Glass Disc & Chrome Bezel -->
+    <circle cx="90" cy="90" r="82" fill="url(#rDisc)" stroke="url(#rRim)" stroke-width="4"/>
+
+    <!-- Concentric Range Circles -->
+    <circle cx="90" cy="90" r="64" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="12 8" opacity="0.8"/>
+    <circle cx="90" cy="90" r="42" fill="none" stroke="#0ea5e9" stroke-width="1.2" opacity="0.6"/>
+    <circle cx="90" cy="90" r="20" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.5"/>
+
+    <!-- Crosshair Reticle Axes -->
+    <line x1="90" y1="12" x2="90" y2="168" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.5"/>
+    <line x1="12" y1="90" x2="168" y2="90" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.5"/>
+
+    <!-- Cardinal Direction Indices -->
+    <line x1="90" y1="8" x2="90" y2="16" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="90" y1="164" x2="90" y2="172" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="8" y1="90" x2="16" y2="90" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="164" y1="90" x2="172" y2="90" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Radar Sector Sweep Slice -->
+    <path d="M 90 90 L 152 46 A 80 80 0 0 1 170 90 Z" fill="url(#rSweep)" opacity="0.5"/>
+    <line x1="90" y1="90" x2="152" y2="46" stroke="#bae6fd" stroke-width="2"/>
+
+    <!-- Player Ship Blip in Center -->
+    <polygon points="90,82 95,94 90,92 85,94" fill="#38bdf8" stroke="#ffffff" stroke-width="1"/>
+
+    <!-- Enemy Threat Blips -->
+    <circle cx="125" cy="55" r="3" fill="#ef4444"/>
+    <circle cx="125" cy="55" r="5" fill="none" stroke="#ef4444" stroke-width="1" opacity="0.7"/>
+
+    <circle cx="60" cy="65" r="2.5" fill="#ef4444"/>
+    <circle cx="130" cy="120" r="2.5" fill="#ef4444"/>
+
+    <!-- Collectible / Objective Blip -->
+    <circle cx="70" cy="115" r="2.5" fill="#facc15"/>
+  </g>
+</svg>

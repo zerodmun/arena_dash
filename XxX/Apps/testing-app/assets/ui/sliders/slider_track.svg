@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 24" width="280" height="24">
+  <defs>
+    <!-- Rail trough gradient -->
+    <linearGradient id="sld-trough" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#020617" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Active filled rail gradient -->
+    <linearGradient id="sld-fill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="70%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#bae6fd" />
+    </linearGradient>
+
+    <filter id="sld-drop" x="-5%" y="-30%" width="110%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <g filter="url(#sld-drop)">
+    <!-- Outer Rail Housing -->
+    <rect x="4" y="4" width="272" height="16" rx="8" fill="#1e293b" stroke="#082f49" stroke-width="1.5" />
+    
+    <!-- Recessed Trough -->
+    <rect x="6" y="6" width="268" height="12" rx="6" fill="url(#sld-trough)" stroke="#0f172a" stroke-width="1" />
+
+    <!-- Active Fill (e.g. 65% volume/speed) -->
+    <rect x="6" y="6" width="174" height="12" rx="6" fill="url(#sld-fill)" />
+    
+    <!-- Leading Edge Light -->
+    <line x1="180" y1="6" x2="180" y2="18" stroke="#ffffff" stroke-width="2" />
+  </g>
+
+  <!-- Rail Step Tick Marks -->
+  <line x1="70" y1="9" x2="70" y2="15" stroke="#0f172a" stroke-width="1.5" opacity="0.6" />
+  <line x1="140" y1="9" x2="140" y2="15" stroke="#0f172a" stroke-width="1.5" opacity="0.6" />
+  <line x1="210" y1="9" x2="210" y2="15" stroke="#334155" stroke-width="1.5" opacity="0.8" />
+</svg>

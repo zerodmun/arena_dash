@@ -94,8 +94,10 @@ func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), Color("324755"), false, 1)
 
 func _draw_map(map: Dictionary) -> void:
-	if map_id in ["coast", "desert"]:
-		draw_texture_rect(_texture(map.icon), Rect2(Vector2.ZERO, size), false, Color(1, 1, 1, 0.55))
+	if map_id in ["coast", "desert", "volcano", "glacier", "toxic"]:
+		var texture := _texture(map.icon)
+		var extent := texture.get_size() * minf(size.x / texture.get_width(), size.y / texture.get_height())
+		draw_texture_rect(texture, Rect2((size - extent) / 2, extent), false, Color(1, 1, 1, 0.55))
 	else:
 		for x in range(0, int(size.x), 45):
 			draw_line(Vector2(x, 0), Vector2(x, size.y), Color(map.color, 0.12))
@@ -108,8 +110,14 @@ func _draw_map(map: Dictionary) -> void:
 		asset = "res://assets/obstacle_asteroid.svg"
 	elif map_id in ["coast", "desert"]:
 		asset = "res://assets/obstacle_cargo.svg"
+	elif map_id == "volcano":
+		asset = "res://assets/obstacle_basalt.svg"
+	elif map_id == "glacier":
+		asset = "res://assets/obstacle_cryo.svg"
+	elif map_id == "toxic":
+		asset = "res://assets/obstacle_barrel.svg"
 	for i in range(6):
 		var pos := Vector2(0.20 + (i % 3) * 0.3, 0.23 + floori(float(i) / 3) * 0.5) * size
 		pos += Vector2(sin(_time * 0.6 + i), cos(_time * 0.45 + i)) * 14
-		var obstacle_size := Vector2(72, 46) if map_id in ["coast", "desert"] else Vector2(65, 65)
+		var obstacle_size := Vector2(72, 46) if map_id in ["coast", "desert"] else (Vector2(64, 64) if map_id in ["volcano", "glacier", "toxic"] else Vector2(65, 65))
 		draw_texture_rect(_texture(asset), Rect2(pos - obstacle_size / 2, obstacle_size), false)

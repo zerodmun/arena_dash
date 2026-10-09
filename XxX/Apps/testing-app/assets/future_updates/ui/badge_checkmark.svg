@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Emerald Checkmark Badge Gradient -->
+    <linearGradient id="chk-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="35%" stop-color="#22c55e" />
+      <stop offset="80%" stop-color="#16a34a" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+
+    <radialGradient id="chk-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="30%" stop-color="#22c55e" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#15803d" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="chk-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <circle cx="32" cy="32" r="30" fill="url(#chk-glow)" />
+
+  <g filter="url(#chk-drop)">
+    <!-- Base Rim -->
+    <circle cx="32" cy="32" r="26" fill="#14532d" stroke="#86efac" stroke-width="2" />
+    <!-- Face -->
+    <circle cx="32" cy="32" r="23" fill="url(#chk-bg)" stroke="#15803d" stroke-width="1.5" />
+  </g>
+
+  <!-- Top Glass Sheen -->
+  <path d="M 14 30 A 18 18 0 0 1 50 30 A 16 10 0 0 0 14 30 Z" fill="#ffffff" opacity="0.4" />
+
+  <!-- Bold White Checkmark -->
+  <g transform="translate(32, 32)">
+    <!-- Shadow -->
+    <polyline points="-12,0 -4,8 14,-10" fill="none" stroke="#052e16" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" transform="translate(0, 2)" opacity="0.6" />
+    <!-- White -->
+    <polyline points="-12,0 -4,8 14,-10" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

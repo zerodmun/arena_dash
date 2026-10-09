@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Background outer glow -->
+    <radialGradient id="gl-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#9333ea" stop-opacity="0.35" />
+      <stop offset="90%" stop-color="#c084fc" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#3b0764" stop-opacity="0" />
+    </radialGradient>
+    
+    <!-- Spherical base gradient -->
+    <radialGradient id="gl-body" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#e9d5ff" />
+      <stop offset="30%" stop-color="#a855f7" />
+      <stop offset="65%" stop-color="#6b21a8" />
+      <stop offset="85%" stop-color="#3b0764" />
+      <stop offset="100%" stop-color="#1e0538" />
+    </radialGradient>
+    
+    <!-- Ridge highlight -->
+    <linearGradient id="gl-ridge" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f3e8ff" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#c084fc" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#581c87" stop-opacity="0.3" />
+    </linearGradient>
+
+    <!-- Shadow overlay -->
+    <radialGradient id="gl-shadow" cx="75%" cy="80%" r="55%">
+      <stop offset="0%" stop-color="#090014" stop-opacity="0.85" />
+      <stop offset="70%" stop-color="#1e0538" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#1e0538" stop-opacity="0" />
+    </radialGradient>
+
+    <clipPath id="gl-sphere-clip">
+      <circle cx="64" cy="64" r="54" />
+    </clipPath>
+  </defs>
+
+  <!-- Atmospheric Glow Halo -->
+  <circle cx="64" cy="64" r="62" fill="url(#gl-glow)" />
+
+  <!-- Planet Main Sphere Body -->
+  <circle cx="64" cy="64" r="54" fill="url(#gl-body)" />
+
+  <!-- Ridges, Grooves, and Glacial Striations (Clipped to Sphere) -->
+  <g clip-path="url(#gl-sphere-clip)">
+    <!-- Major Craters -->
+    <ellipse cx="42" cy="38" rx="9" ry="6" fill="#581c87" opacity="0.6" />
+    <ellipse cx="40" cy="36" rx="7" ry="4" fill="#3b0764" opacity="0.8" />
+    <path d="M 33 38 A 9 6 0 0 0 51 38" fill="none" stroke="#d8b4fe" stroke-width="1.2" opacity="0.7" />
+
+    <ellipse cx="78" cy="46" rx="11" ry="7" fill="#4c1d95" opacity="0.5" />
+    <ellipse cx="76" cy="45" rx="8" ry="5" fill="#2e1065" opacity="0.8" />
+    <path d="M 67 47 A 11 7 0 0 0 89 47" fill="none" stroke="#c084fc" stroke-width="1.2" opacity="0.6" />
+
+    <ellipse cx="50" cy="74" rx="14" ry="8" fill="#3b0764" opacity="0.7" />
+    <ellipse cx="48" cy="73" rx="11" ry="6" fill="#1e0538" opacity="0.9" />
+    <path d="M 36 76 A 14 8 0 0 0 64 76" fill="none" stroke="#a855f7" stroke-width="1.4" opacity="0.6" />
+
+    <!-- Glacial Tectonic Grooves / Ridges -->
+    <path d="M 14 48 Q 42 62 82 54 T 116 52" fill="none" stroke="url(#gl-ridge)" stroke-width="2.4" />
+    <path d="M 12 60 Q 48 76 92 68 T 118 64" fill="none" stroke="url(#gl-ridge)" stroke-width="3.2" />
+    <path d="M 16 75 Q 54 90 98 82 T 115 78" fill="none" stroke="url(#gl-ridge)" stroke-width="2" />
+    <path d="M 22 34 Q 56 46 95 38" fill="none" stroke="#f3e8ff" stroke-width="1.5" opacity="0.7" />
+
+    <!-- Secondary fine striated ice cracks -->
+    <path d="M 35 24 Q 50 32 68 28" fill="none" stroke="#e9d5ff" stroke-width="1" opacity="0.8" />
+    <path d="M 60 88 Q 80 98 102 92" fill="none" stroke="#7e22ce" stroke-width="1.8" />
+
+    <!-- Deep Shadow Occlusion -->
+    <circle cx="64" cy="64" r="54" fill="url(#gl-shadow)" />
+
+    <!-- Rim Specular Reflection / Frosted Glaze -->
+    <path d="M 16 45 A 54 54 0 0 1 80 12" fill="none" stroke="#ffffff" stroke-width="2.5" opacity="0.5" stroke-linecap="round" />
+  </g>
+</svg>

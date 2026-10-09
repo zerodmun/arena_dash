@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Elevation Drop Shadow -->
+    <filter id="tpShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <!-- Deep Violet Armor Plates -->
+    <linearGradient id="tpArmor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="30%" stop-color="#9333ea"/>
+      <stop offset="70%" stop-color="#6b21a8"/>
+      <stop offset="100%" stop-color="#3b0764"/>
+    </linearGradient>
+
+    <!-- Wing Gradient Left -->
+    <linearGradient id="tpWingL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="35%" stop-color="#7e22ce"/>
+      <stop offset="75%" stop-color="#581c87"/>
+      <stop offset="100%" stop-color="#2e1065"/>
+    </linearGradient>
+
+    <!-- Wing Gradient Right -->
+    <linearGradient id="tpWingR" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="35%" stop-color="#7e22ce"/>
+      <stop offset="75%" stop-color="#581c87"/>
+      <stop offset="100%" stop-color="#2e1065"/>
+    </linearGradient>
+
+    <!-- Carbon Fiber Spine -->
+    <linearGradient id="tpSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="35%" stop-color="#4c1d95"/>
+      <stop offset="50%" stop-color="#e9d5ff"/>
+      <stop offset="65%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+
+    <!-- Polarized Magenta/Violet Canopy -->
+    <radialGradient id="tpCockpit" cx="42%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#f0abfc"/>
+      <stop offset="60%" stop-color="#c026d3"/>
+      <stop offset="85%" stop-color="#86198f"/>
+      <stop offset="100%" stop-color="#4a044e"/>
+    </radialGradient>
+
+    <!-- Electric Violet Plasma Flame -->
+    <radialGradient id="tpFlame" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#e879f9"/>
+      <stop offset="70%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7e22ce" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Neon Gold Power Surge Lines -->
+    <linearGradient id="tpGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#tpShadow)">
+    <!-- Triple Heavy Assault Thruster Flumes -->
+    <ellipse cx="206" cy="442" rx="14" ry="46" fill="url(#tpFlame)"/>
+    <ellipse cx="256" cy="452" rx="18" ry="52" fill="url(#tpFlame)"/>
+    <ellipse cx="306" cy="442" rx="14" ry="46" fill="url(#tpFlame)"/>
+    <ellipse cx="206" cy="436" rx="6" ry="22" fill="#ffffff"/>
+    <ellipse cx="256" cy="444" rx="8" ry="26" fill="#ffffff"/>
+    <ellipse cx="306" cy="436" rx="6" ry="22" fill="#ffffff"/>
+
+    <!-- Heavy Sponson Wing Guns (Quad Gatling Barrels) -->
+    <rect x="74" y="160" width="12" height="150" rx="6" fill="#1e1b4b" stroke="#fde047" stroke-width="2.5"/>
+    <circle cx="80" cy="160" r="7" fill="#fde047"/>
+    <rect x="94" y="190" width="10" height="130" rx="5" fill="#1e1b4b" stroke="#c084fc" stroke-width="2"/>
+    <rect x="426" y="160" width="12" height="150" rx="6" fill="#1e1b4b" stroke="#fde047" stroke-width="2.5"/>
+    <circle cx="432" cy="160" r="7" fill="#fde047"/>
+    <rect x="408" y="190" width="10" height="130" rx="5" fill="#1e1b4b" stroke="#c084fc" stroke-width="2"/>
+
+    <!-- Broad Gull / Cranked Heavy Assault Wings -->
+    <!-- Left Wing -->
+    <polygon points="256,110 170,220 54,260 70,390 180,360 210,430" fill="url(#tpWingL)" stroke="#2e1065" stroke-width="4" stroke-linejoin="round"/>
+    <!-- Right Wing -->
+    <polygon points="256,110 342,220 458,260 442,390 332,360 302,430" fill="url(#tpWingR)" stroke="#2e1065" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- Reinforced Wing Armor Overlays -->
+    <polygon points="170,220 80,265 96,370 176,340" fill="#4c1d95" opacity="0.65"/>
+    <polygon points="342,220 432,265 416,370 336,340" fill="#4c1d95" opacity="0.65"/>
+
+    <!-- Glowing Violet & Gold Conduit Trims -->
+    <polygon points="110,290 150,270 190,320 176,335 140,300 106,310" fill="url(#tpGold)"/>
+    <polygon points="402,290 362,270 322,320 336,335 372,300 406,310" fill="url(#tpGold)"/>
+    <line x1="160" y1="230" x2="190" y2="350" stroke="#f0abfc" stroke-width="3"/>
+    <line x1="352" y1="230" x2="322" y2="350" stroke="#f0abfc" stroke-width="3"/>
+
+    <!-- Heavy Twin Outer Vertical Stabilizers -->
+    <polygon points="140,320 120,440 148,430 162,330" fill="#3b0764" stroke="#2e1065" stroke-width="2.5"/>
+    <polygon points="372,320 392,440 364,430 350,330" fill="#3b0764" stroke="#2e1065" stroke-width="2.5"/>
+
+    <!-- Chunky Armored Fuselage Chassis -->
+    <polygon points="256,45 208,160 200,380 220,432 292,432 312,380 304,160" fill="url(#tpArmor)" stroke="#1e1b4b" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- Fuselage Center Armored Spine -->
+    <polygon points="256,55 234,150 230,370 256,410 282,370 278,150" fill="url(#tpSpine)"/>
+
+    <!-- Twin Heavy Pulse Intakes -->
+    <polygon points="196,190 216,190 212,280 190,268" fill="#1e1b4b" stroke="#c084fc" stroke-width="2"/>
+    <polygon points="316,190 296,190 300,280 322,268" fill="#1e1b4b" stroke="#c084fc" stroke-width="2"/>
+
+    <!-- Angular Stealth Cockpit Canopy -->
+    <polygon points="256,120 238,170 240,240 256,260 272,240 274,170" fill="url(#tpCockpit)" stroke="#1e1b4b" stroke-width="3"/>
+    <!-- Specular Highlight -->
+    <path d="M250,135 L244,180 L246,230" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85"/>
+    <circle cx="256" cy="145" r="5" fill="#ffffff" opacity="0.9"/>
+
+    <!-- Nose Sensor Node -->
+    <circle cx="256" cy="48" r="6" fill="#fde047"/>
+
+    <!-- High-G Navigation Formation Strobes -->
+    <circle cx="56" cy="270" r="5" fill="#ef4444"/>
+    <circle cx="456" cy="270" r="5" fill="#22c55e"/>
+    <circle cx="256" cy="424" r="4" fill="#fde047"/>
+  </g>
+</svg>

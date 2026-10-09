@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Drop Shadow for 3D Bevel -->
+    <filter id="sShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- Outer Chrome Bezel -->
+    <linearGradient id="sBezel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="30%" stop-color="#94a3b8"/>
+      <stop offset="65%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- 3D Electric Cyan Shield Trigger Dome -->
+    <radialGradient id="sTrigger" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="20%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#0284c7"/>
+      <stop offset="80%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#0c4a6e"/>
+    </radialGradient>
+  </defs>
+
+  <g filter="url(#sShadow)">
+    <!-- Heavy Bezel Outer Ring -->
+    <circle cx="256" cy="256" r="236" fill="url(#sBezel)" stroke="#0f172a" stroke-width="8"/>
+
+    <!-- Dark Recessed Well -->
+    <circle cx="256" cy="256" r="206" fill="#090d16" stroke="#0284c7" stroke-width="4"/>
+
+    <!-- Raised 3D Trigger Button -->
+    <circle cx="256" cy="256" r="192" fill="url(#sTrigger)" stroke="#0369a1" stroke-width="8"/>
+
+    <!-- Tactile Non-Slip Outer Groove -->
+    <circle cx="256" cy="256" r="162" fill="none" stroke="#bae6fd" stroke-width="5" stroke-dasharray="28 20" opacity="0.6"/>
+
+    <!-- Aegis Shield Crest & Core Glyph -->
+    <g transform="translate(256, 256)">
+      <!-- Outer Shield Hull -->
+      <path d="M 0 -85 L 68 -50 C 68 25 38 75 0 95 C -38 75 -68 25 -68 -50 Z" 
+            fill="#ffffff" stroke="#075985" stroke-width="8" stroke-linejoin="round" opacity="0.95"/>
+      
+      <!-- Inner Shield Plate -->
+      <path d="M 0 -65 L 50 -38 C 50 18 28 58 0 75 C -28 58 -50 18 -50 -38 Z" 
+            fill="#0284c7"/>
+
+      <!-- Center Power Emblem -->
+      <circle cx="0" cy="0" r="20" fill="#ffffff" stroke="#0369a1" stroke-width="4"/>
+      <circle cx="0" cy="0" r="10" fill="#38bdf8"/>
+      <line x1="0" y1="-30" x2="0" y2="30" stroke="#bae6fd" stroke-width="4"/>
+      <line x1="-30" y1="0" x2="30" y2="0" stroke="#bae6fd" stroke-width="4"/>
+    </g>
+
+    <!-- Specular Highlight Curve -->
+    <path d="M140,165 A165,165 0 0,1 372,165" stroke="#ffffff" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.75"/>
+  </g>
+</svg>

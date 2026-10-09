@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80" width="160" height="80">
+  <defs>
+    <!-- Top crystal/paved crust -->
+    <linearGradient id="plat-top" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="25%" stop-color="#818cf8" />
+      <stop offset="70%" stop-color="#c084fc" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <!-- Under-crag rocky gradient -->
+    <linearGradient id="plat-rock" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="35%" stop-color="#334155" />
+      <stop offset="75%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <linearGradient id="plat-facet-hi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8" />
+      <stop offset="100%" stop-color="#475569" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Under-Glow / Shadow -->
+  <polygon points="12,28 148,28 136,54 110,68 80,76 46,68 20,52" fill="#030712" opacity="0.6" transform="translate(0, 3)" />
+
+  <!-- Lower Rocky Under-Structure -->
+  <polygon points="14,26 146,26 136,52 112,68 84,74 54,66 22,50" fill="url(#plat-rock)" stroke="#0f172a" stroke-width="2" />
+
+  <!-- Chiseled Facets in Under-Structure -->
+  <polygon points="14,26 44,26 36,44 22,50" fill="url(#plat-facet-hi)" opacity="0.6" />
+  <polygon points="44,26 80,26 72,52 36,44" fill="#334155" />
+  <polygon points="80,26 120,26 110,50 72,52" fill="#475569" opacity="0.8" />
+  <polygon points="120,26 146,26 136,52 110,50" fill="#1e293b" />
+
+  <polygon points="36,44 72,52 54,66 22,50" fill="#1e293b" />
+  <polygon points="72,52 110,50 112,68 84,74 54,66" fill="#0f172a" />
+
+  <!-- Glowing Tech / Mineral Power Crystals Embedded in Underbelly -->
+  <polygon points="68,48 76,44 80,54 72,58" fill="#38bdf8" />
+  <polygon points="72,58 80,54 78,64" fill="#0284c7" />
+
+  <!-- Floating Upper Slab / Landing Deck -->
+  <path d="M 12 24 Q 80 18 148 24 L 144 32 Q 80 26 16 32 Z" fill="#64748b" stroke="#0f172a" stroke-width="1.5" />
+  
+  <!-- Glowing Upper Surface Deck / Energy Runway -->
+  <path d="M 14 22 Q 80 16 146 22 L 144 26 Q 80 20 16 26 Z" fill="url(#plat-top)" />
+
+  <!-- Tech Runway Markers -->
+  <line x1="36" y1="23" x2="44" y2="23" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+  <line x1="60" y1="22" x2="68" y2="22" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+  <line x1="84" y1="21" x2="92" y2="21" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+  <line x1="108" y1="22" x2="116" y2="22" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+  <line x1="130" y1="23" x2="138" y2="23" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Top Edge Energy Glow Aura -->
+  <path d="M 14 21 Q 80 15 146 21" fill="none" stroke="#bae6fd" stroke-width="1.2" opacity="0.9" />
+</svg>

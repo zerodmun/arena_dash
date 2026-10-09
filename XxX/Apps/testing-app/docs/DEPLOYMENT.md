@@ -1,128 +1,76 @@
-# Arena Dash: Deployment & Distribution Guide
+# Build and distribution
 
-This document outlines the build, signing, and deployment workflows for **Arena Dash** across Android and Web targets.
+Current local export workflow, updated 2026-10-09. Commands below build or serve locally; no external deployment has been performed.
 
----
+## Prerequisites
 
-## 1. Android Release Build & Signing
+Use Godot **4.7.2** and matching export templates, with `godot` available on PATH. Python 3 generates the Web shell and runs the local server. Android needs JDK 17, Android SDK/command-line tools, and the configured custom APK templates in `templates`.
 
-Arena Dash uses Godot 4's headless export pipeline coupled with Google's Android SDK build tools.
+`build_apk.sh` currently uses Homebrew paths for OpenJDK 17 and Android command-line tools, including build-tools 34.0.0. On another machine, adapt those paths and install matching Godot templates/SDK components. Build logs currently report a target-SDK tool-version fallback to 34.0.0; successful local export does not establish store submission eligibility.
 
-### 1.1 Prerequisites
-- **JDK 17**: OpenJDK 17 (`/opt/homebrew/opt/openjdk@17` or Temurin 17).
-- **Android Command-Line Tools & SDK**:
-  - `platforms;android-34`
-  - `build-tools;34.0.0`
-- **Godot 4.7+ CLI**: Installed and accessible via PATH (`godot`).
+## Web export
 
-### 1.2 Automated Build Script (`build_apk.sh`)
-The project provides [`build_apk.sh`](file:///Users/tentendigitalindonesia/Downloads/XxX/Apps/testing-app/build_apk.sh), which sets environment variables, exports the APK headless, and signs it.
+From the project root:
 
-```bash
-# Export and sign release APK
-./build_apk.sh --export-release
-
-# Export debug APK (for faster iteration)
-./build_apk.sh --export-debug
+```sh
+./build_web.sh
+python3 serve_web.py
 ```
 
-### 1.3 Keystore Configuration
-For release signing, Godot reads from `export_presets.cfg` or command-line parameters. Local development uses `debug.keystore`:
-```bash
-# Generate a new release keystore if deploying to Google Play:
-keytool -v -genkey -v -keystore release.keystore -alias arenadash \
-  -keyalg RSA -keysize 2048 -validity 10000
-```
+`build_web.sh` runs `tools/build_web_shell.py`, then exports the Web preset into `build/web/index.html`. The generator reads EN/ID catalogs and the stock `templates/web_shell_base.html` to update `templates/web_shell.html`. Regenerate through this script whenever translations or loader behavior change. The export includes `localization/*.json` in the game pack.
 
-### 1.4 Cryptographic Signature Verification
-Always verify the generated APK with `apksigner`:
-```bash
-JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home" \
-/opt/homebrew/share/android-commandlinetools/build-tools/34.0.0/apksigner verify --verbose build/arena_dash.apk
-```
-Expected output:
-```
-Verifies
-Verified using v2 scheme (APK Signature Scheme v2): true
-Verified using v3 scheme (APK Signature Scheme v3): true
-Number of signers: 1
-```
+Open [http://127.0.0.1:8060](http://127.0.0.1:8060). `serve_web.py` binds to localhost, serves `build/web`, disables caching, and adds COOP/COEP headers. If the port is already occupied, use the existing project server or stop that server before starting another.
 
-### 1.5 Device Installation
-```bash
-adb install -r build/arena_dash.apk
-```
-
----
-
-## 2. WebAssembly (Browser) Hosting
-
-Godot 4 Web exports utilize multi-threading and WebAssembly SIMD, requiring **SharedArrayBuffer** support.
-
-### 2.1 HTTP Header Requirements
-Browsers enforce that pages using `SharedArrayBuffer` must be in a cross-origin isolated environment. The web server MUST return the following headers on all responses:
+The Web preset uses **Compatibility rendering and a single-threaded export** (`variant/thread_support=false`). SharedArrayBuffer is not required by this current preset. The supplied local server still sends:
 
 ```http
 Cross-Origin-Opener-Policy: same-origin
 Cross-Origin-Embedder-Policy: require-corp
 ```
 
-### 2.2 Local Development Server
-Use the included [`serve_web.py`](file:///Users/tentendigitalindonesia/Downloads/XxX/Apps/testing-app/serve_web.py):
-```bash
-python3 serve_web.py
-# Serves http://127.0.0.1:8060/ with correct COOP/COEP headers
+Keep all generated Web files together when moving a local build. Serve over HTTP rather than opening `index.html` through `file://`; WebAssembly and pack files must load successfully. If threaded export is enabled in a future change, reassess browser isolation requirements and retest hosting.
+
+Use a full `./build_web.sh` export after changes. Updating only `index.pck` can leave HTML pack-size metadata or the generated loader stale, so pack-only export is not the documented release workflow.
+
+The loader reads the saved `arena-dash-language` localStorage mirror before the engine starts. In-game preferences/progress use Godot browser storage. Clearing site data removes local browser saves.
+
+## Android export
+
+```sh
+./build_apk.sh --export-release
 ```
 
-### 2.3 Production Web Server Configurations
+For a debug export:
 
-#### Nginx
-```nginx
-server {
-    listen 80;
-    server_name arena-dash.yourdomain.com;
-    root /path/to/testing-app/build/web;
-    index index.html;
-
-    location / {
-        add_header Cross-Origin-Opener-Policy "same-origin" always;
-        add_header Cross-Origin-Embedder-Policy "require-corp" always;
-        add_header Access-Control-Allow-Origin "*" always;
-        try_files $uri $uri/ /index.html;
-    }
-
-    # Enable gzip compression for wasm and pck
-    gzip on;
-    gzip_types application/javascript application/wasm application/octet-stream;
-}
+```sh
+./build_apk.sh --export-debug
 ```
 
-#### Caddy
-```caddy
-arena-dash.yourdomain.com {
-    root * /path/to/testing-app/build/web
-    file_server
+Both commands write `build/arena_dash.apk`. The current preset exports arm64-v8a, uses package ID `com.example.arenadash`, version code 1/name 1.0, and uses the existing **local development signing identity**, including for release-mode export. Release mode here describes the Godot build configuration; it is not a store-ready distribution identity.
 
-    header {
-        Cross-Origin-Opener-Policy "same-origin"
-        Cross-Origin-Embedder-Policy "require-corp"
-    }
-}
+Verify the output:
+
+```sh
+JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home \
+/opt/homebrew/share/android-commandlinetools/build-tools/34.0.0/apksigner verify --verbose build/arena_dash.apk
 ```
 
-#### Apache (`.htaccess`)
-```apache
-<IfModule mod_headers.c>
-    Header set Cross-Origin-Opener-Policy "same-origin"
-    Header set Cross-Origin-Embedder-Policy "require-corp"
-</IfModule>
+Latest verification reports `Verifies`, v2 and v3 schemes `true`, and one signer. A connected development device can receive the local APK with:
+
+```sh
+adb install -r build/arena_dash.apk
 ```
 
----
+Physical device installation/testing has not been completed in this environment. Before public distribution, separately configure the intended package/version/signing identity and validate on target devices. No signing secrets are reproduced in this documentation.
 
-## 3. Web Pack Re-generation
-When updating GDScript or scene assets without recompiling the Godot web binary:
-```bash
-godot --headless --export-pack Web build/web/index.pck
-```
-This updates the game data in seconds and will immediately take effect on the web server.
+## Export scope and verification
+
+Both presets include the localization JSON catalogs and exclude `build/*`, `tests/*`, `docs/*`, and implementation backup ZIPs. Source artwork is retained. Review `export_presets.cfg` for the actual export settings rather than relying on historical guides.
+
+The latest implementation run successfully exported Web and Android and verified APK v2/v3 signatures. Logs are under `build/web-performance-export.log`, `build/android-performance-export.log`, and `build/apk-performance-signature.log`. Sandbox-only user-log/editor-settings/ADB/certificate diagnostics appeared during some commands; exports completed despite those diagnostics. Script errors or export failures still require investigation.
+
+See [Testing](TESTING.md) for functional suites, browser checks, screenshots, and remaining device validation.
+
+## Debug performance capture
+
+Desktop diagnostics: `godot --path . -- --perf`. Sampling is gated by both a debug build and the user argument. For Android development capture, temporarily set the Android preset’s `command_line/extra_args` to `--perf` and export a debug APK; restore that setting for ordinary exports. Collect Godot `PERF` JSON lines from device logs during light/heavy gameplay and a sustained session. CPU/GPU timing support varies by renderer; a reported zero GPU value may be unavailable timing. Compare percentiles/spikes and physical-device responsiveness, not only average FPS. See [measurement limits](PERFORMANCE_PROGRESSION.md). Release exports do not sample or enable render measurement.

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 72" width="540" height="72">
+  <defs>
+    <!-- Boss Frame Gradient -->
+    <linearGradient id="boss-rim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f87171" />
+      <stop offset="40%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#7f1d1d" />
+    </linearGradient>
+
+    <!-- Health Fill Gradient -->
+    <linearGradient id="boss-fill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b91c1c" />
+      <stop offset="50%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#fca5a5" />
+    </linearGradient>
+
+    <!-- Hazard Stripes Pattern -->
+    <pattern id="boss-stripes" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="16" fill="#450a0a" />
+      <rect x="8" width="8" height="16" fill="#7f1d1d" />
+    </pattern>
+
+    <filter id="boss-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#020617" flood-opacity="0.7" />
+    </filter>
+
+    <clipPath id="boss-bar-clip">
+      <polygon points="56,22 494,22 480,50 42,50" />
+    </clipPath>
+  </defs>
+
+  <!-- Hazard Header Plate with BOSS Title -->
+  <g transform="translate(270, 10)">
+    <polygon points="-80,-8 80,-8 70,12 -70,12" fill="#7f1d1d" stroke="#ef4444" stroke-width="1.5" />
+    <text x="0" y="7" font-family="system-ui, sans-serif" font-size="12" font-weight="900" letter-spacing="4" text-anchor="middle" fill="#fee2e2">WARNING: TARGET DETECTED</text>
+  </g>
+
+  <!-- Main Bar Shell -->
+  <g filter="url(#boss-drop)">
+    <!-- Angular Beveled Outer Housing -->
+    <polygon points="46,18 504,18 488,54 30,54" fill="#090d16" stroke="url(#boss-rim)" stroke-width="3" />
+    
+    <!-- Recessed Well with Hazard Pattern -->
+    <polygon points="52,22 498,22 484,50 38,50" fill="url(#boss-stripes)" />
+
+    <!-- Health Fill -->
+    <g clip-path="url(#boss-bar-clip)">
+      <polygon points="42,22 420,22 406,50 42,50" fill="url(#boss-fill)" />
+      <!-- Segment Divider Lines -->
+      <line x1="120" y1="22" x2="114" y2="50" stroke="#000000" stroke-width="2" opacity="0.6" />
+      <line x1="200" y1="22" x2="194" y2="50" stroke="#000000" stroke-width="2" opacity="0.6" />
+      <line x1="280" y1="22" x2="274" y2="50" stroke="#000000" stroke-width="2" opacity="0.6" />
+      <line x1="360" y1="22" x2="354" y2="50" stroke="#000000" stroke-width="2" opacity="0.6" />
+      <!-- Top Sheen -->
+      <polygon points="42,22 494,22 486,34 42,34" fill="#ffffff" opacity="0.3" />
+      <!-- Leading Edge -->
+      <line x1="420" y1="22" x2="406" y2="50" stroke="#ffffff" stroke-width="3" />
+    </g>
+  </g>
+
+  <!-- Left Threat Skull Crest Socket -->
+  <g transform="translate(34, 36)" filter="url(#boss-drop)">
+    <circle cx="0" cy="0" r="22" fill="#7f1d1d" stroke="#fca5a5" stroke-width="2" />
+    <circle cx="0" cy="0" r="18" fill="#090d16" />
+    <!-- Skull Shape -->
+    <path d="M -8 -8 C -8 -14 8 -14 8 -8 C 8 -2 5 2 5 6 L -5 6 C -5 2 -8 -2 -8 -8 Z" fill="#ef4444" />
+    <circle cx="-3" cy="-7" r="1.8" fill="#ffffff" />
+    <circle cx="3" cy="-7" r="1.8" fill="#ffffff" />
+    <line x1="-3" y1="3" x2="-3" y2="6" stroke="#090d16" stroke-width="1.2" />
+    <line x1="0" y1="3" x2="0" y2="6" stroke="#090d16" stroke-width="1.2" />
+    <line x1="3" y1="3" x2="3" y2="6" stroke="#090d16" stroke-width="1.2" />
+  </g>
+
+  <!-- Right Boss Level Indicator -->
+  <g transform="translate(506, 36)" filter="url(#boss-drop)">
+    <circle cx="0" cy="0" r="18" fill="#090d16" stroke="#ef4444" stroke-width="2" />
+    <text x="0" y="5" font-family="system-ui, sans-serif" font-size="12" font-weight="900" text-anchor="middle" fill="#fca5a5">LV9</text>
+  </g>
+</svg>

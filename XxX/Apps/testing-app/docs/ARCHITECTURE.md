@@ -1,141 +1,88 @@
-# Arena Dash: Technical Architecture & Systems Manual
+# Arena Dash architecture
 
-This document provides a comprehensive technical overview of the systems, data models, physics interactions, rendering pipelines, and input architectures within **Arena Dash**.
+Current source reference, updated 2026-10-09. See the [documentation index](README.md) and [localization/control report](LOCALIZATION_CONTROLS.md) for related guides.
 
----
+## Scenes and navigation
 
-## 1. High-Level System Architecture
+`project.godot` starts `scenes/menu.tscn`. The menu opens the hangar, planet campaign, or settings. `scripts/hangar.gd` builds the aircraft showcase, stats, horizontal roster, weapon selection/live preview, progress planet, and deployment action. `scripts/level_select.gd` builds the eight-node campaign route; locked worlds can be inspected but cannot deploy. Preparing a world selects it and returns to the hangar. Deployment opens `scenes/main.tscn`.
 
-Arena Dash utilizes an event-driven, decoupled architecture powered by Godot's node hierarchy, signal bus patterns, and persistent Autoload singletons.
+Combat uses `scripts/main.gd` for arena setup, camera tracking/shake, environmental hazards, and mission reset. `scripts/player.gd` handles CharacterBody2D movement, firing, customization, and damage protection. `enemy.gd`, `enemy_spawner.gd`, and `enemy_shot.gd` implement movement roles, formations, guardians, warning telegraphs, and hostile projectiles. Pickups and moving cover retain their existing spawn/physics systems. `hud.gd` manages mission information, pause/settings, touch controls, and results/progression actions.
 
-```
-+-------------------------------------------------------------------------+
-|                               AUTOLOADS                                 |
-|  [Game (game.gd)]       [SoundEffects (sound_effects.gd)]  [InputSetup] |
-|   - Save / Config         - Real-time Audio Synthesizer     - ActionMap |
-|   - Score & HighScore     - Waveform Generators                         |
-|   - Ship / Weapon / Map   - SFX Signal Listeners                        |
-+-------------------------------------------------------------------------+
-                                    |
-          +-------------------------+-------------------------+
-          |                                                   |
-          v                                                   v
-+-------------------------------+             +-------------------------------+
-|      HANGAR ENTRY SCENE       |             |       MAIN COMBAT ARENA       |
-|      (scenes/hangar.tscn)     |             |       (scenes/main.tscn)      |
-|  - 3D Pseudo-Mesh Carousel    |             |  - Arena Bounds & Background  |
-|  - Real-time Stat Gauges      |             |  - Dynamic Obstacle Spawner   |
-|  - Armory Weapon Systems      |             |  - Wave Enemy Spawner         |
-|  - Mission Deployment Modal   |             |  - Energy Pickup Spawner      |
-|    (%MissionModal)            |             |  - Camera2D Follow & Shake    |
-+-------------------------------+             +-------------------------------+
-                                                              |
-                                           +------------------+------------------+
-                                           |                                     |
-                                           v                                     v
-                            +-----------------------------+       +-----------------------------+
-                            |        PLAYER SHIP          |       |         IN-GAME HUD         |
-                            |    (scenes/player.tscn)     |       |      (scenes/hud.tscn)      |
-                            | - CharacterBody2D Physics   |       | - Ergonomic Top Stat Bar    |
-                            | - Dynamic Weapon Cycler     |       | - Shield/Health Gauge       |
-                            | - Engine Glow / Exhaust     |       | - Floating Touch Joystick   |
-                            | - Invulnerability Buffer    |       | - High-Tech Fire Trigger    |
-                            +-----------------------------+       +-----------------------------+
-```
+There is no live weapon-switch button, special-ability button, or upgrade economy. The weapon loadout is chosen in the hangar before deployment.
 
----
+## Autoloads and shared modules
 
-## 2. Autoload Singletons
+Autoload order matters: `I18n` initializes before `Game`, allowing saved language restoration during Game startup.
 
-### 2.1 `Game` (`scripts/game.gd`)
-The global state coordinator and persistent configuration manager.
-- **State Storage**:
-  - `selected_ship`: `"valkyrie"`, `"phantom"`, `"titan"`
-  - `selected_weapon`: `"plasma"`, `"laser"`, `"quantum"`
-  - `selected_map`: `"cyber"`, `"forest"`, `"space"`, `"random"`
-  - `score`, `high_score`, `multiplier`, `lives`, `shield`
-- **Dynamic Random Sector Routing**:
-  - When `"random"` is selected, `select_map("random")` dynamically samples from `["cyber", "forest", "space"]` before scene instantiation.
-- **Persistence**:
-  - Saves high score and user loadouts to `user://arena_dash_save.cfg` using Godot's `ConfigFile`.
-- **Global Signals**:
-  - `score_changed(new_score)`, `high_score_changed(new_high)`
-  - `lives_changed(new_lives)`, `shield_changed(new_shield, max_shield)`
-  - `ship_selected(ship_id)`, `weapon_selected(weapon_id)`, `map_selected(map_id)`
-  - `game_over`, `game_restarted`
+| Module | Responsibility |
+|---|---|
+| `I18n` / `scripts/i18n.gd` | Load EN/ID JSON catalogs, register Godot translations, format dynamic text, emit language changes |
+| `Game` / `scripts/game.gd` | Aircraft/weapon/map catalogs, selections, score/lives, mission and guardian state, campaign progress, saved preferences |
+| `InputSetup` / `scripts/input_setup.gd` | Register movement, `fire`, and fullscreen actions; handle F11/Alt+Enter |
+| `PerfDiagnostics` / `scripts/perf_diagnostics.gd` | Opt-in debug frame, CPU/GPU, input-to-physics, memory and actor diagnostics; disabled in release |
+| `SoundEffects` / `scripts/sound_effects.gd` | Generate and play synthesized weapon, impact, pickup, and alert sounds |
+| `Campaign` / `scripts/campaign.gd` | Stable world order, planet art, difficulty labels, drone targets, enemy rosters, guardian presence |
+| `ArcadeUI` / `scripts/arcade_ui.gd` | Shared typography, colors, panels, buttons, icons, sliders, focus loops, and dialog creation |
+| `FlightDialog` / `scripts/flight_dialog.gd` | Categorized settings/manual, modal input, focus restoration, prior pause-state restoration |
 
-### 2.2 `SoundEffects` (`scripts/sound_effects.gd`)
-A pure algorithmic sound generator utilizing `AudioStreamGenerator` and `AudioStreamGeneratorPlayback`:
-- **Zero Audio Bloat**: No `.wav` or `.ogg` sound files bundled into the APK/web pack.
-- **Procedural Waveforms**:
-  - **Laser**: High-frequency exponential pitch drop sine waves with high pass filtering.
-  - **Plasma**: Square wave pulse with mild distortion and frequency sweep.
-  - **Quantum Singularity**: Modulated multi-oscillator low-frequency thrum with harmonic sub-bass.
-  - **Explosion**: Band-limited white noise envelope with exponential volume decay.
-  - **Pickup Chime**: Dual-tone musical arpeggio with high resonance.
+Game broadcasts `score_changed`, `lives_changed`, `game_started`, `game_over`, `mission_completed`, `mission_progress_changed`, `boss_status_changed`, selection signals, `ui_mode_changed`, `preferences_changed`, and `screen_shake_requested`.
 
-### 2.3 `InputSetup` (`scripts/input_setup.gd`)
-Ensures that keybindings (`move_left`, `move_right`, `move_up`, `move_down`, `shoot`, `ui_accept`) are registered in `InputMap` at runtime across all targets without requiring hard-coded engine overrides.
+## Campaign and completion
 
----
+| Level | Map ID | Planet | Drone target | Guardian |
+|---|---|---|---:|---|
+| 1 | `cyber` | Cyber Matrix | 16 | No |
+| 2 | `forest` | Primal Jungle | 22 | No |
+| 3 | `space` | Void Horizon | 28 | No |
+| 4 | `coast` | Coastal Front | 34 | Yes |
+| 5 | `desert` | Dune Outpost | 40 | Yes |
+| 6 | `volcano` | Magma Caldera | 46 | Yes |
+| 7 | `glacier` | Glacial Tundra | 52 | Yes |
+| 8 | `toxic` | Toxic Citadel | 58 | Yes |
 
-## 3. The 3D Pseudo-Mesh Simulation (Hangar)
+Targets follow `16 + level_index * 6`. Levels 4–8 require both the drone target and guardian defeat. A surviving completed attempt earns one star, plus one for taking no more than half the selected aircraft’s starting shields (rounded down, minimum one), plus one for meeting the level time limit. Limits for levels 1–8 are **120, 140, 160, 210, 230, 250, 270, 290 seconds**. Both bonus boundaries are inclusive.
 
-The Hangar (`scenes/hangar.tscn`, `scripts/hangar.gd`) provides a 3D showcase using 2D rendering:
-1. **Kinematic Yaw & Pitch**:
-   - As the ship idles or follows swipe gestures, its `scale.x` is modulated via `cos(time * 1.5) * tilt_factor` to simulate rotational perspective.
-   - Dynamic skew and subtle vertical offset `sin(time * 2.0) * 12.0` model natural aerodynamic levitation in zero-g hangars.
-2. **Procedural Engine Glow**:
-   - Starfighter rear engine thrusters use radial gradients with oscillating alpha values `0.7 + 0.3 * sin(time * 15.0)` to emulate high-temperature plasma burn.
-3. **Swipe Gesture Recognizer**:
-   - Tracks touch delta across horizontal axis. Threshold-based triggers cycle the active ship model with spring easing curves (`Tween.TRANS_BACK`, `Tween.EASE_OUT`).
+Only a saved best rating of exactly three stars clears a world. Every earlier world must have three stars before a later world unlocks. One- and two-star attempts are saved, remain replayable, and cannot advance the campaign. Results show the current attempt and saved best separately; Retry is prominent on partial clears and Next is disabled until the current attempt earns three stars. A weaker replay preserves an existing best clear. All related messages support English and Indonesian.
 
----
+`select_level`, `select_map`, mission startup, and completion enforce locks independently of the UI. Random map selection samples only unlocked worlds. Legacy saves retain valid 1–3 star ratings, discard malformed/nonfinite/out-of-range ratings, and recompute the contiguous unlock chain; an orphan later-world three-star rating cannot bypass a missing earlier clear. `last_completed_planet` refers to a valid three-star clear, falling back to the highest contiguous clear when necessary. See [Performance and progression](PERFORMANCE_PROGRESSION.md) for criteria and verification, and the [campaign report](CAMPAIGN_REDESIGN.md) for map/planet asset assignments.
 
-## 4. Mission Sector Deployment Modal Flow
+## Save data
 
-Rather than selecting maps from a static bottom row, map selection is framed as a tactical mission briefing:
-1. Player clicks **"START MISSION"** in the Hangar.
-2. `%MissionModal` fades in with backdrop blur and high-contrast panel frames.
-3. The UI presents 4 tactical sector cards:
-   - **Sector 01 (Cyber Matrix)**: Orbital station graphics, laser barrier hazards.
-   - **Sector 02 (Primal Jungle)**: Continental swirl world, prehistoric raptor obstacles.
-   - **Sector 03 (Void Horizon)**: Asteroid belt nebula, meteor hazard waves.
-   - **Sector 00 (Random Sector Warp)**: Quantum tesseract, unpredictable battlefield.
-4. Player chooses a sector card, then confirms via **"WARP JUMP TO MISSION ❯"**.
-5. `Game.select_map(id)` configures the game parameters and transitions cleanly to `res://scenes/main.tscn`.
+Game writes `user://arena_dash_save.cfg` using `ConfigFile`; tests override `Game.save_path` with project-local files under `build`. Exported Web saves use Godot's browser storage; native saves use the platform-specific user-data directory.
 
----
+| Section | Keys |
+|---|---|
+| `stats` | `high_score` |
+| `settings` | `ship`, `weapon`, `map`, `audio`, `reduced_motion`, `language` |
+| `campaign` | `completed` (world ID → best star count), `last_completed` |
+| `controls` | `layout` (joystick/fire dictionaries) |
 
-## 5. Mobile Ergonomics & Virtual Controls
+Invalid selection IDs fall back to valid defaults; a saved locked map falls back to `cyber`. Control layouts sanitize invalid types/nonfinite positions and clamp size/opacity. Older saves receive default controls and English when no language preference exists. High-score increments mark a dirty flag instead of writing on every kill. Pause/settings, results, defeat, focus loss/backgrounding, hangar return and orderly exit flush dirty scores. Campaign results persist immediately. Other settings save immediately; the editor commits only through Save Layout.
 
-### 5.1 Virtual Joystick (`scripts/joystick.gd`)
-The floating virtual joystick is engineered for extreme touch responsiveness:
-- **Canvas-Space Coordinate Transformation**:
-  - Local touch positions are mapped via `get_global_transform_with_canvas() * event.position`, ensuring pixel-perfect alignment under any DPI scaling or screen aspect ratio.
-- **Touch Index Isolation**:
-  - Captures `event.index` upon `InputEventScreenTouch.pressed` and discards all other finger touches for steering, preventing conflicts with right-thumb firing.
-- **Lifecycle & Focus Resilience**:
-  - Implements `_notification(what)` listening for:
-    - `NOTIFICATION_APPLICATION_FOCUS_OUT`
-    - `NOTIFICATION_WM_WINDOW_FOCUS_OUT`
-    - `NOTIFICATION_APPLICATION_PAUSED`
-  - Immediately resets touch indices, steering vectors, and knob visual coordinates to neutral resting positions if the player minimizes the app or opens system notifications.
+## Localization
 
-### 5.2 Fire Trigger & HUD Positioning
-- The **Fire Button** is offset from the bottom and right edges (`right: 120px`, `bottom: 120px`) with a generous 140px touch radius, preventing thumb fatigue and avoiding Android navigation gestures.
-- The **Health / Shield Bar** and **Score Cards** are mounted inside top-center and top-left safe areas with margin protection for camera punch-holes and notches.
+`localization/en.json` and `localization/id.json` currently contain 199 matching keys. English source strings are stable keys; static controls use Godot automatic translation. Dynamic content calls `I18n.t(key, arguments)` before formatting, then refreshes on `I18n.changed`. Proper aircraft/weapon/planet names remain unchanged.
 
----
+Web locale is also mirrored to localStorage under `arena-dash-language` for the pre-engine loader. `tools/build_web_shell.py` generates `templates/web_shell.html` from the stock shell and the same catalogs. The gameplay save remains the source of truth for in-game preferences. Translation maintenance is described in the [localization report](LOCALIZATION_CONTROLS.md).
 
-## 6. Rendering & Display Configuration
+## Touch layout and modal input
 
-In `project.godot`:
-- **Viewport Dimension**: `1920 × 1080` (Native Full HD).
-- **Stretch Mode**: `canvas_items` (Aspect: `expand`).
-- **Anti-Aliasing**:
-  - `rendering/anti_aliasing/quality/msaa_2d=2` (4x MSAA for ultra-crisp vector edges).
-  - High-DPI support enabled (`display/window/dpi/allow_hidpi=true`).
-- **Web Renderer Fallback**:
-  - Mobile/Desktop builds use Vulkan / Forward+ mobile pipelines.
-  - Web export presets enforce `rendering/renderer/rendering_method.web="gl_compatibility"` to guarantee compatibility with WebGL 2.0 browsers.
+`TouchLayout` stores normalized centers, size multipliers, and opacity for `joystick` and `fire`. Default centers are `(0.12, 0.82)` and `(0.91, 0.82)`. Base diameters are 28% and 19% of viewport height; size ranges 0.8–1.4, opacity 0.35–1.0. Resolved geometry reserves the top 28%, 2.5% horizontal margins, and 3% bottom margin, further intersecting reported Android/iOS display safe areas. Overlap is rejected while dragging; aspect-ratio overlap falls back to separated safe positions.
+
+`ControlLayoutEditor` edits a sanitized copy using separate `LayoutHandle` input scripts. Its selected map/aircraft preview does not run flight logic. Save applies/persists the draft, Cancel preserves live settings, and Reset changes the draft until Save. Preview aspect ratio follows viewport changes.
+
+`TouchFire` and `GameJoystick` own separate finger indices and release held input even when a finger releases outside the hit region. Circular hit regions and joystick travel scale with the layout. Focus loss resets both. Settings opened during flight pause simulation and release/reset input; closing restores the preceding pause state. HUD listens for preference/viewport changes to resolve saved controls. Touch UI appears on native/touchscreen platforms or windows at most 1120 pixels wide; desktop keyboard controls remain available.
+
+## Rendering and assets
+
+Project startup configuration lists a 1920×1080 viewport, but `Game._update_device_detection()` sets the runtime logical canvas to **1280×720**. Landscape windows expand horizontally; portrait windows use aspect-preserving letterboxing. Stretch mode is `canvas_items`; native handheld orientation is landscape. HiDPI and MSAA/screen-space antialiasing are disabled in the current configuration. Native rendering uses Godot's Mobile method; Web uses Compatibility with threading disabled.
+
+Every arena is 6800×4400 units. Sixteen 1700×1100 deterministic `LandscapeChunk` nodes supply biome terrain; offscreen chunks are culled. Existing map images remain proportion-preserved landmarks. Portrait hangar backgrounds fit uniformly and extend with surrounding color/stars rather than stretching. UI artwork is reused from nested supplied assets, with shared code styles for surfaces and interaction states.
+
+The latest [recursive inventory](localization-asset-inventory.json) records 215 source resources. All 208 graphical resources audited before the localization/control refinement remained unchanged. Historical counts in earlier reports refer to their respective implementation phases.
+
+## Simulation and allocation
+
+Simulation runs at 60 fixed physics ticks with interpolation and up to eight catch-up steps. Mission time, pickup bobbing and camera tracking run in physics; the camera follows after actors with one exponential smoothing stage. Movement remains delta-based and firing/spawn timers preserve fractional overshoot. No combat population or visual resolution was reduced.
+
+Scene-owned `CombatPool` prewarms 96 player bullets, 64 hostile shots and 24 particle bursts. Returned instances disable processing/collision and leave active groups; activation resets lifetime, weapon, transform and interpolation. Pool growth preserves effects during bursts, with bounded retained free instances. Weapon/meteor textures and enemy volley angles are cached; HUD objective and boss strings update only when their values change. Pickup spawning pauses at 32 live pickups. Debug diagnostics require `--perf` and allocate no sampling buffers in ordinary runs. See the [measurement report](PERFORMANCE_PROGRESSION.md).

@@ -1,1 +1,122 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><defs><linearGradient id="metal" x2="1" y2="1"><stop stop-color="#dae6ed"/><stop offset=".45" stop-color="#637b8b"/><stop offset=".55" stop-color="#a4b6bf"/><stop offset="1" stop-color="#283f50"/></linearGradient><linearGradient id="glass" x2="0" y2="1"><stop stop-color="#65dfd0"/><stop offset="1" stop-color="#152936"/></linearGradient></defs><polygon points="45,385 165,230 220,155 256,35 292,155 347,230 467,385 380,407 293,335 285,440 320,466 256,452 192,466 227,440 219,335 132,407" fill="#07141e" transform="translate(8 14)" opacity=".45"/><path d="M233 426 L240 490 L252 447 L264 490 L279 426" fill="#65dfd0" opacity=".65"/><polygon points="45,385 165,230 220,155 256,35 292,155 347,230 467,385 380,407 293,335 285,440 320,466 256,452 192,466 227,440 219,335 132,407" fill="url(#metal)" stroke="#d2e0e5" stroke-width="3"/><path d="M256 53 L230 245 L235 414 L277 414 L282 245 Z" fill="#9badb6" stroke="#364b58" stroke-width="3"/><path d="M256 130 Q226 196 238 255 L274 255 Q286 196 256 130" fill="url(#glass)" stroke="#d4eef0" stroke-width="3"/><path d="M90 345 L210 285 M422 345 L302 285 M185 440 L234 414 M327 440 L278 414" stroke="#243f50" stroke-width="5"/><path d="M103 348 L178 321 M409 348 L334 321" stroke="#65dfd0" stroke-width="9"/><path d="M236 350 L247 421 M276 350 L265 421" stroke="#20333d" stroke-width="12"/><path d="M241 410 L247 435 M271 410 L265 435" stroke="#65dfd0" stroke-width="8"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Drop Shadow -->
+    <filter id="aShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- Liquid Silver / Platinum Armor Plates -->
+    <linearGradient id="aArmor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#e2e8f0"/>
+      <stop offset="60%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+
+    <!-- Delta Wing Left -->
+    <linearGradient id="aWingL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="35%" stop-color="#cbd5e1"/>
+      <stop offset="70%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+
+    <!-- Delta Wing Right -->
+    <linearGradient id="aWingR" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="35%" stop-color="#cbd5e1"/>
+      <stop offset="70%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+
+    <!-- Aerodynamic Spine -->
+    <linearGradient id="aSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="30%" stop-color="#94a3b8"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+
+    <!-- Polarized Cobalt Cockpit -->
+    <radialGradient id="aCockpit" cx="42%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="25%" stop-color="#38bdf8"/>
+      <stop offset="60%" stop-color="#0284c7"/>
+      <stop offset="85%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </radialGradient>
+
+    <!-- Cyan Plasma Scramjet Plume -->
+    <radialGradient id="aFlame" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#67e8f9"/>
+      <stop offset="70%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0891b2" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Electric Cyan Sensor Strip -->
+    <linearGradient id="aTeal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#67e8f9"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#aShadow)">
+    <!-- Scramjet Exhaust Flames -->
+    <ellipse cx="226" cy="454" rx="14" ry="50" fill="url(#aFlame)"/>
+    <ellipse cx="286" cy="454" rx="14" ry="50" fill="url(#aFlame)"/>
+    <ellipse cx="226" cy="446" rx="6" ry="24" fill="#ffffff"/>
+    <ellipse cx="286" cy="446" rx="6" ry="24" fill="#ffffff"/>
+
+    <!-- Slender Delta Wings (Broad pure-delta aerodynamic silhouette) -->
+    <!-- Left Wing -->
+    <polygon points="256,70 190,200 36,400 90,410 200,380 216,430" fill="url(#aWingL)" stroke="#1e293b" stroke-width="4" stroke-linejoin="round"/>
+    <!-- Right Wing -->
+    <polygon points="256,70 322,200 476,400 422,410 312,380 296,430" fill="url(#aWingR)" stroke="#1e293b" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- Forward Canards (High-speed control surfaces) -->
+    <polygon points="240,160 160,195 190,225 240,205" fill="#cbd5e1" stroke="#334155" stroke-width="3"/>
+    <polygon points="272,160 352,195 322,225 272,205" fill="#cbd5e1" stroke="#334155" stroke-width="3"/>
+
+    <!-- Wing Surface Recesses & Chimes -->
+    <polygon points="256,80 210,240 80,385 106,396 205,320" fill="#94a3b8" opacity="0.45"/>
+    <polygon points="256,80 302,240 432,385 406,396 307,320" fill="#94a3b8" opacity="0.45"/>
+
+    <!-- Luminous Cyan Identification & Telemetry Stripes -->
+    <polygon points="120,380 148,340 180,336 150,385" fill="url(#aTeal)"/>
+    <polygon points="392,380 364,340 332,336 362,385" fill="url(#aTeal)"/>
+    <line x1="200" y1="260" x2="160" y2="350" stroke="#06b6d4" stroke-width="4"/>
+    <line x1="312" y1="260" x2="352" y2="350" stroke="#06b6d4" stroke-width="4"/>
+
+    <!-- Outer Wingtip Vertical Winglets -->
+    <polygon points="36,400 44,350 56,365 52,404" fill="#0284c7" stroke="#082f49" stroke-width="2"/>
+    <polygon points="476,400 468,350 456,365 460,404" fill="#0284c7" stroke="#082f49" stroke-width="2"/>
+
+    <!-- Long Needle-Nose Blended Fuselage -->
+    <polygon points="256,22 228,150 218,390 236,438 276,438 294,390 284,150" fill="url(#aArmor)" stroke="#1e293b" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- Sleek Central Ridge Spine -->
+    <polygon points="256,30 240,140 236,370 256,410 276,370 272,140" fill="url(#aSpine)"/>
+
+    <!-- Ventral Scramjet Nacelles -->
+    <rect x="214" y="320" width="24" height="110" rx="6" fill="#1e293b" stroke="#06b6d4" stroke-width="2.5"/>
+    <rect x="274" y="320" width="24" height="110" rx="6" fill="#1e293b" stroke="#06b6d4" stroke-width="2.5"/>
+
+    <!-- Elongated Stealth Cockpit Canopy -->
+    <ellipse cx="256" cy="180" rx="16" ry="58" fill="url(#aCockpit)" stroke="#0f172a" stroke-width="3"/>
+    <!-- Specular Reflection -->
+    <path d="M251,130 Q246,175 250,225" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+    <ellipse cx="253" cy="150" rx="4" ry="14" fill="#ffffff" opacity="0.9"/>
+
+    <!-- Hypersonic Needle Pitot Probe -->
+    <line x1="256" y1="5" x2="256" y2="24" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="256" cy="5" r="3" fill="#ffffff"/>
+
+    <!-- Wing Navigation Lights -->
+    <circle cx="48" cy="396" r="4.5" fill="#ef4444"/> <!-- Port Red -->
+    <circle cx="464" cy="396" r="4.5" fill="#22c55e"/> <!-- Starboard Green -->
+    <circle cx="256" cy="432" r="3" fill="#67e8f9"/> <!-- Cyan Strobe -->
+  </g>
+</svg>

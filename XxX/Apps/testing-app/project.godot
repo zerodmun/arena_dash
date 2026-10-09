@@ -11,20 +11,23 @@ config_version=5
 [application]
 
 config/name="Arena Dash"
-run/main_scene="res://scenes/hangar.tscn"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 boot_splash/image="res://assets/splash.png"
-boot_splash/bg_color=Color(0.015, 0.025, 0.05, 1)
+boot_splash/bg_color=Color(0.063, 0.086, 0.188, 1)
 boot_splash/show_image=true
 boot_splash/fullsize=true
 boot_splash/use_filter=true
 
 [autoload]
 
+I18n="*res://scripts/i18n.gd"
+
 Game="*res://scripts/game.gd"
 InputSetup="*res://scripts/input_setup.gd"
 SoundEffects="*res://scripts/sound_effects.gd"
+PerfDiagnostics="*res://scripts/perf_diagnostics.gd"
 
 [display]
 
@@ -33,6 +36,7 @@ window/size/viewport_height=1080
 window/size/mode="fullscreen"
 window/size/resizable=true
 window/dpi/allow_hidpi=false
+window/vsync/vsync_mode=1
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=0
@@ -40,10 +44,14 @@ window/handheld/orientation=0
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+buffering/agile_event_flushing=true
 
 [physics]
 
 2d/default_gravity=0.0
+common/physics_ticks_per_second=60
+common/physics_interpolation=true
+common/max_physics_steps_per_frame=8
 
 [rendering]
 
@@ -52,5 +60,5 @@ renderer/rendering_method.mobile="mobile"
 renderer/rendering_method.web="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 textures/canvas_textures/default_texture_filter=1
-anti_aliasing/quality/msaa_2d=2
-anti_aliasing/quality/screen_space_aa=1
+anti_aliasing/quality/msaa_2d=0
+anti_aliasing/quality/screen_space_aa=0

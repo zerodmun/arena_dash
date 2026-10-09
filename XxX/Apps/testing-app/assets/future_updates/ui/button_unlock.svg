@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72">
+  <defs>
+    <linearGradient id="btn-gold-sq" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="25%" stop-color="#facc15" />
+      <stop offset="70%" stop-color="#eab308" />
+      <stop offset="95%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <filter id="btn-icon-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#020617" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <g filter="url(#btn-icon-drop)">
+    <!-- Base Rim -->
+    <rect x="4" y="4" width="64" height="64" rx="18" fill="#ca8a04" stroke="#78350f" stroke-width="2.5" />
+    <!-- Face -->
+    <rect x="6" y="6" width="60" height="60" rx="16" fill="url(#btn-gold-sq)" stroke="#fef08a" stroke-width="1.2" />
+  </g>
+
+  <!-- Top Sheen -->
+  <path d="M 12 8 Q 36 14 60 8 Q 54 22 36 22 Q 18 22 12 8 Z" fill="#ffffff" opacity="0.45" />
+
+  <!-- Padlock Open Icon -->
+  <g transform="translate(36, 36)">
+    <!-- Shadow -->
+    <g fill="#78350f" stroke="#78350f" opacity="0.6" transform="translate(0, 2)">
+      <path d="M -9 -2 V -12 C -9 -17 7 -17 7 -12 V -8" fill="none" stroke-width="4" stroke-linecap="round" />
+      <rect x="-14" y="-2" width="28" height="20" rx="4" />
+      <circle cx="0" cy="6" r="3" fill="#ca8a04" stroke="none" />
+    </g>
+    <!-- White Foreground -->
+    <path d="M -9 -2 V -12 C -9 -17 7 -17 7 -12 V -8" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+    <rect x="-14" y="-2" width="28" height="20" rx="4" fill="#ffffff" />
+    <circle cx="0" cy="6" r="3" fill="#78350f" />
+    <polygon points="-1,6 1,6 1.5,11 -1.5,11" fill="#78350f" />
+  </g>
+</svg>

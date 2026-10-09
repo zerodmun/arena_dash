@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Elevation Drop Shadow -->
+    <filter id="mShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- Ceramic Solar White Armor Plates -->
+    <linearGradient id="mArmor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#f8fafc"/>
+      <stop offset="70%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+
+    <!-- Solar Gold Wing Left -->
+    <linearGradient id="mWingL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="30%" stop-color="#eab308"/>
+      <stop offset="75%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#713f12"/>
+    </linearGradient>
+
+    <!-- Solar Gold Wing Right -->
+    <linearGradient id="mWingR" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="30%" stop-color="#eab308"/>
+      <stop offset="75%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#713f12"/>
+    </linearGradient>
+
+    <!-- Twin-Boom Fuselage Gradient -->
+    <linearGradient id="mBoom" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="35%" stop-color="#cbd5e1"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+
+    <!-- Prismatic Amber Canopy -->
+    <radialGradient id="mCockpit" cx="42%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#fed7aa"/>
+      <stop offset="60%" stop-color="#f97316"/>
+      <stop offset="85%" stop-color="#c2410c"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </radialGradient>
+
+    <!-- Golden Solar Plasma Flame -->
+    <radialGradient id="mFlame" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#fef08a"/>
+      <stop offset="70%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Coral Red Telemetry Accents -->
+    <linearGradient id="mCoral" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="50%" stop-color="#fb7185"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#mShadow)">
+    <!-- Dual Catamaran Thruster Plumes -->
+    <ellipse cx="178" cy="452" rx="16" ry="50" fill="url(#mFlame)"/>
+    <ellipse cx="334" cy="452" rx="16" ry="50" fill="url(#mFlame)"/>
+    <ellipse cx="178" cy="444" rx="7" ry="24" fill="#ffffff"/>
+    <ellipse cx="334" cy="444" rx="7" ry="24" fill="#ffffff"/>
+
+    <!-- Wide Forward Canards -->
+    <polygon points="256,120 120,135 150,185 240,165" fill="url(#mWingL)" stroke="#713f12" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="256,120 392,135 362,185 272,165" fill="url(#mWingR)" stroke="#713f12" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="120,135 130,120 160,150 140,160" fill="url(#mCoral)"/>
+    <polygon points="392,135 382,120 352,150 372,160" fill="url(#mCoral)"/>
+
+    <!-- Main Mid-Mounted Swept Wings -->
+    <!-- Left Wing -->
+    <polygon points="178,210 40,290 56,360 178,330" fill="url(#mArmor)" stroke="#334155" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Right Wing -->
+    <polygon points="334,210 472,290 456,360 334,330" fill="url(#mArmor)" stroke="#334155" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- Wing Surface Solar Energy Arrays -->
+    <polygon points="170,230 65,295 78,340 168,318" fill="url(#mWingL)" opacity="0.85"/>
+    <polygon points="342,230 447,295 434,340 344,318" fill="url(#mWingR)" opacity="0.85"/>
+
+    <!-- Wingtip Kinetic Vector Pylons -->
+    <rect x="36" y="270" width="8" height="90" rx="4" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+    <circle cx="40" cy="270" r="6" fill="#facc15"/>
+    <rect x="468" y="270" width="8" height="90" rx="4" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+    <circle cx="472" cy="270" r="6" fill="#facc15"/>
+
+    <!-- Horizontal Rear Bridge Wing uniting twin booms -->
+    <polygon points="178,360 334,360 334,410 178,410" fill="url(#mArmor)" stroke="#334155" stroke-width="3"/>
+    <rect x="220" y="375" width="72" height="18" rx="4" fill="#1e293b" stroke="#f43f5e" stroke-width="2"/>
+
+    <!-- Dual Fuselage Booms (Left & Right Catamarans) -->
+    <!-- Left Boom -->
+    <polygon points="178,130 160,240 160,420 178,440 196,420 196,240" fill="url(#mBoom)" stroke="#334155" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="160,340 152,435 168,430 174,350" fill="#ca8a04" stroke="#713f12" stroke-width="2"/>
+    <!-- Right Boom -->
+    <polygon points="334,130 316,240 316,420 334,440 352,420 352,240" fill="url(#mBoom)" stroke="#334155" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="352,340 360,435 344,430 338,350" fill="#ca8a04" stroke="#713f12" stroke-width="2"/>
+
+    <!-- Center Suspended Fuselage & Cockpit Nacelle -->
+    <polygon points="256,40 226,140 224,290 256,325 288,290 286,140" fill="url(#mArmor)" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- Sensor Spine & Nose Probe -->
+    <line x1="256" y1="20" x2="256" y2="45" stroke="#eab308" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="256" cy="20" r="4" fill="#f43f5e"/>
+
+    <!-- Prismatic Cockpit Canopy -->
+    <ellipse cx="256" cy="180" rx="16" ry="54" fill="url(#mCockpit)" stroke="#0f172a" stroke-width="3"/>
+    <!-- Specular Flare -->
+    <path d="M252,138 Q247,175 251,215" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85"/>
+    <ellipse cx="254" cy="154" rx="4" ry="12" fill="#ffffff" opacity="0.9"/>
+
+    <!-- High-G Telemetry Chevrons -->
+    <line x1="240" y1="260" x2="256" y2="280" stroke="#f43f5e" stroke-width="3"/>
+    <line x1="272" y1="260" x2="256" y2="280" stroke="#f43f5e" stroke-width="3"/>
+
+    <!-- Formation Navigation Strobes -->
+    <circle cx="44" cy="355" r="4.5" fill="#ef4444"/>
+    <circle cx="468" cy="355" r="4.5" fill="#22c55e"/>
+    <circle cx="256" cy="320" r="3.5" fill="#facc15"/>
+  </g>
+</svg>

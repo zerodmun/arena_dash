@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Rock surface faceted gradient -->
+    <linearGradient id="rk-sml-main" x1="20%" y1="15%" x2="85%" y2="85%">
+      <stop offset="0%" stop-color="#94a3b8" />
+      <stop offset="35%" stop-color="#64748b" />
+      <stop offset="70%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <linearGradient id="rk-facet-hi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cbd5e1" />
+      <stop offset="100%" stop-color="#64748b" />
+    </linearGradient>
+
+    <linearGradient id="rk-facet-sh" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Mineral crystal vein -->
+    <linearGradient id="rk-vein" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Shadow -->
+  <polygon points="12,18 28,8 48,12 56,30 52,48 38,58 20,54 8,36" fill="#090d16" opacity="0.6" transform="translate(2, 3)" />
+
+  <!-- Main Asteroid Body Silhouette -->
+  <polygon points="12,18 28,8 48,12 56,30 52,48 38,58 20,54 8,36" fill="url(#rk-sml-main)" stroke="#0f172a" stroke-width="2" stroke-linejoin="round" />
+
+  <!-- Faceted Surface Planes -->
+  <!-- Upper Left Facet (Light lit) -->
+  <polygon points="12,18 28,8 34,22 18,28" fill="url(#rk-facet-hi)" opacity="0.9" />
+  
+  <!-- Upper Right Facet -->
+  <polygon points="28,8 48,12 42,26 34,22" fill="#94a3b8" opacity="0.75" />
+
+  <!-- Far Right Facet (Shadowed) -->
+  <polygon points="48,12 56,30 46,38 42,26" fill="url(#rk-facet-sh)" opacity="0.8" />
+
+  <!-- Center Plateau -->
+  <polygon points="34,22 42,26 46,38 32,44 18,28" fill="#475569" />
+
+  <!-- Lower Left Facet -->
+  <polygon points="12,18 18,28 32,44 20,54 8,36" fill="#334155" />
+
+  <!-- Bottom Shadow Facet -->
+  <polygon points="32,44 46,38 52,48 38,58 20,54" fill="url(#rk-facet-sh)" />
+
+  <!-- Impact Craters -->
+  <ellipse cx="26" cy="34" rx="4" ry="3" fill="#1e293b" />
+  <ellipse cx="25" cy="33" rx="3" ry="2" fill="#0f172a" />
+  <path d="M 22 34 A 4 3 0 0 0 30 34" fill="none" stroke="#94a3b8" stroke-width="0.8" />
+
+  <ellipse cx="44" cy="20" rx="3" ry="2" fill="#1e293b" />
+  <path d="M 41 20 A 3 2 0 0 0 47 20" fill="none" stroke="#cbd5e1" stroke-width="0.7" />
+
+  <!-- Glowing Cyan Sci-Fi Mineral Crack / Vein -->
+  <path d="M 28 8 L 34 22 L 32 30 L 38 36" fill="none" stroke="url(#rk-vein)" stroke-width="1.2" stroke-linecap="round" />
+  <circle cx="32" cy="30" r="1.5" fill="#bae6fd" />
+</svg>

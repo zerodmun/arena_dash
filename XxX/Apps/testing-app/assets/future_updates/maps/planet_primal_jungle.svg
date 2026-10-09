@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <!-- Drop Shadow -->
+    <filter id="pShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="8" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- Emerald Planet Gradient -->
+    <radialGradient id="emeraldOrb" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#86efac"/>
+      <stop offset="55%" stop-color="#22c55e"/>
+      <stop offset="80%" stop-color="#15803d"/>
+      <stop offset="100%" stop-color="#052e16"/>
+    </radialGradient>
+
+    <!-- Translucent Atmosphere Orbital Bubble Ring -->
+    <linearGradient id="bubbleRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.85"/>
+      <stop offset="35%" stop-color="#22d3ee" stop-opacity="0.45"/>
+      <stop offset="70%" stop-color="#06b6d4" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#a5f3fc" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <filter id="emeraldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Atmospheric Glow Halo -->
+  <circle cx="128" cy="128" r="95" fill="#4ade80" opacity="0.3" filter="url(#emeraldGlow)"/>
+
+  <!-- Back Half of Atmosphere Orbital Ring -->
+  <path d="M 40,110 C 35,60 215,60 220,110 C 220,135 195,145 180,140" fill="none" stroke="url(#bubbleRing)" stroke-width="26" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Main Emerald Planet Sphere -->
+  <g filter="url(#pShadow)">
+    <circle cx="128" cy="128" r="76" fill="url(#emeraldOrb)" stroke="#4ade80" stroke-width="2.5"/>
+
+    <!-- Organic Surface Striations & Bio-Canopy Bands -->
+    <path d="M 62,110 C 90,95 160,105 194,120" fill="none" stroke="#16a34a" stroke-width="7" opacity="0.6"/>
+    <path d="M 68,145 C 95,130 165,140 192,150" fill="none" stroke="#14532d" stroke-width="9" opacity="0.7"/>
+    <path d="M 85,175 C 110,165 150,170 175,175" fill="none" stroke="#052e16" stroke-width="6" opacity="0.8"/>
+
+    <!-- Specular Highlight Crest -->
+    <path d="M 75,85 C 95,65 145,65 165,80" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+  </g>
+
+  <!-- Front Half of Atmosphere Orbital Bubble Ring with Liquid Drops -->
+  <path d="M 35,130 C 35,185 220,185 220,130" fill="none" stroke="url(#bubbleRing)" stroke-width="24" stroke-linecap="round" filter="url(#emeraldGlow)"/>
+  <path d="M 45,135 C 55,175 205,175 212,135" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Satellite Atmosphere Droplets / Bubbles -->
+  <circle cx="48" cy="115" r="14" fill="#a5f3fc" stroke="#06b6d4" stroke-width="2" opacity="0.9"/>
+  <circle cx="44" cy="112" r="4" fill="#ffffff"/>
+  <circle cx="206" cy="145" r="12" fill="#a5f3fc" stroke="#06b6d4" stroke-width="2" opacity="0.9"/>
+  <circle cx="203" cy="142" r="3.5" fill="#ffffff"/>
+</svg>

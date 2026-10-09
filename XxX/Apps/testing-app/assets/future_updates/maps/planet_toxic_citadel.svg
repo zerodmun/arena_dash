@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Cyan/green cybernetic atmospheric aura -->
+    <radialGradient id="tx-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#06b6d4" stop-opacity="0.3" />
+      <stop offset="85%" stop-color="#10b981" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#022c22" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Titanium cyber-metallic sphere gradient -->
+    <radialGradient id="tx-hull" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#f1f5f9" />
+      <stop offset="25%" stop-color="#cbd5e1" />
+      <stop offset="55%" stop-color="#64748b" />
+      <stop offset="80%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </radialGradient>
+
+    <!-- Dark aperture chamber -->
+    <radialGradient id="tx-aperture" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="60%" stop-color="#020617" />
+      <stop offset="100%" stop-color="#000000" />
+    </radialGradient>
+
+    <!-- Glowing optic core -->
+    <radialGradient id="tx-lens" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#a7f3d0" />
+      <stop offset="35%" stop-color="#10b981" />
+      <stop offset="70%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </radialGradient>
+
+    <!-- Cyber panel rim highlight -->
+    <linearGradient id="tx-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <clipPath id="tx-sphere-clip">
+      <circle cx="64" cy="64" r="54" />
+    </clipPath>
+  </defs>
+
+  <!-- Aura Glow -->
+  <circle cx="64" cy="64" r="62" fill="url(#tx-glow)" />
+
+  <!-- Base Spherical Metal Shell -->
+  <circle cx="64" cy="64" r="54" fill="url(#tx-hull)" />
+
+  <!-- Mechanical Panels & Seams (Clipped) -->
+  <g clip-path="url(#tx-sphere-clip)">
+    <!-- Circumferential plating seams -->
+    <path d="M 10 64 H 118" stroke="#1e293b" stroke-width="2.2" />
+    <path d="M 64 10 V 118" stroke="#1e293b" stroke-width="2.2" />
+    <path d="M 22 32 C 44 48 84 48 106 32" fill="none" stroke="#334155" stroke-width="1.8" />
+    <path d="M 22 96 C 44 80 84 80 106 96" fill="none" stroke="#1e293b" stroke-width="2" />
+
+    <!-- Hex/Segment plates -->
+    <polygon points="26,45 38,45 44,55 38,65 26,65 20,55" fill="#475569" opacity="0.6" stroke="#1e293b" stroke-width="1" />
+    <polygon points="90,45 102,45 108,55 102,65 90,65 84,55" fill="#475569" opacity="0.6" stroke="#1e293b" stroke-width="1" />
+
+    <!-- Neon Circuit Traces -->
+    <path d="M 24 55 H 44 L 54 64" fill="none" stroke="#22d3ee" stroke-width="1.2" opacity="0.8" />
+    <path d="M 104 55 H 84 L 74 64" fill="none" stroke="#22d3ee" stroke-width="1.2" opacity="0.8" />
+    <path d="M 64 24 V 40" fill="none" stroke="#34d399" stroke-width="1.4" opacity="0.9" />
+    <path d="M 64 88 V 104" fill="none" stroke="#34d399" stroke-width="1.4" opacity="0.9" />
+
+    <!-- Huge Central Robotic Sensor / Citadel Eye Aperture -->
+    <circle cx="64" cy="64" r="26" fill="url(#tx-aperture)" stroke="#475569" stroke-width="3" />
+    <circle cx="64" cy="64" r="23" fill="none" stroke="#0f172a" stroke-width="1.5" />
+
+    <!-- Metallic Aperture Diaphragm Leaves -->
+    <polygon points="64,41 77,50 64,55" fill="#1e293b" />
+    <polygon points="87,64 78,77 73,64" fill="#334155" />
+    <polygon points="64,87 51,78 64,73" fill="#1e293b" />
+    <polygon points="41,64 50,51 55,64" fill="#334155" />
+
+    <!-- Sensor Iris & Core Glow -->
+    <circle cx="64" cy="64" r="14" fill="url(#tx-lens)" stroke="#6ee7b7" stroke-width="1.5" />
+    <!-- Pupil / Targeting Crosshair Reticle -->
+    <circle cx="64" cy="64" r="5" fill="#022c22" />
+    <circle cx="62" cy="62" r="2" fill="#ffffff" opacity="0.9" />
+    <line x1="64" y1="52" x2="64" y2="56" stroke="#a7f3d0" stroke-width="1.2" />
+    <line x1="64" y1="72" x2="64" y2="76" stroke="#a7f3d0" stroke-width="1.2" />
+    <line x1="52" y1="64" x2="56" y2="64" stroke="#a7f3d0" stroke-width="1.2" />
+    <line x1="72" y1="64" x2="76" y2="64" stroke="#a7f3d0" stroke-width="1.2" />
+
+    <!-- Bottom Crescent Shadow -->
+    <path d="M 10 64 A 54 54 0 0 0 118 64 A 54 44 0 0 1 10 64 Z" fill="#020617" opacity="0.65" />
+
+    <!-- Specular Highlight Crest -->
+    <path d="M 22 40 A 54 54 0 0 1 76 13" fill="none" stroke="#ffffff" stroke-width="2.2" opacity="0.6" stroke-linecap="round" />
+  </g>
+</svg>

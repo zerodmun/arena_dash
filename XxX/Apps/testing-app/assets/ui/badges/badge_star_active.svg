@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Radiant gold 3D star gradient -->
+    <linearGradient id="star-act-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#facc15" />
+      <stop offset="90%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <radialGradient id="star-act-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="30%" stop-color="#facc15" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="star-act-drop" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#78350f" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Aura Glow -->
+  <circle cx="32" cy="32" r="30" fill="url(#star-act-glow)" />
+
+  <g filter="url(#star-act-drop)">
+    <!-- Dark Outline / Bevel Underlay -->
+    <polygon points="32,6 40,22 58,23 44,35 48,53 32,44 16,53 20,35 6,23 24,22" 
+             fill="#78350f" stroke="#78350f" stroke-width="3" stroke-linejoin="round" />
+
+    <!-- Main Gold Star Body -->
+    <polygon points="32,6 40,22 58,23 44,35 48,53 32,44 16,53 20,35 6,23 24,22" 
+             fill="url(#star-act-gold)" stroke="#fef08a" stroke-width="1" stroke-linejoin="round" />
+  </g>
+
+  <!-- 3D Facet Shading on Left Halves -->
+  <polygon points="32,6 40,22 32,34" fill="#ffffff" opacity="0.4" />
+  <polygon points="58,23 44,35 32,34" fill="#ca8a04" opacity="0.3" />
+  <polygon points="48,53 32,44 32,34" fill="#a16207" opacity="0.4" />
+  <polygon points="16,53 20,35 32,34" fill="#ca8a04" opacity="0.3" />
+  <polygon points="6,23 24,22 32,34" fill="#ffffff" opacity="0.35" />
+
+  <!-- Specular Sparkle Glint -->
+  <circle cx="28" cy="18" r="2.5" fill="#ffffff" />
+</svg>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <!-- Drop Shadow -->
+    <filter id="pShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="8" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+
+    <!-- Deep Violet/Pink Core -->
+    <radialGradient id="voidCore" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fbcfe8"/>
+      <stop offset="30%" stop-color="#f472b6"/>
+      <stop offset="65%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </radialGradient>
+
+    <!-- Cyan Crystalline Crust Plate -->
+    <linearGradient id="crystalPlate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#a5f3fc"/>
+      <stop offset="60%" stop-color="#38bdf8"/>
+      <stop offset="90%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0c4a6e"/>
+    </linearGradient>
+
+    <filter id="iceGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Atmospheric Glow Halo -->
+  <circle cx="128" cy="128" r="95" fill="#38bdf8" opacity="0.3" filter="url(#iceGlow)"/>
+
+  <!-- Core Sphere Beneath Plates -->
+  <g filter="url(#pShadow)">
+    <circle cx="128" cy="128" r="78" fill="url(#voidCore)" stroke="#c084fc" stroke-width="2.5"/>
+
+    <!-- Shattered Floating Geometric Crystalline Plates (Cyan / Ice Blue) -->
+    <!-- Plate Top Left -->
+    <polygon points="80,60 120,45 130,85 85,95" fill="url(#crystalPlate)" stroke="#0c4a6e" stroke-width="3"/>
+    <polygon points="80,60 120,45 105,75" fill="#ffffff" opacity="0.6"/>
+
+    <!-- Plate Top Right -->
+    <polygon points="145,50 185,65 175,105 135,90" fill="url(#crystalPlate)" stroke="#0c4a6e" stroke-width="3"/>
+    <polygon points="145,50 185,65 160,85" fill="#ffffff" opacity="0.6"/>
+
+    <!-- Plate Far Right -->
+    <polygon points="190,90 220,115 205,155 175,130" fill="url(#crystalPlate)" stroke="#0c4a6e" stroke-width="3"/>
+
+    <!-- Plate Center Floating -->
+    <polygon points="105,110 155,100 170,145 115,160" fill="url(#crystalPlate)" stroke="#0c4a6e" stroke-width="3.5"/>
+    <polygon points="105,110 155,100 135,135" fill="#ffffff" opacity="0.75"/>
+
+    <!-- Plate Far Left -->
+    <polygon points="50,115 85,100 95,145 60,165" fill="url(#crystalPlate)" stroke="#0c4a6e" stroke-width="3"/>
+
+    <!-- Plate Bottom Left -->
+    <polygon points="65,180 110,165 125,205 85,215" fill="url(#crystalPlate)" stroke="#0c4a6e" stroke-width="3"/>
+
+    <!-- Plate Bottom Right -->
+    <polygon points="140,165 185,150 200,195 155,210" fill="url(#crystalPlate)" stroke="#0c4a6e" stroke-width="3"/>
+
+    <!-- Plate Bottom Center Floating Chunk -->
+    <polygon points="110,210 150,210 135,235" fill="url(#crystalPlate)" stroke="#0c4a6e" stroke-width="2.5"/>
+
+    <!-- Floating Sub-Orbit Crystal Shards -->
+    <polygon points="40,90 52,82 48,102" fill="#67e8f9" stroke="#0284c7" stroke-width="1.5"/>
+    <polygon points="215,60 226,72 210,80" fill="#67e8f9" stroke="#0284c7" stroke-width="1.5"/>
+    <polygon points="210,175 224,185 208,198" fill="#67e8f9" stroke="#0284c7" stroke-width="1.5"/>
+  </g>
+</svg>

@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Volcanic Night Sky -->
+    <linearGradient id="volcanoSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a0503"/>
+      <stop offset="35%" stop-color="#2a0a04"/>
+      <stop offset="70%" stop-color="#5a1505"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+
+    <!-- Molten Lava Flow -->
+    <linearGradient id="lavaFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f97316"/>
+      <stop offset="80%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+
+    <!-- Obsidian Basalt Crust -->
+    <linearGradient id="basaltRock" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3f3f46"/>
+      <stop offset="35%" stop-color="#27272a"/>
+      <stop offset="75%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+
+    <!-- Intense Thermal Glow -->
+    <filter id="lavaGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Volcanic Sky -->
+  <rect width="512" height="512" rx="28" fill="url(#volcanoSky)"/>
+
+  <!-- Distant Ash Clouds & Pyroclastic Smoke -->
+  <ellipse cx="140" cy="110" rx="90" ry="45" fill="#18181b" opacity="0.65"/>
+  <ellipse cx="256" cy="90" rx="120" ry="55" fill="#27272a" opacity="0.75"/>
+  <ellipse cx="380" cy="115" rx="95" ry="45" fill="#18181b" opacity="0.65"/>
+
+  <!-- Volcanic Crags in Horizon -->
+  <polygon points="40,210 110,140 180,220" fill="#27272a"/>
+  <polygon points="150,230 256,120 360,240" fill="#1c1917"/>
+  <polygon points="330,220 420,135 480,210" fill="#27272a"/>
+
+  <!-- Caldera Crater Rim -->
+  <path d="M-20,260 Q130,200 270,250 T530,220 L530,530 L-20,530 Z" fill="url(#basaltRock)"/>
+
+  <!-- Glowing Molten Lava River System -->
+  <!-- Wide Primary Lava River -->
+  <path d="M-20,380 Q140,280 260,360 T530,310 L530,410 Q380,440 240,430 T-20,440 Z" fill="url(#lavaFlow)" filter="url(#lavaGlow)"/>
+
+  <!-- Inner High-Heat Core Stream -->
+  <path d="M-10,395 Q140,305 260,375 T520,335" fill="none" stroke="#fef08a" stroke-width="12" filter="url(#lavaGlow)"/>
+  <path d="M-10,395 Q140,305 260,375 T520,335" fill="none" stroke="#ffffff" stroke-width="4"/>
+
+  <!-- Branching Tributary Lava Crevasses -->
+  <path d="M120,240 Q160,290 190,340" fill="none" stroke="#f97316" stroke-width="5" filter="url(#lavaGlow)"/>
+  <path d="M380,230 Q350,280 320,340" fill="none" stroke="#f97316" stroke-width="5" filter="url(#lavaGlow)"/>
+  <path d="M220,430 Q260,480 270,520" fill="none" stroke="#f97316" stroke-width="6" filter="url(#lavaGlow)"/>
+  <path d="M380,410 Q420,460 450,510" fill="none" stroke="#f97316" stroke-width="6" filter="url(#lavaGlow)"/>
+
+  <!-- Basalt Crust Islands in Lava -->
+  <polygon points="110,360 160,345 180,385 130,395" fill="url(#basaltRock)" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="340,340 400,330 420,370 360,380" fill="url(#basaltRock)" stroke="#ef4444" stroke-width="2"/>
+  <polygon points="230,380 290,370 300,410 240,415" fill="url(#basaltRock)" stroke="#ef4444" stroke-width="2"/>
+
+  <!-- Foreground Jagged Obsidian Shelf -->
+  <path d="M-20,460 Q160,420 340,470 T530,440 L530,530 L-20,530 Z" fill="#09090b"/>
+  <path d="M-20,460 Q160,420 340,470 T530,440" fill="none" stroke="#f97316" stroke-width="2.5" opacity="0.8"/>
+
+  <!-- Thermal Venting Pylons / Obelisks -->
+  <g transform="translate(80, 240)">
+    <polygon points="16,0 8,60 24,60" fill="#18181b" stroke="#f97316" stroke-width="2"/>
+    <circle cx="16" cy="0" r="5" fill="#fef08a" filter="url(#lavaGlow)"/>
+  </g>
+  <g transform="translate(420, 220)">
+    <polygon points="16,0 8,60 24,60" fill="#18181b" stroke="#f97316" stroke-width="2"/>
+    <circle cx="16" cy="0" r="5" fill="#fef08a" filter="url(#lavaGlow)"/>
+  </g>
+
+  <!-- Glowing Embers & Magma Sparks -->
+  <g fill="#fef08a" opacity="0.85">
+    <circle cx="90" cy="180" r="2.5" filter="url(#lavaGlow)"/>
+    <circle cx="170" cy="160" r="2" filter="url(#lavaGlow)"/>
+    <circle cx="230" cy="200" r="3" filter="url(#lavaGlow)"/>
+    <circle cx="310" cy="170" r="2" filter="url(#lavaGlow)"/>
+    <circle cx="430" cy="190" r="2.5" filter="url(#lavaGlow)"/>
+    <circle cx="260" cy="130" r="2.5" filter="url(#lavaGlow)"/>
+  </g>
+
+  <!-- Perimeter Frame -->
+  <rect x="2" y="2" width="508" height="508" rx="26" fill="none" stroke="#ef4444" stroke-width="2" opacity="0.4"/>
+</svg>

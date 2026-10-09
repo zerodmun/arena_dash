@@ -1,1 +1,120 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="300"><rect width="512" height="300" rx="20" fill="#176172"/><path d="M0 70 Q130 180 230 80 T512 100 L512 300 H0Z" fill="#dcc99b"/><path d="M0 90 Q130 200 230 100 T512 120" fill="none" stroke="#ffffff" opacity=".3" stroke-width="6"/><path d="M10 230 Q150 120 270 220 T520 200" fill="none" stroke="#654c36" opacity=".4" stroke-width="12"/><rect x="310" y="180" width="80" height="40" rx="5" fill="#384651" transform="rotate(-20 350 200)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Deep Ocean Gradient -->
+    <radialGradient id="oceanGrad" cx="30%" cy="30%" r="85%">
+      <stop offset="0%" stop-color="#0d9488"/>
+      <stop offset="35%" stop-color="#0891b2"/>
+      <stop offset="70%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </radialGradient>
+
+    <!-- Sand Gradient -->
+    <linearGradient id="sandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#fde047"/>
+      <stop offset="75%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#854d0e"/>
+    </linearGradient>
+
+    <!-- Shallow Water Shimmer -->
+    <linearGradient id="shallowShimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#5eead4" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Cargo Metal -->
+    <linearGradient id="cargoMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="50%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- Soft Glow Filter -->
+    <filter id="coastalGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Deep Ocean Base -->
+  <rect width="512" height="512" rx="28" fill="url(#oceanGrad)"/>
+
+  <!-- Submerged Coral Reefs & Sandbars (Layer 1) -->
+  <path d="M-20,120 Q120,40 280,110 T530,90 L530,530 L-20,530 Z" fill="#14b8a6" opacity="0.35"/>
+  <path d="M-20,180 Q140,110 310,180 T530,160 L530,530 L-20,530 Z" fill="#2dd4bf" opacity="0.45"/>
+
+  <!-- Shallow Turquoise Water Rim (Layer 2) -->
+  <path d="M-20,240 Q160,170 330,250 T530,220 L530,530 L-20,530 Z" fill="url(#shallowShimmer)"/>
+
+  <!-- Wave Breaking Surf Lines (Layer 3) -->
+  <path d="M0,232 Q155,164 325,244 T512,214" fill="none" stroke="#ffffff" stroke-width="4.5" opacity="0.75" filter="url(#coastalGlow)"/>
+  <path d="M0,224 Q155,158 325,236 T512,206" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+
+  <!-- Golden Coastal Shoreline & Dunes (Layer 4) -->
+  <path d="M-20,270 Q140,210 320,280 T530,250 L530,530 L-20,530 Z" fill="url(#sandGrad)"/>
+
+  <!-- Inland Sand Ridges & Vegetation Contours -->
+  <path d="M-20,350 Q160,300 360,370 T530,340 L530,530 L-20,530 Z" fill="#b45309" opacity="0.25"/>
+  <path d="M-20,430 Q180,390 380,440 T530,420 L530,530 L-20,530 Z" fill="#78350f" opacity="0.3"/>
+
+  <!-- Archipelago Islands in Shallows -->
+  <ellipse cx="140" cy="110" rx="42" ry="24" fill="#2dd4bf" opacity="0.5"/>
+  <ellipse cx="140" cy="110" rx="32" ry="18" fill="url(#sandGrad)"/>
+  <circle cx="135" cy="108" r="8" fill="#15803d" opacity="0.8"/> <!-- Palm cluster -->
+
+  <ellipse cx="390" cy="80" rx="36" ry="20" fill="#2dd4bf" opacity="0.5"/>
+  <ellipse cx="390" cy="80" rx="26" ry="14" fill="url(#sandGrad)"/>
+  <circle cx="392" cy="78" r="6" fill="#15803d" opacity="0.8"/>
+
+  <!-- Ocean Waves Animated Ripples -->
+  <g stroke="#ffffff" stroke-width="2" opacity="0.4" stroke-linecap="round">
+    <path d="M40,60 Q60,55 80,60"/>
+    <path d="M220,70 Q240,65 260,70"/>
+    <path d="M320,40 Q340,35 360,40"/>
+    <path d="M70,140 Q95,134 120,140"/>
+    <path d="M250,150 Q280,144 310,150"/>
+    <path d="M440,130 Q465,124 490,130"/>
+  </g>
+
+  <!-- Offshore Tactical Cargo Platform 1 -->
+  <g transform="translate(190, 200) rotate(-12)">
+    <!-- Drop Shadow -->
+    <rect x="-4" y="6" width="96" height="48" rx="6" fill="#000000" opacity="0.4"/>
+    <!-- Platform Base -->
+    <rect x="0" y="0" width="96" height="48" rx="6" fill="url(#cargoMetal)" stroke="#94a3b8" stroke-width="2.5"/>
+    <!-- Shipping Containers -->
+    <rect x="6" y="6" width="38" height="16" rx="2" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+    <rect x="48" y="6" width="40" height="16" rx="2" fill="#f97316" stroke="#fb923c" stroke-width="1.5"/>
+    <rect x="6" y="26" width="48" height="16" rx="2" fill="#10b981" stroke="#34d399" stroke-width="1.5"/>
+    <!-- Yellow Warning Stripe -->
+    <rect x="58" y="28" width="30" height="12" fill="#facc15"/>
+    <line x1="64" y1="28" x2="60" y2="40" stroke="#1e293b" stroke-width="2"/>
+    <line x1="72" y1="28" x2="68" y2="40" stroke="#1e293b" stroke-width="2"/>
+    <line x1="80" y1="28" x2="76" y2="40" stroke="#1e293b" stroke-width="2"/>
+  </g>
+
+  <!-- Offshore Tactical Cargo Platform 2 -->
+  <g transform="translate(340, 290) rotate(16)">
+    <rect x="-4" y="6" width="88" height="44" rx="6" fill="#000000" opacity="0.4"/>
+    <rect x="0" y="0" width="88" height="44" rx="6" fill="url(#cargoMetal)" stroke="#94a3b8" stroke-width="2.5"/>
+    <rect x="6" y="6" width="44" height="15" rx="2" fill="#dc2626" stroke="#f87171" stroke-width="1.5"/>
+    <rect x="54" y="6" width="28" height="15" rx="2" fill="#eab308" stroke="#fef08a" stroke-width="1.5"/>
+    <rect x="6" y="24" width="76" height="15" rx="2" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+  </g>
+
+  <!-- Coastal Radar Defense Beacon Tower -->
+  <g transform="translate(90, 360)">
+    <!-- Base Pad -->
+    <circle cx="20" cy="20" r="28" fill="#1e293b" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="20" cy="20" r="16" fill="#475569"/>
+    <!-- Pylon Frame -->
+    <rect x="16" y="4" width="8" height="32" fill="#94a3b8"/>
+    <!-- Blinking Beacon Light -->
+    <circle cx="20" cy="20" r="7" fill="#38bdf8" filter="url(#coastalGlow)"/>
+    <circle cx="20" cy="20" r="3" fill="#ffffff"/>
+  </g>
+
+  <!-- Border Perimeter Frame -->
+  <rect x="2" y="2" width="508" height="508" rx="26" fill="none" stroke="#2dd4bf" stroke-width="2" opacity="0.4"/>
+</svg>

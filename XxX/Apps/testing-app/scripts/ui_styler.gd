@@ -1,8 +1,6 @@
 class_name UIStyler
 extends RefCounted
-## UIStyler: Enforces hardcoded, high-contrast typography and element metrics.
-## Completely bypasses phone OS system settings (accessibility font scale, DPI overrides)
-## to guarantee identical, crisp, professional visuals across mobile devices and browsers.
+## Compatibility helpers for the shared flight-console theme.
 
 # Base Theme Colors
 const COLOR_CYAN := Color(0.22, 0.74, 1.0)
@@ -15,10 +13,11 @@ const COLOR_RED := Color(1.0, 0.35, 0.4)
 const COLOR_GREEN := Color(0.25, 0.9, 0.55)
 
 
-static func style_label(label: Label, size: int, color: Color = COLOR_WHITE, outline: int = 5, outline_col: Color = COLOR_OUTLINE) -> void:
+static func style_label(label: Label, size: int, color: Color = COLOR_WHITE, outline: int = 2, outline_col: Color = COLOR_OUTLINE) -> void:
 	if label == null:
 		return
-	label.add_theme_font_size_override("font_size", size)
+	label.add_theme_font_override("font",ThemeDB.fallback_font)
+	label.add_theme_font_size_override("font_size", maxi(size,16))
 	label.add_theme_color_override("font_color", color)
 	label.add_theme_constant_override("outline_size", outline)
 	label.add_theme_color_override("font_outline_color", outline_col)
@@ -49,21 +48,17 @@ static func style_body(label: Label, is_mobile: bool, color: Color = COLOR_SUBTE
 
 
 static func style_button(button: Button, font_size: int, text_color: Color = COLOR_WHITE, min_height: int = 64) -> void:
-	if button == null:
-		return
-	button.add_theme_font_size_override("font_size", font_size)
-	button.add_theme_color_override("font_color", text_color)
-	button.add_theme_constant_override("outline_size", 4)
-	button.add_theme_color_override("font_outline_color", COLOR_OUTLINE)
-	if min_height > 0:
-		button.custom_minimum_size.y = maxf(button.custom_minimum_size.y, float(min_height))
+	if button == null: return
+	ArcadeUI.style_button(button)
+	button.add_theme_font_size_override("font_size",font_size)
+	button.custom_minimum_size.y=maxf(button.custom_minimum_size.y,min_height)
 
 
 static func style_badge(label: Label, text_color: Color, is_mobile: bool) -> void:
 	if label == null:
 		return
 	var sz := 20 if is_mobile else 16
-	style_label(label, sz, text_color, 5, COLOR_OUTLINE)
+	style_label(label, sz, text_color, 2, ArcadeUI.INK)
 
 
 static func style_weapon_chip(btn: Button, is_selected: bool, color: Color) -> void:

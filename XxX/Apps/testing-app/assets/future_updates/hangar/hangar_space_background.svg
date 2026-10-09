@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs>
+    <!-- Deep Space Sky Gradient -->
+    <linearGradient id="sp-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#020617" />
+      <stop offset="25%" stop-color="#0b0f2a" />
+      <stop offset="50%" stop-color="#1e1145" />
+      <stop offset="75%" stop-color="#2a0845" />
+      <stop offset="100%" stop-color="#090a1a" />
+    </linearGradient>
+
+    <!-- Nebula Cloud Gradients -->
+    <radialGradient id="sp-neb-1" cx="30%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.35" />
+      <stop offset="50%" stop-color="#a855f7" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="sp-neb-2" cx="70%" cy="75%" r="55%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0.25" />
+      <stop offset="45%" stop-color="#8b5cf6" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="sp-neb-3" cx="60%" cy="20%" r="40%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Giant Moon / Terrestrial Horizon Sphere -->
+    <radialGradient id="sp-giant-planet" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#93c5fd" />
+      <stop offset="35%" stop-color="#3b82f6" />
+      <stop offset="70%" stop-color="#1d4ed8" />
+      <stop offset="90%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+
+    <!-- Atmosphere Rim Glow -->
+    <radialGradient id="sp-atmos-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="75%" stop-color="#38bdf8" stop-opacity="0" />
+      <stop offset="92%" stop-color="#60a5fa" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.8" />
+    </radialGradient>
+
+    <!-- Small Gas Giant -->
+    <radialGradient id="sp-gas-planet" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="40%" stop-color="#f97316" />
+      <stop offset="85%" stop-color="#7c2d12" />
+      <stop offset="100%" stop-color="#1c1917" />
+    </radialGradient>
+  </defs>
+
+  <!-- Deep Cosmic Canvas -->
+  <rect width="1080" height="1920" fill="url(#sp-bg)" />
+
+  <!-- Cosmic Nebula Layers -->
+  <rect width="1080" height="1920" fill="url(#sp-neb-1)" />
+  <rect width="1080" height="1920" fill="url(#sp-neb-2)" />
+  <rect width="1080" height="1920" fill="url(#sp-neb-3)" />
+
+  <!-- Background Starfield Dense Scatter -->
+  <g fill="#ffffff">
+    <!-- Bright Twinkling Stars -->
+    <circle cx="120" cy="180" r="2.5" opacity="0.9" />
+    <circle cx="280" cy="90" r="1.5" opacity="0.7" />
+    <circle cx="450" cy="220" r="3" opacity="0.95" />
+    <circle cx="780" cy="140" r="2" opacity="0.8" />
+    <circle cx="950" cy="260" r="3.5" opacity="1" />
+    <circle cx="890" cy="480" r="1.8" opacity="0.6" />
+    <circle cx="160" cy="520" r="2.2" opacity="0.85" />
+    <circle cx="340" cy="650" r="1.5" opacity="0.75" />
+    <circle cx="680" cy="590" r="2" opacity="0.9" />
+    <circle cx="1020" cy="720" r="2.5" opacity="0.8" />
+    <circle cx="150" cy="850" r="1.8" opacity="0.7" />
+    <circle cx="820" cy="890" r="2.8" opacity="0.9" />
+    <circle cx="210" cy="1120" r="1.5" opacity="0.6" />
+    <circle cx="530" cy="1080" r="2" opacity="0.8" />
+    <circle cx="920" cy="1200" r="3" opacity="0.9" />
+    <circle cx="110" cy="1380" r="1.5" opacity="0.7" />
+    <circle cx="750" cy="1420" r="2.2" opacity="0.85" />
+    <circle cx="390" cy="1550" r="2.8" opacity="0.95" />
+    <circle cx="860" cy="1680" r="1.5" opacity="0.7" />
+    <circle cx="220" cy="1750" r="2" opacity="0.8" />
+    <circle cx="680" cy="1820" r="2.5" opacity="0.9" />
+
+    <!-- Dim Dust Particles -->
+    <circle cx="80" cy="320" r="1" opacity="0.4" />
+    <circle cx="240" cy="410" r="1.2" opacity="0.5" />
+    <circle cx="560" cy="360" r="1" opacity="0.45" />
+    <circle cx="720" cy="420" r="1.1" opacity="0.5" />
+    <circle cx="840" cy="310" r="0.9" opacity="0.35" />
+    <circle cx="310" cy="880" r="1.1" opacity="0.4" />
+    <circle cx="620" cy="940" r="1" opacity="0.5" />
+    <circle cx="440" cy="1280" r="1.2" opacity="0.45" />
+    <circle cx="670" cy="1330" r="1" opacity="0.4" />
+    <circle cx="310" cy="1680" r="1.2" opacity="0.5" />
+    <circle cx="580" cy="1720" r="1" opacity="0.4" />
+  </g>
+
+  <!-- Big Diamond Cross Glints -->
+  <g fill="#c7d2fe" opacity="0.9">
+    <path d="M 450 212 L 452 220 L 450 228 L 448 220 Z M 442 220 L 450 222 L 458 220 L 450 218 Z" />
+    <path d="M 950 252 L 952 260 L 950 268 L 948 260 Z M 942 260 L 950 262 L 958 260 L 950 258 Z" />
+    <path d="M 390 1542 L 392 1550 L 390 1558 L 388 1550 Z M 382 1550 L 390 1552 L 398 1550 L 390 1548 Z" />
+  </g>
+
+  <!-- Distant Celestial Gas Giant in Upper Right -->
+  <g transform="translate(860, 380)">
+    <circle cx="0" cy="0" r="90" fill="url(#sp-gas-planet)" />
+    <!-- Planetary Ring System -->
+    <ellipse cx="0" cy="0" rx="150" ry="24" fill="none" stroke="#fed7aa" stroke-width="6" opacity="0.6" transform="rotate(-24)" />
+    <ellipse cx="0" cy="0" rx="165" ry="28" fill="none" stroke="#fdba74" stroke-width="2" opacity="0.4" transform="rotate(-24)" />
+  </g>
+
+  <!-- Colossal Blue Planet Horizon Rising from Lower Left (Image 3 Title Screen) -->
+  <g transform="translate(-120, 1620)">
+    <!-- Planet Base -->
+    <circle cx="0" cy="0" r="480" fill="url(#sp-giant-planet)" />
+    <!-- Atmosphere Glow -->
+    <circle cx="0" cy="0" r="486" fill="url(#sp-atmos-glow)" />
+    <!-- Cloud Swirls on Planet Surface -->
+    <path d="M 120 -380 C 260 -340 380 -220 440 -80" fill="none" stroke="#bae6fd" stroke-width="12" opacity="0.4" stroke-linecap="round" />
+    <path d="M 80 -260 C 220 -220 320 -120 380 40" fill="none" stroke="#93c5fd" stroke-width="18" opacity="0.3" stroke-linecap="round" />
+    <path d="M 40 -140 C 180 -100 280 20 320 180" fill="none" stroke="#60a5fa" stroke-width="10" opacity="0.25" stroke-linecap="round" />
+  </g>
+</svg>
