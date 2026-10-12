@@ -7,7 +7,7 @@ func _ready() -> void:call_deferred("run")
 func run() -> void:
  Game.audio_enabled=false # Accelerated headless soak excludes wall-clock audio-driver scheduling.
  Game.apply_audio()
- Game.save_path="res://build/performance-soak.cfg"
+ Game.save_path="res://qa/performance-soak.cfg"
  for id: String in Campaign.ORDER:Game.completed_levels[id]=3
  Game.selected_map_id="toxic";Game.selected_ship_id="speeder";Game.selected_weapon_id="quantum_spread"
  scene=load("res://scenes/main.tscn").instantiate()
@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
  if seconds>=1200:
   set_process(false)
   Input.action_release("fire");Game.is_running=false
-  var file:=FileAccess.open("res://build/performance-soak.json",FileAccess.WRITE)
+  var file:=FileAccess.open("res://qa/performance-soak.json",FileAccess.WRITE)
   file.store_string(JSON.stringify(records,"  "))
   var failures:=0
   for sample in records:
@@ -36,4 +36,7 @@ func _process(delta: float) -> void:
   scene.queue_free()
   for i in 4:await get_tree().process_frame
   SoundEffects.stop_all()
+  # Fixed-fps simulation advances faster than the real audio mixer clock.
+  OS.delay_msec(100)
+  await get_tree().process_frame
   get_tree().quit(0 if failures==0 else 1)

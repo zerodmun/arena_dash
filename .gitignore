@@ -4,3 +4,19 @@ build/
 templates/
 *.keystore
 *.translation
+# Local recovery and non-APK generated outputs
+.maintenance/
+qa/*
+!qa/.gdignore
+dist/*
+!dist/.gdignore
+
+# Private signing material and local Node tooling
+*.jks
+*.p12
+*.pfx
+node_modules/
+*.pem
+*.key
+.env
+.env.*

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="tileIce" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#082f49"/>
+      <stop offset="50%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <radialGradient id="iceCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#7dd3fc"/>
+      <stop offset="70%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#082f49" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="36" fill="url(#tileIce)" stroke="#38bdf8" stroke-width="6"/>
+  <circle cx="256" cy="256" r="180" fill="url(#iceCore)"/>
+  <!-- Glacial Spires Silhouette -->
+  <polygon points="256,110 200,380 312,380" fill="#e0f2fe" stroke="#0284c7" stroke-width="4"/>
+  <polygon points="160,180 120,380 200,380" fill="#7dd3fc" stroke="#0284c7" stroke-width="3"/>
+  <polygon points="352,180 312,380 392,380" fill="#7dd3fc" stroke="#0284c7" stroke-width="3"/>
+</svg>

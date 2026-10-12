@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="spireIce" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#bae6fd"/>
+      <stop offset="70%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+  <!-- Glacial Crystal Spire / Cryo Monolith -->
+  <polygon points="256,40 180,440 332,440" fill="url(#spireIce)" stroke="#0284c7" stroke-width="4"/>
+  <polygon points="256,40 256,440 332,440" fill="#0284c7" opacity="0.35"/>
+  <circle cx="256" cy="180" r="22" fill="#ffffff" opacity="0.8"/>
+</svg>

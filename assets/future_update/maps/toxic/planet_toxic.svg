@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <filter id="toxicShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="20" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+    <radialGradient id="toxicMantle" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#bef264"/>
+      <stop offset="25%" stop-color="#84cc16"/>
+      <stop offset="50%" stop-color="#4d7c0f"/>
+      <stop offset="75%" stop-color="#14532d"/>
+      <stop offset="90%" stop-color="#052e16"/>
+      <stop offset="100%" stop-color="#021a0c"/>
+    </radialGradient>
+    <radialGradient id="acidSea" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="20%" stop-color="#facc15"/>
+      <stop offset="45%" stop-color="#a3e635"/>
+      <stop offset="75%" stop-color="#4ade80"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </radialGradient>
+    <radialGradient id="toxicAtmosphere" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="65%" stop-color="#84cc16" stop-opacity="0.2"/>
+      <stop offset="88%" stop-color="#15803d" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#022c15" stop-opacity="0.95"/>
+    </radialGradient>
+    <filter id="acidGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="slagPlates" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#292524"/>
+      <stop offset="50%" stop-color="#1c1917"/>
+      <stop offset="100%" stop-color="#0c0a09"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fluorescent Acid Vapor Halo -->
+  <circle cx="256" cy="256" r="236" fill="#a3e635" opacity="0.22" filter="url(#acidGlow)"/>
+  <circle cx="256" cy="256" r="216" fill="#4ade80" opacity="0.2" filter="url(#acidGlow)"/>
+
+  <g filter="url(#toxicShadow)">
+    <!-- Base Toxic Sphere -->
+    <circle cx="256" cy="256" r="190" fill="url(#toxicMantle)" stroke="#14532d" stroke-width="4"/>
+
+    <!-- Glowing Luminescent Acid Seas Under-layer -->
+    <path d="M 100,210 Q 180,160 270,220 T 420,190 Q 430,290 360,350 T 160,360 Q 90,300 100,210 Z" 
+          fill="url(#acidSea)" filter="url(#acidGlow)"/>
+
+    <!-- Slag Industrial Continents & Crust Formations -->
+    <path d="M 110,160 Q 180,120 250,150 L 240,210 Q 170,180 120,210 Z" fill="url(#slagPlates)" stroke="#0c0a09" stroke-width="3"/>
+    <path d="M 270,130 Q 360,120 420,170 L 380,220 Q 300,180 260,190 Z" fill="url(#slagPlates)" stroke="#0c0a09" stroke-width="3"/>
+    <path d="M 90,250 Q 170,230 210,280 L 180,350 Q 120,330 80,280 Z" fill="url(#slagPlates)" stroke="#0c0a09" stroke-width="3"/>
+    <path d="M 230,270 Q 320,250 380,280 L 360,360 Q 270,380 220,340 Z" fill="url(#slagPlates)" stroke="#0c0a09" stroke-width="3"/>
+
+    <!-- Sizzling Chemical Canals (Luminescent Acid Streams) -->
+    <path d="M 110,160 Q 180,200 240,210 T 350,250 T 430,280" fill="none" stroke="#facc15" stroke-width="4" filter="url(#acidGlow)"/>
+    <path d="M 110,160 Q 180,200 240,210 T 350,250 T 430,280" fill="none" stroke="#ffffff" stroke-width="1.8"/>
+
+    <path d="M 250,140 Q 240,220 210,280 T 250,380" fill="none" stroke="#4ade80" stroke-width="4.5" filter="url(#acidGlow)"/>
+    <path d="M 250,140 Q 240,220 210,280 T 250,380" fill="none" stroke="#bef264" stroke-width="2"/>
+
+    <!-- Corroded Chemical Waste Silo Craters -->
+    <ellipse cx="190" cy="180" rx="26" ry="16" fill="#1c1917" stroke="#84cc16" stroke-width="3"/>
+    <ellipse cx="190" cy="180" rx="14" ry="9" fill="url(#acidSea)"/>
+    <circle cx="190" cy="180" r="4" fill="#ffffff" filter="url(#acidGlow)"/>
+
+    <ellipse cx="310" cy="310" rx="32" ry="20" fill="#1c1917" stroke="#84cc16" stroke-width="3.5"/>
+    <ellipse cx="310" cy="310" rx="18" ry="11" fill="url(#acidSea)"/>
+    <circle cx="310" cy="310" r="5" fill="#ffffff" filter="url(#acidGlow)"/>
+
+    <ellipse cx="320" cy="170" rx="20" ry="12" fill="#1c1917" stroke="#4d7c0f" stroke-width="2.5"/>
+    <ellipse cx="320" cy="170" rx="11" ry="6" fill="url(#acidSea)"/>
+
+    <!-- Corrosive Smog Atmospheric Veil -->
+    <circle cx="256" cy="256" r="190" fill="url(#toxicAtmosphere)"/>
+
+    <!-- Specular Highlight Sheen -->
+    <path d="M 125,120 A 190,190 0 0,1 385,120 A 184,184 0 0,0 125,120 Z" fill="#d9f99d" opacity="0.75"/>
+  </g>
+</svg>

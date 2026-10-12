@@ -1,9 +1,11 @@
 class_name Hangar
 extends Control
-## Reference-inspired hangar: top stats, central 2D aircraft and bottom loadout controls.
+## Landscape hangar: left flight systems, central aircraft, right mission controls.
 const ACCENT := ArcadeUI.GOLD
 const WHITE := ArcadeUI.TEXT
 const MUTED := ArcadeUI.MUTED
+var _preview_weapon_id := "plasma"
+var _feedback := ""
 var _ship_index := 0
 var _map_id := "coast"
 var _deploying := false
@@ -12,13 +14,13 @@ var _ship_name: Label
 var _ship_class: Label
 var _counter: Label
 var _launch: Button
+var _purchase: Button
 var _hero: Control
-var _roster_scroll: ScrollContainer
-var _aircraft_buttons: Dictionary = {}
 var _bars: Array[ProgressBar] = []
 var _stat_labels: Array[Label] = []
 var _weapon_card: Button
 var _map_card: Button
+var _weapon_status: Label
 var _weapon_card_label: Label
 var _map_card_label: Label
 var _weapon_icon: TextureRect
@@ -41,22 +43,22 @@ var _drag_index := -1
 var _dragging := false
 var _compact := false
 var _stage: Control
+var _layout_safe := Rect2()
 
 var _environment: Control
-var _header: PanelContainer
+var _header: HBoxContainer
 var _header_title: Label
-var _profile: Label
 var _record: Label
 var _stats_panel: PanelContainer
-var _stats_badge: PanelContainer
+var _coin_base: PanelContainer
 var _stat_headings: Array[Label] = []
 var _identity: PanelContainer
 var _prev: Button
 var _next: Button
-var _hint: Label
 var _mission_label: Label
 
 func _ready() -> void:
+	SoundEffects.enter_screen("hangar")
 	Game.is_running = false
 	Input.action_release("fire")
 	_map_id = Game.selected_map_id
@@ -64,9 +66,9 @@ func _ready() -> void:
 	_build_ui()
 	_refresh()
 	I18n.changed.connect(_refresh)
+	Game.economy_changed.connect(_refresh)
 	get_viewport().size_changed.connect(_adapt_layout)
 	_adapt_layout()
-	_roster_scroll.call_deferred("ensure_control_visible", _aircraft_buttons[Game.selected_ship_id])
 
 func _surface(bg: Color = ArcadeUI.INK, border: Color = ArcadeUI.BORDER, margin: float = 20) -> StyleBoxFlat:
 	var style := ArcadeUI.surface(margin)
@@ -103,66 +105,70 @@ func _build_ui() -> void:
 	_build_popup()
 
 func _build_header() -> void:
-	_header = PanelContainer.new()
-	_header.add_theme_stylebox_override("panel", ArcadeUI.surface(12))
+	# Keep the title and navigation bare; only the balance gets a compact panel.
+	_header = HBoxContainer.new()
+	_header.add_theme_constant_override("separation", 12)
 	add_child(_header)
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 16)
-	_header.add_child(row)
-	var emblem := _label("AD", 30, ACCENT)
-	emblem.custom_minimum_size.x = 74
-	row.add_child(emblem)
-	_profile = _label("ARENA DASH\nFLIGHT COMMAND", 15, WHITE)
-	row.add_child(_profile)
-	var space := Control.new()
-	space.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	row.add_child(space)
-	_record = _label(I18n.t("BEST  %05d",[Game.high_score]), 17, ACCENT)
-	row.add_child(_record)
+	var row := _header
+	_coin_base = PanelContainer.new()
+	_coin_base.add_theme_stylebox_override("panel", ArcadeUI.panel(10))
+	_coin_base.custom_minimum_size = Vector2(200,64)
+	row.add_child(_coin_base)
+	var balance := HBoxContainer.new()
+	balance.alignment = BoxContainer.ALIGNMENT_CENTER
+	balance.add_theme_constant_override("separation",10)
+	_coin_base.add_child(balance)
+	balance.add_child(_image("res://assets/ui/icons/icon_coin.svg",Vector2(30,30)))
+	_record = _label(I18n.t("Coins: %d",[Game.coins]), 18, ACCENT)
+	_record.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	balance.add_child(_record)
 	var home := _button("")
 	ArcadeUI.icon(home, "button_home")
-	home.custom_minimum_size.x = 60
+	home.custom_minimum_size = Vector2(64,64)
 	home.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://scenes/menu.tscn"))
 	row.add_child(home)
 	var settings := _button("")
 	ArcadeUI.icon(settings, "button_settings")
-	settings.custom_minimum_size.x = 60
+	settings.custom_minimum_size = Vector2(64,64)
 	settings.pressed.connect(func() -> void: ArcadeUI.settings(self))
 	row.add_child(settings)
 	var help := _button("")
 	ArcadeUI.icon(help,"button_info")
-	help.custom_minimum_size = Vector2(50, 48)
+	help.custom_minimum_size = Vector2(64,64)
 	help.tooltip_text = "Flight manual"
 	help.pressed.connect(func() -> void: ArcadeUI.help(self))
 	row.add_child(help)
 	_header_title = _label("HANGAR", 38)
-	_header_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_header_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	add_child(_header_title)
 func _build_stats_strip() -> void:
-	_stats_badge = PanelContainer.new()
-	_stats_badge.add_theme_stylebox_override("panel", ArcadeUI.surface(8))
-	add_child(_stats_badge)
-	var badge := _label("FLIGHT SYSTEMS", 18, ArcadeUI.CYAN)
-	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_stats_badge.add_child(badge)
 	_stats_panel = PanelContainer.new()
-	_stats_panel.add_theme_stylebox_override("panel", ArcadeUI.surface(18))
+	_stats_panel.add_theme_stylebox_override("panel", ArcadeUI.panel(20))
 	add_child(_stats_panel)
+	var column := VBoxContainer.new()
+	column.add_theme_constant_override("separation",12)
+	_stats_panel.add_child(column)
+	var heading := _label("FLIGHT SYSTEMS",18,ArcadeUI.CYAN)
+	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	column.add_child(heading)
 	var row := VBoxContainer.new()
-	row.add_theme_constant_override("separation", 24)
-	_stats_panel.add_child(row)
+	row.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	row.add_theme_constant_override("separation",12)
+	column.add_child(row)
 	for title in ["SPEED", "SHIELDS", "FIRE RATE"]:
 		var box := VBoxContainer.new()
 		box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		box.add_theme_constant_override("separation", 6)
+		box.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		box.alignment = BoxContainer.ALIGNMENT_CENTER
+		box.add_theme_constant_override("separation", 8)
 		row.add_child(box)
 		var top := HBoxContainer.new()
 		box.add_child(top)
-		var name_label := _label(title, 16, ArcadeUI.MUTED)
+		var name_label := _label(title, 18, ArcadeUI.MUTED)
 		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		_stat_headings.append(name_label)
 		top.add_child(name_label)
-		var value := _label("", 16, ArcadeUI.TEXT)
+		var value := _label("", 18, ArcadeUI.TEXT)
 		_stat_labels.append(value)
 		top.add_child(value)
 		var bar := ProgressBar.new()
@@ -195,13 +201,16 @@ func _build_display() -> void:
 	ArcadeUI.icon(_next, "button_forward")
 	_prev.text = ""
 	_next.text = ""
+	ArcadeUI.style_button(_prev)
+	ArcadeUI.style_button(_next)
 	_prev.pressed.connect(func() -> void: _switch_ship(-1))
 	_next.pressed.connect(func() -> void: _switch_ship(1))
 	_identity = PanelContainer.new()
-	_identity.add_theme_stylebox_override("panel", ArcadeUI.surface(12))
+	_identity.add_theme_stylebox_override("panel", ArcadeUI.panel(12))
 	add_child(_identity)
 	var box := VBoxContainer.new()
-	box.add_theme_constant_override("separation", 2)
+	box.alignment = BoxContainer.ALIGNMENT_CENTER
+	box.add_theme_constant_override("separation", 8)
 	_identity.add_child(box)
 	_ship_name = _label("", 30)
 	_ship_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -211,59 +220,18 @@ func _build_display() -> void:
 	box.add_child(_ship_class)
 	_counter = _label("", 13, Color("e4edf4"))
 	_counter.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	box.add_child(_counter)
-	_roster_scroll = ScrollContainer.new()
-	_roster_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	add_child(_roster_scroll)
-	var row := HBoxContainer.new()
-	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	row.add_theme_constant_override("separation", 10)
-	_roster_scroll.add_child(row)
-	for id: String in Game.SHIPS:
-		var btn := _button("")
-		btn.custom_minimum_size = Vector2(136, 88)
-		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		btn.pressed.connect(func() -> void: _select_ship(id))
-		row.add_child(btn)
-		_aircraft_buttons[id] = btn
-		var content := VBoxContainer.new()
-		content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		content.offset_top = 6
-		content.offset_bottom = -6
-		content.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		btn.add_child(content)
-		content.add_child(_image(Game.SHIPS[id].texture, Vector2(0, 50)))
-		var name_label := _label(Game.SHIPS[id].name, 13)
-		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		content.add_child(name_label)
+	add_child(_counter)
 
 var _pedestal: Texture2D = preload("res://assets/future_updates/hangar/hangar_docking_pedestal.svg")
-var _env_texture: Texture2D
 var _background_art: TextureRect
 
 func _draw_environment() -> void:
-	var w := _environment.size.x
-	var h := _environment.size.y
-	if w <= 0 or h <= 0:
-		return
-	if _env_texture == null:
-		_env_texture = load("res://assets/future_updates/hangar/hangar_starry_void.svg")
-	_environment.draw_rect(Rect2(0, 0, w, h), Color("050716"))
-	var scale_factor := h / float(_env_texture.get_height())
-	var image_size := _env_texture.get_size() * scale_factor
 	if _background_art == null:
-		_background_art = _image("res://assets/future_updates/hangar/hangar_starry_void.svg", Vector2.ZERO)
-		var shader := Shader.new()
-		shader.code = "shader_type canvas_item; void fragment(){ vec4 c=texture(TEXTURE,UV); float fade=smoothstep(0.0,0.2,UV.x)*smoothstep(0.0,0.2,1.0-UV.x); COLOR=vec4(c.rgb,c.a*fade); }"
-		var material := ShaderMaterial.new()
-		material.shader = shader
-		_background_art.material = material
+		_background_art=ArcadeUI.image("res://assets/ui/theme/space_landscape.svg",Vector2.ZERO)
+		_background_art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		_background_art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		_environment.add_child(_background_art)
-	_background_art.position = Vector2((w - image_size.x) / 2, 0)
-	_background_art.size = image_size
-	for i in 90:
-		var pos := Vector2(fmod(i * 317.73, w), fmod(i * 151.21, h))
-		_environment.draw_circle(pos, 1.2, Color(0.5, 0.7, 1.0, 0.35))
+
 
 func _draw_stage() -> void:
 	var center := _stage.size * Vector2(0.5, 0.73)
@@ -279,16 +247,26 @@ func _build_bottom_controls() -> void:
 	_weapon_card.pressed.connect(func() -> void: _open_popup("weapon"))
 	add_child(_weapon_card)
 	var weapon_row := _card_content(_weapon_card)
-	_weapon_icon = _image(Game.get_current_weapon().texture, Vector2(32, 50))
+	# Keep the existing footer footprint; use its height for the artwork.
+	weapon_row.offset_top = 6
+	weapon_row.offset_bottom = -6
+	weapon_row.add_theme_constant_override("separation", 8)
+	_weapon_icon = _image(Game.get_current_weapon().texture, Vector2(144, 96))
 	weapon_row.add_child(_weapon_icon)
 	var weapon_box := VBoxContainer.new()
 	weapon_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	weapon_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	weapon_box.add_theme_constant_override("separation", 6)
 	weapon_row.add_child(weapon_box)
-	weapon_box.add_child(_label("WEAPON LOADOUT", 12, ACCENT))
-	_weapon_card_label = _label("", 15)
+	weapon_box.alignment = BoxContainer.ALIGNMENT_CENTER
+	_weapon_card_label = _label("", 16)
+	_weapon_card_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_weapon_card_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_weapon_card_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	weapon_box.add_child(_weapon_card_label)
-	weapon_row.add_child(_label("›", 24))
+	_weapon_status = _label("", 16, ACCENT)
+	_weapon_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	weapon_box.add_child(_weapon_status)
 	_map_card = PlanetButton.new()
 	(_map_card as PlanetButton).planet_id = Game.hangar_planet()
 	_map_card.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://scenes/level_select.tscn"))
@@ -296,16 +274,26 @@ func _build_bottom_controls() -> void:
 	_map_card_label = _label("", 15, Color("b8ccf8"))
 	_map_card_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	add_child(_map_card_label)
+	_purchase = _button("SELECT AIRCRAFT")
+	_purchase.add_theme_font_size_override("font_size",17)
+	_purchase.custom_minimum_size = Vector2(208,64)
+	_purchase.pressed.connect(_purchase_or_select_aircraft)
+	add_child(_purchase)
 	_launch = _button("DEPLOY MISSION", true)
-	_launch.add_theme_font_size_override("font_size",22)
+	_launch.add_theme_font_size_override("font_size",28)
+	_launch.custom_minimum_size = Vector2(352,108)
+	for state in ["normal","hover","pressed","hover_pressed","disabled","focus"]:
+		var face := _launch.get_theme_stylebox(state).duplicate() as StyleBoxTexture
+		face.content_margin_left = 24
+		face.content_margin_right = 24
+		face.content_margin_top = 20
+		face.content_margin_bottom = 20
+		_launch.add_theme_stylebox_override(state,face)
 	_mission_label=_label("",20,ArcadeUI.GOLD)
 	_mission_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	add_child(_mission_label)
 	_launch.pressed.connect(_deploy)
 	add_child(_launch)
-	_hint = _label("SWIPE / A–D TO SELECT AIRCRAFT", 13, Color("d8e3e9"))
-	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	add_child(_hint)
 
 func _card_content(btn: Button) -> HBoxContainer:
 	var row := HBoxContainer.new()
@@ -330,7 +318,7 @@ func _build_popup() -> void:
 	dim.color=Color(0.025,0.015,0.09,0.85)
 	_overlay.add_child(dim)
 	_modal=PanelContainer.new()
-	_modal.add_theme_stylebox_override("panel",ArcadeUI.surface(24))
+	_modal.add_theme_stylebox_override("panel",ArcadeUI.panel(24))
 	_overlay.add_child(_modal)
 	var box:=VBoxContainer.new()
 	box.add_theme_constant_override("separation",20)
@@ -350,10 +338,11 @@ func _build_popup() -> void:
 	box.add_child(columns)
 	_preview=HangarPreview.new()
 	_preview.custom_minimum_size=Vector2(430,280)
-	_preview.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	_preview.size_flags_horizontal=Control.SIZE_FILL
 	columns.add_child(_preview)
 	var info:=VBoxContainer.new()
 	info.custom_minimum_size.x=460
+	info.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	info.add_theme_constant_override("separation",14)
 	columns.add_child(info)
 	_popup_ship=_label("",16,MUTED)
@@ -369,76 +358,122 @@ func _build_popup() -> void:
 	info.add_child(_popup_description)
 	var done:=_button("CONFIRM LOADOUT",true)
 	_confirm_button=done
-	done.pressed.connect(_close_popup)
+	done.pressed.connect(_confirm_loadout)
 	info.add_child(done)
 
 func _place(control: Control, rect: Rect2) -> void:
 	control.position = rect.position
+	# Measure wrapping text at its final width before resolving minimum height.
+	if control is Label and control.autowrap_mode != TextServer.AUTOWRAP_OFF:
+		control.size.x = rect.size.x
 	control.size = rect.size
 
-func _adapt_layout() -> void:
-	var vp:=get_viewport_rect().size
+func _adapt_layout(available := Rect2()) -> void:
+	var safe:=available if available.has_area() else ArcadeUI.safe_rect(get_viewport_rect().size)
+	_layout_safe=safe
+	var vp:=safe.size
 	_compact=false
 	_counter.visible=true
-	_profile.visible=true
-	_record.visible=vp.x>1400
-	_place(_header,Rect2(16,12,vp.x-32,78))
-	_place(_header_title,Rect2(vp.x*0.5-120,22,240,52))
+	_record.visible=true
+	# Equal side rails keep the aircraft on the usable screen's center line.
+	var margin := 24.0
+	var gap := 24.0
+	var rail := 352.0
+	var footer_y := vp.y - margin - 108.0
+	var body_y := 108.0
+	var center_left := margin + rail + 8.0
+	var center_width := vp.x - center_left * 2.0
+	var center_x := vp.x * 0.5
+	var right_x := vp.x - margin - rail
+	var navigation_width := maxf(428.0,_header.get_combined_minimum_size().x)
+	_place(_header,Rect2(vp.x-navigation_width-margin,20,navigation_width,64))
+	_place(_header_title,Rect2(margin,26,240,52))
 	_header_title.add_theme_font_size_override("font_size",30)
-	_place(_identity,Rect2(24,112,276,100))
-	_place(_stats_badge,Rect2(24,228,276,46))
-	_place(_stats_panel,Rect2(24,282,276,218))
-	_place(_weapon_card,Rect2(24,518,276,76))
-	_place(_hero,Rect2(318,110,vp.x-630,vp.y-246))
-	_ship_image.offset_left=36
-	_ship_image.offset_right=-36
+	_place(_identity,Rect2(margin,body_y,rail,108))
+	_place(_stats_panel,Rect2(margin,body_y+132,rail,footer_y-body_y-156))
+	_place(_weapon_card,Rect2(margin,footer_y,rail,108))
+	_place(_hero,Rect2(center_left,92,center_width,footer_y-92))
+	_ship_image.offset_left=8
+	_ship_image.offset_right=-8
 	_ship_image.offset_top=0
-	_ship_image.offset_bottom=-45
-	_place(_prev,Rect2(320,vp.y*0.48,64,64))
-	_place(_next,Rect2(vp.x-384,vp.y*0.48,64,64))
-	_place(_map_card,Rect2(vp.x-235,118,140,140))
-	_place(_map_card_label,Rect2(vp.x-296,274,272,100))
+	_ship_image.offset_bottom=-12
+	# Selection belongs to the aircraft, in a single footer row below its stage.
+	_place(_prev,Rect2(center_x-176,footer_y+34,64,64))
+	_place(_next,Rect2(center_x+112,footer_y+34,64,64))
+	_place(_counter,Rect2(center_x-176,footer_y,352,26))
+	_place(_purchase,Rect2(center_x-104,footer_y+34,208,64))
+	_counter.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
+	var planet_side := minf(164.0,(footer_y-body_y)*0.34)
+	_place(_map_card,Rect2(right_x+(rail-planet_side)*0.5,body_y+12,planet_side,planet_side))
+	_place(_map_card_label,Rect2(right_x,body_y+planet_side+28,rail,84))
 	_map_card_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	_place(_mission_label,Rect2(vp.x-296,398,272,88))
+	_map_card_label.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
+	_place(_mission_label,Rect2(right_x,footer_y-136,rail,112))
 	_mission_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	_place(_launch,Rect2(vp.x-296,518,272,76))
-	_place(_roster_scroll,Rect2(24,vp.y-106,vp.x-48,92))
-	_hint.visible=false
+	_mission_label.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
+	_place(_launch,Rect2(right_x,footer_y,rail,108))
+	for control in [_header,_header_title,_identity,_stats_panel,_weapon_card,_hero,_prev,_next,_counter,_purchase,_map_card,_map_card_label,_mission_label,_launch]:
+		control.position+=safe.position
 	_environment.queue_redraw()
-	_layout_popup()
+	_layout_popup(safe)
+	_finish_wrapped_layout.call_deferred()
 
-func _layout_popup() -> void:
-	var vp:=get_viewport_rect().size
-	_modal.size=Vector2(minf(vp.x-64,1100),minf(vp.y-64,500))
-	_modal.position=(vp-_modal.size)*0.5
+func _finish_wrapped_layout() -> void:
+	# Label shaping updates after width changes; shrink the old wrapped height then.
+	# Refit large balances without discarding the current safe-area layout.
+	var width := maxf(428.0,_header.get_combined_minimum_size().x)
+	_header.size.x=width
+	_header.position.x=_layout_safe.end.x-24-width
+	_map_card_label.size.y = 84
+	_mission_label.size.y = 112
+	_mission_label.position.y = _launch.position.y - 24 - _mission_label.size.y
+
+func _layout_popup(available := Rect2()) -> void:
+	var safe:=available if available.has_area() else ArcadeUI.safe_rect(get_viewport_rect().size)
+	var vp:=safe.size
+	_modal.size=Vector2(minf(vp.x-64,1100),minf(vp.y-64,600))
+	_modal.position=safe.position+(vp-_modal.size)*0.5
 
 func get_hangar_texture(id: String) -> Texture2D:
 	return load(Game.SHIPS[id].texture)
 
 func _refresh() -> void:
-	var ship := Game.get_current_ship()
-	_record.text=I18n.t("BEST  %05d",[Game.high_score])
+	var ship: Dictionary = Game.SHIPS[Game.SHIPS.keys()[_ship_index]]
+	_record.text=I18n.t("Coins: %d",[Game.coins])
 	_ship_image.texture = get_hangar_texture(ship.id)
 	_ship_name.text = ship.name
-	_ship_name.add_theme_color_override("font_color", ship.color)
+	_ship_name.add_theme_color_override("font_color", ship.color.lerp(ArcadeUI.TEXT,.35))
 	_ship_class.text = I18n.t(ship["class"])
 	_identity.tooltip_text = I18n.t(ship.desc)
-	_counter.text = "%02d / %02d" % [_ship_index + 1, Game.SHIPS.size()]
+	var owned := Game.owns_equipment("ship",ship.id)
+	var status := I18n.t("EQUIPPED" if ship.id==Game.selected_ship_id else "UNLOCKED") if owned else I18n.t("LOCKED")
+	_counter.text = "%02d / %02d • %s" % [_ship_index + 1, Game.SHIPS.size(),status]
+	_counter.add_theme_font_size_override("font_size",16)
+	_launch.text=I18n.t("DEPLOY MISSION")
+	_launch.disabled=not owned or _deploying
+	_purchase.disabled=owned and ship.id==Game.selected_ship_id
+	_purchase.text=I18n.t("EQUIPPED" if _purchase.disabled else "SELECT AIRCRAFT") if owned else I18n.t("PURCHASE\n%d Coins",[Game.equipment_price("ship",ship.id)])
+	_purchase.icon=null
+	if not owned:ArcadeUI.icon(_purchase,"badge_lock")
+	ArcadeUI.style_button(_purchase,false,owned and ship.id==Game.selected_ship_id)
 	_bars[0].value = ship.speed / 500.0 * 100
 	_bars[1].value = ship.max_lives / 5.0 * 100
-	_bars[2].value = (0.30 - ship.fire_rate) / 0.20 * 100
+	var effective_rate: float=EquipmentCatalog.firing_interval(ship, Game.get_current_weapon())
+	_bars[2].value = (0.30 - effective_rate) / 0.20 * 100
 	_stat_labels[0].text = "%d" % ship.speed
 	_stat_labels[1].text = I18n.t("%d CELLS",[ship.max_lives])
-	_stat_labels[2].text = I18n.t("%.1f / SEC",[1.0 / ship.fire_rate])
-	for id: String in _aircraft_buttons:
-		_set_selected(_aircraft_buttons[id], id == ship.id)
-	_weapon_card_label.text = Game.get_current_weapon().name
+	_stat_labels[2].text = I18n.t("%.1f / SEC",[1.0 / effective_rate])
+	_weapon_card_label.text = I18n.t(Game.get_current_weapon().name)
+	_weapon_status.text = I18n.t("EQUIPPED")
+	_weapon_card.tooltip_text = I18n.t("WEAPON LOADOUT")
 	_weapon_icon.texture = load(Game.get_current_weapon().texture)
 	var progress_planet := Game.hangar_planet()
 	(_map_card as PlanetButton).configure(progress_planet)
 	_map_card_label.text = I18n.t("PLANET CAMPAIGN\n%s\n%s",[Game.MAPS[progress_planet].name,I18n.t("LAST SECURED" if not Game.last_completed_planet.is_empty() else "BEGIN YOUR JOURNEY")])
 	_launch.tooltip_text = I18n.t("Deploy to %s",[Game.MAPS[_map_id].name])
 	_mission_label.text=I18n.t("MISSION DESTINATION\n%s\n%s",[Game.MAPS[_map_id].name,I18n.t(Campaign.DIFFICULTY[Campaign.index(_map_id)])])
+	if not _feedback.is_empty(): _mission_label.text=_feedback
+	_finish_wrapped_layout.call_deferred()
 	_stage.queue_redraw()
 	if _overlay.visible:
 		_refresh_popup()
@@ -447,7 +482,10 @@ func _set_selected(btn: Button, selected: bool) -> void:
 	ArcadeUI.style_button(btn,false,selected)
 
 func _open_popup(mode: String) -> void:
+	SoundEffects.play("open")
 	_popup_mode = mode
+	_preview_weapon_id=Game.selected_weapon_id
+	_feedback=""
 	_return_focus = _weapon_card if mode == "weapon" else _map_card
 	_dragging = false
 	for child in _options.get_children():
@@ -460,8 +498,9 @@ func _open_popup(mode: String) -> void:
 	var catalog: Dictionary = Game.WEAPONS
 	for id: String in catalog:
 		var btn := _button(catalog[id].name)
-		btn.custom_minimum_size = Vector2(215,64)
-		btn.add_theme_font_size_override("font_size",18)
+		btn.custom_minimum_size = Vector2(294,64)
+		btn.add_theme_font_size_override("font_size",16)
+		btn.add_theme_font_size_override("font_size",16)
 		btn.pressed.connect(func() -> void: _choose_popup_option(id))
 		_options.add_child(btn)
 		_popup_buttons[id] = btn
@@ -487,7 +526,8 @@ func _open_popup(mode: String) -> void:
 
 func _choose_popup_option(id: String) -> void:
 	if _popup_mode == "weapon":
-		Game.select_weapon(id)
+		_preview_weapon_id=id
+		_feedback=""
 	else:
 		_map_id = id
 	_refresh()
@@ -495,26 +535,39 @@ func _choose_popup_option(id: String) -> void:
 func _refresh_popup() -> void:
 	var is_weapon := _popup_mode == "weapon"
 	_popup_title.text = "WEAPON LOADOUT" if is_weapon else "PLANET CAMPAIGN"
-	_popup_ship.text = "%s  /  %s" % [Game.get_current_ship().name,I18n.t(Game.get_current_ship()["class"])]
-	var selected: String = Game.selected_weapon_id if is_weapon else _map_id
+	var preview_ship: Dictionary=Game.SHIPS[Game.SHIPS.keys()[_ship_index]]
+	_popup_ship.text = "%s  /  %s" % [preview_ship.name,I18n.t(preview_ship["class"])]
+	var selected: String = _preview_weapon_id if is_weapon else _map_id
 	for id: String in _popup_buttons:
 		_set_selected(_popup_buttons[id], id == selected)
-	_preview.configure(Game.selected_ship_id, Game.selected_weapon_id, "cyber" if _map_id == "random" else _map_id, _popup_mode)
-	_popup_description.text = I18n.t(Game.get_current_weapon().desc if is_weapon else Game.MAPS[_map_id].desc)
+		var owned := Game.owns_equipment("weapon",id)
+		var state := "EQUIPPED" if id==Game.selected_weapon_id else "SELECTED" if id==selected else "UNLOCKED"
+		_popup_buttons[id].text=I18n.t(Game.WEAPONS[id].name)+"\n"+(I18n.t(state) if owned else I18n.t("LOCKED • %d Coins",[Game.equipment_price("weapon",id)]))
+		_popup_buttons[id].icon=null
+		if not owned:ArcadeUI.icon(_popup_buttons[id],"badge_lock")
+		ArcadeUI.style_button(_popup_buttons[id],false,id==selected)
+	_preview.configure(Game.SHIPS.keys()[_ship_index], _preview_weapon_id, "cyber" if _map_id == "random" else _map_id, _popup_mode)
+	_popup_description.text = I18n.t(Game.WEAPONS[_preview_weapon_id].desc)+"\n"+I18n.t("Coins: %d",[Game.coins])+ ("\n"+_feedback if not _feedback.is_empty() else "")
+	_confirm_button.disabled=_preview_weapon_id==Game.selected_weapon_id
+	_confirm_button.text=I18n.t("EQUIPPED" if _confirm_button.disabled else "EQUIP WEAPON") if Game.owns_equipment("weapon",_preview_weapon_id) else I18n.t("PURCHASE • %d Coins",[Game.equipment_price("weapon",_preview_weapon_id)])
+	_confirm_button.icon=null
+	if not Game.owns_equipment("weapon",_preview_weapon_id):ArcadeUI.icon(_confirm_button,"badge_lock")
+	ArcadeUI.style_button(_confirm_button,true)
+	_confirm_button.add_theme_font_size_override("font_size",18)
 
 func _close_popup() -> void:
+	SoundEffects.play("close")
 	_overlay.visible = false
 	_preview.shots.clear()
 	if _return_focus:
 		_return_focus.grab_focus()
 
 func _select_ship(id: String) -> void:
-	if _deploying or _overlay.visible or id == Game.selected_ship_id:
+	if _deploying or _overlay.visible or id == Game.SHIPS.keys()[_ship_index]:
 		return
 	_ship_index = Game.SHIPS.keys().find(id)
-	Game.select_ship(id)
+	_feedback=""
 	_refresh()
-	_roster_scroll.ensure_control_visible(_aircraft_buttons[id])
 	if _ship_tween and _ship_tween.is_running():
 		_ship_tween.kill()
 	if not Game.reduced_motion:
@@ -554,11 +607,19 @@ func _finish_swipe(position: Vector2) -> void:
 func _deploy() -> void:
 	if _deploying or _overlay.visible:
 		return
+	var candidate: String=Game.SHIPS.keys()[_ship_index]
+	if not Game.owns_equipment("ship",candidate):return
+	if not Game.select_ship(candidate):
+		_feedback=I18n.t("Purchase could not be saved. Try again.")
+		_refresh()
+		return
 	_deploying = true
 	_launch.disabled = true
+	SoundEffects.play("confirm")
 	if not Game.select_level(_map_id):
 		_deploying = false
 		_launch.disabled = false
+		SoundEffects.play("locked")
 		return
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
@@ -576,3 +637,29 @@ func _unhandled_input(event: InputEvent) -> void:
 			_switch_ship(1)
 		elif event.keycode == KEY_ENTER:
 			_deploy()
+
+func _purchase_or_select_aircraft() -> void:
+	if _deploying or _overlay.visible:return
+	var id: String=Game.SHIPS.keys()[_ship_index]
+	if Game.owns_equipment("ship",id):
+		_feedback="" if Game.select_ship(id) else I18n.t("Purchase could not be saved. Try again.")
+	else:
+		var result:=Game.purchase_equipment("ship",id)
+		_feedback=I18n.t("Aircraft unlocked. Select it to equip.") if result=="purchased" else I18n.t("Not enough coins" if result=="insufficient" else "Purchase could not be saved. Try again.")
+		SoundEffects.play("confirm" if result=="purchased" else "locked")
+	_refresh()
+
+func _confirm_loadout() -> void:
+	if not Game.owns_equipment("weapon",_preview_weapon_id):
+		var result:=Game.purchase_equipment("weapon",_preview_weapon_id)
+		_feedback=I18n.t("Weapon unlocked. Equip it to use.") if result=="purchased" else I18n.t("Not enough coins" if result=="insufficient" else "Purchase could not be saved. Try again.")
+		SoundEffects.play("confirm" if result=="purchased" else "locked")
+		_refresh()
+		return
+	if Game.select_weapon(_preview_weapon_id):
+		_feedback=""
+		_refresh()
+		_close_popup()
+	else:
+		_feedback=I18n.t("Purchase could not be saved. Try again.")
+		_refresh_popup()

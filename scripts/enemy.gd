@@ -43,6 +43,9 @@ func _ready() -> void:
   Game.boss_health = health
   Game.boss_max_health = health
   Game.boss_status_changed.emit()
+ if Campaign.advanced(Game.selected_map_id):
+  sprite.texture=load(Campaign.enemy_art(Game.selected_map_id,role))
+  sprite.modulate=Color.WHITE
 func _physics_process(delta: float) -> void:
  if not Game.is_running:
   velocity=Vector2.ZERO
@@ -71,7 +74,9 @@ func _physics_process(delta: float) -> void:
   if _warning>0:
    _warning-=delta
    if _warning<=0:
-    if role=="charger": _dash=0.6
+    if role=="charger":
+     _dash=0.6
+     SoundEffects.play("charge", -16)
     else: _fire_volley()
   elif _attack_timer<=0:
    _aim=heading
@@ -90,6 +95,7 @@ func _draw() -> void:
   draw_rect(Rect2(-70,-100,140*maxf(0,float(health)/_max_health),8),Color("ff7898"))
 func _fire_volley() -> void:
  if not Game.is_running:return
+ SoundEffects.play("boss_attack" if is_boss else "enemy_shoot", -15)
  var angles := _angles
  var count:=get_tree().get_nodes_in_group("enemy_shots").size()
  var root:=get_tree().current_scene
@@ -99,18 +105,24 @@ func _fire_volley() -> void:
   count+=1
   var dir:=_aim.rotated(angle)
   var pos:=global_position+dir*(85 if is_boss else 60)
+  if ProjectileTrace.enabled:ProjectileTrace.event("hostile_spawn",{"owner":get_instance_id(),"position":ProjectileTrace.point(pos),"direction":ProjectileTrace.point(dir),"speed":Campaign.projectile_speed(Game.selected_map_id),"source_kind":"enemy_attack","boss":is_boss})
   if cache:
-   cache.hostile(pos,dir,220+Campaign.index(Game.selected_map_id)*10,2 if is_boss else 1)
+   cache.hostile(pos,dir,Campaign.projectile_speed(Game.selected_map_id),2 if is_boss else 1)
    continue
   var shot:=EnemyShot.new()
   shot.direction=_aim.rotated(angle)
-  shot.speed=220+Campaign.index(Game.selected_map_id)*10
+  shot.speed=Campaign.projectile_speed(Game.selected_map_id)
   shot.damage=2 if is_boss else 1
   shot.position=global_position+shot.direction*(85 if is_boss else 60)
   get_tree().current_scene.add_child(shot)
 func _volley_angles() -> Array[float]:
  if is_boss:
   match Game.selected_map_id:
+   "ice": return [-0.45,-0.15,0.15,0.45]
+   "advanced_desert": return [-0.12,0.0,0.12]
+   "storm": return [-0.6,-0.2,0.2,0.6]
+   "crystal": return [-0.4,0.0,0.4,PI]
+   "dark_void": return [-0.6,-0.4,-0.2,0.0,0.2,0.4,0.6]
    "coast": return [-0.35,0.0,0.35]
    "desert": return [-0.12,0.0,0.12]
    "volcano": return [0.0,PI/4,PI/2,3*PI/4,PI,5*PI/4,3*PI/2,7*PI/4]
@@ -118,9 +130,9 @@ func _volley_angles() -> Array[float]:
    _: return [-0.55,-0.27,0.0,0.27,0.55]
  if role=="orbiter": return [-0.28,0.28]
  return [0.0]
-func hit() -> void:
+func hit(damage: int = 1) -> void:
  if _dead or not Game.is_running: return
- health-=1
+ health-=maxi(1,damage)
  queue_redraw()
  if is_boss:
   Game.boss_health=maxi(0,health)
@@ -137,9 +149,9 @@ func kill() -> void:
  Game.record_enemy_kill()
  if is_boss: Game.record_boss_defeat()
  Game.request_screen_shake(9 if is_boss else 4)
- SoundEffects.play_explosion()
+ SoundEffects.play("boss_destroy", -7) if is_boss else SoundEffects.play_explosion()
  var root:=get_tree().current_scene
  if root:
-  ExplosionParticles.spawn(root,global_position,Color("ff8a63"))
+  ExplosionParticles.spawn(root,global_position,Color("ff8a63"),0,"enemy_destroyed")
   FloatingText.spawn(root,global_position,"+150" if is_boss else "+10",Color("ffd166"))
  queue_free()

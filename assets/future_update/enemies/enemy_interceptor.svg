@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <filter id="intShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+    <linearGradient id="intArmor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="35%" stop-color="#334155"/>
+      <stop offset="75%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+    <linearGradient id="intCrimson" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#be123c"/>
+      <stop offset="50%" stop-color="#e11d48"/>
+      <stop offset="100%" stop-color="#881337"/>
+    </linearGradient>
+    <radialGradient id="intVisor" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#fef08a"/>
+      <stop offset="60%" stop-color="#f59e0b"/>
+      <stop offset="90%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </radialGradient>
+    <radialGradient id="twinFlame" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#fef08a"/>
+      <stop offset="70%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="intBloom" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#intShadow)">
+    <!-- Twin Afterburners -->
+    <ellipse cx="218" cy="435" rx="14" ry="34" fill="url(#twinFlame)" filter="url(#intBloom)"/>
+    <ellipse cx="218" cy="425" rx="7" ry="16" fill="#ffffff"/>
+    <ellipse cx="294" cy="435" rx="14" ry="34" fill="url(#twinFlame)" filter="url(#intBloom)"/>
+    <ellipse cx="294" cy="425" rx="7" ry="16" fill="#ffffff"/>
+
+    <!-- Forward-Swept Predator Wings -->
+    <!-- Left Wing -->
+    <polygon points="256,150 180,220 60,180 80,310 190,360 210,410" 
+             fill="url(#intArmor)" stroke="#090d16" stroke-width="4" stroke-linejoin="round"/>
+    <!-- Right Wing -->
+    <polygon points="256,150 332,220 452,180 432,310 322,360 302,410" 
+             fill="url(#intArmor)" stroke="#090d16" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- Forward-Swept Wingtip Strakes (Spearhead Claws) -->
+    <polygon points="60,180 48,110 75,175 60,180" fill="#e11d48" stroke="#881337" stroke-width="2"/>
+    <polygon points="452,180 464,110 437,175 452,180" fill="#e11d48" stroke="#881337" stroke-width="2"/>
+
+    <!-- Outer Turbine Engine Nacelles -->
+    <rect x="110" y="240" width="22" height="110" rx="8" fill="#1e293b" stroke="#e11d48" stroke-width="2.5"/>
+    <rect x="380" y="240" width="22" height="110" rx="8" fill="#1e293b" stroke="#e11d48" stroke-width="2.5"/>
+
+    <!-- Aerodynamic Aggressive Fuselage -->
+    <polygon points="256,40 216,160 200,370 236,415 276,415 312,370 296,160" 
+             fill="url(#intArmor)" stroke="#090d16" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- Crimson Forward Nose Fairing -->
+    <polygon points="256,40 236,120 256,140 276,120" fill="url(#intCrimson)" stroke="#090d16" stroke-width="2"/>
+
+    <!-- Angular Cockpit Visor -->
+    <polygon points="256,160 234,225 256,250 278,225" 
+             fill="url(#intVisor)" stroke="#450a0a" stroke-width="3" filter="url(#intBloom)"/>
+    <polygon points="256,165 240,215 256,235" fill="#ffffff" opacity="0.8"/>
+
+    <!-- Wing Flap Panel Inset -->
+    <polygon points="120,290 170,335 155,348 105,305" fill="url(#intCrimson)"/>
+    <polygon points="392,290 342,335 357,348 407,305" fill="url(#intCrimson)"/>
+
+    <!-- Twin Dorsal Stabilizer Fins -->
+    <polygon points="230,280 220,380 234,375" fill="#475569" stroke="#090d16" stroke-width="2"/>
+    <polygon points="282,280 292,380 278,375" fill="#475569" stroke="#090d16" stroke-width="2"/>
+
+    <!-- Specular Highlight Reflection -->
+    <line x1="256" y1="45" x2="225" y2="155" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  </g>
+</svg>

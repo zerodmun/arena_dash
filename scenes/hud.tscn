@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_h"]
 [ext_resource type="Script" path="res://scripts/joystick.gd" id="2_h"]
-[ext_resource type="Texture2D" path="res://assets/joystick_base.svg" id="3_h"]
-[ext_resource type="Texture2D" path="res://assets/joystick_knob.svg" id="4_h"]
-[ext_resource type="Texture2D" path="res://assets/fire_button.svg" id="5_h"]
+[ext_resource type="Texture2D" path="res://assets/ui/theme/buttons/joystick_base.svg" id="3_h"]
+[ext_resource type="Texture2D" path="res://assets/ui/theme/buttons/joystick_knob.svg" id="4_h"]
+[ext_resource type="Texture2D" path="res://assets/ui/theme/buttons/fire_normal.svg" id="5_h"]
 
 [ext_resource type="Script" path="res://scripts/touch_fire.gd" id="6_fire"]
 

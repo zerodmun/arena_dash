@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Elevation Drop Shadow -->
+    <filter id="chrShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="26" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <!-- Prismatic Platinum Wing Left -->
+    <linearGradient id="chrWingL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#a7f3d0"/>
+      <stop offset="60%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+
+    <!-- Prismatic Platinum Wing Right -->
+    <linearGradient id="chrWingR" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#a7f3d0"/>
+      <stop offset="60%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+
+    <!-- Titanium Emerald Fuselage Spine -->
+    <linearGradient id="chrSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="25%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="75%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+
+    <!-- Temporal Emerald Canopy -->
+    <radialGradient id="chrCockpit" cx="42%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#6ee7b7"/>
+      <stop offset="65%" stop-color="#059669"/>
+      <stop offset="90%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </radialGradient>
+
+    <!-- Chrono-Plasma Flame Plume -->
+    <radialGradient id="chrFlame" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#6ee7b7"/>
+      <stop offset="70%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Temporal Ring Gradient -->
+    <linearGradient id="chrRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#a7f3d0"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#chrShadow)">
+    <!-- Triple Chrono-Drive Thruster Flames -->
+    <ellipse cx="204" cy="428" rx="18" ry="44" fill="url(#chrFlame)"/>
+    <ellipse cx="308" cy="428" rx="18" ry="44" fill="url(#chrFlame)"/>
+    <ellipse cx="256" cy="436" rx="20" ry="50" fill="url(#chrFlame)"/>
+    <ellipse cx="204" cy="420" rx="9" ry="24" fill="#ffffff"/>
+    <ellipse cx="308" cy="420" rx="9" ry="24" fill="#ffffff"/>
+    <ellipse cx="256" cy="426" rx="10" ry="28" fill="#ffffff"/>
+
+    <!-- Left Chrono-Delta Wing -->
+    <polygon points="256,46 256,364 68,406 104,268 196,178" fill="url(#chrWingL)" stroke="#064e3b" stroke-width="6" stroke-linejoin="round"/>
+    <!-- Left Wing Under-Armor Chamfer -->
+    <polygon points="104,268 68,406 160,378 204,298" fill="#047857" opacity="0.9"/>
+    <!-- Left Inset Luminous Circuit Lines -->
+    <line x1="162" y1="212" x2="106" y2="348" stroke="#a7f3d0" stroke-width="4" stroke-linecap="round"/>
+    <line x1="198" y1="262" x2="144" y2="368" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Right Chrono-Delta Wing -->
+    <polygon points="256,46 256,364 444,406 408,268 316,178" fill="url(#chrWingR)" stroke="#064e3b" stroke-width="6" stroke-linejoin="round"/>
+    <!-- Right Wing Under-Armor Chamfer -->
+    <polygon points="408,268 444,406 352,378 308,298" fill="#047857" opacity="0.9"/>
+    <!-- Right Inset Luminous Circuit Lines -->
+    <line x1="350" y1="212" x2="406" y2="348" stroke="#a7f3d0" stroke-width="4" stroke-linecap="round"/>
+    <line x1="314" y1="262" x2="368" y2="368" stroke="#34d399" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Wingtip Temporal Distortion Nacelles -->
+    <rect x="60" y="248" width="16" height="132" rx="8" fill="#022c22" stroke="#34d399" stroke-width="4"/>
+    <rect x="64" y="260" width="8" height="66" rx="4" fill="#6ee7b7"/>
+    <circle cx="68" cy="248" r="11" fill="#34d399"/>
+    <circle cx="68" cy="248" r="5" fill="#ffffff"/>
+    <!-- Halo Distortion Ring -->
+    <ellipse cx="68" cy="248" rx="20" ry="10" fill="none" stroke="url(#chrRing)" stroke-width="2.5" opacity="0.8"/>
+
+    <rect x="436" y="248" width="16" height="132" rx="8" fill="#022c22" stroke="#34d399" stroke-width="4"/>
+    <rect x="440" y="260" width="8" height="66" rx="4" fill="#6ee7b7"/>
+    <circle cx="444" cy="248" r="11" fill="#34d399"/>
+    <circle cx="444" cy="248" r="5" fill="#ffffff"/>
+    <!-- Halo Distortion Ring -->
+    <ellipse cx="444" cy="248" rx="20" ry="10" fill="none" stroke="url(#chrRing)" stroke-width="2.5" opacity="0.8"/>
+
+    <!-- Aegis Forward Deflector Canards -->
+    <polygon points="256,116 172,162 208,186" fill="url(#chrWingL)" stroke="#059669" stroke-width="4"/>
+    <polygon points="256,116 340,162 304,186" fill="url(#chrWingR)" stroke="#059669" stroke-width="4"/>
+
+    <!-- Central Sculpted Emerald Fuselage -->
+    <polygon points="256,30 300,186 300,402 256,438 212,402 212,186" fill="url(#chrSpine)" stroke="#022c22" stroke-width="6" stroke-linejoin="round"/>
+
+    <!-- Nose Armor Emerald Shield Facet -->
+    <polygon points="256,30 290,172 256,198 222,172" fill="#a7f3d0" stroke="#059669" stroke-width="3"/>
+
+    <!-- Temporal Dome Cockpit Canopy -->
+    <ellipse cx="256" cy="240" rx="34" ry="74" fill="url(#chrCockpit)" stroke="#022c22" stroke-width="6"/>
+    <!-- Specular Highlight Arc -->
+    <path d="M242,188 Q264,200 264,244" stroke="#ffffff" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.95"/>
+    <circle cx="260" cy="214" r="5" fill="#ffffff"/>
+
+    <!-- Triple Heavy Thruster Mounts -->
+    <rect x="188" y="404" width="32" height="24" rx="6" fill="#064e3b" stroke="#34d399" stroke-width="4"/>
+    <rect x="292" y="404" width="32" height="24" rx="6" fill="#064e3b" stroke="#34d399" stroke-width="4"/>
+    <rect x="240" y="412" width="32" height="24" rx="6" fill="#064e3b" stroke="#6ee7b7" stroke-width="4"/>
+
+    <!-- Center Spine Luminescent Channel -->
+    <line x1="256" y1="50" x2="256" y2="166" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="256" cy="358" r="11" fill="#34d399" stroke="#ffffff" stroke-width="3"/>
+  </g>
+</svg>

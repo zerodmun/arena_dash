@@ -14,9 +14,9 @@ func _ready() -> void:
  Game.game_started.connect(_on_game_started)
 func _on_game_started() -> void:
  var level:=Campaign.index(Game.selected_map_id)
- initial_interval=1.9-level*0.13
- base_speed=85.0+level*13
- max_enemies=14+level*2
+ initial_interval=Campaign.spawn_interval(Game.selected_map_id)
+ base_speed=Campaign.movement_speed(Game.selected_map_id)
+ max_enemies=mini(30,14+level*2)
  _timer=initial_interval
  _spawn_count=0
  _boss_spawned=false
@@ -44,7 +44,7 @@ func _spawn_formation() -> void:
   var role: String=roster[(_spawn_count+i)%roster.size()]
   if level==0 and _spawn_count<3: role="pursuer"
   var offset:=across*(i-(count-1)*0.5)*150
-  if Game.selected_map_id in ["coast","desert"]: offset+=across.orthogonal()*absf(i-(count-1)*0.5)*100
+  if Game.selected_map_id in ["coast","desert","lava","advanced_desert"]: offset+=across.orthogonal()*absf(i-(count-1)*0.5)*100
   _spawn_enemy(role,anchor+offset)
 func _spawn_enemy(role: String="pursuer", location:=Vector2.INF) -> Enemy:
  if _alive>=max_enemies: return null
@@ -54,7 +54,7 @@ func _spawn_enemy(role: String="pursuer", location:=Vector2.INF) -> Enemy:
  enemy.role=role
  enemy.is_boss=role=="boss"
  enemy.speed=base_speed+randf_range(0,25)+minf(_spawn_count*0.3,15)
- enemy.health=2 if role=="gunner" or role=="orbiter" else 1
+ enemy.health=Campaign.enemy_health(Game.selected_map_id,role)
  if enemy.is_boss:
   enemy.health=20+Campaign.index(Game.selected_map_id)*2
   enemy.speed=base_speed*0.8

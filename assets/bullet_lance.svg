@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <!-- Piercing Cyan-Emerald Plasma Gradient -->
+    <linearGradient id="lanceCore" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="20%" stop-color="#a7f3d0"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="80%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+
+    <!-- Electric Neon Aura -->
+    <linearGradient id="lanceAura" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="40%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="lanceGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Hyper-Velocity Energy Trail Plume -->
+  <polygon points="128,10 88,230 168,230" fill="url(#lanceAura)" opacity="0.4" filter="url(#lanceGlow)"/>
+
+  <!-- Outer Kinetic Shroud (Tapered Javelin) -->
+  <polygon points="128,14 102,170 128,210 154,170" fill="url(#lanceAura)" opacity="0.8"/>
+
+  <!-- Twin Side Energy Vanes -->
+  <polygon points="128,70 82,180 106,186 128,110" fill="#34d399" opacity="0.85"/>
+  <polygon points="128,70 174,180 150,186 128,110" fill="#34d399" opacity="0.85"/>
+
+  <!-- High-Frequency Lance Body -->
+  <polygon points="128,18 112,160 128,196 144,160" fill="url(#lanceCore)" stroke="#ffffff" stroke-width="2"/>
+
+  <!-- Piercing White Filament Core -->
+  <polygon points="128,20 122,145 128,175 134,145" fill="#ffffff" filter="url(#lanceGlow)"/>
+
+  <!-- Forward Needle Flash Node -->
+  <ellipse cx="128" cy="22" rx="16" ry="6" fill="#ffffff" filter="url(#lanceGlow)"/>
+  <circle cx="128" cy="22" r="7" fill="#ffffff"/>
+
+  <!-- Trailing Stabilization Pulse Rings -->
+  <ellipse cx="128" cy="110" rx="32" ry="7" fill="none" stroke="#6ee7b7" stroke-width="3" opacity="0.8"/>
+  <ellipse cx="128" cy="170" rx="22" ry="5" fill="none" stroke="#34d399" stroke-width="2" opacity="0.6"/>
+</svg>

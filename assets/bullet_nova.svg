@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <!-- Supernova Core Gradient -->
+    <radialGradient id="novaRadial" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#fef08a"/>
+      <stop offset="55%" stop-color="#f97316"/>
+      <stop offset="85%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#991b1b" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Coronal Ring Gradient -->
+    <linearGradient id="coronaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <filter id="novaGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer Thermal Blast Aura -->
+  <circle cx="128" cy="128" r="92" fill="url(#novaRadial)" opacity="0.45" filter="url(#novaGlow)"/>
+
+  <!-- Rotating Coronal Flare Rings -->
+  <ellipse cx="128" cy="128" rx="84" ry="34" fill="none" stroke="url(#coronaGrad)" stroke-width="6" opacity="0.85" transform="rotate(-25 128 128)"/>
+  <ellipse cx="128" cy="128" rx="84" ry="34" fill="none" stroke="url(#coronaGrad)" stroke-width="6" opacity="0.85" transform="rotate(35 128 128)"/>
+
+  <!-- Cardinal Solar Flare Points -->
+  <polygon points="128,24 136,104 128,128 120,104" fill="#fef08a" filter="url(#novaGlow)"/>
+  <polygon points="128,232 136,152 128,128 120,152" fill="#f97316" filter="url(#novaGlow)"/>
+  <polygon points="24,128 104,120 128,128 104,136" fill="#f97316" filter="url(#novaGlow)"/>
+  <polygon points="232,128 152,120 128,128 152,136" fill="#fef08a" filter="url(#novaGlow)"/>
+
+  <!-- Diagonal Sub-Spikes -->
+  <polygon points="56,56 112,112 128,128 116,110" fill="#fef08a"/>
+  <polygon points="200,56 144,112 128,128 140,110" fill="#fef08a"/>
+  <polygon points="56,200 112,144 128,128 116,146" fill="#f97316"/>
+  <polygon points="200,200 144,144 128,128 140,146" fill="#f97316"/>
+
+  <!-- Core Radiant Orb -->
+  <circle cx="128" cy="128" r="46" fill="url(#novaRadial)" stroke="#ffffff" stroke-width="3"/>
+
+  <!-- Incandescent Star Center -->
+  <circle cx="128" cy="128" r="26" fill="#ffffff" filter="url(#novaGlow)"/>
+  <circle cx="128" cy="128" r="14" fill="#ffffff"/>
+
+  <!-- Micro Orbiting Energy Sparkles -->
+  <circle cx="92" cy="74" r="5" fill="#ffffff" filter="url(#novaGlow)"/>
+  <circle cx="168" cy="182" r="4.5" fill="#fef08a"/>
+  <circle cx="68" cy="164" r="4" fill="#f97316"/>
+  <circle cx="188" cy="88" r="4" fill="#ffffff"/>
+</svg>

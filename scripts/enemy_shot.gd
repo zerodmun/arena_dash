@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
  if _life<=0:despawn()
 func _impact(body: Node2D) -> void:
  if not active or not Game.is_running:return
+ SoundEffects.play("impact", -19)
  if body is Player: body.receive_hit(damage)
  despawn()
 

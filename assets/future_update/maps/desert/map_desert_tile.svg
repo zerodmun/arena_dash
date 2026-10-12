@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="tileDesert" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="50%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="36" fill="url(#tileDesert)" stroke="#f59e0b" stroke-width="6"/>
+  <!-- Sun & Dunes -->
+  <circle cx="256" cy="200" r="90" fill="#fef08a" opacity="0.8"/>
+  <path d="M 60,380 Q 200,280 340,360 T 480,340 L 480,480 L 60,480 Z" fill="#d97706"/>
+  <path d="M 60,420 Q 240,360 460,420 L 460,480 L 60,480 Z" fill="#92400e"/>
+</svg>

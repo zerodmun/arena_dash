@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <filter id="crystalShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="20" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+    <radialGradient id="crystalMantle" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="20%" stop-color="#f0abfc"/>
+      <stop offset="45%" stop-color="#d946ef"/>
+      <stop offset="70%" stop-color="#a21caf"/>
+      <stop offset="90%" stop-color="#701a75"/>
+      <stop offset="100%" stop-color="#3b0764"/>
+    </radialGradient>
+    <radialGradient id="crystalAtmosphere" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="65%" stop-color="#22d3ee" stop-opacity="0.2"/>
+      <stop offset="88%" stop-color="#c084fc" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#3b0764" stop-opacity="0.95"/>
+    </radialGradient>
+    <filter id="crystalGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="prismGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#67e8f9"/>
+      <stop offset="100%" stop-color="#0e7490"/>
+    </linearGradient>
+    <linearGradient id="prismGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#be185d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Prismatic Refraction Aura -->
+  <circle cx="256" cy="256" r="236" fill="#22d3ee" opacity="0.22" filter="url(#crystalGlow)"/>
+  <circle cx="256" cy="256" r="216" fill="#f472b6" opacity="0.22" filter="url(#crystalGlow)"/>
+
+  <g filter="url(#crystalShadow)">
+    <!-- Base Faceted Sphere -->
+    <circle cx="256" cy="256" r="190" fill="url(#crystalMantle)" stroke="#a21caf" stroke-width="4"/>
+
+    <!-- Polygonal Faceted Geometric Crust -->
+    <polygon points="180,120 270,100 240,180 150,170" fill="#f5d0fe" opacity="0.5" stroke="#ffffff" stroke-width="1.5"/>
+    <polygon points="270,100 360,130 330,200 240,180" fill="#c084fc" opacity="0.6" stroke="#ffffff" stroke-width="1.5"/>
+    <polygon points="150,170 240,180 210,270 120,240" fill="#a855f7" opacity="0.6" stroke="#ffffff" stroke-width="1.5"/>
+    <polygon points="240,180 330,200 310,290 210,270" fill="#e879f9" opacity="0.7" stroke="#ffffff" stroke-width="1.5"/>
+    <polygon points="330,200 410,230 380,310 310,290" fill="#9333ea" opacity="0.65" stroke="#ffffff" stroke-width="1.5"/>
+    <polygon points="120,240 210,270 180,360 100,320" fill="#7e22ce" opacity="0.7" stroke="#ffffff" stroke-width="1.5"/>
+    <polygon points="210,270 310,290 280,380 180,360" fill="#c084fc" opacity="0.6" stroke="#ffffff" stroke-width="1.5"/>
+    <polygon points="310,290 380,310 350,390 280,380" fill="#6b21a8" opacity="0.75" stroke="#ffffff" stroke-width="1.5"/>
+
+    <!-- Protruding Giant Luminous Crystal Spikes & Monoliths -->
+    <!-- Cluster 1 (Left Crown) -->
+    <polygon points="140,140 160,80 190,130 170,160" fill="url(#prismGrad1)" stroke="#ffffff" stroke-width="2"/>
+    <polygon points="160,80 190,130 180,150 145,130" fill="#ffffff" opacity="0.7"/>
+
+    <!-- Cluster 2 (Central Core Monolith) -->
+    <polygon points="240,160 260,90 290,150 270,180" fill="url(#prismGrad2)" stroke="#ffffff" stroke-width="2"/>
+    <polygon points="260,90 290,150 280,170 245,150" fill="#ffffff" opacity="0.8"/>
+
+    <!-- Cluster 3 (Right Crest) -->
+    <polygon points="320,170 360,110 380,180 340,190" fill="url(#prismGrad1)" stroke="#ffffff" stroke-width="2"/>
+
+    <!-- Cluster 4 (Equatorial Spire) -->
+    <polygon points="190,260 220,210 240,270 210,290" fill="url(#prismGrad2)" stroke="#ffffff" stroke-width="2"/>
+
+    <!-- Cluster 5 (Southern Monolith) -->
+    <polygon points="270,280 310,230 330,300 290,320" fill="url(#prismGrad1)" stroke="#ffffff" stroke-width="2"/>
+
+    <!-- Radiant Resonance Prismatic Rays -->
+    <path d="M 160,80 L 260,90 L 360,110" fill="none" stroke="#22d3ee" stroke-width="3" filter="url(#crystalGlow)"/>
+    <path d="M 160,80 L 260,90 L 360,110" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+
+    <path d="M 220,210 L 310,230" fill="none" stroke="#f472b6" stroke-width="3" filter="url(#crystalGlow)"/>
+    <path d="M 220,210 L 310,230" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+
+    <!-- Atmospheric Glow Veil -->
+    <circle cx="256" cy="256" r="190" fill="url(#crystalAtmosphere)"/>
+
+    <!-- Specular Diamond Facet Glint -->
+    <polygon points="260,90 268,105 285,108 270,120 274,136 260,126 246,136 250,120 235,108 252,105" 
+             fill="#ffffff" filter="url(#crystalGlow)"/>
+    <path d="M 125,120 A 190,190 0 0,1 385,120 A 184,184 0 0,0 125,120 Z" fill="#ffffff" opacity="0.85"/>
+  </g>
+</svg>

@@ -32,7 +32,7 @@ Reused assets include the already-existing `assets/generated/campaign_horizon.sv
 
 ## Validation
 
-`tests/landscape_ui.tscn` exercises main UI and campaign layouts, all popup bounds, settings persistence, help Escape close, every weapon choice/live preview, touch firing/pause reset, settings during pause, resume/retry, victory progression, focus/touch geometry and landscape canvas policy at five window shapes. Screenshots are saved as `build/landscape_*.png`.
+`tests/landscape_ui.tscn` exercises main UI and campaign layouts, all popup bounds, settings persistence, help Escape close, every weapon choice/live preview, touch firing/pause reset, settings during pause, resume/retry, victory progression, focus/touch geometry and landscape canvas policy at five window shapes. Screenshots are saved as `qa/landscape_*.png`.
 
 Existing smoke, hangar-review and campaign-combat suites guard all eight environments, twelve aircraft, four weapon patterns, armor/projectile physics, movement, pause, campaign save/load, latest completion order and mandatory guardian encounters. Test saves are project-local.
 

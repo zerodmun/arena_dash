@@ -11,9 +11,11 @@ func _capture(name: String) -> void:
  for i in 4: await get_tree().process_frame
  if "--screenshots" in OS.get_cmdline_user_args() and DisplayServer.get_name() != "headless":
   await RenderingServer.frame_post_draw
-  get_viewport().get_texture().get_image().save_png("res://build/" + name + ".png")
+  get_viewport().get_texture().get_image().save_png("res://qa/" + name + ".png")
 func _review() -> void:
- Game.save_path = "res://build/ui-test-save.cfg"
+ Game.save_path = "res://qa/ui-test-save.cfg"
+ for id: String in Game.SHIPS: Game.owned_ships[id]=true
+ for id: String in Game.WEAPONS: Game.owned_weapons[id]=true
  Game.completed_levels = {}
  Game.selected_map_id = "cyber"
  var menu: Control = load("res://scenes/menu.tscn").instantiate()
@@ -32,7 +34,12 @@ func _review() -> void:
    hangar._select_ship(id)
    check(hangar._ship_image.texture.resource_path == Game.SHIPS[id].texture, "Selectable aircraft " + id)
   check(hangar._launch.get_global_rect().end.x <= hangar.size.x, "Launch in viewport")
-  check(not hangar._launch.get_global_rect().intersects(hangar._roster_scroll.get_global_rect()), "Roster does not overlap launch")
+  check(not hangar._launch.get_global_rect().intersects(hangar._hero.get_global_rect()), "Ship stage does not overlap launch")
+  check(hangar._launch.size.x >= 352 and hangar._launch.size.y >= 108, "Deployment is a prominent touch target")
+  check(not hangar._launch.get_global_rect().intersects(hangar._mission_label.get_global_rect()), "Mission details stay clear of deployment")
+  check(hangar._header is HBoxContainer, "Header navigation has no surrounding card")
+  for label in hangar.find_children("*","Label",true,false):
+   check(not "SWIPE / A" in label.text.to_upper(), "Aircraft instruction element is removed")
   hangar._open_popup("weapon")
   for id: String in Game.WEAPONS:
    hangar._choose_popup_option(id)
@@ -44,7 +51,7 @@ func _review() -> void:
   var levels: LevelSelect = load("res://scenes/level_select.tscn").instantiate()
   get_tree().root.add_child(levels)
   await _capture("review_campaign_%dx%d" % [resolution.x,resolution.y])
-  check(levels.cards.size() == 8, "All eight planet cards")
+  check(levels.cards.size() == Campaign.ORDER.size(), "All campaign planet cards")
   check(not levels.cards.cyber._has_point(Vector2.ZERO), "Planet corners do not accept clicks")
   check(levels.cards.cyber._has_point(levels.cards.cyber.size*0.5), "Planet center accepts clicks")
   levels._select("toxic")

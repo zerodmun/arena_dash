@@ -11,12 +11,12 @@ config_version=5
 [application]
 
 config/name="Arena Dash"
-run/main_scene="res://scenes/menu.tscn"
+run/main_scene="res://scenes/loading.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
-boot_splash/image="res://assets/splash.png"
-boot_splash/bg_color=Color(0.063, 0.086, 0.188, 1)
-boot_splash/show_image=true
+boot_splash/image=""
+boot_splash/bg_color=Color(0.008, 0.024, 0.09, 1)
+boot_splash/show_image=false
 boot_splash/fullsize=true
 boot_splash/use_filter=true
 
@@ -31,8 +31,8 @@ PerfDiagnostics="*res://scripts/perf_diagnostics.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/mode="fullscreen"
 window/size/resizable=true
 window/dpi/allow_hidpi=false

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 128" width="1024" height="128">
+  <defs>
+    <linearGradient id="spinRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#fef08a"/>
+      <stop offset="60%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <radialGradient id="spinFace" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fef9c3"/>
+      <stop offset="35%" stop-color="#facc15"/>
+      <stop offset="80%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#854d0e"/>
+    </radialGradient>
+    <linearGradient id="edgeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+  </defs>
+  <!-- Frame 0 (Center: 64, 64) -->
+  <g id="frame_0">
+    <ellipse cx="64" cy="67" rx="50" ry="48" fill="#000000" opacity="0.55"/>
+    <ellipse cx="64" cy="64" rx="50" ry="48" fill="url(#spinRim)" stroke="#78350f" stroke-width="2"/>
+    <ellipse cx="64" cy="64" rx="38.0" ry="36" fill="url(#spinFace)" stroke="#a16207" stroke-width="1.5"/>
+    <polygon points="64,40 71.0,56 88.0,64 71.0,72 64,88 57.0,72 40.0,64 57.0,56" fill="#ffffff" opacity="0.95"/>
+    <circle cx="64" cy="64" r="4.0" fill="#facc15"/>
+    <path d="M 29.0,60 A 38.0,36 0 0,1 99.0,60 A 34.2,24 0 0,0 29.0,60 Z" fill="#ffffff" opacity="0.4"/>
+  </g>
+  <!-- Frame 1 (Center: 192, 64) -->
+  <g id="frame_1">
+    <ellipse cx="192" cy="67" rx="38" ry="48" fill="#000000" opacity="0.55"/>
+    <ellipse cx="192" cy="64" rx="38" ry="48" fill="url(#spinRim)" stroke="#78350f" stroke-width="2"/>
+    <ellipse cx="192" cy="64" rx="28.9" ry="36" fill="url(#spinFace)" stroke="#a16207" stroke-width="1.5"/>
+    <polygon points="192,40 197.3,56 210.2,64 197.3,72 192,88 186.7,72 173.8,64 186.7,56" fill="#ffffff" opacity="0.95"/>
+    <circle cx="192" cy="64" r="3.0" fill="#facc15"/>
+    <path d="M 165.4,60 A 28.9,36 0 0,1 218.6,60 A 26.0,24 0 0,0 165.4,60 Z" fill="#ffffff" opacity="0.4"/>
+  </g>
+  <!-- Frame 2 (Center: 320, 64) -->
+  <g id="frame_2">
+    <ellipse cx="320" cy="67" rx="21" ry="48" fill="#000000" opacity="0.55"/>
+    <ellipse cx="320" cy="64" rx="21" ry="48" fill="url(#spinRim)" stroke="#78350f" stroke-width="2"/>
+    <ellipse cx="320" cy="64" rx="16.0" ry="36" fill="url(#spinFace)" stroke="#a16207" stroke-width="1.5"/>
+    <path d="M 305.3,60 A 16.0,36 0 0,1 334.7,60 A 14.4,24 0 0,0 305.3,60 Z" fill="#ffffff" opacity="0.4"/>
+  </g>
+  <!-- Frame 3 (Center: 448, 64) -->
+  <g id="frame_3">
+    <ellipse cx="448" cy="67" rx="9" ry="48" fill="#000000" opacity="0.55"/>
+    <rect x="439" y="16" width="18" height="96" rx="9" fill="url(#edgeGrad)" stroke="#78350f" stroke-width="2"/>
+    <line x1="448" y1="20" x2="448" y2="108" stroke="#ffffff" stroke-width="1.5" opacity="0.8"/>
+    <line x1="441" y1="35" x2="455" y2="35" stroke="#78350f" stroke-width="1.5"/>
+    <line x1="441" y1="64" x2="455" y2="64" stroke="#78350f" stroke-width="1.5"/>
+    <line x1="441" y1="93" x2="455" y2="93" stroke="#78350f" stroke-width="1.5"/>
+  </g>
+  <!-- Frame 4 (Center: 576, 64) -->
+  <g id="frame_4">
+    <ellipse cx="576" cy="67" rx="21" ry="48" fill="#000000" opacity="0.55"/>
+    <ellipse cx="576" cy="64" rx="21" ry="48" fill="url(#spinRim)" stroke="#78350f" stroke-width="2"/>
+    <ellipse cx="576" cy="64" rx="16.0" ry="36" fill="url(#spinFace)" stroke="#a16207" stroke-width="1.5"/>
+    <path d="M 561.3,60 A 16.0,36 0 0,1 590.7,60 A 14.4,24 0 0,0 561.3,60 Z" fill="#ffffff" opacity="0.4"/>
+  </g>
+  <!-- Frame 5 (Center: 704, 64) -->
+  <g id="frame_5">
+    <ellipse cx="704" cy="67" rx="38" ry="48" fill="#000000" opacity="0.55"/>
+    <ellipse cx="704" cy="64" rx="38" ry="48" fill="url(#spinRim)" stroke="#78350f" stroke-width="2"/>
+    <ellipse cx="704" cy="64" rx="28.9" ry="36" fill="url(#spinFace)" stroke="#a16207" stroke-width="1.5"/>
+    <polygon points="704,40 709.3,56 722.2,64 709.3,72 704,88 698.7,72 685.8,64 698.7,56" fill="#ffffff" opacity="0.95"/>
+    <circle cx="704" cy="64" r="3.0" fill="#facc15"/>
+    <path d="M 677.4,60 A 28.9,36 0 0,1 730.6,60 A 26.0,24 0 0,0 677.4,60 Z" fill="#ffffff" opacity="0.4"/>
+  </g>
+  <!-- Frame 6 (Center: 832, 64) -->
+  <g id="frame_6">
+    <ellipse cx="832" cy="67" rx="50" ry="48" fill="#000000" opacity="0.55"/>
+    <ellipse cx="832" cy="64" rx="50" ry="48" fill="url(#spinRim)" stroke="#78350f" stroke-width="2"/>
+    <ellipse cx="832" cy="64" rx="38.0" ry="36" fill="url(#spinFace)" stroke="#a16207" stroke-width="1.5"/>
+    <polygon points="832,40 839.0,56 856.0,64 839.0,72 832,88 825.0,72 808.0,64 825.0,56" fill="#ffffff" opacity="0.95"/>
+    <circle cx="832" cy="64" r="4.0" fill="#facc15"/>
+    <path d="M 797.0,60 A 38.0,36 0 0,1 867.0,60 A 34.2,24 0 0,0 797.0,60 Z" fill="#ffffff" opacity="0.4"/>
+  </g>
+  <!-- Frame 7 (Center: 960, 64) -->
+  <g id="frame_7">
+    <ellipse cx="960" cy="67" rx="9" ry="48" fill="#000000" opacity="0.55"/>
+    <rect x="951" y="16" width="18" height="96" rx="9" fill="url(#edgeGrad)" stroke="#78350f" stroke-width="2"/>
+    <line x1="960" y1="20" x2="960" y2="108" stroke="#ffffff" stroke-width="1.5" opacity="0.8"/>
+    <line x1="953" y1="35" x2="967" y2="35" stroke="#78350f" stroke-width="1.5"/>
+    <line x1="953" y1="64" x2="967" y2="64" stroke="#78350f" stroke-width="1.5"/>
+    <line x1="953" y1="93" x2="967" y2="93" stroke="#78350f" stroke-width="1.5"/>
+  </g>
+</svg>

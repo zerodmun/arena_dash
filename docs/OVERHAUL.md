@@ -10,7 +10,7 @@ The existing Godot 4.7 game engine, scenes, flight physics, four weapon patterns
 
 ## Recursive asset audit
 
-`asset-inventory.json` records every source resource under `assets`, recursively, with file size, SVG dimensions, viewBox and element count. There are 83 resources: 81 images and two documentation files. Four rendered contact sheets in `build/assets_*.png` cover all images. Orphan `.import` entries for the previously removed hangar PNGs are metadata rather than usable artwork; the replacement uses existing nested SVGs.
+`asset-inventory.json` records every source resource under `assets`, recursively, with file size, SVG dimensions, viewBox and element count. There are 83 resources: 81 images and two documentation files. Four rendered contact sheets in `qa/assets_*.png` cover all images. Orphan `.import` entries for the previously removed hangar PNGs are metadata rather than usable artwork; the replacement uses existing nested SVGs.
 
 Integrated resources include all seven original aircraft and five nested expansion craft (Saucer, Rocket, Wedge, Speeder, Booster); all eight original environment maps; all eight matching `planet_*.svg` previews; the galaxy progression backdrop; both portrait hangar backgrounds and the docking pedestal; home, settings, back, close, play, pause, action and star UI assets; nested crystal pickups and asteroid boulders; original biome obstacles, bullets, joystick and fire button. Decorative SVG logos contain text that Godot's SVG renderer omits, so the menu uses an existing aircraft hero and native editable labels. Unused reward/chest art remains available without inventing an unrelated economy.
 

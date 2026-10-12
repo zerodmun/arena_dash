@@ -7,12 +7,12 @@ func settle(name: String) -> void:
  for i in 4: await get_tree().process_frame
  if "--screenshots" in OS.get_cmdline_user_args() and DisplayServer.get_name()!="headless":
   RenderingServer.force_draw()
-  get_viewport().get_texture().get_image().save_png("res://build/l10n_"+name+".png")
+  get_viewport().get_texture().get_image().save_png("res://qa/l10n_"+name+".png")
 func bounds(control: Control,message: String) -> void:
  check(get_viewport().get_visible_rect().grow(1).encloses(control.get_global_rect()),message+" / "+str(control.get_global_rect()))
 func _ready() -> void: call_deferred("run")
 func run() -> void:
- Game.save_path="res://build/localization-controls-test.cfg"
+ Game.save_path="res://qa/localization-controls-test.cfg"
  Game.completed_levels={}
  Game.last_completed_planet=""
  Game.selected_map_id="cyber"
@@ -23,7 +23,7 @@ func run() -> void:
  I18n.set_language("id")
  Game._load_save()
  check(I18n.language=="id","Language preference restored")
- for resolution in [Vector2i(1280,720),Vector2i(1600,720),Vector2i(960,540)]:
+ for resolution in [Vector2i(1280,720),Vector2i(1440,720),Vector2i(1560,720),Vector2i(1600,720),Vector2i(960,540)]:
   get_tree().root.size=resolution
   await get_tree().process_frame
   Game._update_device_detection()
@@ -38,10 +38,15 @@ func run() -> void:
    var dialog:=ArcadeUI.settings(menu)
    await settle("settings_"+suffix)
    bounds(dialog.panel,"Settings bounds")
-   for category in ["LANGUAGE","AUDIO","GRAPHICS","CONTROLS"]:
+   for category in ["LANGUAGE","AUDIO","DISPLAY","GRAPHICS","CONTROLS"]:
     dialog._show_category(category)
     await settle("settings_"+category+"_"+suffix)
     bounds(dialog.panel,"Category bounds "+category)
+   dialog._display_section="GAMEPLAY"
+   dialog._show_category("DISPLAY")
+   await settle("settings_gameplay_"+suffix)
+   bounds(dialog.panel,"Gameplay display bounds")
+   bounds(dialog._fixed_button,"Fixed control option bounds")
    dialog._show_category("GENERAL")
    var editor:=dialog.open_editor()
    await settle("editor_"+suffix)
@@ -108,10 +113,10 @@ func run() -> void:
    check(is_equal_approx(hud.fire_button.modulate.a,0.6),"Saved opacity applied")
    bounds(hud.fire_button,"Customized Fire bounds")
    # Independent fingers: moving index 3 and firing index 8 at the same time.
-   var move:=InputEventScreenTouch.new();move.index=3;move.pressed=true;move.position=hud.joystick.size*0.5
-   hud.joystick._gui_input(move)
-   var drag:=InputEventScreenDrag.new();drag.index=3;drag.position=hud.joystick.size*0.5+Vector2(30,0)
-   hud.joystick._gui_input(drag)
+   var move:=InputEventScreenTouch.new();move.index=3;move.pressed=true;move.position=hud.joystick.get_global_rect().get_center()
+   hud.joystick._input(move)
+   var drag:=InputEventScreenDrag.new();drag.index=3;drag.position=hud.joystick.get_global_rect().get_center()+Vector2(30,0)
+   hud.joystick._input(drag)
    var fire:=InputEventScreenTouch.new();fire.index=8;fire.pressed=true;fire.position=hud.fire_button.size*0.5
    hud.fire_button._gui_input(fire)
    check(hud.joystick.pressed and hud.joystick.output.x>0 and Input.is_action_pressed("fire"),"Simultaneous joystick and fire")

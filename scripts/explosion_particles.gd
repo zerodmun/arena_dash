@@ -3,10 +3,15 @@ class_name ExplosionParticles
 extends CPUParticles2D
 ## Dynamic particle burst for enemy destruction and impacts.
 
+var active := false
+var lease := 0
 var pool: Node
 static var gradients: Dictionary={}
 
 func _ready() -> void:
+    top_level = true
+    physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+    local_coords = false
     emitting = false
     one_shot = true
     explosiveness = 0.95
@@ -33,20 +38,28 @@ static func gradient_for(col: Color) -> Gradient:
   gradient.set_color(1,Color(col,0.0))
   gradients[col]=gradient
  return gradients[col]
-func activate(pos: Vector2,col: Color) -> void:
- global_position=pos
+func activate(pos: Vector2,col: Color,source_id: int = 0,source_kind: String = "world_effect") -> void:
+ lease+=1
+ active=true
+ emitting=false
+ if ProjectileTrace.enabled:ProjectileTrace.event("effect",{"instance":get_instance_id(),"position":ProjectileTrace.point(pos),"previous_position":ProjectileTrace.point(global_position),"emitting_before":emitting,"local_coords":local_coords,"projectile_id":source_id,"lease":lease,"source_kind":source_kind})
+ global_transform=Transform2D(0.0,pos)
+ reset_physics_interpolation()
  color=col
  color_ramp=gradient_for(col)
  visible=true
  restart()
 func _finished() -> void:
- if is_instance_valid(pool):pool.recycle.call_deferred(self)
+ if not active:return
+ active=false
+ visible=false
+ if is_instance_valid(pool):pool.recycle.call_deferred(self,lease)
  else:queue_free()
-static func spawn(parent: Node,pos: Vector2,col: Color=Color(1.0,0.35,0.2)) -> void:
+static func spawn(parent: Node,pos: Vector2,col: Color=Color(1.0,0.35,0.2),source_id: int = 0,source_kind: String = "world_effect") -> void:
  var cache:=parent.get_node_or_null("CombatPool")
  if cache:
-  cache.burst(pos,col)
+  cache.burst(pos,col,source_id,source_kind)
   return
  var particle:=ExplosionParticles.new()
  parent.add_child(particle)
- particle.activate(pos,col)
+ particle.activate(pos,col,source_id,source_kind)

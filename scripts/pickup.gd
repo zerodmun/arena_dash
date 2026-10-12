@@ -35,5 +35,5 @@ func _on_body_entered(body: Node2D) -> void:
         var root := get_tree().current_scene
         if root:
             FloatingText.spawn(root, global_position, "+25", Color(1.0, 0.95, 0.3))
-            ExplosionParticles.spawn(root, global_position, Color(1.0, 0.9, 0.2))
+            ExplosionParticles.spawn(root, global_position, Color(1.0, 0.9, 0.2),0,"pickup_collected")
         queue_free()

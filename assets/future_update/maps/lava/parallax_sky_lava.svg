@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <linearGradient id="skyLavaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#180805"/>
+      <stop offset="40%" stop-color="#2a0c07"/>
+      <stop offset="75%" stop-color="#431407"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+    <radialGradient id="distantVolcano" cx="50%" cy="90%" r="60%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.6"/>
+      <stop offset="40%" stop-color="#ea580c" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#7c2d12" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#skyLavaGrad)"/>
+  <circle cx="640" cy="720" r="580" fill="url(#distantVolcano)"/>
+  <!-- Distant Stars Piercing Smoke -->
+  <g fill="#fef08a" opacity="0.6">
+    <circle cx="140" cy="80" r="1.5"/><circle cx="320" cy="110" r="2"/>
+    <circle cx="580" cy="60" r="1.8"/><circle cx="890" cy="90" r="2.2"/>
+    <circle cx="1120" cy="70" r="1.5"/><circle cx="1020" cy="140" r="2"/>
+  </g>
+</svg>

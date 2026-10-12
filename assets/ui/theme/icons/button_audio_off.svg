@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 12 48 48" width="48" height="48">
+  <g transform="translate(34, 36)">
+    
+    <g fill="#78350f" stroke="#78350f" opacity="0.6" transform="translate(0, 2)">
+      <polygon points="-16,-6 -8,-6 2,-16 2,16 -8,6 -16,6" />
+      <line x1="8" y1="-8" x2="20" y2="8" stroke-width="4" stroke-linecap="round" />
+      <line x1="20" y1="-8" x2="8" y2="8" stroke-width="4" stroke-linecap="round" />
+    </g>
+    
+    <polygon points="-16,-6 -8,-6 2,-16 2,16 -8,6 -16,6" fill="#ffffff" />
+    
+    <line x1="8" y1="-8" x2="20" y2="8" stroke="#ef4444" stroke-width="4" stroke-linecap="round" />
+    <line x1="20" y1="-8" x2="8" y2="8" stroke="#ef4444" stroke-width="4" stroke-linecap="round" />
+  </g>
+</svg>

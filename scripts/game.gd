@@ -3,7 +3,11 @@ extends Node
 ## Manages score/lives, ships, weapons, maps, broadcasts state changes via signals,
 ## and persists local settings and high score.
 
+signal economy_changed
+
 signal preferences_changed
+
+var startup_resources: Dictionary = {} # Warm startup assets retained for scene reuse.
 
 var control_layout := TouchLayout.defaults()
 var mission_damage := 0
@@ -27,112 +31,8 @@ signal ui_mode_changed(is_mobile: bool)
 const SAVE_PATH := "user://arena_dash_save.cfg"
 var save_path := SAVE_PATH
 
-const SHIPS := {
-
-    "falcon": {
-        "id": "falcon", "name": "FALCON", "class": "STRIKE FIGHTER",
-        "desc": "Swept-wing strike aircraft. Fast acceleration with reliable armor.",
-        "texture": "res://assets/player_falcon.svg", "speed": 410.0,
-        "max_lives": 3, "fire_rate": 0.15, "color": Color(1.0, 0.65, 0.25),
-    },
-    "aurora": {
-        "id": "aurora", "name": "AURORA", "class": "RECON WING",
-        "desc": "A silver delta-wing aircraft with reinforced shields and precise handling.",
-        "texture": "res://assets/player_aurora.svg", "speed": 330.0,
-        "max_lives": 4, "fire_rate": 0.16, "color": Color(0.4, 0.9, 0.85),
-    },
-    "valkyrie": {
-        "id": "valkyrie",
-        "name": "VALKYRIE",
-        "class": "INTERCEPTOR",
-        "desc": "Balanced multi-role starfighter with nimble handling and twin plasma thrusters.",
-        "texture": "res://assets/player.svg",
-        "speed": 360.0,
-        "max_lives": 3,
-        "fire_rate": 0.18,
-        "color": Color(0.22, 0.74, 1.0),
-    },
-    "titan": {
-        "id": "titan",
-        "name": "TITAN",
-        "class": "DREADNOUGHT",
-        "desc": "Heavy armored warship with fortified shield matrices and heavy kinetic mounts.",
-        "texture": "res://assets/player_titan.svg",
-        "speed": 290.0,
-        "max_lives": 5,
-        "fire_rate": 0.22,
-        "color": Color(0.98, 0.28, 0.28),
-    },
-    "phantom": {
-        "id": "phantom",
-        "name": "PHANTOM",
-        "class": "SPEEDER",
-        "desc": "Hyper-velocity stealth interceptor with extreme agility and rapid-fire systems.",
-        "texture": "res://assets/player_phantom.svg",
-        "speed": 450.0,
-        "max_lives": 2,
-        "fire_rate": 0.12,
-        "color": Color(0.2, 0.9, 0.55),
-    },
-    "tempest": {
-        "id": "tempest",
-        "name": "TEMPEST",
-        "class": "ASSAULT GUNSHIP",
-        "desc": "Heavy forward-swept storm fighter. Relentless firepower with fortified armor.",
-        "texture": "res://assets/player_tempest.svg",
-        "speed": 380.0,
-        "max_lives": 4,
-        "fire_rate": 0.14,
-        "color": Color(0.66, 0.33, 0.97),
-    },
-    "mirage": {
-        "id": "mirage",
-        "name": "MIRAGE",
-        "class": "SKYSTALKER",
-        "desc": "Twin-boom canard prototype featuring micro-vectoring and solar plasma drives.",
-        "texture": "res://assets/player_mirage.svg",
-        "speed": 430.0,
-        "max_lives": 3,
-        "fire_rate": 0.13,
-        "color": Color(0.92, 0.70, 0.05),
-    },
-    "saucer": {"id": "saucer", "name": "SAUCER", "class": "ORBITAL DEFENDER", "desc": "Expansion fleet / orbital defender", "texture": "res://assets/future_updates/aircraft/player_saucer.svg", "speed": 320.0, "max_lives": 5, "fire_rate": 0.19, "color": Color("69dfff")},
-    "rocket": {"id": "rocket", "name": "ROCKET", "class": "SOLAR STRIKER", "desc": "Expansion fleet / solar striker", "texture": "res://assets/future_updates/aircraft/player_rocket.svg", "speed": 420.0, "max_lives": 3, "fire_rate": 0.15, "color": Color("ff6969")},
-    "wedge": {"id": "wedge", "name": "WEDGE", "class": "STEALTH INTERCEPTOR", "desc": "Expansion fleet / stealth interceptor", "texture": "res://assets/future_updates/aircraft/player_wedge.svg", "speed": 440.0, "max_lives": 2, "fire_rate": 0.12, "color": Color("56baff")},
-    "speeder": {"id": "speeder", "name": "SPEEDER", "class": "DELTA RUNNER", "desc": "Expansion fleet / delta runner", "texture": "res://assets/future_updates/aircraft/player_speeder.svg", "speed": 470.0, "max_lives": 2, "fire_rate": 0.11, "color": Color("a7f570")},
-    "booster": {"id": "booster", "name": "BOOSTER", "class": "HEAVY ESCORT", "desc": "Expansion fleet / heavy escort", "texture": "res://assets/future_updates/aircraft/player_booster.svg", "speed": 300.0, "max_lives": 5, "fire_rate": 0.16, "color": Color("ffc35c")},
-}
-
-const WEAPONS := {
-    "ion": {
-        "id": "ion", "name": "ION CANNON", "desc": "Fast golden ion rounds with a long luminous wake.",
-        "texture": "res://assets/bullet_ion.svg", "color": Color(1.0, 0.72, 0.25), "pattern": "single",
-    },
-    "plasma": {
-        "id": "plasma",
-        "name": "PLASMA BOLT",
-        "desc": "Concentrated high-velocity plasma core with electric aura.",
-        "texture": "res://assets/bullet.svg",
-        "color": Color(0.22, 0.74, 1.0),
-        "pattern": "single",
-    },
-    "twin_laser": {
-        "id": "twin_laser",
-        "name": "TWIN LASERS",
-        "desc": "Dual high-energy crimson beams fired simultaneously from wingtips.",
-        "texture": "res://assets/bullet_laser.svg",
-        "color": Color(1.0, 0.25, 0.35),
-        "pattern": "twin",
-    },
-    "quantum_spread": {
-        "id": "quantum_spread",
-        "name": "QUANTUM SPREAD",
-        "desc": "3-way spread energy bursts sweeping a forward cone.",
-        "texture": "res://assets/bullet_quantum.svg",
-        "color": Color(0.75, 0.45, 1.0),
-        "pattern": "spread",
-    }
-}
+const SHIPS := EquipmentCatalog.SHIPS
+const WEAPONS := EquipmentCatalog.WEAPONS
 
 const MAPS := {
     "coast": {
@@ -232,7 +132,56 @@ const MAPS := {
         "grid_color": Color(0.15, 0.40, 0.10, 0.25),
         "node_color": Color(0.52, 0.80, 0.10, 0.50),
         "wall_color": Color(0.55, 0.85, 0.15, 0.95),
-    }
+    },
+    "lava": {
+        "id":"lava", "name":"LAVA FRONTIER", "sector":"SECTOR 09",
+        "desc":"Lava interceptors / thermal guardian", "hazard":"LAVA FRONTIER", "color":Color("ef6a1a"),
+        "bg_color":Color("090f20"), "floor_color":Color("101c30"), "wall_color":Color("ef6a1a"),
+        "icon":"res://assets/future_update/maps/lava/bg_lava_landscape.png", "tile":"res://assets/future_update/maps/lava/map_lava_tile.png",
+        "overlay":"res://assets/future_update/maps/lava/overlay_atmosphere_lava.png",
+    },
+    "ice": {
+        "id":"ice", "name":"ICE CROWN", "sector":"SECTOR 10",
+        "desc":"Ice orbiters / cryo crossfire", "hazard":"ICE CROWN", "color":Color("8adfe8"),
+        "bg_color":Color("090f20"), "floor_color":Color("101c30"), "wall_color":Color("8adfe8"),
+        "icon":"res://assets/future_update/maps/ice/bg_ice_landscape.png", "tile":"res://assets/future_update/maps/ice/map_ice_tile.png",
+        "overlay":"res://assets/future_update/maps/ice/overlay_atmosphere_ice.png",
+    },
+    "advanced_desert": {
+        "id":"advanced_desert", "name":"DESERT SIEGE", "sector":"SECTOR 11",
+        "desc":"Desert siege / bomber escorts", "hazard":"DESERT SIEGE", "color":Color("e0be87"),
+        "bg_color":Color("090f20"), "floor_color":Color("101c30"), "wall_color":Color("e0be87"),
+        "icon":"res://assets/future_update/maps/desert/bg_desert_landscape.png", "tile":"res://assets/future_update/maps/desert/map_desert_tile.png",
+        "overlay":"res://assets/future_update/maps/desert/overlay_atmosphere_desert.png",
+    },
+    "advanced_toxic": {
+        "id":"advanced_toxic", "name":"TOXIC REFINERY", "sector":"SECTOR 12",
+        "desc":"Toxic drones / refinery guardian", "hazard":"TOXIC REFINERY", "color":Color("83ca21"),
+        "bg_color":Color("090f20"), "floor_color":Color("101c30"), "wall_color":Color("83ca21"),
+        "icon":"res://assets/future_update/maps/toxic/bg_toxic_landscape.png", "tile":"res://assets/future_update/maps/toxic/map_toxic_tile.png",
+        "overlay":"res://assets/future_update/maps/toxic/overlay_atmosphere_toxic.png",
+    },
+    "storm": {
+        "id":"storm", "name":"STORM REACH", "sector":"SECTOR 13",
+        "desc":"Storm fighters / charged crossfire", "hazard":"STORM REACH", "color":Color("759bff"),
+        "bg_color":Color("090f20"), "floor_color":Color("101c30"), "wall_color":Color("759bff"),
+        "icon":"res://assets/future_update/maps/storm/bg_storm_landscape.png", "tile":"res://assets/future_update/maps/storm/map_storm_tile.png",
+        "overlay":"res://assets/future_update/maps/storm/overlay_atmosphere_storm.png",
+    },
+    "crystal": {
+        "id":"crystal", "name":"CRYSTAL NEXUS", "sector":"SECTOR 14",
+        "desc":"Crystal destroyers / converging volleys", "hazard":"CRYSTAL NEXUS", "color":Color("cd8dff"),
+        "bg_color":Color("090f20"), "floor_color":Color("101c30"), "wall_color":Color("cd8dff"),
+        "icon":"res://assets/future_update/maps/crystal/bg_crystal_landscape.png", "tile":"res://assets/future_update/maps/crystal/map_crystal_tile.png",
+        "overlay":"res://assets/future_update/maps/crystal/overlay_atmosphere_crystal.png",
+    },
+    "dark_void": {
+        "id":"dark_void", "name":"DARK VOID", "sector":"SECTOR 15",
+        "desc":"Void fleet / battleship command", "hazard":"DARK VOID", "color":Color("9165e5"),
+        "bg_color":Color("090f20"), "floor_color":Color("101c30"), "wall_color":Color("9165e5"),
+        "icon":"res://assets/future_update/maps/dark_void/bg_dark_void_landscape.png", "tile":"res://assets/future_update/maps/dark_void/map_dark_void_tile.png",
+        "overlay":"res://assets/future_update/maps/dark_void/overlay_atmosphere_dark_void.png",
+    },
 }
 
 var last_completed_planet := ""
@@ -243,10 +192,17 @@ var completed_levels: Dictionary = {}
 var mission_elapsed := 0.0
 var mission_won := false
 var audio_enabled := true
+var audio_volumes: Dictionary = {"Master": 0.85, "Music": 0.7, "UI": 0.8, "SFX": 0.85}
 var reduced_motion := false
 
 var score := 0
 var high_score := 0
+var coins := 0
+var owned_ships: Dictionary = {"falcon":true,"aurora":true,"valkyrie":true}
+var owned_weapons: Dictionary = {"ion":true,"plasma":true}
+var rewarded_planets: Dictionary = {}
+var last_coin_reward := 0
+var economy_loaded := false
 var lives := 3
 var is_running := false
 var is_game_over := false
@@ -261,7 +217,14 @@ var is_mobile_ui := false
 
 
 func _ready() -> void:
+    if OS.get_name() in ["Android","iOS"]:
+        DisplayServer.screen_set_orientation(DisplayServer.SCREEN_LANDSCAPE)
+    if OS.is_debug_build() and OS.has_feature("arena_review"):
+        save_path="user://arena_review_save.cfg"
     _load_save()
+    if OS.is_debug_build() and OS.has_feature("arena_review") and not FileAccess.file_exists(save_path):
+        coins=5000
+        _save_game()
     get_tree().root.size_changed.connect(_on_viewport_size_changed)
     _update_device_detection()
 
@@ -303,18 +266,28 @@ func get_current_map() -> Dictionary:
     return MAPS.get(selected_map_id, MAPS["cyber"])
 
 
-func select_ship(ship_id: String) -> void:
-    if SHIPS.has(ship_id):
+func select_ship(ship_id: String) -> bool:
+    if SHIPS.has(ship_id) and owns_equipment("ship",ship_id):
+        var previous := selected_ship_id
         selected_ship_id = ship_id
-        _save_game()
+        if not _save_game():
+            selected_ship_id=previous
+            return false
         ship_selected.emit(ship_id)
+        return true
+    return false
 
 
-func select_weapon(weapon_id: String) -> void:
-    if WEAPONS.has(weapon_id):
+func select_weapon(weapon_id: String) -> bool:
+    if WEAPONS.has(weapon_id) and owns_equipment("weapon",weapon_id):
+        var previous := selected_weapon_id
         selected_weapon_id = weapon_id
-        _save_game()
+        if not _save_game():
+            selected_weapon_id=previous
+            return false
         weapon_selected.emit(weapon_id)
+        return true
+    return false
 
 
 func select_map(map_id: String) -> bool:
@@ -332,6 +305,9 @@ func select_map(map_id: String) -> bool:
 
 func start() -> void:
     if not is_level_unlocked(selected_map_id): selected_map_id="cyber"
+    if not owns_equipment("ship",selected_ship_id): selected_ship_id="valkyrie"
+    if not owns_equipment("weapon",selected_weapon_id): selected_weapon_id="plasma"
+    last_coin_reward=0
     mission_damage=0
     last_attempt_stars=0
     var ship := get_current_ship()
@@ -396,7 +372,8 @@ func take_damage(amount: int = 1) -> void:
 
 func _load_save() -> void:
     var cfg := ConfigFile.new()
-    if cfg.load(save_path) == OK:
+    var existing := cfg.load(save_path) == OK
+    if existing:
         high_score = cfg.get_value("stats", "high_score", 0)
         selected_ship_id = cfg.get_value("settings", "ship", "valkyrie")
         selected_weapon_id = cfg.get_value("settings", "weapon", "plasma")
@@ -408,17 +385,29 @@ func _load_save() -> void:
             for id: String in Campaign.ORDER:
                 if is_level_cleared(id): last_completed_planet = id
         audio_enabled = cfg.get_value("settings", "audio", true)
+        for bus: String in audio_volumes:
+            var value: Variant = cfg.get_value("audio", bus, audio_volumes[bus])
+            if (value is float or value is int) and is_finite(float(value)):
+                audio_volumes[bus] = clampf(float(value), 0.0, 1.0)
         reduced_motion = cfg.get_value("settings", "reduced_motion", false)
         control_layout=TouchLayout.sanitize(cfg.get_value("controls","layout",{}))
         I18n.set_language(cfg.get_value("settings","language","en"),false)
     if not SHIPS.has(selected_ship_id): selected_ship_id = "valkyrie"
     if not WEAPONS.has(selected_weapon_id): selected_weapon_id = "plasma"
     if not MAPS.has(selected_map_id) or not is_level_unlocked(selected_map_id): selected_map_id = "cyber"
+    _load_economy(cfg,existing)
+    if not owns_equipment("ship",selected_ship_id): selected_ship_id="valkyrie"
+    if not owns_equipment("weapon",selected_weapon_id): selected_weapon_id="plasma"
     apply_audio()
 
 
-func _save_game() -> void:
+func _save_game() -> bool:
     var cfg := ConfigFile.new()
+    cfg.set_value("economy", "version", 1)
+    cfg.set_value("economy", "coins", coins)
+    cfg.set_value("economy", "ships", owned_ships)
+    cfg.set_value("economy", "weapons", owned_weapons)
+    cfg.set_value("economy", "rewarded_planets", rewarded_planets)
     cfg.set_value("stats", "high_score", high_score)
     cfg.set_value("settings", "ship", selected_ship_id)
     cfg.set_value("settings", "weapon", selected_weapon_id)
@@ -428,10 +417,15 @@ func _save_game() -> void:
     cfg.set_value("settings","language",I18n.language)
     cfg.set_value("controls","layout",control_layout)
     cfg.set_value("settings", "audio", audio_enabled)
+    for bus: String in audio_volumes: cfg.set_value("audio", bus, audio_volumes[bus])
     cfg.set_value("settings", "reduced_motion", reduced_motion)
-    if cfg.save(save_path)==OK:
-        _score_dirty=false
-        save_writes+=1
+    # Atomically replace one snapshot: balance and ownership cannot save separately.
+    var temporary := save_path+".tmp"
+    if cfg.save(temporary)!=OK: return false
+    if DirAccess.rename_absolute(ProjectSettings.globalize_path(temporary),ProjectSettings.globalize_path(save_path))!=OK: return false
+    _score_dirty=false
+    save_writes+=1
+    return true
 
 func _physics_process(delta: float) -> void:
  if is_running: mission_elapsed+=delta
@@ -440,6 +434,8 @@ func flush_save() -> void:
  if _score_dirty:_save_game()
 
 func _notification(what: int) -> void:
+ if what == NOTIFICATION_APPLICATION_RESUMED and OS.get_name() in ["Android","iOS"]:
+  DisplayServer.screen_set_orientation(DisplayServer.SCREEN_LANDSCAPE)
  if what in [NOTIFICATION_APPLICATION_PAUSED,NOTIFICATION_APPLICATION_FOCUS_OUT,NOTIFICATION_WM_CLOSE_REQUEST]:flush_save()
 
 func sanitize_progress(raw: Variant) -> Dictionary:
@@ -480,11 +476,20 @@ func complete_mission() -> void:
  last_attempt_stars=Campaign.rating(selected_map_id,selected_ship_id,mission_damage,mission_elapsed)
  completed_levels[selected_map_id]=maxi(best_stars(selected_map_id),last_attempt_stars)
  if last_attempt_stars==3:last_completed_planet=selected_map_id
+ last_coin_reward=120+30*last_attempt_stars+10*Campaign.index(selected_map_id)
+ if not rewarded_planets.has(selected_map_id):
+  last_coin_reward+=250
+  rewarded_planets[selected_map_id]=true
+ coins+=last_coin_reward
+ _score_dirty=true
  _save_game()
+ economy_changed.emit()
  mission_completed.emit()
 
 func apply_audio() -> void:
     AudioServer.set_bus_mute(0, not audio_enabled)
+    var director := get_node_or_null("/root/SoundEffects")
+    if director and director.is_node_ready(): director.apply_settings()
 
 func save_settings() -> void:
     apply_audio()
@@ -506,3 +511,66 @@ func record_boss_defeat() -> void:
 
 func _exit_tree() -> void:
  flush_save()
+
+# Economy is independent of combat score and mission stars. Repeat mission rewards
+# are intentional; the 250-coin first-clear bonus is awarded once per planet.
+func owns_equipment(kind: String,id: String) -> bool:
+ return kind in ["ship","weapon"] and (owned_ships if kind=="ship" else owned_weapons).get(id,false)==true
+
+func equipment_price(kind: String,id: String) -> int:
+ if not kind in ["ship","weapon"]:return -1
+ return int((SHIPS if kind=="ship" else WEAPONS).get(id,{}).get("price",-1))
+
+func purchase_equipment(kind: String,id: String) -> String:
+ if not kind in ["ship","weapon"]: return "invalid"
+ var price:=equipment_price(kind,id)
+ if price<0:return "invalid"
+ if owns_equipment(kind,id):return "owned"
+ if coins<price:return "insufficient"
+ var ownership: Dictionary=owned_ships if kind=="ship" else owned_weapons
+ var before:=coins
+ coins-=price
+ ownership[id]=true
+ if not _save_game():
+  coins=before
+  ownership.erase(id)
+  return "save_failed"
+ economy_changed.emit()
+ return "purchased"
+
+func _valid_ownership(raw: Variant,catalog: Dictionary) -> Dictionary:
+ var result: Dictionary={}
+ for id: String in catalog:
+  if catalog[id].price==0 or (raw is Dictionary and raw.get(id,false)==true):result[id]=true
+ return result
+
+func _load_economy(cfg: ConfigFile,existing: bool) -> void:
+ coins=0
+ owned_ships=_valid_ownership({},SHIPS)
+ owned_weapons=_valid_ownership({},WEAPONS)
+ rewarded_planets={}
+ if existing and not cfg.has_section_key("economy","version"):
+  # Previously all equipment was free. Preserve that entitlement for old saves.
+  for id: String in EquipmentCatalog.LEGACY_FREE_SHIPS:owned_ships[id]=true
+  for id: String in EquipmentCatalog.LEGACY_FREE_WEAPONS:owned_weapons[id]=true
+  # An explicitly saved loadout is evidence of prior access; preserve it too.
+  var carried_ship: String=cfg.get_value("settings","ship","valkyrie")
+  var carried_weapon: String=cfg.get_value("settings","weapon","plasma")
+  if SHIPS.has(carried_ship):owned_ships[carried_ship]=true
+  if WEAPONS.has(carried_weapon):owned_weapons[carried_weapon]=true
+  # Credit historical mission completion once, without converting combat scores.
+  for id: String in completed_levels:
+   rewarded_planets[id]=true
+   coins+=370+30*best_stars(id)+10*Campaign.index(id)
+ elif existing:
+  var balance: Variant=cfg.get_value("economy","coins",0)
+  if balance is int and balance>=0:coins=mini(balance,1000000000)
+  owned_ships=_valid_ownership(cfg.get_value("economy","ships",{}),SHIPS)
+  owned_weapons=_valid_ownership(cfg.get_value("economy","weapons",{}),WEAPONS)
+  var claimed: Variant=cfg.get_value("economy","rewarded_planets",{})
+  if claimed is Dictionary:
+   for id: String in Campaign.ORDER:
+    if claimed.get(id,false)==true:rewarded_planets[id]=true
+ economy_loaded=true
+ # Persist migration immediately; reopening cannot grant it again.
+ if existing and not cfg.has_section_key("economy","version"):_save_game()

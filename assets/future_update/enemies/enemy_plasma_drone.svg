@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <filter id="pdShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+    <linearGradient id="pdArmor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="35%" stop-color="#475569"/>
+      <stop offset="75%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <!-- Alien Superheated Plasma Core -->
+    <radialGradient id="plasmaBall" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="20%" stop-color="#67e8f9"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="75%" stop-color="#a855f7"/>
+      <stop offset="90%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#3b0764"/>
+    </radialGradient>
+    <radialGradient id="plasmaPulse" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#22d3ee"/>
+      <stop offset="80%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="plasmaBloom" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#pdShadow)">
+    <!-- Radiant Outer Energy Halo -->
+    <circle cx="256" cy="256" r="160" fill="url(#plasmaPulse)" filter="url(#plasmaBloom)" opacity="0.4"/>
+
+    <!-- 4 Magnetic Pincer Arms (Rotating Stabilizers) -->
+    <!-- Top-Left Arm -->
+    <polygon points="200,200 130,130 90,80 130,90 180,160" fill="url(#pdArmor)" stroke="#0f172a" stroke-width="3"/>
+    <circle cx="90" cy="80" r="10" fill="#22d3ee" stroke="#ffffff" stroke-width="2" filter="url(#plasmaBloom)"/>
+
+    <!-- Top-Right Arm -->
+    <polygon points="312,200 382,130 422,80 382,90 332,160" fill="url(#pdArmor)" stroke="#0f172a" stroke-width="3"/>
+    <circle cx="422" cy="80" r="10" fill="#22d3ee" stroke="#ffffff" stroke-width="2" filter="url(#plasmaBloom)"/>
+
+    <!-- Bottom-Left Arm -->
+    <polygon points="200,312 130,382 90,432 130,422 180,352" fill="url(#pdArmor)" stroke="#0f172a" stroke-width="3"/>
+    <circle cx="90" cy="432" r="10" fill="#c084fc" stroke="#ffffff" stroke-width="2" filter="url(#plasmaBloom)"/>
+
+    <!-- Bottom-Right Arm -->
+    <polygon points="312,312 382,382 422,432 382,422 332,352" fill="url(#pdArmor)" stroke="#0f172a" stroke-width="3"/>
+    <circle cx="422" cy="432" r="10" fill="#c084fc" stroke="#ffffff" stroke-width="2" filter="url(#plasmaBloom)"/>
+
+    <!-- Outer Containment Torus / Armor Ring -->
+    <circle cx="256" cy="256" r="145" fill="none" stroke="url(#pdArmor)" stroke-width="26"/>
+    <circle cx="256" cy="256" r="145" fill="none" stroke="#0f172a" stroke-width="30" stroke-dasharray="32 20"/>
+    <circle cx="256" cy="256" r="132" fill="none" stroke="#22d3ee" stroke-width="2.5" filter="url(#plasmaBloom)"/>
+
+    <!-- Central Levitating Superheated Plasma Core -->
+    <circle cx="256" cy="256" r="95" fill="url(#plasmaBall)" stroke="#3b0764" stroke-width="4" filter="url(#plasmaBloom)"/>
+
+    <!-- Magnetic Energy Arcs across Core -->
+    <path d="M 180,240 Q 230,190 310,210" fill="none" stroke="#ffffff" stroke-width="3" filter="url(#plasmaBloom)"/>
+    <path d="M 190,290 Q 260,330 330,280" fill="none" stroke="#67e8f9" stroke-width="3" filter="url(#plasmaBloom)"/>
+    <path d="M 230,180 Q 270,256 240,330" fill="none" stroke="#f0abfc" stroke-width="2.5" filter="url(#plasmaBloom)"/>
+
+    <!-- Specular Highlight Sheen -->
+    <ellipse cx="232" cy="226" rx="28" ry="16" transform="rotate(-30 232 226)" fill="#ffffff" opacity="0.95"/>
+    <circle cx="270" cy="270" r="8" fill="#ffffff" opacity="0.8"/>
+  </g>
+</svg>

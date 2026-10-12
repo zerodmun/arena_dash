@@ -17,9 +17,9 @@ func settle(name: String) -> void:
  for i in 4:await get_tree().process_frame
  if "--screenshots" in OS.get_cmdline_user_args() and DisplayServer.get_name()!="headless":
   RenderingServer.force_draw()
-  get_viewport().get_texture().get_image().save_png("res://build/progression_"+name+".png")
+  get_viewport().get_texture().get_image().save_png("res://qa/progression_"+name+".png")
 func run() -> void:
- Game.save_path="res://build/three-star-test.cfg"
+ Game.save_path="res://qa/three-star-test.cfg"
  Game.completed_levels={}
  Game.last_completed_planet=""
  check(Game.is_level_unlocked("cyber"),"Level one starts unlocked")
@@ -86,5 +86,7 @@ func run() -> void:
   levels.free()
  Game.is_running=false
  SoundEffects.stop_all()
+ # Let the audio mixer release stopped playback before the headless runner exits.
+ await get_tree().create_timer(0.2,true).timeout
  print("THREE-STAR PROGRESSION: ","PASS" if failures.is_empty() else "FAIL"," / ",failures.size()," failures")
  get_tree().quit(0 if failures.is_empty() else 1)

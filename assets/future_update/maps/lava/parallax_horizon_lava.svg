@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <linearGradient id="cragGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3f3f46"/>
+      <stop offset="60%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+  </defs>
+  <!-- Volcanic Mountain Silhouettes with Molten Vents -->
+  <polygon points="-20,520 180,310 360,540" fill="url(#cragGrad)" stroke="#f97316" stroke-width="2"/>
+  <polygon points="280,560 480,260 680,570" fill="url(#cragGrad)" stroke="#ea580c" stroke-width="2"/>
+  <polygon points="600,540 840,220 1060,560" fill="url(#cragGrad)" stroke="#f97316" stroke-width="2"/>
+  <polygon points="980,550 1160,330 1320,540" fill="url(#cragGrad)" stroke="#ea580c" stroke-width="2"/>
+  <!-- Caldera Eruption Plumes -->
+  <line x1="840" y1="220" x2="840" y2="140" stroke="#fef08a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="480" y1="260" x2="480" y2="190" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+</svg>

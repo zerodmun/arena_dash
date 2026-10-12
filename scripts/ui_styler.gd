@@ -64,93 +64,21 @@ static func style_badge(label: Label, text_color: Color, is_mobile: bool) -> voi
 static func style_weapon_chip(btn: Button, is_selected: bool, color: Color) -> void:
 	if btn == null:
 		return
-	var style := StyleBoxFlat.new()
-	style.corner_radius_top_left = 12
-	style.corner_radius_top_right = 12
-	style.corner_radius_bottom_right = 12
-	style.corner_radius_bottom_left = 12
-	style.set_border_width_all(2)
-
-	if is_selected:
-		style.bg_color = Color(color.r * 0.16, color.g * 0.16, color.b * 0.16, 0.94)
-		style.border_color = color
-		style.shadow_color = Color(color.r, color.g, color.b, 0.45)
-		style.shadow_size = 10
-	else:
-		style.bg_color = Color(0.03, 0.06, 0.11, 0.82)
-		style.border_color = Color(0.16, 0.28, 0.42, 0.5)
-		style.shadow_size = 0
-
-	style.content_margin_left = 12.0
-	style.content_margin_top = 8.0
-	style.content_margin_right = 12.0
-	style.content_margin_bottom = 8.0
-
-	btn.add_theme_stylebox_override("normal", style)
-	btn.add_theme_stylebox_override("hover", style)
-	btn.add_theme_stylebox_override("pressed", style)
+	ArcadeUI.style_button(btn,false,is_selected)
 
 
 static func style_sector_card(btn: Button, is_selected: bool, color: Color) -> void:
 	if btn == null:
 		return
-	var style := StyleBoxFlat.new()
-	style.corner_radius_top_left = 16
-	style.corner_radius_top_right = 16
-	style.corner_radius_bottom_right = 16
-	style.corner_radius_bottom_left = 16
-	style.set_border_width_all(2)
-
-	if is_selected:
-		style.bg_color = Color(color.r * 0.18, color.g * 0.18, color.b * 0.18, 0.95)
-		style.border_color = color
-		style.shadow_color = Color(color.r, color.g, color.b, 0.55)
-		style.shadow_size = 14
-	else:
-		style.bg_color = Color(0.03, 0.05, 0.10, 0.88)
-		style.border_color = Color(0.18, 0.28, 0.44, 0.55)
-		style.shadow_size = 0
-
-	style.content_margin_left = 10.0
-	style.content_margin_top = 10.0
-	style.content_margin_right = 10.0
-	style.content_margin_bottom = 10.0
-
-	btn.add_theme_stylebox_override("normal", style)
-	btn.add_theme_stylebox_override("hover", style)
-	btn.add_theme_stylebox_override("pressed", style)
+	ArcadeUI.style_button(btn,false,is_selected)
 
 
 static func style_mobile_sector_strip(btn: Button, is_selected: bool, color: Color) -> void:
 	if btn == null:
 		return
-	var style := StyleBoxFlat.new()
-	style.corner_radius_top_left = 14
-	style.corner_radius_top_right = 14
-	style.corner_radius_bottom_right = 14
-	style.corner_radius_bottom_left = 14
-	style.set_border_width_all(2)
-
-	if is_selected:
-		style.bg_color = Color(color.r * 0.16, color.g * 0.16, color.b * 0.16, 0.94)
-		style.border_color = color
-		style.shadow_color = Color(color.r, color.g, color.b, 0.5)
-		style.shadow_size = 10
-	else:
-		style.bg_color = Color(0.04, 0.07, 0.13, 0.85)
-		style.border_color = Color(0.18, 0.28, 0.42, 0.55)
-		style.shadow_size = 0
-
-	style.content_margin_left = 14.0
-	style.content_margin_top = 8.0
-	style.content_margin_right = 14.0
-	style.content_margin_bottom = 8.0
-
-	btn.add_theme_stylebox_override("normal", style)
-	btn.add_theme_stylebox_override("hover", style)
-	btn.add_theme_stylebox_override("pressed", style)
+	ArcadeUI.style_button(btn,false,is_selected)
 
 	var check_label := btn.find_child("Check", true, false) as Label
 	if check_label:
 		check_label.text = "✔" if is_selected else "›"
-		check_label.add_theme_color_override("font_color", color if is_selected else Color(0.4, 0.55, 0.7, 0.6))
+		check_label.add_theme_color_override("font_color", ArcadeUI.CYAN if is_selected else ArcadeUI.MUTED)

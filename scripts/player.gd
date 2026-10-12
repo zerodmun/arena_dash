@@ -5,7 +5,6 @@ extends CharacterBody2D
 
 var base_scale := 0.28
 
-@export var bullet_scene: PackedScene
 @export var speed := 360.0
 @export var fire_rate := 0.18
 @export var invuln_time := 1.2
@@ -17,7 +16,7 @@ var last_aim := Vector2.UP
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var thrusters: CPUParticles2D = $ThrusterTrail
 
-var _fire_cd := 0.0
+var weapon_controller: WeaponController
 var _invuln := 0.0
 var _roll_tilt := 0.0
 var _joystick: GameJoystick
@@ -25,6 +24,7 @@ var _recoil: Tween
 
 
 func _ready() -> void:
+    weapon_controller=WeaponController.new(self)
     add_to_group("player")
     Game.game_started.connect(_reset_flight)
     hurtbox.body_entered.connect(_on_hurtbox_body_entered)
@@ -36,27 +36,20 @@ func _ready() -> void:
 func apply_customization() -> void:
     var ship := Game.get_current_ship()
     speed = float(ship.get("speed", 360.0))
-    fire_rate = float(ship.get("fire_rate", 0.18))
+    fire_rate = EquipmentCatalog.firing_interval(ship, Game.get_current_weapon())
     
     if sprite:
         var tex_path: String = ship.get("texture", "res://assets/player.svg")
         sprite.texture = load(tex_path)
-        var ship_id: String = ship.get("id", "valkyrie")
-        if ship_id == "titan":
-            base_scale = 0.30
-            sprite.scale = Vector2(0.30, 0.30)
-        elif ship_id == "phantom":
-            base_scale = 0.26
-            sprite.scale = Vector2(0.26, 0.26)
-        elif ship_id == "tempest":
-            base_scale = 0.31
-            sprite.scale = Vector2(0.31, 0.31)
-        elif ship_id == "mirage":
-            base_scale = 0.27
-            sprite.scale = Vector2(0.27, 0.27)
-        else:
-            base_scale = 0.28
-            sprite.scale = Vector2(0.28, 0.28)
+        base_scale = float(ship.visual_scale)
+        sprite.scale = Vector2.ONE * base_scale
+    # Each instance owns its shapes; customization cannot resize another actor.
+    var collision := CircleShape2D.new()
+    collision.radius = float(ship.collision_radius)
+    $CollisionShape2D.shape = collision
+    $Hurtbox/CollisionShape2D.shape = collision
+    shoot_point.position = ship.muzzle
+    if thrusters: thrusters.position = ship.thruster
 
     if thrusters:
         var ship_color: Color = ship.get("color", Color(0.22, 0.74, 1.0))
@@ -71,7 +64,7 @@ func _reset_flight() -> void:
     last_aim = Vector2.UP
     rotation = 0.0
     _invuln = invuln_time
-    _fire_cd = 0.25
+    weapon_controller.reset()
 
 func _physics_process(delta: float) -> void:
     if not Game.is_running:
@@ -102,12 +95,8 @@ func _physics_process(delta: float) -> void:
 
     _update_invulnerability(delta)
 
-    _fire_cd -= delta
-    if not Input.is_action_pressed("fire"):_fire_cd=maxf(0.0,_fire_cd)
-    if Game.is_running and Input.is_action_pressed("fire") and _fire_cd <= 0.0:
-        _shoot()
-        _fire_cd=maxf(-delta,_fire_cd)+fire_rate
-
+    if weapon_controller.tick(delta, Input.is_action_pressed("fire")):
+        _shot_feedback()
 
 func _get_input_direction() -> Vector2:
     if not is_instance_valid(_joystick):_joystick=get_tree().get_first_node_in_group("joystick") as GameJoystick
@@ -117,30 +106,11 @@ func _get_input_direction() -> Vector2:
 
 
 func _shoot() -> void:
-    if bullet_scene == null:
-        return
-    var weapon := Game.get_current_weapon()
-    var pattern: String = weapon.get("pattern", "single")
-    var root := get_tree().current_scene
+    # Explicit immediate request used by controlled development scenarios.
+    if weapon_controller.request_fire()>0:_shot_feedback()
 
-    var aim_norm := last_aim.normalized()
-    var perp := Vector2(-aim_norm.y, aim_norm.x)
-
-    if pattern == "twin":
-        # Dual parallel wing beams
-        _spawn_bullet(shoot_point.global_position + perp * 26.0, aim_norm, "twin_laser", root)
-        _spawn_bullet(shoot_point.global_position - perp * 26.0, aim_norm, "twin_laser", root)
-    elif pattern == "spread":
-        # 3-way spread shot
-        _spawn_bullet(shoot_point.global_position, aim_norm.rotated(-deg_to_rad(18.0)), "quantum_spread", root)
-        _spawn_bullet(shoot_point.global_position, aim_norm, "quantum_spread", root)
-        _spawn_bullet(shoot_point.global_position, aim_norm.rotated(deg_to_rad(18.0)), "quantum_spread", root)
-    else:
-        # Single concentrated plasma bolt
-        _spawn_bullet(shoot_point.global_position, aim_norm, Game.selected_weapon_id, root)
-
-    if SoundEffects:
-        SoundEffects.play_shoot()
+func _shot_feedback() -> void:
+    SoundEffects.play_shoot()
 
     # Muzzle recoil punch
     if _recoil and _recoil.is_running():_recoil.kill()
@@ -150,21 +120,10 @@ func _shoot() -> void:
     punch.tween_property(sprite, "scale", Vector2(base_scale, base_scale), 0.08)
 
 
-func _spawn_bullet(pos: Vector2, dir: Vector2, w_id: String, parent: Node) -> void:
-    var cache:=parent.get_node_or_null("CombatPool")
-    if cache:
-        cache.bullet(pos,dir,w_id)
-        return
-    var bullet := bullet_scene.instantiate() as Bullet
-    bullet.global_position = pos
-    parent.add_child(bullet)
-    bullet.setup(dir, w_id)
-
-
 func _update_invulnerability(delta: float) -> void:
     if _invuln > 0.0:
         _invuln -= delta
-        sprite.visible = int(_invuln * 16.0) % 2 == 0
+        sprite.visible = true if OS.is_debug_build() and OS.has_feature("arena_review") and _invuln > 10.0 else int(_invuln * 16.0) % 2 == 0
         modulate = Color(1.5, 1.5, 2.0, 0.85)
     else:
         sprite.visible = true

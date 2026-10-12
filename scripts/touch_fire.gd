@@ -5,10 +5,26 @@ signal button_down
 signal button_up
 var _finger := -1
 var _mouse := false
+var _feedback: Tween
 var disabled := false:
  set(value):
+  if disabled==value: return
   disabled=value
   if disabled: reset()
+  if is_node_ready(): _visual(_finger!=-1 or _mouse)
+func _ready() -> void:
+ texture=load("res://assets/ui/theme/buttons/fire_disabled.svg" if disabled else "res://assets/ui/theme/buttons/fire_normal.svg")
+ button_down.connect(func() -> void: _visual(true))
+ button_up.connect(func() -> void: _visual(false))
+func _visual(held: bool) -> void:
+ var state:="disabled" if disabled else "pressed" if held else "normal"
+ texture=load("res://assets/ui/theme/buttons/fire_"+state+".svg")
+ if _feedback: _feedback.kill()
+ if Game.reduced_motion:
+  self_modulate=Color.WHITE
+  return
+ _feedback=create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+ _feedback.tween_property(self,"self_modulate",Color(.94,.94,.94) if held else Color.WHITE,.07 if held else .16)
 func _has_point(point: Vector2) -> bool:
  return point.distance_to(size*0.5)<=minf(size.x,size.y)*0.5
 func _gui_input(event: InputEvent) -> void:

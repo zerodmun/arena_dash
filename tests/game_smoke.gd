@@ -12,7 +12,7 @@ func check(condition: bool, message: String) -> void:
 
 func _run() -> void:
 	var game := get_tree().root.get_node("Game")
-	game.save_path = "res://build/test-save.cfg"
+	game.save_path = "res://qa/test-save.cfg"
 	game.completed_levels = {}
 	game.last_completed_planet = ""
 	var screenshots := "--screenshots" in OS.get_cmdline_user_args()
@@ -44,11 +44,11 @@ func _run() -> void:
 			var before: Array=get_tree().get_nodes_in_group("bullets")
 			player._shoot()
 			# Pooled nodes retain tree order; select newly activated shots, not the last tree child.
-			var bullets: Array=get_tree().get_nodes_in_group("bullets").filter(func(b: Bullet)->bool:return not before.has(b))
+			var bullets: Array=get_tree().get_nodes_in_group("bullets").filter(func(b: Projectile)->bool:return not before.has(b))
 			check(not bullets.is_empty(), "Weapon must fire: " + weapon_id)
-			for bullet: Bullet in bullets:
+			for bullet: Projectile in bullets:
 				check(bullet.weapon_id == weapon_id, "Weapon ID must match")
-				check(bullet.sprite.texture.resource_path == game.WEAPONS[weapon_id].texture, "Bullet texture must match selected weapon")
+				check(bullet.sprite.texture.resource_path == game.WEAPONS[weapon_id].texture, "Projectile texture must match selected weapon")
 		if map_id == "cyber":
 			# Real physics projectile collision must damage armor before scoring a kill.
 			for old in get_tree().get_nodes_in_group("bullets"): old.queue_free()
@@ -87,10 +87,10 @@ func _run() -> void:
 		check(not get_tree().paused, "Resume must unpause")
 		if screenshots and map_id in ["coast", "desert"] and DisplayServer.get_name() != "headless":
 			await RenderingServer.frame_post_draw
-			get_viewport().get_texture().get_image().save_png("res://build/preview_" + map_id + ".png")
+			get_viewport().get_texture().get_image().save_png("res://qa/preview_" + map_id + ".png")
 		check(scene.current_arena_rect.size == Vector2(6800, 4400), "Expanded physical arena")
 		check(scene._chunks.size() == 16, "Chunked terrain")
-		check(scene.enemy_spawner.base_speed == 85 + Campaign.index(map_id) * 13, "Difficulty speed")
+		check(scene.enemy_spawner.base_speed == Campaign.movement_speed(map_id), "Difficulty speed")
 		for kill in Campaign.target(map_id):
 			game.record_enemy_kill()
 		if Campaign.has_boss(map_id):
@@ -110,7 +110,7 @@ func _run() -> void:
 	game._save_game()
 	game.completed_levels = {}
 	game._load_save()
-	check(game.completed_levels.size() == 8, "Campaign save/load round trip")
+	check(game.completed_levels.size() == Campaign.ORDER.size(), "Campaign save/load round trip")
 	game.is_running = false
 	game.selected_map_id = "coast"
 	var hangar: Hangar = load("res://scenes/hangar.tscn").instantiate()
@@ -124,12 +124,12 @@ func _run() -> void:
 		check(hangar._ship_image.texture.resource_path == game.SHIPS[id].texture, "Hangar aircraft preview")
 	if screenshots and DisplayServer.get_name() != "headless":
 		await RenderingServer.frame_post_draw
-		get_viewport().get_texture().get_image().save_png("res://build/preview_hangar.png")
+		get_viewport().get_texture().get_image().save_png("res://qa/preview_hangar.png")
 		get_tree().root.size = Vector2i(540, 960)
 		await get_tree().process_frame
 		await get_tree().process_frame
 		await RenderingServer.frame_post_draw
-		get_viewport().get_texture().get_image().save_png("res://build/preview_mobile.png")
+		get_viewport().get_texture().get_image().save_png("res://qa/preview_mobile.png")
 	print("GAME SMOKE: ", "PASS" if failures.is_empty() else "FAIL", " — ", failures.size(), " failures")
 	hangar.queue_free()
 	await get_tree().process_frame

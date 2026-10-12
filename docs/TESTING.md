@@ -4,6 +4,8 @@ Guide updated 2026-10-09. The latest performance/progression implementation rera
 
 ## Automated suites
 
+For the current output convention, run `python3 tools/run_project_checks.py`. It runs the existing scene tests, creates required QA directories, writes logs/results to `qa/checks/`, and reports failing exits or timeouts. Pass scene names to run selected suites. See [the October 12 maintenance report](PROJECT_RESTRUCTURING.md) for current results and device limitations.
+
 Run from the project root with Godot 4.7.2 and imported resources. For a fresh checkout, import first:
 
 ```sh
@@ -35,7 +37,7 @@ godot --headless --path . tests/performance_safety.tscn
 godot --headless --path . --fixed-fps 60 tests/performance_soak.tscn
 ```
 
-Each suite reports PASS/FAIL and an exit code. Test saves live under `build` through an overridden `Game.save_path`; they do not overwrite normal `user://` player saves. Headless checks verify state/input/geometry; rendered checks are also needed for text fit and visual appearance.
+Each suite reports PASS/FAIL and an exit code. Test saves live under `qa/` through an overridden `Game.save_path`; they do not overwrite normal `user://` player saves. Headless checks verify state/input/geometry; rendered checks are also needed for text fit and visual appearance.
 
 ## Rendered UI checks
 
@@ -44,7 +46,7 @@ godot --path . --windowed --resolution 1280x720 --rendering-method gl_compatibil
 godot --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility tests/landscape_ui.tscn -- --screenshots
 ```
 
-Native rendered localization/control checks passed in both languages at 1280×720, 1600×720 (20:9), and 960×540. Captures cover menus, settings categories, editor, hangar, weapons, campaign, gameplay, pause, victory, and defeat. The landscape suite additionally covers 1920×1080 and 720×1280 portrait letterboxing. Inspect `build/l10n_*.png` and `build/landscape_*.png` for clipping, alignment, readability, selected/focus states, and control bounds.
+Native rendered localization/control checks passed in both languages at 1280×720, 1600×720 (20:9), and 960×540. Captures cover menus, settings categories, editor, hangar, weapons, campaign, gameplay, pause, victory, and defeat. The landscape suite additionally covers 1920×1080 and 720×1280 portrait letterboxing. Inspect `qa/l10n_*.png` and `qa/landscape_*.png` for clipping, alignment, readability, selected/focus states, and control bounds.
 
 Harnesses explicitly draw capture frames and wait for queued dialog deletion before asserting disappearance. A background/minimized native window can affect capture timing; keep the rendered test window available when investigating capture failures.
 
@@ -59,18 +61,18 @@ Build and serve with `./build_web.sh` and `python3 serve_web.py`. Check:
 5. Save a customized layout and language, reload, and reopen the editor; verify both persist. Check localized loader text during startup.
 6. Check browser console warnings/errors and confirm gameplay input is inactive while editing.
 
-The exported browser game passed real mouse drag/slider/Save checks and language/layout reload persistence with empty warning/error logs. The final browser editor capture is `build/web-control-editor.jpg`.
+The exported browser game passed real mouse drag/slider/Save checks and language/layout reload persistence with empty warning/error logs. The final browser editor capture is `qa/web-control-editor.jpg`.
 
 ## Build and asset evidence
 
 Web and Android exports completed successfully, and APK signature verification passed v2/v3. See [Deployment](DEPLOYMENT.md) for commands. Existing logs:
 
-- `build/game_smoke-localization.log`, `build/hangar_review-localization.log`, `build/campaign_combat-localization.log`, `build/landscape_ui-localization.log`.
-- `build/localization-controls-headless.log`, `build/localization-controls-final.log`, `build/control-input.log`.
-- `build/web-localization-export.log`, `build/android-localization-export.log`, `build/apk-localization-signature.log`.
-- `build/localization-integrity-result.json`: 208 graphical resources unchanged; 189 translation keys.
+- `qa/game_smoke-localization.log`, `qa/hangar_review-localization.log`, `qa/campaign_combat-localization.log`, `qa/landscape_ui-localization.log`.
+- `qa/localization-controls-headless.log`, `qa/localization-controls-final.log`, `qa/control-input.log`.
+- `qa/web-localization-export.log`, `qa/android-localization-export.log`, `qa/apk-localization-signature.log`.
+- `qa/localization-integrity-result.json`: 208 graphical resources unchanged; 189 translation keys.
 
-The latest recursive [asset inventory](localization-asset-inventory.json) records 215 source resources. Integrity compares against `build/localization-assets-before.json`; historical asset counts refer to earlier phases.
+The latest recursive [asset inventory](localization-asset-inventory.json) records 215 source resources. Integrity compares against `qa/localization-assets-before.json`; historical asset counts refer to earlier phases.
 
 ## Remaining validation
 
@@ -78,7 +80,7 @@ Viewport-dispatched touch tests exercise input routing but do not replace physic
 
 ## Latest performance/progression evidence
 
-See [Performance and progression](PERFORMANCE_PROGRESSION.md) for baseline/after frame statistics and interpretation. Current suite logs use `build/*-performance.log`, with `build/performance-soak.log` for the soak and `build/three-star-rendered.log` for rendered EN/ID results. `build/progression_*.png` captures actual/current versus best stars and disabled Next states.
+See [Performance and progression](PERFORMANCE_PROGRESSION.md) for baseline/after frame statistics and interpretation. Current suite logs use `qa/*-performance.log`, with `qa/performance-soak.log` for the soak and `qa/three-star-rendered.log` for rendered EN/ID results. `qa/progression_*.png` captures actual/current versus best stars and disabled Next states.
 
 ```sh
 godot --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility tests/three_star_progression.tscn -- --screenshots
@@ -86,6 +88,6 @@ godot --path . --windowed --resolution 1280x720 --rendering-method gl_compatibil
 godot --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility tests/performance_bench.tscn -- --perf
 ```
 
-The benchmark records JSON under `build`. `--baseline` chooses the baseline output filename; a valid before/after comparison also requires the pre-change source snapshot. The ordinary benchmark excludes each phase’s first second; diagnostics intentionally include startup. The soak is accelerated rather than twenty wall-clock minutes and excludes audio-driver scheduling.
+The benchmark records JSON under `qa/`. `--baseline` chooses the baseline output filename; a valid before/after comparison also requires the pre-change source snapshot. The ordinary benchmark excludes each phase’s first second; diagnostics intentionally include startup. The soak is accelerated rather than twenty wall-clock minutes and excludes audio-driver scheduling.
 
-Latest export/signature logs: `build/web-performance-export.log`, `build/android-performance-export.log`, `build/apk-performance-signature.log`. All 215 source assets match `build/performance-assets-before.json`; catalogs contain 199 identical keys. Sandbox user-log/OS diagnostics occurred in headless runs; suites returned PASS without script errors. Android sustained thermal, GPU and physical input-to-display measurements remain outstanding.
+Latest export/signature logs: `qa/web-performance-export.log`, `qa/android-performance-export.log`, `qa/apk-performance-signature.log`. All 215 source assets match `qa/performance-assets-before.json`; catalogs contain 199 identical keys. Sandbox user-log/OS diagnostics occurred in headless runs; suites returned PASS without script errors. Android sustained thermal, GPU and physical input-to-display measurements remain outstanding.

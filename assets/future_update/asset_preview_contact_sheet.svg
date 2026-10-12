@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1600" width="1920" height="1600">
+  <defs>
+    <linearGradient id="csBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#060913"/>
+      <stop offset="50%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#030712"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1600" fill="url(#csBg)"/>
+
+  <!-- Header Banner -->
+  <rect x="0" y="0" width="1920" height="80" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+  <text x="60" y="52" fill="url(#headerGrad)" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="900" letter-spacing="4">ARENA DASH // FUTURE UPDATE ASSET COLLECTION</text>
+  <text x="1860" y="50" text-anchor="end" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" letter-spacing="2">GODOT 4 2D PRODUCTION PACK</text>
+
+  <!-- Section 1: Planets -->
+  <text x="60" y="125" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" letter-spacing="3">1. CELESTIAL PLANETS (7 ENVIRONMENTS)</text>
+  <g fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" text-anchor="middle">
+    <text x="135" y="325">LAVA PLANET</text>
+    <text x="400" y="325">ICE PLANET</text>
+    <text x="665" y="325">DESERT PLANET</text>
+    <text x="930" y="325">TOXIC PLANET</text>
+    <text x="1195" y="325">STORM PLANET</text>
+    <text x="1460" y="325">CRYSTAL PLANET</text>
+    <text x="1725" y="325">DARK VOID PLANET</text>
+  </g>
+
+  <!-- Section 2: Maps -->
+  <text x="60" y="375" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" letter-spacing="3">2. GAMEPLAY MAP LANDSCAPES (1280×720 WIDESCREEN)</text>
+  <g fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" text-anchor="middle">
+    <text x="155" y="525">LAVA LANDSCAPE</text>
+    <text x="420" y="525">ICE LANDSCAPE</text>
+    <text x="685" y="525">DESERT LANDSCAPE</text>
+    <text x="950" y="525">TOXIC LANDSCAPE</text>
+    <text x="1215" y="525">STORM LANDSCAPE</text>
+    <text x="1480" y="525">CRYSTAL LANDSCAPE</text>
+    <text x="1745" y="525">DARK VOID LANDSCAPE</text>
+  </g>
+
+  <!-- Section 3: Coins -->
+  <text x="60" y="575" fill="#facc15" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" letter-spacing="3">3. SCI-FI ECONOMY COIN ASSETS</text>
+  <g fill="#cbd5e1" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600">
+    <text x="95" y="725">UI Small (64×64)</text>
+    <text x="270" y="725">Coin Main (256×256)</text>
+    <text x="495" y="725">Detailed Illustration (512×512)</text>
+    <text x="1000" y="725">360° Coin Spin Sprite Sheet (8 Frames)</text>
+  </g>
+
+  <!-- Section 4: Enemies -->
+  <text x="60" y="785" fill="#f43f5e" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" letter-spacing="3">4. ENEMY SPACESHIP FLEET (7 PROGRESSIVE THREAT TIERS)</text>
+  <g fill="#cbd5e1" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" text-anchor="middle">
+    <text x="150" y="1035">TIER 1: LIGHT SCOUT</text>
+    <text x="415" y="1035">TIER 2: INTERCEPTOR</text>
+    <text x="680" y="1035">TIER 3: ARMORED FIGHTER</text>
+    <text x="945" y="1035">TIER 4: HEAVY BOMBER</text>
+    <text x="1210" y="1035">TIER 5: PLASMA DRONE</text>
+    <text x="1475" y="1035">TIER 6: DESTROYER</text>
+    <text x="1740" y="1035">TIER 7: BOSS DREADNOUGHT</text>
+  </g>
+
+  <!-- Section 5: Auxiliary FX -->
+  <text x="60" y="1095" fill="#a855f7" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" letter-spacing="3">5. COMBAT EFFECTS &amp; ENVIRONMENTAL PROPS</text>
+  <g fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" text-anchor="middle">
+    <text x="150" y="1285">Boss Hex Shield</text>
+    <text x="415" y="1285">Plasma Charge Core</text>
+    <text x="680" y="1285">Bomber Afterburner</text>
+    <text x="945" y="1285">Damage Spark Burst</text>
+    <text x="1210" y="1285">Smoke &amp; Ember Plume</text>
+    <text x="1475" y="1285">Magma Geyser Vent</text>
+    <text x="1740" y="1285">Prism Crystal Cluster</text>
+  </g>
+
+  <!-- Section 6: Map Tiles -->
+  <text x="60" y="1335" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" letter-spacing="3">6. MAP SELECT STAGE TILES (512×512 ROUNDED ICONS)</text>
+  <g fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" text-anchor="middle">
+    <text x="150" y="1535">Lava Caldera</text>
+    <text x="415" y="1535">Ice Glacier</text>
+    <text x="680" y="1535">Desert Dunes</text>
+    <text x="945" y="1535">Toxic Citadel</text>
+    <text x="1210" y="1535">Storm Vortex</text>
+    <text x="1475" y="1535">Crystal Prisma</text>
+    <text x="1740" y="1535">Dark Void Abyss</text>
+  </g>
+</svg>

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    
+    <linearGradient id="sp-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#020617" />
+      <stop offset="25%" stop-color="#0b0f2a" />
+      <stop offset="50%" stop-color="#1e1145" />
+      <stop offset="75%" stop-color="#2a0845" />
+      <stop offset="100%" stop-color="#090a1a" />
+    </linearGradient>
+
+    
+    <radialGradient id="sp-neb-1" cx="30%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.35" />
+      <stop offset="50%" stop-color="#a855f7" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="sp-neb-2" cx="70%" cy="75%" r="55%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0.25" />
+      <stop offset="45%" stop-color="#8b5cf6" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="sp-neb-3" cx="60%" cy="20%" r="40%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    
+    <radialGradient id="sp-giant-planet" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#93c5fd" />
+      <stop offset="35%" stop-color="#3b82f6" />
+      <stop offset="70%" stop-color="#1d4ed8" />
+      <stop offset="90%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+
+    
+    <radialGradient id="sp-atmos-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="75%" stop-color="#38bdf8" stop-opacity="0" />
+      <stop offset="92%" stop-color="#60a5fa" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.8" />
+    </radialGradient>
+
+    
+    <radialGradient id="sp-gas-planet" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="40%" stop-color="#f97316" />
+      <stop offset="85%" stop-color="#7c2d12" />
+      <stop offset="100%" stop-color="#1c1917" />
+    </radialGradient>
+  </defs>
+
+  
+  <rect width="1920" height="1080" fill="url(#sp-bg)" />
+
+  
+  <rect width="1920" height="1080" fill="url(#sp-neb-1)" />
+  <rect width="1920" height="1080" fill="url(#sp-neb-2)" />
+  <rect width="1920" height="1080" fill="url(#sp-neb-3)" />
+
+  
+  <g fill="#ffffff">
+    
+    <circle cx="213.33333333333334" cy="101.25" r="2.5" opacity="0.9" />
+    <circle cx="497.77777777777777" cy="50.625" r="1.5" opacity="0.7" />
+    <circle cx="800.0" cy="123.75" r="3" opacity="0.95" />
+    <circle cx="1386.6666666666667" cy="78.75" r="2" opacity="0.8" />
+    <circle cx="1688.888888888889" cy="146.25" r="3.5" opacity="1" />
+    <circle cx="1582.2222222222222" cy="270.0" r="1.8" opacity="0.6" />
+    <circle cx="284.44444444444446" cy="292.5" r="2.2" opacity="0.85" />
+    <circle cx="604.4444444444445" cy="365.625" r="1.5" opacity="0.75" />
+    <circle cx="1208.888888888889" cy="331.875" r="2" opacity="0.9" />
+    <circle cx="1813.3333333333333" cy="405.0" r="2.5" opacity="0.8" />
+    <circle cx="266.6666666666667" cy="478.125" r="1.8" opacity="0.7" />
+    <circle cx="1457.7777777777778" cy="500.625" r="2.8" opacity="0.9" />
+    <circle cx="373.3333333333333" cy="630.0" r="1.5" opacity="0.6" />
+    <circle cx="942.2222222222222" cy="607.5" r="2" opacity="0.8" />
+    <circle cx="1635.5555555555557" cy="675.0" r="3" opacity="0.9" />
+    <circle cx="195.55555555555554" cy="776.25" r="1.5" opacity="0.7" />
+    <circle cx="1333.3333333333333" cy="798.75" r="2.2" opacity="0.85" />
+    <circle cx="693.3333333333334" cy="871.875" r="2.8" opacity="0.95" />
+    <circle cx="1528.888888888889" cy="945.0" r="1.5" opacity="0.7" />
+    <circle cx="391.1111111111111" cy="984.375" r="2" opacity="0.8" />
+    <circle cx="1208.888888888889" cy="1023.75" r="2.5" opacity="0.9" />
+
+    
+    <circle cx="142.22222222222223" cy="180.0" r="1" opacity="0.4" />
+    <circle cx="426.6666666666667" cy="230.625" r="1.2" opacity="0.5" />
+    <circle cx="995.5555555555555" cy="202.5" r="1" opacity="0.45" />
+    <circle cx="1280.0" cy="236.25" r="1.1" opacity="0.5" />
+    <circle cx="1493.3333333333333" cy="174.375" r="0.9" opacity="0.35" />
+    <circle cx="551.1111111111111" cy="495.0" r="1.1" opacity="0.4" />
+    <circle cx="1102.2222222222222" cy="528.75" r="1" opacity="0.5" />
+    <circle cx="782.2222222222222" cy="720.0" r="1.2" opacity="0.45" />
+    <circle cx="1191.111111111111" cy="748.125" r="1" opacity="0.4" />
+    <circle cx="551.1111111111111" cy="945.0" r="1.2" opacity="0.5" />
+    <circle cx="1031.111111111111" cy="967.5" r="1" opacity="0.4" />
+  </g>
+
+  
+  <g fill="#c7d2fe" opacity="0.9" transform="scale(1.7778 .5625)">
+    <path d="M 450 212 L 452 220 L 450 228 L 448 220 Z M 442 220 L 450 222 L 458 220 L 450 218 Z" />
+    <path d="M 950 252 L 952 260 L 950 268 L 948 260 Z M 942 260 L 950 262 L 958 260 L 950 258 Z" />
+    <path d="M 390 1542 L 392 1550 L 390 1558 L 388 1550 Z M 382 1550 L 390 1552 L 398 1550 L 390 1548 Z" />
+  </g>
+
+  
+  <g transform="translate(1680, 100) scale(.72)">
+    <circle cx="0" cy="0" r="90" fill="url(#sp-gas-planet)" />
+    
+    <ellipse cx="0" cy="0" rx="150" ry="24" fill="none" stroke="#fed7aa" stroke-width="6" opacity="0.6" transform="rotate(-24)" />
+    <ellipse cx="0" cy="0" rx="165" ry="28" fill="none" stroke="#fdba74" stroke-width="2" opacity="0.4" transform="rotate(-24)" />
+  </g>
+
+  
+  <g transform="translate(-170, 1000) scale(.8)">
+    
+    <circle cx="0" cy="0" r="480" fill="url(#sp-giant-planet)" />
+    
+    <circle cx="0" cy="0" r="486" fill="url(#sp-atmos-glow)" />
+    
+    <path d="M 120 -380 C 260 -340 380 -220 440 -80" fill="none" stroke="#bae6fd" stroke-width="12" opacity="0.4" stroke-linecap="round" />
+    <path d="M 80 -260 C 220 -220 320 -120 380 40" fill="none" stroke="#93c5fd" stroke-width="18" opacity="0.3" stroke-linecap="round" />
+    <path d="M 40 -140 C 180 -100 280 20 320 180" fill="none" stroke="#60a5fa" stroke-width="10" opacity="0.25" stroke-linecap="round" />
+  </g>
+<circle cx="1339" cy="248" r="1" fill="#b8d9ff" opacity="0.5336977248919248" /><circle cx="531" cy="477" r="1" fill="#b8d9ff" opacity="0.5314120463738057" /><circle cx="1415" cy="198" r="2" fill="#b8d9ff" opacity="0.3898648188583717" /><circle cx="91" cy="211" r="1" fill="#b8d9ff" opacity="0.30469740202583284" /><circle cx="1262" cy="74" r="2" fill="#b8d9ff" opacity="0.28947694280899183" /><circle cx="1360" cy="879" r="1" fill="#b8d9ff" opacity="0.4021440708277342" /><circle cx="599" cy="33" r="1" fill="#b8d9ff" opacity="0.5141627277447021" /><circle cx="726" cy="589" r="1" fill="#b8d9ff" opacity="0.296891192948415" /><circle cx="1593" cy="709" r="1" fill="#b8d9ff" opacity="0.2417356295210666" /><circle cx="228" cy="755" r="1.5" fill="#b8d9ff" opacity="0.471676714115101" /><circle cx="1682" cy="108" r="2" fill="#b8d9ff" opacity="0.40674119585232915" /><circle cx="285" cy="795" r="1" fill="#b8d9ff" opacity="0.44841828407295214" /><circle cx="1728" cy="760" r="2" fill="#b8d9ff" opacity="0.286529865615497" /><circle cx="172" cy="113" r="2" fill="#b8d9ff" opacity="0.3025542240431961" /><circle cx="622" cy="183" r="1" fill="#b8d9ff" opacity="0.5899176500398713" /><circle cx="808" cy="589" r="1.5" fill="#b8d9ff" opacity="0.4860579999189801" /><circle cx="777" cy="353" r="1.5" fill="#b8d9ff" opacity="0.3598718151023847" /><circle cx="1402" cy="566" r="2" fill="#b8d9ff" opacity="0.6214945644706222" /><circle cx="1357" cy="166" r="2" fill="#b8d9ff" opacity="0.48574022968867714" /><circle cx="1123" cy="521" r="1" fill="#b8d9ff" opacity="0.4080170953330021" /><circle cx="582" cy="469" r="2" fill="#b8d9ff" opacity="0.3459272304868949" /><circle cx="1603" cy="134" r="1" fill="#b8d9ff" opacity="0.5698111673030637" /><circle cx="1678" cy="666" r="1.5" fill="#b8d9ff" opacity="0.32048339418906624" /><circle cx="462" cy="664" r="1" fill="#b8d9ff" opacity="0.49494739938269605" /><circle cx="840" cy="959" r="1" fill="#b8d9ff" opacity="0.3191960749241236" /><circle cx="535" cy="558" r="2" fill="#b8d9ff" opacity="0.46306369560059324" /><circle cx="1868" cy="837" r="1.5" fill="#b8d9ff" opacity="0.2986943416207775" /><circle cx="313" cy="1030" r="1" fill="#b8d9ff" opacity="0.540101970890182" /><circle cx="1793" cy="244" r="1" fill="#b8d9ff" opacity="0.4823507187663905" /><circle cx="1652" cy="884" r="2" fill="#b8d9ff" opacity="0.2285874677683807" /><circle cx="811" cy="978" r="2" fill="#b8d9ff" opacity="0.31313635399181594" /><circle cx="1163" cy="43" r="2" fill="#b8d9ff" opacity="0.5243248187120876" /><circle cx="1426" cy="566" r="2" fill="#b8d9ff" opacity="0.35307896286397034" /><circle cx="631" cy="910" r="1" fill="#b8d9ff" opacity="0.4041756678481429" /><circle cx="1508" cy="559" r="2" fill="#b8d9ff" opacity="0.5428829895734291" /><circle cx="1069" cy="237" r="2" fill="#b8d9ff" opacity="0.3343001561518848" /><circle cx="1338" cy="1059" r="2" fill="#b8d9ff" opacity="0.2895099957941299" /><circle cx="795" cy="350" r="2" fill="#b8d9ff" opacity="0.6290748864440763" /><circle cx="1116" cy="21" r="2" fill="#b8d9ff" opacity="0.3458702256521029" /><circle cx="69" cy="249" r="1.5" fill="#b8d9ff" opacity="0.5954248450204329" /><circle cx="1733" cy="649" r="1" fill="#b8d9ff" opacity="0.2260663249223844" /><circle cx="1828" cy="181" r="1" fill="#b8d9ff" opacity="0.5293584176800825" /><circle cx="1701" cy="161" r="2" fill="#b8d9ff" opacity="0.5446254931881445" /><circle cx="292" cy="993" r="2" fill="#b8d9ff" opacity="0.27430713153835745" /><circle cx="1110" cy="886" r="1" fill="#b8d9ff" opacity="0.6180110718509796" /><circle cx="1576" cy="431" r="2" fill="#b8d9ff" opacity="0.3402723310854028" /><circle cx="1405" cy="784" r="1.5" fill="#b8d9ff" opacity="0.6048263380893255" /><circle cx="954" cy="267" r="1" fill="#b8d9ff" opacity="0.3011138016642008" /><circle cx="722" cy="63" r="2" fill="#b8d9ff" opacity="0.4492646850910159" /><circle cx="1235" cy="471" r="1" fill="#b8d9ff" opacity="0.23194688870406466" /><circle cx="1322" cy="140" r="1" fill="#b8d9ff" opacity="0.23033014764963838" /><circle cx="94" cy="696" r="1" fill="#b8d9ff" opacity="0.4313702539138651" /><circle cx="600" cy="1014" r="1" fill="#b8d9ff" opacity="0.4426552691276396" /><circle cx="1511" cy="988" r="1" fill="#b8d9ff" opacity="0.5530787409308391" /><circle cx="1683" cy="853" r="1" fill="#b8d9ff" opacity="0.24244660842134702" /><circle cx="1379" cy="902" r="1.5" fill="#b8d9ff" opacity="0.39061038035896434" /><circle cx="986" cy="130" r="2" fill="#b8d9ff" opacity="0.4940549697196062" /><circle cx="1353" cy="221" r="1" fill="#b8d9ff" opacity="0.381179576946021" /><circle cx="724" cy="243" r="1" fill="#b8d9ff" opacity="0.2862155324637443" /><circle cx="1128" cy="938" r="1" fill="#b8d9ff" opacity="0.3898467379254819" /><circle cx="600" cy="967" r="1" fill="#b8d9ff" opacity="0.5935186793317611" /><circle cx="184" cy="927" r="2" fill="#b8d9ff" opacity="0.24405892769072018" /><circle cx="1365" cy="50" r="1" fill="#b8d9ff" opacity="0.6168651423536574" /><circle cx="1768" cy="504" r="1" fill="#b8d9ff" opacity="0.3828863260786124" /><circle cx="1015" cy="457" r="1.5" fill="#b8d9ff" opacity="0.6060992894797469" /><circle cx="367" cy="796" r="1" fill="#b8d9ff" opacity="0.6433889797008767" /><circle cx="573" cy="951" r="1.5" fill="#b8d9ff" opacity="0.39035336869557336" /><circle cx="1526" cy="1016" r="1" fill="#b8d9ff" opacity="0.28545404027043675" /><circle cx="475" cy="139" r="2" fill="#b8d9ff" opacity="0.5310817304550696" /><circle cx="154" cy="662" r="1" fill="#b8d9ff" opacity="0.2225640517687791" /><circle cx="1006" cy="1049" r="2" fill="#b8d9ff" opacity="0.27084472757276745" /><circle cx="1070" cy="184" r="1" fill="#b8d9ff" opacity="0.23083459971670656" /><circle cx="169" cy="501" r="1.5" fill="#b8d9ff" opacity="0.2539489762762059" /><circle cx="1853" cy="524" r="2" fill="#b8d9ff" opacity="0.46753361909004854" /><circle cx="1298" cy="187" r="1.5" fill="#b8d9ff" opacity="0.49581792401263514" /><circle cx="1187" cy="667" r="1.5" fill="#b8d9ff" opacity="0.2919166397405914" /><circle cx="1496" cy="663" r="1" fill="#b8d9ff" opacity="0.31952653063910924" /><circle cx="298" cy="634" r="1.5" fill="#b8d9ff" opacity="0.3422797383223343" /><circle cx="1569" cy="168" r="1" fill="#b8d9ff" opacity="0.40622848517836374" /><circle cx="1183" cy="224" r="1" fill="#b8d9ff" opacity="0.4419354818457323" /><circle cx="1066" cy="563" r="1" fill="#b8d9ff" opacity="0.619966720097169" /><circle cx="1834" cy="160" r="1" fill="#b8d9ff" opacity="0.36628718993249776" /><circle cx="353" cy="917" r="2" fill="#b8d9ff" opacity="0.516592966289317" /><circle cx="1282" cy="36" r="2" fill="#b8d9ff" opacity="0.5676968608019577" /><circle cx="643" cy="232" r="1" fill="#b8d9ff" opacity="0.31900966466920744" /><circle cx="1852" cy="239" r="2" fill="#b8d9ff" opacity="0.4489506383981672" /><circle cx="587" cy="597" r="2" fill="#b8d9ff" opacity="0.2947833446631244" /><circle cx="732" cy="436" r="2" fill="#b8d9ff" opacity="0.4854070814982859" /><circle cx="570" cy="1055" r="1.5" fill="#b8d9ff" opacity="0.31300456343145233" /><circle cx="1889" cy="124" r="1" fill="#b8d9ff" opacity="0.48542800128913743" /><circle cx="1728" cy="586" r="1" fill="#b8d9ff" opacity="0.20159556008950205" /><circle cx="1609" cy="287" r="2" fill="#b8d9ff" opacity="0.6409090792229761" /><circle cx="360" cy="924" r="2" fill="#b8d9ff" opacity="0.5175503510419959" /><circle cx="1178" cy="39" r="1" fill="#b8d9ff" opacity="0.23385973703319518" /><circle cx="1838" cy="325" r="2" fill="#b8d9ff" opacity="0.21621266212737378" /><circle cx="786" cy="323" r="1.5" fill="#b8d9ff" opacity="0.25735048367696245" /><circle cx="661" cy="766" r="1" fill="#b8d9ff" opacity="0.6045160864369136" /><circle cx="460" cy="531" r="2" fill="#b8d9ff" opacity="0.24625712975230354" /><circle cx="1627" cy="852" r="2" fill="#b8d9ff" opacity="0.5372649250145927" /><circle cx="514" cy="352" r="1" fill="#b8d9ff" opacity="0.5966372920984959" /></svg>

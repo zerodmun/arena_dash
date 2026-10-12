@@ -28,7 +28,7 @@ func run() -> void:
    base.add_child(label)
   await process_frame
   await RenderingServer.frame_post_draw
-  root.get_texture().get_image().save_png("res://build/assets_%d.png" % page)
+  root.get_texture().get_image().save_png("res://qa/assets_%d.png" % page)
   page += 1
  quit()
 func scan(path: String, paths: Array[String]) -> void:

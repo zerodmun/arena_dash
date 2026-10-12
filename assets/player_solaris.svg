@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Elevation Drop Shadow -->
+    <filter id="solShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="26" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <!-- Imperial Gold Wing Left -->
+    <linearGradient id="solWingL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="25%" stop-color="#facc15"/>
+      <stop offset="60%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#713f12"/>
+    </linearGradient>
+
+    <!-- Imperial Gold Wing Right -->
+    <linearGradient id="solWingR" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="25%" stop-color="#facc15"/>
+      <stop offset="60%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#713f12"/>
+    </linearGradient>
+
+    <!-- Royal Fuselage Spine -->
+    <linearGradient id="solSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#854d0e"/>
+      <stop offset="25%" stop-color="#eab308"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="75%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#854d0e"/>
+    </linearGradient>
+
+    <!-- Solar Core Canopy -->
+    <radialGradient id="solCockpit" cx="42%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#fef08a"/>
+      <stop offset="70%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#9a3412"/>
+    </radialGradient>
+
+    <!-- Solar Plasma Jet Flame -->
+    <radialGradient id="solFlame" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#fef08a"/>
+      <stop offset="70%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Platinum Under-Armor -->
+    <linearGradient id="solUnder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#cbd5e1"/>
+      <stop offset="80%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#solShadow)">
+    <!-- Triple Solar Plasma Thruster Flames -->
+    <ellipse cx="206" cy="428" rx="18" ry="44" fill="url(#solFlame)"/>
+    <ellipse cx="306" cy="428" rx="18" ry="44" fill="url(#solFlame)"/>
+    <ellipse cx="256" cy="436" rx="20" ry="50" fill="url(#solFlame)"/>
+    <ellipse cx="206" cy="420" rx="9" ry="24" fill="#ffffff"/>
+    <ellipse cx="306" cy="420" rx="9" ry="24" fill="#ffffff"/>
+    <ellipse cx="256" cy="426" rx="10" ry="28" fill="#ffffff"/>
+
+    <!-- Left Royal Wing -->
+    <polygon points="256,42 256,366 70,412 104,272 192,180" fill="url(#solWingL)" stroke="#854d0e" stroke-width="6" stroke-linejoin="round"/>
+    <!-- Left Wing Under-Armor Chamfer -->
+    <polygon points="104,272 70,412 158,382 202,300" fill="url(#solUnder)" opacity="0.9"/>
+    <!-- Left Inset Solar Conduits -->
+    <line x1="160" y1="210" x2="102" y2="350" stroke="#fef08a" stroke-width="4" stroke-linecap="round"/>
+    <line x1="196" y1="260" x2="140" y2="370" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Right Royal Wing -->
+    <polygon points="256,42 256,366 442,412 408,272 320,180" fill="url(#solWingR)" stroke="#854d0e" stroke-width="6" stroke-linejoin="round"/>
+    <!-- Right Wing Under-Armor Chamfer -->
+    <polygon points="408,272 442,412 354,382 310,300" fill="url(#solUnder)" opacity="0.9"/>
+    <!-- Right Inset Solar Conduits -->
+    <line x1="352" y1="210" x2="410" y2="350" stroke="#fef08a" stroke-width="4" stroke-linecap="round"/>
+    <line x1="316" y1="260" x2="372" y2="370" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Wingtip Solar Cannon Pods -->
+    <rect x="62" y="250" width="16" height="130" rx="8" fill="#1e293b" stroke="#eab308" stroke-width="4"/>
+    <rect x="66" y="262" width="8" height="66" rx="4" fill="#fef08a"/>
+    <circle cx="70" cy="250" r="11" fill="#facc15"/>
+    <circle cx="70" cy="250" r="5" fill="#ffffff"/>
+
+    <rect x="434" y="250" width="16" height="130" rx="8" fill="#1e293b" stroke="#eab308" stroke-width="4"/>
+    <rect x="438" y="262" width="8" height="66" rx="4" fill="#fef08a"/>
+    <circle cx="442" cy="250" r="11" fill="#facc15"/>
+    <circle cx="442" cy="250" r="5" fill="#ffffff"/>
+
+    <!-- Forward Royal Canards -->
+    <polygon points="256,120 178,165 210,188" fill="url(#solWingL)" stroke="#ca8a04" stroke-width="4"/>
+    <polygon points="256,120 334,165 302,188" fill="url(#solWingR)" stroke="#ca8a04" stroke-width="4"/>
+
+    <!-- Central Sculpted Golden Fuselage -->
+    <polygon points="256,28 300,186 300,402 256,438 212,402 212,186" fill="url(#solSpine)" stroke="#713f12" stroke-width="6" stroke-linejoin="round"/>
+
+    <!-- Golden Nose Armor Crown Facet -->
+    <polygon points="256,28 290,172 256,198 222,172" fill="#fef08a" stroke="#ca8a04" stroke-width="3"/>
+
+    <!-- Solar Orb Cockpit Canopy -->
+    <ellipse cx="256" cy="238" rx="34" ry="74" fill="url(#solCockpit)" stroke="#451a03" stroke-width="6"/>
+    <!-- Specular Highlight Arc -->
+    <path d="M242,186 Q264,198 264,242" stroke="#ffffff" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.95"/>
+    <circle cx="260" cy="212" r="5" fill="#ffffff"/>
+
+    <!-- Triple Heavy Thruster Mounts -->
+    <rect x="190" y="404" width="32" height="24" rx="6" fill="#1e293b" stroke="#eab308" stroke-width="4"/>
+    <rect x="290" y="404" width="32" height="24" rx="6" fill="#1e293b" stroke="#eab308" stroke-width="4"/>
+    <rect x="240" y="412" width="32" height="24" rx="6" fill="#1e293b" stroke="#facc15" stroke-width="4"/>
+
+    <!-- Center Luminescent Photonic Channel -->
+    <line x1="256" y1="48" x2="256" y2="164" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="256" cy="358" r="11" fill="#facc15" stroke="#ffffff" stroke-width="3"/>
+  </g>
+</svg>

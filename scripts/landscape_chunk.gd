@@ -4,8 +4,25 @@ extends Node2D
 const SIZE := Vector2(1700, 1100)
 var biome := "cyber"
 var coordinate := Vector2i.ZERO
+func _ready() -> void:
+ if not Campaign.advanced(biome):return
+ var info: Dictionary=Game.MAPS[biome]
+ var floor_art:=Sprite2D.new()
+ floor_art.texture=load(info.tile)
+ floor_art.centered=false
+ floor_art.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+ floor_art.region_enabled=true
+ floor_art.region_rect=Rect2(Vector2.ZERO,SIZE)
+ add_child(floor_art)
+ var atmosphere:=Sprite2D.new()
+ atmosphere.texture=load(info.overlay)
+ atmosphere.centered=false
+ atmosphere.scale=SIZE/atmosphere.texture.get_size()
+ atmosphere.modulate.a=0.22
+ add_child(atmosphere)
 func _draw() -> void:
  var info: Dictionary = Game.MAPS[biome]
+ if Campaign.advanced(biome):return
  var rng := RandomNumberGenerator.new()
  rng.seed = 91827 + coordinate.x * 7919 + coordinate.y * 104729 + Campaign.index(biome) * 31
  var base: Color = info.floor_color

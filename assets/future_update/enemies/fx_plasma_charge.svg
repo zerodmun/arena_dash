@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <radialGradient id="chargeCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#67e8f9"/>
+      <stop offset="65%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#3b0764" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="pBloom" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <circle cx="128" cy="128" r="110" fill="url(#chargeCore)" filter="url(#pBloom)"/>
+  <circle cx="128" cy="128" r="60" fill="#67e8f9" filter="url(#pBloom)"/>
+  <circle cx="128" cy="128" r="30" fill="#ffffff"/>
+  <!-- Concentric Electro Rings -->
+  <circle cx="128" cy="128" r="85" fill="none" stroke="#f0abfc" stroke-width="3" stroke-dasharray="16 10"/>
+</svg>

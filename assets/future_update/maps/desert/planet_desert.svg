@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <filter id="desertShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="20" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+    <radialGradient id="sandMantle" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="25%" stop-color="#fde047"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="75%" stop-color="#d97706"/>
+      <stop offset="90%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </radialGradient>
+    <radialGradient id="desertAtmosphere" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="65%" stop-color="#f59e0b" stop-opacity="0.2"/>
+      <stop offset="88%" stop-color="#b45309" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#451a03" stop-opacity="0.95"/>
+    </radialGradient>
+    <radialGradient id="canyonRift" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="60%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#1c0a02"/>
+    </radialGradient>
+    <filter id="sandGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Solar Amber Dust Halo -->
+  <circle cx="256" cy="256" r="236" fill="#f59e0b" opacity="0.2" filter="url(#sandGlow)"/>
+  <circle cx="256" cy="256" r="216" fill="#f97316" opacity="0.22" filter="url(#sandGlow)"/>
+
+  <g filter="url(#desertShadow)">
+    <!-- Base Desert Sphere -->
+    <circle cx="256" cy="256" r="190" fill="url(#sandMantle)" stroke="#92400e" stroke-width="4"/>
+
+    <!-- Grand Sand Dune Striations (Equatorial Bands) -->
+    <path d="M 80,200 Q 180,150 280,190 T 440,170 Q 450,210 420,240 Q 300,210 200,250 T 70,230 Z" 
+          fill="#fde68a" opacity="0.85"/>
+    <path d="M 90,260 Q 200,210 310,260 T 440,240 Q 430,290 380,310 Q 270,280 170,310 T 80,280 Z" 
+          fill="#fed7aa" opacity="0.9"/>
+    <path d="M 120,330 Q 230,300 330,340 T 410,330 Q 390,380 320,400 Q 220,370 140,390 Z" 
+          fill="#fbd38d" opacity="0.8"/>
+
+    <!-- Deep Tectonic Sandstone Canyons -->
+    <path d="M 150,170 Q 230,190 300,160 L 290,180 Q 220,205 145,185 Z" fill="url(#canyonRift)" stroke="#451a03" stroke-width="2"/>
+    <path d="M 220,230 Q 310,250 390,220 L 380,240 Q 300,270 215,245 Z" fill="url(#canyonRift)" stroke="#451a03" stroke-width="2"/>
+    <path d="M 130,290 Q 210,310 270,280 L 260,300 Q 200,325 125,305 Z" fill="url(#canyonRift)" stroke="#451a03" stroke-width="2"/>
+
+    <!-- Shifting Dune Crest Lines (Crisp Gold Ridges) -->
+    <path d="M 80,195 Q 180,145 280,185 T 440,165" fill="none" stroke="#fef08a" stroke-width="3.5"/>
+    <path d="M 90,255 Q 200,205 310,255 T 440,235" fill="none" stroke="#fef08a" stroke-width="3.5"/>
+    <path d="M 120,325 Q 230,295 330,335 T 410,325" fill="none" stroke="#fef9c3" stroke-width="3"/>
+
+    <!-- Dune Shadow Flanks -->
+    <path d="M 80,205 Q 180,155 280,195 T 440,175" fill="none" stroke="#b45309" stroke-width="2.5"/>
+    <path d="M 90,265 Q 200,215 310,265 T 440,245" fill="none" stroke="#92400e" stroke-width="2.5"/>
+
+    <!-- Ancient Impact Crater Basins filled with Dune Sand -->
+    <ellipse cx="210" cy="160" rx="22" ry="14" fill="#92400e" stroke="#f59e0b" stroke-width="2"/>
+    <ellipse cx="210" cy="160" rx="14" ry="8" fill="#fde68a"/>
+
+    <ellipse cx="340" cy="280" rx="28" ry="18" fill="#78350f" stroke="#f59e0b" stroke-width="2.5"/>
+    <ellipse cx="340" cy="280" rx="18" ry="10" fill="#fde68a"/>
+
+    <ellipse cx="160" cy="350" rx="18" ry="11" fill="#78350f" stroke="#d97706" stroke-width="2"/>
+    <ellipse cx="160" cy="350" rx="10" ry="6" fill="#fde68a"/>
+
+    <!-- Atmospheric Haze Wrap -->
+    <circle cx="256" cy="256" r="190" fill="url(#desertAtmosphere)"/>
+
+    <!-- Specular Sun Sheen -->
+    <path d="M 125,120 A 190,190 0 0,1 385,120 A 184,184 0 0,0 125,120 Z" fill="#ffffff" opacity="0.75"/>
+  </g>
+</svg>

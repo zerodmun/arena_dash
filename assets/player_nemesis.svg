@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Heavy Elevation Drop Shadow -->
+    <filter id="nemShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="26" stdDeviation="16" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+
+    <!-- Crimson Predator Wing Left -->
+    <linearGradient id="nemWingL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff4d6d"/>
+      <stop offset="30%" stop-color="#e11d48"/>
+      <stop offset="65%" stop-color="#9f1239"/>
+      <stop offset="100%" stop-color="#4c0519"/>
+    </linearGradient>
+
+    <!-- Crimson Predator Wing Right -->
+    <linearGradient id="nemWingR" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff4d6d"/>
+      <stop offset="30%" stop-color="#e11d48"/>
+      <stop offset="65%" stop-color="#9f1239"/>
+      <stop offset="100%" stop-color="#4c0519"/>
+    </linearGradient>
+
+    <!-- Carbon Dark Fuselage Spine -->
+    <linearGradient id="nemSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#18181b"/>
+      <stop offset="25%" stop-color="#3f3f46"/>
+      <stop offset="50%" stop-color="#fda4af"/>
+      <stop offset="75%" stop-color="#3f3f46"/>
+      <stop offset="100%" stop-color="#18181b"/>
+    </linearGradient>
+
+    <!-- Ruby Laser Canopy -->
+    <radialGradient id="nemCockpit" cx="42%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#fda4af"/>
+      <stop offset="65%" stop-color="#e11d48"/>
+      <stop offset="90%" stop-color="#881337"/>
+      <stop offset="100%" stop-color="#4c0519"/>
+    </radialGradient>
+
+    <!-- Afterburner Flame Fiery Crimson -->
+    <radialGradient id="nemFlame" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#fef08a"/>
+      <stop offset="65%" stop-color="#ff4d6d"/>
+      <stop offset="100%" stop-color="#be123c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g filter="url(#nemShadow)">
+    <!-- Heavy Twin Afterburner Plumes -->
+    <ellipse cx="198" cy="430" rx="20" ry="48" fill="url(#nemFlame)"/>
+    <ellipse cx="314" cy="430" rx="20" ry="48" fill="url(#nemFlame)"/>
+    <ellipse cx="198" cy="422" rx="10" ry="24" fill="#ffffff"/>
+    <ellipse cx="314" cy="422" rx="10" ry="24" fill="#ffffff"/>
+
+    <!-- Left Forward-Swept Razor Wing -->
+    <polygon points="256,44 256,368 60,404 96,252 196,176" fill="url(#nemWingL)" stroke="#4c0519" stroke-width="6" stroke-linejoin="round"/>
+    <!-- Left Wing Carbon Armor Chamfer -->
+    <polygon points="96,252 60,404 154,374 200,296" fill="#18181b" opacity="0.9"/>
+    <!-- Left Neon Crimson Laser Grooves -->
+    <line x1="164" y1="216" x2="100" y2="350" stroke="#ff4d6d" stroke-width="4" stroke-linecap="round"/>
+    <line x1="198" y1="264" x2="140" y2="368" stroke="#f43f5e" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Right Forward-Swept Razor Wing -->
+    <polygon points="256,44 256,368 452,404 416,252 316,176" fill="url(#nemWingR)" stroke="#4c0519" stroke-width="6" stroke-linejoin="round"/>
+    <!-- Right Wing Carbon Armor Chamfer -->
+    <polygon points="416,252 452,404 358,374 312,296" fill="#18181b" opacity="0.9"/>
+    <!-- Right Neon Crimson Laser Grooves -->
+    <line x1="348" y1="216" x2="412" y2="350" stroke="#ff4d6d" stroke-width="4" stroke-linecap="round"/>
+    <line x1="314" y1="264" x2="372" y2="368" stroke="#f43f5e" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Dual Heavy Wingtip Lance Cannons -->
+    <rect x="52" y="240" width="18" height="136" rx="8" fill="#18181b" stroke="#e11d48" stroke-width="4"/>
+    <rect x="56" y="252" width="10" height="70" rx="4" fill="#ff4d6d"/>
+    <circle cx="61" cy="240" r="11" fill="#f43f5e"/>
+    <circle cx="61" cy="240" r="5" fill="#ffffff"/>
+
+    <rect x="442" y="240" width="18" height="136" rx="8" fill="#18181b" stroke="#e11d48" stroke-width="4"/>
+    <rect x="446" y="252" width="10" height="70" rx="4" fill="#ff4d6d"/>
+    <circle cx="451" cy="240" r="11" fill="#f43f5e"/>
+    <circle cx="451" cy="240" r="5" fill="#ffffff"/>
+
+    <!-- Inboard Secondary Blasters -->
+    <rect x="180" y="270" width="12" height="70" rx="6" fill="#27272a" stroke="#ff4d6d" stroke-width="3"/>
+    <circle cx="186" cy="270" r="5" fill="#ffffff"/>
+    <rect x="320" y="270" width="12" height="70" rx="6" fill="#27272a" stroke="#ff4d6d" stroke-width="3"/>
+    <circle cx="326" cy="270" r="5" fill="#ffffff"/>
+
+    <!-- Central Sculpted Carbon Fuselage -->
+    <polygon points="256,26 304,188 304,402 256,440 208,402 208,188" fill="url(#nemSpine)" stroke="#09090b" stroke-width="6" stroke-linejoin="round"/>
+
+    <!-- Diamond Beveled Nose Blade -->
+    <polygon points="256,26 294,174 256,200 218,174" fill="#ff4d6d" stroke="#e11d48" stroke-width="3"/>
+
+    <!-- Ruby Crystalline Cockpit Dome -->
+    <ellipse cx="256" cy="240" rx="34" ry="76" fill="url(#nemCockpit)" stroke="#4c0519" stroke-width="6"/>
+    <!-- Specular Highlight Arc -->
+    <path d="M242,190 Q264,202 264,244" stroke="#ffffff" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.95"/>
+    <circle cx="260" cy="214" r="5" fill="#ffffff"/>
+
+    <!-- Twin Heavy Thruster Nozzles -->
+    <rect x="182" y="404" width="34" height="26" rx="6" fill="#18181b" stroke="#e11d48" stroke-width="4"/>
+    <rect x="296" y="404" width="34" height="26" rx="6" fill="#18181b" stroke="#e11d48" stroke-width="4"/>
+
+    <!-- Central Glowing Razor Line -->
+    <line x1="256" y1="46" x2="256" y2="164" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="256" cy="360" r="11" fill="#ff4d6d" stroke="#ffffff" stroke-width="3"/>
+  </g>
+</svg>

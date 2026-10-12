@@ -62,7 +62,7 @@ godot --path . --windowed --resolution 1280x720 --rendering-method gl_compatibil
 python3 serve_web.py
 ```
 
-Rendered captures are in `build/l10n_*.png`; exported game is in `build/web`, APK in `build/arena_dash.apk`. Local preview uses port 8060. Environment-only sandbox log/editor-settings/ADB/certificate diagnostics did not block tests or exports.
+Rendered captures are in `qa/l10n_*.png`; exported game is in `dist/web`, APK in `build/arena_dash_debug.apk`. Local preview uses port 8060. Environment-only sandbox log/editor-settings/ADB/certificate diagnostics did not block tests or exports.
 
 ## Remaining limits
 

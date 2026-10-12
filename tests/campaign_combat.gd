@@ -5,7 +5,7 @@ func check(condition: bool, message: String) -> void:
 func _ready() -> void:
  call_deferred("run")
 func run() -> void:
- Game.save_path="res://build/campaign-test-save.cfg"
+ Game.save_path="res://qa/campaign-test-save.cfg"
  Game.completed_levels={}
  Game.last_completed_planet=""
  var previous_interval:=5.0
@@ -71,7 +71,7 @@ func run() -> void:
     var boss: Enemy=guardians[0]
     boss.set_physics_process(false)
     check(Game.boss_max_health==boss.health,"Boss HUD health")
-    var expected_count: int={"coast":3,"desert":3,"volcano":8,"glacier":4,"toxic":5}[id]
+    var expected_count: int={"coast":3,"desert":3,"volcano":8,"glacier":4,"toxic":5,"ice":4,"advanced_desert":3,"storm":4,"crystal":4,"dark_void":7}.get(id,5)
     check(boss._volley_angles().size()==expected_count,"Planet-specific guardian volley")
     boss._attack_timer=0
     boss._physics_process(0.1)
@@ -98,7 +98,7 @@ func run() -> void:
  Game.last_completed_planet=""
  Game.completed_levels={}
  Game._load_save()
- check(Game.hangar_planet()=="forest" and Game.completed_levels.size()==8,"Completion order survives reopen")
+ check(Game.hangar_planet()=="forest" and Game.completed_levels.size()==Campaign.ORDER.size(),"Completion order survives reopen")
  var hangar: Hangar=load("res://scenes/hangar.tscn").instantiate()
  get_tree().root.add_child(hangar)
  check(hangar._map_card.planet_id=="forest","Reopened hangar uses replayed planet artwork")
@@ -110,7 +110,7 @@ func run() -> void:
  cfg.erase_section_key("campaign","last_completed")
  cfg.save(Game.save_path)
  Game._load_save()
- check(Game.hangar_planet()=="toxic","Legacy save migration")
+ check(Game.hangar_planet()==Campaign.ORDER[-1],"Legacy save migration")
  Game.is_running=false
  print("CAMPAIGN COMBAT: ","PASS" if failures.is_empty() else "FAIL"," / ",failures.size()," failures")
  SoundEffects.stop_all()

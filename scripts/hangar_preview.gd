@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 	if mode == "weapon":
 		_shot_timer -= delta
 		if _shot_timer <= 0.0:
-			_shot_timer = maxf(float(Game.SHIPS[ship_id].fire_rate), 0.20)
+			_shot_timer = maxf(EquipmentCatalog.firing_interval(Game.SHIPS[ship_id], Game.WEAPONS[weapon_id]), 0.20)
 			_emit_shots()
 		for i in range(shots.size() - 1, -1, -1):
 			shots[i].position += shots[i].direction * 320.0 * delta
@@ -48,15 +48,8 @@ func _emit_shots() -> void:
 	if size.x < 1 or size.y < 1:
 		return
 	var origin := size * Vector2(0.5, 0.76) - Vector2(0, 60)
-	var pattern: String = Game.WEAPONS[weapon_id].pattern
-	if pattern == "twin":
-		_add_shot(origin + Vector2(-24, 0), Vector2.UP)
-		_add_shot(origin + Vector2(24, 0), Vector2.UP)
-	elif pattern == "spread":
-		for angle in [-0.31, 0.0, 0.31]:
-			_add_shot(origin, Vector2.UP.rotated(angle))
-	else:
-		_add_shot(origin, Vector2.UP)
+	for shot in EquipmentCatalog.firing_pattern(Game.WEAPONS[weapon_id]):
+		_add_shot(origin + Vector2(float(shot.offset), 0), Vector2.UP.rotated(float(shot.angle)))
 
 func _add_shot(origin: Vector2, direction: Vector2) -> void:
 	shots.append({"position": origin, "direction": direction, "life": 1.8})
@@ -65,7 +58,7 @@ func _draw() -> void:
 	if size.x < 1 or size.y < 1:
 		return
 	var map: Dictionary = Game.MAPS.get(map_id, Game.MAPS["cyber"])
-	var base: Color = map.get("floor_color", Color("0d1c2a")) if mode == "map" else Color("0a1723")
+	var base: Color = map.get("floor_color", Color("0d1c2a")) if mode == "map" else ArcadeUI.INK
 	draw_rect(Rect2(Vector2.ZERO, size), base)
 	if mode == "map":
 		_draw_map(map)
@@ -91,7 +84,7 @@ func _draw() -> void:
 	draw_line(center + Vector2(-10, 44), center + Vector2(-10, 75 + sin(_time * 12) * 6), Color(ship_color, 0.65), 5, true)
 	draw_line(center + Vector2(10, 44), center + Vector2(10, 75 + cos(_time * 12) * 6), Color(ship_color, 0.65), 5, true)
 	draw_texture_rect(_texture(Game.SHIPS[ship_id].texture), Rect2(center - Vector2.ONE * ship_size / 2, Vector2.ONE * ship_size), false)
-	draw_rect(Rect2(Vector2.ZERO, size), Color("324755"), false, 1)
+	draw_rect(Rect2(Vector2.ZERO, size), ArcadeUI.CYAN, false, 1)
 
 func _draw_map(map: Dictionary) -> void:
 	if map_id in ["coast", "desert", "volcano", "glacier", "toxic"]:

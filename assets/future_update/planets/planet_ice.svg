@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <filter id="iceShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="20" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+    <radialGradient id="iceMantle" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#e0f2fe"/>
+      <stop offset="50%" stop-color="#7dd3fc"/>
+      <stop offset="75%" stop-color="#0284c7"/>
+      <stop offset="90%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </radialGradient>
+    <radialGradient id="iceAtmosphere" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="65%" stop-color="#38bdf8" stop-opacity="0.15"/>
+      <stop offset="88%" stop-color="#0284c7" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#082f49" stop-opacity="0.95"/>
+    </radialGradient>
+    <radialGradient id="crevasseCore" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#0369a1"/>
+      <stop offset="50%" stop-color="#0c4a6e"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <filter id="iceGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Aurora Atmospheric Halo -->
+  <circle cx="256" cy="256" r="236" fill="#38bdf8" opacity="0.22" filter="url(#iceGlow)"/>
+  <circle cx="256" cy="256" r="216" fill="#818cf8" opacity="0.2" filter="url(#iceGlow)"/>
+
+  <g filter="url(#iceShadow)">
+    <!-- Base Glacial Sphere -->
+    <circle cx="256" cy="256" r="190" fill="url(#iceMantle)" stroke="#0284c7" stroke-width="4"/>
+
+    <!-- Polar Ice Caps (Pure White Chiseled Frost) -->
+    <path d="M 120,150 Q 256,90 392,150 Q 340,110 256,100 Q 170,110 120,150 Z" fill="#ffffff" opacity="0.95"/>
+    <path d="M 130,370 Q 256,430 382,370 Q 320,410 256,420 Q 180,410 130,370 Z" fill="#ffffff" opacity="0.95"/>
+
+    <!-- Deep Glacial Crevasses & Chasms -->
+    <path d="M 140,210 Q 220,180 290,230 L 280,260 Q 210,210 150,240 Z" fill="url(#crevasseCore)" stroke="#0c4a6e" stroke-width="2"/>
+    <path d="M 270,190 Q 360,170 410,230 L 390,260 Q 340,200 260,220 Z" fill="url(#crevasseCore)" stroke="#0c4a6e" stroke-width="2"/>
+    <path d="M 110,270 Q 190,250 240,310 L 220,340 Q 170,280 100,300 Z" fill="url(#crevasseCore)" stroke="#0c4a6e" stroke-width="2"/>
+    <path d="M 230,290 Q 320,270 380,330 L 360,360 Q 300,310 220,320 Z" fill="url(#crevasseCore)" stroke="#0c4a6e" stroke-width="2"/>
+
+    <!-- Crystalline Fault Lines (Luminous Cyan & White) -->
+    <path d="M 100,220 L 160,240 L 240,220 L 320,250 L 410,220" fill="none" stroke="#38bdf8" stroke-width="4" filter="url(#iceGlow)"/>
+    <path d="M 100,220 L 160,240 L 240,220 L 320,250 L 410,220" fill="none" stroke="#ffffff" stroke-width="1.8"/>
+
+    <path d="M 180,140 L 220,210 L 200,280 L 250,370" fill="none" stroke="#22d3ee" stroke-width="3.5" filter="url(#iceGlow)"/>
+    <path d="M 180,140 L 220,210 L 200,280 L 250,370" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+
+    <path d="M 310,130 L 330,200 L 370,270 L 340,360" fill="none" stroke="#38bdf8" stroke-width="3.5" filter="url(#iceGlow)"/>
+    <path d="M 310,130 L 330,200 L 370,270 L 340,360" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+
+    <!-- Faceted Ice Ridge Polygons -->
+    <polygon points="170,160 210,140 230,170 190,190" fill="#ffffff" opacity="0.6"/>
+    <polygon points="260,150 300,130 320,160 280,180" fill="#bae6fd" opacity="0.7"/>
+    <polygon points="140,310 180,290 200,320 160,340" fill="#ffffff" opacity="0.5"/>
+    <polygon points="300,320 340,300 360,330 320,350" fill="#bae6fd" opacity="0.6"/>
+
+    <!-- Atmospheric Fog Mask -->
+    <circle cx="256" cy="256" r="190" fill="url(#iceAtmosphere)"/>
+
+    <!-- Specular Ice Glint -->
+    <path d="M 120,120 A 190,190 0 0,1 392,120 A 184,184 0 0,0 120,120 Z" fill="#ffffff" opacity="0.85"/>
+  </g>
+</svg>

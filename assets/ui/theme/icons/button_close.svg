@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 12 48 48" width="48" height="48">
+  <g transform="translate(36, 36)">
+    
+    <g stroke="#082f49" stroke-width="6" stroke-linecap="round" transform="translate(0, 2)" opacity="0.5">
+      <line x1="-13" y1="-13" x2="13" y2="13" />
+      <line x1="13" y1="-13" x2="-13" y2="13" />
+    </g>
+    
+    <g stroke="#ffffff" stroke-width="6" stroke-linecap="round">
+      <line x1="-13" y1="-13" x2="13" y2="13" />
+      <line x1="13" y1="-13" x2="-13" y2="13" />
+    </g>
+  </g>
+</svg>

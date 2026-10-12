@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.arenadash.qa">
+ <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="33"/>
+ <application android:label="Arena Dash QA" android:debuggable="true" android:allowBackup="false"/>
+ <instrumentation android:name="com.arenadash.qa.TouchRunner" android:targetPackage="com.arenadash.qa" android:label="Arena Dash multitouch QA"/>
+</manifest>

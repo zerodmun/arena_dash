@@ -30,6 +30,8 @@ func _ready() -> void:
     Game.game_started.connect(_on_game_started)
     Game.screen_shake_requested.connect(_on_screen_shake)
     _setup_arena()
+    var projectiles:=ProjectileManager.new()
+    add_child(projectiles)
     var cache:=CombatPool.new()
     cache.name="CombatPool"
     add_child(cache)
@@ -443,11 +445,13 @@ func _spawn_meteor_strike(pos: Vector2, delay: float) -> void:
     tw_meteor.tween_property(meteor, "position", pos, 0.32).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
     await tw_meteor.finished
+    # Release visuals even if the mission ended while the descent tween ran.
+    # A retry may already have queued the same hazards for deletion.
+    if is_instance_valid(warning) and not warning.is_queued_for_deletion(): warning.queue_free()
+    if is_instance_valid(meteor) and not meteor.is_queued_for_deletion(): meteor.queue_free()
     if generation != _mission_generation or not Game.is_running: return
 
     # 3. Ground Impact Explosion
-    warning.queue_free()
-    meteor.queue_free()
 
     Game.request_screen_shake(14.0)
     if SoundEffects:
@@ -483,6 +487,8 @@ func _spawn_meteor_strike(pos: Vector2, delay: float) -> void:
 
 
 func _clear_entities() -> void:
+    var projectiles:=get_node_or_null("ProjectileManager") as ProjectileManager
+    if projectiles:projectiles.cleanup("level_restart")
     for shot in get_tree().get_nodes_in_group("enemy_shots"):
         shot.despawn()
     for hazard in get_tree().get_nodes_in_group("mission_hazards"):
@@ -514,6 +520,6 @@ func _extend_obstacles() -> void:
         var obstacle := scene.instantiate() as Obstacle
         obstacle.position = pos
         obstacle._bounds = current_arena_rect.grow(-140)
-        obstacle.set_type(types[Game.selected_map_id])
+        obstacle.set_type(types.get(Game.selected_map_id, {"lava":Obstacle.Type.BASALT,"ice":Obstacle.Type.CRYO,"advanced_desert":Obstacle.Type.CARGO,"advanced_toxic":Obstacle.Type.TOXIC_SILO,"storm":Obstacle.Type.BARRIER,"crystal":Obstacle.Type.CRYO,"dark_void":Obstacle.Type.ASTEROID}.get(Game.selected_map_id,Obstacle.Type.BARRIER)))
         arena.add_child(obstacle)
         _obstacles.append(obstacle)

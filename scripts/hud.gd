@@ -116,6 +116,9 @@ func _apply_ui_mode(is_mobile: bool) -> void:
             top_bar_container.add_theme_constant_override("margin_right", 32)
             top_bar_container.add_theme_constant_override("margin_top", 16)
 
+    score_panel.add_theme_stylebox_override("panel",ArcadeUI.panel(12))
+    shield_panel.add_theme_stylebox_override("panel",ArcadeUI.panel(12))
+
     # Typography styling
     UIStyler.style_label(score_label, 28, Color.WHITE, 2, ArcadeUI.INK)
     UIStyler.style_label(high_score_label, 14, Color(0.98, 0.8, 0.22), 2)
@@ -281,8 +284,8 @@ func _on_game_over() -> void:
 
 
 func _build_mission_controls() -> void:
-    score_panel.add_theme_stylebox_override("panel",ArcadeUI.surface(12))
-    shield_panel.add_theme_stylebox_override("panel",ArcadeUI.surface(12))
+    score_panel.add_theme_stylebox_override("panel",ArcadeUI.panel(12))
+    shield_panel.add_theme_stylebox_override("panel",ArcadeUI.panel(12))
     ArcadeUI.style_button(fullscreen_button)
     _pause_button=ArcadeUI.button("","button_pause")
     _pause_button.custom_minimum_size=Vector2(64,64)
@@ -312,7 +315,7 @@ func _build_mission_controls() -> void:
     _pause_panel.offset_right=440
     _pause_panel.offset_top=-180
     _pause_panel.offset_bottom=180
-    _pause_panel.add_theme_stylebox_override("panel",ArcadeUI.surface(28))
+    _pause_panel.add_theme_stylebox_override("panel",ArcadeUI.panel(28))
     _pause_panel.visible=false
     _pause_backdrop.add_child(_pause_panel)
     var columns:=HBoxContainer.new()
@@ -344,6 +347,7 @@ func _build_mission_controls() -> void:
 func _toggle_pause() -> void:
     if not Game.is_running:
         return
+    SoundEffects.play("back" if get_tree().paused else "open")
     get_tree().paused = not get_tree().paused
     if get_tree().paused:Game.flush_save()
     _pause_panel.visible = get_tree().paused
@@ -395,7 +399,7 @@ func _build_results() -> void:
     _notice.offset_top=124
     _notice.offset_bottom=152
     var modal: PanelContainer=game_over_panel.get_node("CenterContainer/Modal")
-    modal.add_theme_stylebox_override("panel",ArcadeUI.surface(28))
+    modal.add_theme_stylebox_override("panel",ArcadeUI.panel(28))
     modal.custom_minimum_size=Vector2(1060,480)
     var old: VBoxContainer=modal.get_node("VBox")
     _result_title=old.get_node("GameOverLabel")
@@ -461,7 +465,7 @@ func _on_mission_completed() -> void:
     _next_level.disabled=rating<3 or next>=Campaign.ORDER.size() or not Game.is_level_unlocked(Campaign.ORDER[next])
     ArcadeUI.style_button(restart_button,rating<3)
     kills_label.text=I18n.t("Attempt: %d / 3 stars  •  Best: %d / 3",[rating,best])
-    pickups_label.text=I18n.t("Time: %d s  •  Damage taken: %d",[int(Game.mission_elapsed),Game.mission_damage])
+    pickups_label.text=I18n.t("Time: %d s  •  Damage taken: %d",[int(Game.mission_elapsed),Game.mission_damage])+"\n"+I18n.t("Reward: +%d Coins • Balance: %d",[Game.last_coin_reward,Game.coins])
     _progress_feedback.text=I18n.t("Earn 3 stars to unlock the next planet. Retry this mission." if rating<3 else "Three-star clear! Progress saved.")+"\n"+I18n.t("3 stars: complete objectives, take at most %d damage, finish within %d s.",[Campaign.damage_budget(Game.selected_ship_id),int(Campaign.par_time(Game.selected_map_id))])
     _progress_feedback.visible=true
     restart_button.text="RETRY MISSION" if rating<3 else "REPLAY PLANET"
@@ -484,6 +488,7 @@ func _refresh_language() -> void:
         if Game.mission_won: _on_mission_completed()
         else: _on_game_over()
 func _apply_touch_layout() -> void:
+    _layout_safe_ui(ArcadeUI.safe_rect(get_viewport().get_visible_rect().size))
     if not is_instance_valid(fire_button) or not is_instance_valid(joystick): return
     var resolved:=TouchLayout.resolved(Game.control_layout,get_viewport().get_visible_rect().size)
     var fire: Dictionary=resolved.fire
@@ -491,6 +496,37 @@ func _apply_touch_layout() -> void:
     fire_button.position=fire.center-Vector2.ONE*fire.diameter*0.5
     fire_button.size=Vector2.ONE*fire.diameter
     fire_button.pivot_offset=fire_button.size*0.5
-    fire_button.modulate.a=fire.opacity
+    fire_button.modulate=Color(.78,.8,.84,fire.opacity)
     fire_button.disabled=get_tree().paused
     joystick.apply_layout(resolved.joystick)
+
+func _layout_safe_ui(area: Rect2) -> void:
+    var vp:=get_viewport().get_visible_rect().size
+    if top_bar_container:
+        var padding:=16 if Game.is_mobile_ui else 32
+        top_bar_container.add_theme_constant_override("margin_left",int(area.position.x)+padding)
+        top_bar_container.add_theme_constant_override("margin_right",int(vp.x-area.end.x)+padding)
+        top_bar_container.add_theme_constant_override("margin_top",int(area.position.y)+12)
+    if is_instance_valid(_pause_panel):
+        _pause_panel.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+        _pause_panel.size=Vector2(880,360)
+        _pause_panel.position=area.get_center()-_pause_panel.size*.5
+    var center:=game_over_panel.get_node_or_null("CenterContainer") as Control
+    if center:
+        center.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+        center.position=area.position+Vector2(16,16)
+        center.size=area.size-Vector2(32,32)
+    for message in [_objective,_notice,_boss_notice]:
+        if not is_instance_valid(message): continue
+        message.offset_left=area.position.x
+        message.offset_right=area.end.x-vp.x
+
+    if is_instance_valid(_objective):
+        _objective.offset_top=94+area.position.y
+        _objective.offset_bottom=120+area.position.y
+    if is_instance_valid(_notice):
+        _notice.offset_top=124+area.position.y
+        _notice.offset_bottom=152+area.position.y
+    if is_instance_valid(_boss_notice):
+        _boss_notice.offset_top=156+area.position.y
+        _boss_notice.offset_bottom=184+area.position.y

@@ -9,7 +9,7 @@ var _score_clock:=0.0
 var _refill:=0.0
 func _ready() -> void: call_deferred("run")
 func run() -> void:
- Game.save_path="res://build/performance-bench.cfg"
+ Game.save_path="res://qa/performance-bench.cfg"
  Game.completed_levels={}
  for id: String in Campaign.ORDER: Game.completed_levels[id]=3
  Game.selected_map_id="toxic"
@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
  elif phase=="heavy" and elapsed>=13:
   phases.heavy=summary()
   var args:=OS.get_cmdline_user_args()
-  var path:="res://build/performance-baseline.json" if "--baseline" in args else ("res://build/performance-diagnostics.json" if "--perf" in args else "res://build/performance-after.json")
+  var path:="res://qa/performance-baseline.json" if "--baseline" in args else ("res://qa/performance-diagnostics.json" if "--perf" in args else "res://qa/performance-after.json")
   var file:=FileAccess.open(path,FileAccess.WRITE)
   file.store_string(JSON.stringify(phases,"  "))
   print("PERFORMANCE BENCH: ",JSON.stringify(phases))

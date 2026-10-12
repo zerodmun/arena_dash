@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="tileLava" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="50%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+    <radialGradient id="lavaCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#f97316"/>
+      <stop offset="80%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#450a0a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="36" fill="url(#tileLava)" stroke="#f97316" stroke-width="6"/>
+  <circle cx="256" cy="256" r="180" fill="url(#lavaCore)"/>
+  <!-- Basalt Rift Paths -->
+  <path d="M 80,220 Q 200,160 280,260 T 440,240" fill="none" stroke="#fef08a" stroke-width="8"/>
+  <path d="M 160,380 Q 260,320 380,360" fill="none" stroke="#f97316" stroke-width="6"/>
+  <!-- Decorative Caldera Obelisk Silhouette -->
+  <polygon points="256,120 220,380 292,380" fill="#18181b" stroke="#ea580c" stroke-width="4"/>
+</svg>
