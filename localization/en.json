@@ -274,5 +274,12 @@
   "BIOWAR": "BIOWAR",
   "PRISM": "PRISM",
   "VOID COMMAND": "VOID COMMAND",
-  "%d aircraft • %d worlds\nChoose your craft. Secure every orbit.": "%d aircraft • %d worlds\nChoose your craft. Secure every orbit."
+  "%d aircraft • %d worlds\nChoose your craft. Secure every orbit.": "%d aircraft • %d worlds\nChoose your craft. Secure every orbit.",
+  "Drag to explore • Tap a planet to inspect": "Drag to explore • Tap a planet to inspect",
+  "Returning to planet map…": "Returning to planet map…",
+  "Drag to explore • Pinch or wheel to zoom": "Drag to explore • Pinch or wheel to zoom",
+  "FIT": "FIT",
+  "Zoom out": "Zoom out",
+  "Zoom in": "Zoom in",
+  "Fit all planets": "Fit all planets"
 }

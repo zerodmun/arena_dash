@@ -27,6 +27,7 @@ var _boss_notice: Label
 var _objective: Label
 var _stars: HBoxContainer
 var _result_title: Label
+var _map_return_timer: Timer
 var _next_level: Button
 var _prev_score := 0
 var _pause_panel: PanelContainer
@@ -47,6 +48,11 @@ func _ready() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
     _build_mission_controls()
     _build_results()
+    _map_return_timer = Timer.new()
+    _map_return_timer.one_shot = true
+    _map_return_timer.wait_time = 4.0
+    _map_return_timer.timeout.connect(_return_to_campaign)
+    add_child(_map_return_timer)
     I18n.changed.connect(_refresh_language)
     Game.preferences_changed.connect(_apply_touch_layout)
     get_viewport().size_changed.connect(_apply_touch_layout)
@@ -187,6 +193,7 @@ func _on_fullscreen_pressed() -> void:
 
 
 func _on_start_pressed() -> void:
+    _map_return_timer.stop()
     get_tree().paused = false
     _pause_button.visible = true
     _notice.visible = true
@@ -209,6 +216,7 @@ func _on_start_pressed() -> void:
 
 
 func _on_return_to_hangar() -> void:
+    _map_return_timer.stop()
     get_tree().paused = false
     Game.is_running = false
     Game.flush_save()
@@ -453,30 +461,42 @@ func _on_mission_completed() -> void:
     _on_game_over()
     var rating:=Game.last_attempt_stars
     var best:=Game.best_stars(Game.selected_map_id)
-    _result_title.text="MISSION COMPLETE" if rating<3 else ("CAMPAIGN COMPLETE" if Campaign.index(Game.selected_map_id)==7 else "PLANET SECURED")
+    _result_title.text="MISSION COMPLETE" if rating<3 else ("CAMPAIGN COMPLETE" if Campaign.index(Game.selected_map_id)==Campaign.ORDER.size()-1 else "PLANET SECURED")
     for child in _stars.get_children():
         _stars.remove_child(child)
         child.queue_free()
     for i in 3:
         _stars.add_child(ArcadeUI.image(ArcadeUI.KIT+("badge_star_active.svg" if i<rating else "badge_star_inactive.svg"),Vector2(60,60)))
     _stars.visible=true
-    _next_level.visible=Campaign.index(Game.selected_map_id)<7
+    _next_level.visible=Campaign.index(Game.selected_map_id)<Campaign.ORDER.size()-1
     var next:=Campaign.index(Game.selected_map_id)+1
     _next_level.disabled=rating<3 or next>=Campaign.ORDER.size() or not Game.is_level_unlocked(Campaign.ORDER[next])
     ArcadeUI.style_button(restart_button,rating<3)
     kills_label.text=I18n.t("Attempt: %d / 3 stars  •  Best: %d / 3",[rating,best])
     pickups_label.text=I18n.t("Time: %d s  •  Damage taken: %d",[int(Game.mission_elapsed),Game.mission_damage])+"\n"+I18n.t("Reward: +%d Coins • Balance: %d",[Game.last_coin_reward,Game.coins])
     _progress_feedback.text=I18n.t("Earn 3 stars to unlock the next planet. Retry this mission." if rating<3 else "Three-star clear! Progress saved.")+"\n"+I18n.t("3 stars: complete objectives, take at most %d damage, finish within %d s.",[Campaign.damage_budget(Game.selected_ship_id),int(Campaign.par_time(Game.selected_map_id))])
+    if rating == 3:
+        _progress_feedback.text += "\n" + I18n.t("Returning to planet map…")
     _progress_feedback.visible=true
     restart_button.text="RETRY MISSION" if rating<3 else "REPLAY PLANET"
+    if rating < 3: _map_return_timer.stop()
+    if rating == 3 and _map_return_timer.is_stopped():
+        _map_return_timer.start()
     if _next_level.visible and not _next_level.disabled:_next_level.grab_focus()
     else:restart_button.grab_focus()
 
+func _return_to_campaign() -> void:
+    if not Game.mission_won or Game.last_attempt_stars != 3: return
+    get_tree().paused = false
+    Input.action_release("fire")
+    get_tree().change_scene_to_file("res://scenes/level_select.tscn")
+
 func _advance() -> void:
     var next := Campaign.index(Game.selected_map_id) + 1
-    if next < Campaign.ORDER.size() and Game.select_level(Campaign.ORDER[next]):
-        get_tree().paused = false
-        get_tree().change_scene_to_file("res://scenes/main.tscn")
+    if Game.last_attempt_stars == 3 and next < Campaign.ORDER.size() and Game.is_level_unlocked(Campaign.ORDER[next]):
+        _map_return_timer.stop()
+        Game.map_focus_planet = Campaign.ORDER[next]
+        _return_to_campaign()
 
 func _refresh_language() -> void:
     _refresh_best_scores()

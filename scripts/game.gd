@@ -185,6 +185,9 @@ const MAPS := {
 }
 
 var last_completed_planet := ""
+# Transient camera destination; existing save schema and player inventory stay intact.
+var map_focus_planet := ""
+var map_zoom := 1.0
 var boss_defeated := true
 var boss_health := 0
 var boss_max_health := 0
@@ -390,6 +393,8 @@ func _load_save() -> void:
             if (value is float or value is int) and is_finite(float(value)):
                 audio_volumes[bus] = clampf(float(value), 0.0, 1.0)
         reduced_motion = cfg.get_value("settings", "reduced_motion", false)
+        var saved_zoom: Variant = cfg.get_value("settings", "map_zoom", 1.0)
+        map_zoom = clampf(float(saved_zoom),0.1,3.0) if (saved_zoom is float or saved_zoom is int) and is_finite(float(saved_zoom)) else 1.0
         control_layout=TouchLayout.sanitize(cfg.get_value("controls","layout",{}))
         I18n.set_language(cfg.get_value("settings","language","en"),false)
     if not SHIPS.has(selected_ship_id): selected_ship_id = "valkyrie"
@@ -419,6 +424,7 @@ func _save_game() -> bool:
     cfg.set_value("settings", "audio", audio_enabled)
     for bus: String in audio_volumes: cfg.set_value("audio", bus, audio_volumes[bus])
     cfg.set_value("settings", "reduced_motion", reduced_motion)
+    cfg.set_value("settings", "map_zoom", map_zoom)
     # Atomically replace one snapshot: balance and ownership cannot save separately.
     var temporary := save_path+".tmp"
     if cfg.save(temporary)!=OK: return false
@@ -463,6 +469,13 @@ func is_level_unlocked(id: String) -> bool:
   if best_stars(Campaign.ORDER[previous])!=3:return false
  return true
 
+func latest_unlocked_planet() -> String:
+ var latest: String = Campaign.ORDER[0]
+ for id: String in Campaign.ORDER:
+  if not is_level_unlocked(id): break
+  latest = id
+ return latest
+
 func select_level(id: String) -> bool:
     if not is_level_unlocked(id): return false
     select_map(id)
@@ -475,7 +488,10 @@ func complete_mission() -> void:
  is_running=false
  last_attempt_stars=Campaign.rating(selected_map_id,selected_ship_id,mission_damage,mission_elapsed)
  completed_levels[selected_map_id]=maxi(best_stars(selected_map_id),last_attempt_stars)
- if last_attempt_stars==3:last_completed_planet=selected_map_id
+ if last_attempt_stars==3:
+  last_completed_planet=selected_map_id
+  var next_index := Campaign.index(selected_map_id)+1
+  map_focus_planet=Campaign.ORDER[next_index] if next_index<Campaign.ORDER.size() else selected_map_id
  last_coin_reward=120+30*last_attempt_stars+10*Campaign.index(selected_map_id)
  if not rewarded_planets.has(selected_map_id):
   last_coin_reward+=250

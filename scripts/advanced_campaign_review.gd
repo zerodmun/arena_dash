@@ -33,7 +33,7 @@ func run() -> void:
   await get_tree().scene_changed
   var levels: LevelSelect=get_tree().current_scene
   levels._select("lava")
-  check(levels._page==1 and levels._centers.size()==7,"Advanced page has seven planets")
+  check(levels.cards.size()==15 and levels._centers.size()==15,"Continuous map contains all fifteen planets")
   check(not levels._deploy.disabled,"Level 9 unlocks from saved original chain")
   check(levels._title.text.contains(I18n.t(Game.MAPS.lava.name)),"Advanced title localized")
   for id: String in Campaign.ORDER.slice(8):

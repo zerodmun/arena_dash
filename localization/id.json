@@ -274,5 +274,12 @@
   "BIOWAR": "PERANG BIO",
   "PRISM": "PRISMA",
   "VOID COMMAND": "KOMANDO KEHAMPAAN",
-  "%d aircraft • %d worlds\nChoose your craft. Secure every orbit.": "%d pesawat • %d dunia\nPilih pesawatmu. Kuasai setiap orbit."
+  "%d aircraft • %d worlds\nChoose your craft. Secure every orbit.": "%d pesawat • %d dunia\nPilih pesawatmu. Kuasai setiap orbit.",
+  "Drag to explore • Tap a planet to inspect": "Geser untuk menjelajah • Ketuk planet untuk melihat misi",
+  "Returning to planet map…": "Kembali ke peta planet…",
+  "Drag to explore • Pinch or wheel to zoom": "Geser • Cubit atau gulir untuk zoom",
+  "FIT": "PAS",
+  "Zoom out": "Perkecil",
+  "Zoom in": "Perbesar",
+  "Fit all planets": "Tampilkan semua planet"
 }

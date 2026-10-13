@@ -139,10 +139,10 @@ func run() -> void:
   campaign._layout(safe)
   check(safe.encloses(campaign._briefing.get_global_rect()),"Campaign respects cutouts")
   for planet: PlanetButton in campaign.cards.values():
-   if planet.visible:check(safe.encloses(planet.get_global_rect()),"Planet stays clear of cutouts")
+   if planet.visible:check(safe.encloses(campaign._map_view.get_global_rect()),"Clipped map stays clear of cutouts")
   campaign._layout()
   for planet: PlanetButton in campaign.cards.values():
-   if planet.visible:bounds(planet,"Campaign planet")
+   if planet.visible:bounds(campaign._map_view,"Campaign map viewport")
   campaign._select("toxic")
   check(campaign._deploy.disabled,"Locked world cannot deploy")
   campaign.free()
