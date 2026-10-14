@@ -7,6 +7,7 @@ signal economy_changed
 
 signal preferences_changed
 
+var mission_assets: MissionAssets
 var startup_resources: Dictionary = {} # Warm startup assets retained for scene reuse.
 
 var control_layout := TouchLayout.defaults()
@@ -590,3 +591,10 @@ func _load_economy(cfg: ConfigFile,existing: bool) -> void:
  economy_loaded=true
  # Persist migration immediately; reopening cannot grant it again.
  if existing and not cfg.has_section_key("economy","version"):_save_game()
+
+func warm_mission_assets(id: String) -> MissionAssets:
+ if not is_instance_valid(mission_assets):
+  mission_assets=MissionAssets.new()
+  add_child(mission_assets)
+ mission_assets.warm(id)
+ return mission_assets

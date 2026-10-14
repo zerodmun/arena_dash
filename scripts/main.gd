@@ -2,6 +2,7 @@ extends Node2D
 ## Main: manages expanded 3400x2200 semi-3D arena, dynamic biomes,
 ## procedural obstacles, space meteor shower hazards, camera tracking, and spawners.
 
+const LANDMARK_SHADER := preload("res://assets/shaders/landmark.gdshader")
 const ARENA_WIDTH := 6800.0
 const ARENA_HEIGHT := 4400.0
 const WALL_THICKNESS := 48.0
@@ -128,15 +129,13 @@ func _build_floor(map_info: Dictionary) -> void:
             arena.add_child(chunk)
             _chunks.append(chunk)
     # Original map illustrations become bounded landmarks, never stretched to fill.
-    var shader := Shader.new()
-    shader.code = "shader_type canvas_item; void fragment(){ vec4 c=texture(TEXTURE,UV); vec2 d=min(UV,vec2(1.0)-UV); float a=smoothstep(0.0,0.18,min(d.x,d.y)); COLOR=vec4(c.rgb,c.a*a*0.55); }"
+    var material := ShaderMaterial.new()
+    material.shader = LANDMARK_SHADER
     for point in [Vector2(1700, 1100), Vector2(5100, 3300)]:
         var landmark := Sprite2D.new()
         landmark.texture = load(map_info.icon)
         landmark.position = point
         landmark.scale = Vector2.ONE * 1.5
-        var material := ShaderMaterial.new()
-        material.shader = shader
         landmark.material = material
         landmark.z_index = -9
         arena.add_child(landmark)

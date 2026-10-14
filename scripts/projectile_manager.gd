@@ -32,12 +32,14 @@ func fire(controller: WeaponController, sequence: int) -> int:
  var event_id:=next_event_id
  accepted_events+=1
  var spawned:=0
+ var owner_shape:=owner_aircraft.get_node("CollisionShape2D") as CollisionShape2D
+ var owner_radius:=(owner_shape.shape as CircleShape2D).radius*maxf(owner_aircraft.global_scale.x,owner_aircraft.global_scale.y)
  if ProjectileTrace.enabled:ProjectileTrace.event("fire",{"event_id":event_id,"sequence":sequence,"owner":owner_id,"weapon":data.id,"aircraft":Game.selected_ship_id,"expected_count":data.pattern.size(),"pattern":data.pattern,"speed":data.speed,"damage":data.damage,"muzzle":ProjectileTrace.point(origin),"heading":ProjectileTrace.point(heading)})
  for index in data.pattern.size():
   var sample: Dictionary=data.pattern[index]
   var position_world:=origin+tangent*float(sample.offset)
   var direction_world:=heading.rotated(float(sample.angle)).normalized()
-  if not _clear_muzzle(owner_aircraft,position_world,data.radius):
+  if not _clear_muzzle(owner_aircraft,position_world,data.radius,owner_radius):
    blocked_spawns+=1
    if ProjectileTrace.enabled:ProjectileTrace.event("spawn_blocked",{"event_id":event_id,"index":index,"weapon":data.id})
    continue
@@ -49,9 +51,10 @@ func fire(controller: WeaponController, sequence: int) -> int:
   created_projectiles+=1;spawned+=1
  if ProjectileTrace.enabled:ProjectileTrace.event("fire_complete",{"event_id":event_id,"spawned":spawned,"blocked":data.pattern.size()-spawned})
  return spawned
-func _clear_muzzle(owner_aircraft: Player, pos: Vector2, radius: float) -> bool:
- var owner_shape:=owner_aircraft.get_node("CollisionShape2D") as CollisionShape2D
- var owner_radius:=(owner_shape.shape as CircleShape2D).radius*maxf(owner_aircraft.global_scale.x,owner_aircraft.global_scale.y)
+func _clear_muzzle(owner_aircraft: Player, pos: Vector2, radius: float, owner_radius: float = -1.0) -> bool:
+ if owner_radius < 0:
+  var owner_shape:=owner_aircraft.get_node("CollisionShape2D") as CollisionShape2D
+  owner_radius=(owner_shape.shape as CircleShape2D).radius*maxf(owner_aircraft.global_scale.x,owner_aircraft.global_scale.y)
  if pos.distance_to(owner_aircraft.global_position)<owner_radius+radius:return false
  var query:=PhysicsShapeQueryParameters2D.new()
  var circle:=CircleShape2D.new();circle.radius=radius;query.shape=circle

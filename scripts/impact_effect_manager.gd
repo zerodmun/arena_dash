@@ -8,6 +8,7 @@ func impact(projectile_id: int, point: Vector2, color: Color) -> void:
  _receipts[projectile_id]=true
  var burst:=ExplosionParticles.new()
  add_child(burst)
+ burst.tree_exited.connect(func() -> void: _receipts.erase(projectile_id))
  burst.activate(point,color,projectile_id,"projectile_impact")
  created+=1
  SoundEffects.play("impact",-19)

@@ -27,6 +27,12 @@ var cards: Dictionary = {}
 var _map_view: Control
 var _world: Control
 var _route: Control
+var _route_paths: Control
+var _route_diameter := -1.0
+var _font_size := -1
+var _next_font_size := -1
+var _visibility: Array[bool] = []
+var _unlocked: Array[bool] = []
 var _offset := Vector2.ZERO
 var _velocity := Vector2.ZERO
 var _pointer := -2
@@ -73,6 +79,10 @@ func _ready() -> void:
  _world = Control.new()
  _world.mouse_filter = Control.MOUSE_FILTER_IGNORE
  _map_view.add_child(_world)
+ _route_paths = Control.new()
+ _route_paths.mouse_filter = Control.MOUSE_FILTER_IGNORE
+ _route_paths.draw.connect(func() -> void: _draw_paths(_route_paths))
+ _world.add_child(_route_paths)
  _route = Control.new()
  _route.mouse_filter = Control.MOUSE_FILTER_IGNORE
  _route.draw.connect(func() -> void: _draw_route(_route))
@@ -109,6 +119,8 @@ func _ready() -> void:
  _world.add_child(_next_label)
  for i in Campaign.ORDER.size():
   var id: String = Campaign.ORDER[i]
+  _visibility.append(true)
+  _unlocked.append(Game.is_level_unlocked(id))
   var planet := PlanetButton.new()
   planet.planet_id = id
   # Locked nodes can be inspected; deployment remains guarded by Game.select_level.
@@ -118,6 +130,7 @@ func _ready() -> void:
   cards[id] = planet
   var lock_badge := ArcadeUI.image("res://assets/ui/badges/badge_lock.svg",Vector2(32,32))
   _world.add_child(lock_badge)
+  lock_badge.visible = not _unlocked[i]
   _locks.append(lock_badge)
   var marker := ArcadeUI.label(str(i + 1), 18, ArcadeUI.GOLD if Game.is_level_unlocked(id) else Color("acc0e9"))
   marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -215,6 +228,7 @@ func _layout(available := Rect2()) -> void:
  _world.scale = Vector2.ONE * _scene_scale
  _world.size = WORLD_SIZE
  _route.size = WORLD_SIZE
+ _route_paths.size = WORLD_SIZE
  _centers.clear()
  for i in Campaign.ORDER.size():
   var center: Vector2 = POINTS[i]
@@ -242,6 +256,7 @@ func _layout(available := Rect2()) -> void:
  _update_zoom_visuals()
  _focus_planet(_selected, false)
  _route.queue_redraw()
+ _route_paths.queue_redraw()
 
 func _target_offset(id: String) -> Vector2:
  return _map_view.size * 0.5 - POINTS[Campaign.index(id)] * _scene_scale
@@ -257,11 +272,13 @@ func _set_offset(value: Vector2) -> void:
  var visible_area := Rect2(-_offset / _scene_scale, _map_view.size / _scene_scale).grow(180)
  for i in Campaign.ORDER.size():
   var on_screen := visible_area.has_point(POINTS[i])
+  if _visibility[i] == on_screen: continue
+  _visibility[i] = on_screen
   cards[Campaign.ORDER[i]].visible = on_screen
   _markers[i].visible = on_screen
   _ratings[i].visible = on_screen
   _names[i].visible = on_screen
-  _locks[i].visible = on_screen and not Game.is_level_unlocked(Campaign.ORDER[i])
+  _locks[i].visible = on_screen and not _unlocked[i]
 
 func _focus_planet(id: String, smooth: bool) -> void:
  _zoom_target = _zoom
@@ -284,6 +301,8 @@ func _process(delta: float) -> void:
   if is_equal_approx(before.x, _offset.x): _velocity.x = 0
   if is_equal_approx(before.y, _offset.y): _velocity.y = 0
   _velocity *= exp(-6.0 * delta)
+ if _pointer == -2 and _velocity.length_squared() <= 1.0 and is_equal_approx(_zoom,_zoom_target):
+  set_process(false)
 
 func _bounds_at_scale(map_scale: float) -> Rect2:
  var bounds := Rect2(Vector2.ZERO,WORLD_SIZE)
@@ -321,6 +340,8 @@ func _update_zoom_visuals() -> void:
  var text_scale := clampf(_scene_scale,0.75,1.0)/_scene_scale
  var star_scale := clampf(_scene_scale,0.5,1.0)/_scene_scale
  var name_scale := minf(1.0,1.0/_scene_scale)
+ var font_size := int(ceil(maxf(16,12/_scene_scale)))
+ var next_font_size := int(ceil(maxf(15,12/_scene_scale)))
  for i in Campaign.ORDER.size():
   var center: Vector2 = POINTS[i]
   var planet: PlanetButton = cards[Campaign.ORDER[i]]
@@ -335,13 +356,20 @@ func _update_zoom_visuals() -> void:
   _names[i].position = center+Vector2(-145,diameter*0.5+28*star_scale+7/_scene_scale)
   _names[i].scale = Vector2.ONE*name_scale
   _names[i].size = Vector2(290,maxf(24,20/_scene_scale))/name_scale
-  _names[i].add_theme_font_size_override("font_size",int(ceil(maxf(16,12/_scene_scale))))
+  if font_size != _font_size:
+   _names[i].add_theme_font_size_override("font_size",font_size)
  var next := Campaign.index(Game.latest_unlocked_planet())
  _next_label.position = POINTS[next]+Vector2(-145,-diameter*0.5-50*text_scale)
- _next_label.add_theme_font_size_override("font_size",int(ceil(maxf(15,12/_scene_scale))))
+ if next_font_size != _next_font_size:
+  _next_label.add_theme_font_size_override("font_size",next_font_size)
+ _font_size = font_size
+ _next_font_size = next_font_size
  _next_label.scale = Vector2.ONE*name_scale
  _next_label.size = Vector2(290,maxf(24,20/_scene_scale))/name_scale
  _next_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+ if not is_equal_approx(diameter,_route_diameter):
+  _route_diameter = diameter
+  _route_paths.queue_redraw()
  _world_bounds = _bounds_at_scale(_scene_scale)
  _zoom_readout.text = "%d%%" % int(round(_zoom*100))
  _zoom_out.disabled = _zoom_target <= _minimum_zoom()+0.001
@@ -359,6 +387,7 @@ func _apply_zoom(value: float, anchor: Vector2) -> void:
  _zoom_dirty = true
 
 func _request_zoom(value: float, global_anchor: Vector2) -> void:
+ set_process(true)
  if _focus_tween: _focus_tween.kill()
  _zoom_anchor = global_anchor-_map_view.global_position
  _zoom_target = clampf(value,_minimum_zoom(),maximum_zoom)
@@ -450,7 +479,8 @@ func _notification(what: int) -> void:
    Game.save_settings()
    _zoom_dirty = false
 
-func _draw_route(canvas: Control) -> void:
+func _draw_paths(canvas: Control) -> void:
+ # Route dots only change when overview touch targets grow, not on ordinary zoom.
  for i in _centers.size()-1:
   var a := _centers[i]
   var b := _centers[i+1]
@@ -460,6 +490,7 @@ func _draw_route(canvas: Control) -> void:
    var point := a.lerp(b, float(dot)/count)
    if point.distance_to(a)>cards[Campaign.ORDER[i]].size.x*0.5+10 and point.distance_to(b)>cards[Campaign.ORDER[i+1]].size.x*0.5+10:
     canvas.draw_circle(point, 2, Color(col, 0.6))
+func _draw_route(canvas: Control) -> void:
  for i in _centers.size():
   var badge_center := _markers[i].position+_markers[i].size*_markers[i].scale*0.5
   var radius := 15*_markers[i].scale.x
@@ -484,6 +515,7 @@ func _pointer_move(at: Vector2, seconds: float) -> void:
   var movement := at - _last_position
   # Include the threshold distance on the first drag frame.
   if _last_position == _press_position: movement = at - _press_position
+  set_process(true)
   _set_offset(_offset + movement)
   _zoom_anchor += movement
   _velocity = _velocity.lerp(movement / maxf(seconds, 0.008), 0.45).limit_length(2200)

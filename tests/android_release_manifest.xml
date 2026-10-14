@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="2"
+    android:versionName="1.1"
+    android:installLocation="0"
+    android:compileSdkVersion="36"
+    android:compileSdkVersionCodename="16"
+    package="com.example.arenadash"
+    platformBuildVersionCode="36"
+    platformBuildVersionName="16">
+
+    <uses-sdk
+        android:minSdkVersion="24"
+        android:targetSdkVersion="36" />
+
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-feature
+        android:glEsVersion="0x30000"
+        android:required="true" />
+
+    <application
+        android:label="@ref/0x7f0b0008"
+        android:icon="@ref/0x7f0a0000"
+        android:allowBackup="false"
+        android:isGame="true"
+        android:extractNativeLibs="true"
+        android:appCategory="0"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:hasFragileUserData="false"
+        android:requestLegacyExternalStorage="false">
+
+        <profileable
+            android:enabled="true"
+            android:shell="true" />
+
+        <activity
+            android:theme="@ref/0x7f0c0008"
+            android:name="com.godot.game.GodotApp"
+            android:exported="false"
+            android:excludeFromRecents="false"
+            android:launchMode="4"
+            android:screenOrientation="0"
+            android:configChanges="0x3ff4"
+            android:windowSoftInputMode="0x10"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true" />
+
+        <activity-alias
+            android:name="com.godot.game.GodotAppLauncher"
+            android:exported="true"
+            android:targetActivity="com.godot.game.GodotApp">
+
+            <intent-filter>
+
+                <action
+                    android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <meta-data
+            android:name="org.godotengine.library.version"
+            android:value="4.7.2.stable" />
+
+        <activity
+            android:theme="@ref/0x1030010"
+            android:name="org.godotengine.godot.utils.ProcessPhoenix"
+            android:exported="false"
+            android:process=":phoenix" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:authorities="com.example.arenadash.fileprovider"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@ref/0x7f0e0000" />
+        </provider>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:exported="false"
+            android:authorities="com.example.arenadash.fileprovider">
+
+            <meta-data
+                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
+        <receiver
+            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+            android:permission="android.permission.DUMP"
+            android:enabled="true"
+            android:exported="true"
+            android:directBootAware="false">
+
+            <intent-filter>
+
+                <action
+                    android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+            </intent-filter>
+
+            <intent-filter>
+
+                <action
+                    android:name="androidx.profileinstaller.action.SKIP_FILE" />
+            </intent-filter>
+
+            <intent-filter>
+
+                <action
+                    android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+            </intent-filter>
+
+            <intent-filter>
+
+                <action
+                    android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="org.godotengine.rendering.method"
+            android:value="mobile" />
+
+        <meta-data
+            android:name="org.godotengine.editor.version"
+            android:value="4.7.2.stable" />
+    </application>
+
+    <uses-feature
+        android:name="android.hardware.vulkan.level"
+        android:required="false"
+        android:version="1" />
+
+    <uses-feature
+        android:name="android.hardware.vulkan.version"
+        android:required="false"
+        android:version="0x401000" />
+</manifest>

@@ -119,6 +119,8 @@ if [ "$MODE" = "--export-release" ]; then
     if [ -n "${ARENA_ANDROID_EXPECTED_CERT_SHA256:-}" ] && [ "$EXPECTED_CERT_SHA256" != "$ARENA_ANDROID_EXPECTED_CERT_SHA256" ]; then
         echo "Release blocked: production certificate differs from the recorded signing identity." >&2; exit 1
     fi
+    # A CI override must preserve the same published key as local Keychain builds.
+    python3 tools/android_release_policy.py --certificate "$EXPECTED_CERT_SHA256"
     unset CERT_DETAILS
 else
     if [ ! -f "debug.keystore" ]; then

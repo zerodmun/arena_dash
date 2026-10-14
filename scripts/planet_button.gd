@@ -5,6 +5,7 @@ var planet_id := "cyber"
 var planet_texture: Texture2D
 var selected := false:
  set(value):
+  if selected == value: return
   selected=value
   queue_redraw()
 var _glow := 0.0

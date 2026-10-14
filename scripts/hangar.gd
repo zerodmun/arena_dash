@@ -62,6 +62,7 @@ func _ready() -> void:
 	Game.is_running = false
 	Input.action_release("fire")
 	_map_id = Game.selected_map_id
+	Game.warm_mission_assets(_map_id)
 	_ship_index = maxi(0, Game.SHIPS.keys().find(Game.selected_ship_id))
 	_build_ui()
 	_refresh()
@@ -620,6 +621,12 @@ func _deploy() -> void:
 		_deploying = false
 		_launch.disabled = false
 		SoundEffects.play("locked")
+		return
+	var assets := Game.warm_mission_assets(Game.selected_map_id)
+	if not await assets.wait_until_ready(Game.selected_map_id):
+		_deploying = false
+		_feedback = I18n.t("Unable to load flight systems. Please retry.")
+		_refresh()
 		return
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
