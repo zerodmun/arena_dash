@@ -208,7 +208,11 @@ func close() -> void:
 func _input(event: InputEvent) -> void:
  if has_node("ControlLayoutEditor"): return
  if event is InputEventKey and event.pressed:
-  if event.keycode==KEY_ESCAPE:
-   close()
-   get_viewport().set_input_as_handled()
-  elif event.keycode in [KEY_P,KEY_R] or (event.keycode in [KEY_LEFT,KEY_RIGHT] and not get_viewport().gui_get_focus_owner() is HSlider): get_viewport().set_input_as_handled()
+  if event.keycode in [KEY_P,KEY_R] or (event.keycode in [KEY_LEFT,KEY_RIGHT] and not get_viewport().gui_get_focus_owner() is HSlider): get_viewport().set_input_as_handled()
+
+func navigation_back() -> bool:
+ if _display_section=="GAMEPLAY":
+  _display_section=""
+  _show_category("DISPLAY")
+ else:close()
+ return true

@@ -51,7 +51,7 @@ func _ready() -> void:
  _refresh_catalog_summary()
  for item in [["ENTER HANGAR","button_play","res://scenes/hangar.tscn"],["PLANET CAMPAIGN","button_menu","res://scenes/level_select.tscn"]]:
   var btn:=ArcadeUI.button(item[0],item[1],item[0]=="ENTER HANGAR")
-  btn.pressed.connect(func() -> void: get_tree().change_scene_to_file(item[2]))
+  btn.pressed.connect(func() -> void: Navigation.go_to(item[2]))
   box.add_child(btn)
  var settings:=ArcadeUI.button("SETTINGS","button_settings")
  settings.pressed.connect(func() -> void: ArcadeUI.settings(self))
@@ -72,7 +72,7 @@ func _layout(available := Rect2()) -> void:
 func _unhandled_input(event: InputEvent) -> void:
  if event is InputEventKey and event.pressed and event.keycode==KEY_ENTER and not has_node("FlightDialog"):
   SoundEffects.play("confirm")
-  get_tree().change_scene_to_file("res://scenes/hangar.tscn")
+  Navigation.go_to("res://scenes/hangar.tscn")
 
 func _refresh_coins() -> void:
  _coins.text=I18n.t("Coins: %d",[Game.coins])

@@ -211,10 +211,9 @@ func save() -> void:
 func cancel() -> void:
  finished.emit(false)
  queue_free()
-func _input(event: InputEvent) -> void:
- if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
-  cancel()
-  get_viewport().set_input_as_handled()
+func navigation_back() -> bool:
+ cancel()
+ return true
 
 func _toggle_fixed() -> void:
  draft.joystick.fixed=not draft.joystick.fixed

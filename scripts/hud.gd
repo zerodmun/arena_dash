@@ -144,7 +144,7 @@ func _apply_ui_mode(is_mobile: bool) -> void:
 func _unhandled_input(event: InputEvent) -> void:
     if event is InputEventKey and event.pressed and not event.echo:
         if has_node("FlightDialog"): return
-        if event.keycode in [KEY_ESCAPE, KEY_P] and Game.is_running:
+        if event.keycode == KEY_P and Game.is_running:
             _toggle_pause()
         elif event.keycode == KEY_R and game_over_panel.visible:
             _on_start_pressed()
@@ -221,7 +221,7 @@ func _on_return_to_hangar() -> void:
     Game.is_running = false
     Game.flush_save()
     Input.action_release("fire")
-    get_tree().change_scene_to_file("res://scenes/hangar.tscn")
+    Navigation.go_to("res://scenes/hangar.tscn")
 
 
 func _on_fire_down() -> void:
@@ -489,7 +489,7 @@ func _return_to_campaign() -> void:
     if not Game.mission_won or Game.last_attempt_stars != 3: return
     get_tree().paused = false
     Input.action_release("fire")
-    get_tree().change_scene_to_file("res://scenes/level_select.tscn")
+    Navigation.go_to("res://scenes/level_select.tscn")
 
 func _advance() -> void:
     var next := Campaign.index(Game.selected_map_id) + 1
@@ -550,3 +550,15 @@ func _layout_safe_ui(area: Rect2) -> void:
     if is_instance_valid(_boss_notice):
         _boss_notice.offset_top=156+area.position.y
         _boss_notice.offset_bottom=184+area.position.y
+
+func navigation_back() -> bool:
+    if game_over_panel.visible:
+        _map_return_timer.stop()
+        get_tree().paused=false
+        Game.is_running=false
+        Game.flush_save()
+        Input.action_release("fire")
+        Navigation.go_to(Navigation.history.back() if not Navigation.history.is_empty() else "res://scenes/hangar.tscn")
+    elif Game.is_running:
+        _toggle_pause()
+    return true

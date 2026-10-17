@@ -87,8 +87,8 @@ func _ready() -> void:
  _route.mouse_filter = Control.MOUSE_FILTER_IGNORE
  _route.draw.connect(func() -> void: _draw_route(_route))
  _world.add_child(_route)
- _back = ArcadeUI.button("HANGAR", "button_back")
- _back.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://scenes/hangar.tscn"))
+ _back = ArcadeUI.button("HOME" if Navigation.history.is_empty() or Navigation.history.back()==Navigation.HOME else "HANGAR", "button_back")
+ _back.pressed.connect(Navigation.request_back)
  add_child(_back)
  _heading = ArcadeUI.label("PLANET CAMPAIGN", 32, Color("e1eaff"))
  _heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -165,7 +165,7 @@ func _ready() -> void:
  _deploy = ArcadeUI.button("PREPARE FLIGHT", "button_play",true)
  _deploy.custom_minimum_size.x = 240
  _deploy.pressed.connect(func() -> void:
-  if Game.select_level(_selected): get_tree().change_scene_to_file("res://scenes/hangar.tscn"))
+  if Game.select_level(_selected): Navigation.go_to("res://scenes/hangar.tscn"))
  row.add_child(_deploy)
  I18n.changed.connect(func() -> void: _layout(); _select(_selected))
  resized.connect(_layout)
@@ -571,14 +571,11 @@ func _input(event: InputEvent) -> void:
 func _unhandled_input(event: InputEvent) -> void:
  if has_node("FlightDialog"): return
  if event is InputEventKey and event.pressed and not event.echo:
-  if event.keycode == KEY_ESCAPE:
-   SoundEffects.play("back")
-   get_tree().change_scene_to_file("res://scenes/hangar.tscn")
-  elif event.keycode in [KEY_LEFT,KEY_RIGHT]:
+  if event.keycode in [KEY_LEFT,KEY_RIGHT]:
    _select(Campaign.ORDER[wrapi(Campaign.index(_selected)+(1 if event.keycode==KEY_RIGHT else -1),0,Campaign.ORDER.size())])
    _focus_planet(_selected, true)
   elif event.keycode == KEY_ENTER:
    if Game.select_level(_selected):
     SoundEffects.play("confirm")
-    get_tree().change_scene_to_file("res://scenes/hangar.tscn")
+    Navigation.go_to("res://scenes/hangar.tscn")
    else: SoundEffects.play("locked")

@@ -126,7 +126,7 @@ func _build_header() -> void:
 	var home := _button("")
 	ArcadeUI.icon(home, "button_home")
 	home.custom_minimum_size = Vector2(64,64)
-	home.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://scenes/menu.tscn"))
+	home.pressed.connect(func() -> void: Navigation.go_to("res://scenes/menu.tscn"))
 	row.add_child(home)
 	var settings := _button("")
 	ArcadeUI.icon(settings, "button_settings")
@@ -270,7 +270,7 @@ func _build_bottom_controls() -> void:
 	weapon_box.add_child(_weapon_status)
 	_map_card = PlanetButton.new()
 	(_map_card as PlanetButton).planet_id = Game.hangar_planet()
-	_map_card.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://scenes/level_select.tscn"))
+	_map_card.pressed.connect(func() -> void: Navigation.go_to("res://scenes/level_select.tscn"))
 	add_child(_map_card)
 	_map_card_label = _label("", 15, Color("b8ccf8"))
 	_map_card_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -494,7 +494,7 @@ func _open_popup(mode: String) -> void:
 		child.queue_free()
 	_popup_buttons.clear()
 	if mode == "map":
-		get_tree().change_scene_to_file("res://scenes/level_select.tscn")
+		Navigation.go_to("res://scenes/level_select.tscn")
 		return
 	var catalog: Dictionary = Game.WEAPONS
 	for id: String in catalog:
@@ -628,15 +628,13 @@ func _deploy() -> void:
 		_feedback = I18n.t("Unable to load flight systems. Please retry.")
 		_refresh()
 		return
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	Navigation.go_to("res://scenes/main.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if has_node("FlightDialog"):
 			return
 		if _overlay.visible:
-			if event.keycode == KEY_ESCAPE:
-				_close_popup()
 			return
 		if event.keycode in [KEY_LEFT, KEY_A]:
 			_switch_ship(-1)
@@ -670,3 +668,10 @@ func _confirm_loadout() -> void:
 	else:
 		_feedback=I18n.t("Purchase could not be saved. Try again.")
 		_refresh_popup()
+
+func navigation_back() -> bool:
+	if _deploying:return true
+	if _overlay.visible:
+		_close_popup()
+		return true
+	return false
